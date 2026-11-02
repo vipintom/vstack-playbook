@@ -1,0 +1,575 @@
+{
+  "schemaVersion": 2,
+  "playbookVersion": "0.1.0",
+  "generatedAt": "2026-11-02T00:00:00.000Z",
+  "contentHash": "69b759009f6ce54682e20ebbad2e57327dd026b089fb67a3d80dbd1ab80911d4",
+  "principles": [
+    {
+      "id": "harness-independence-first",
+      "path": "principles/harness-independence-first.md",
+      "title": "Harness Independence First"
+    },
+    {
+      "id": "procedures-over-vague-instructions",
+      "path": "principles/procedures-over-vague-instructions.md",
+      "title": "Procedures Over Vague Instructions"
+    },
+    {
+      "id": "flexible-workflows-not-mandatory-ceremony",
+      "path": "principles/flexible-workflows-not-mandatory-ceremony.md",
+      "title": "Flexible Workflows, Not Mandatory Ceremony"
+    },
+    {
+      "id": "loops-are-first-class",
+      "path": "principles/loops-are-first-class.md",
+      "title": "Loops Are First-Class"
+    },
+    {
+      "id": "small-purposeful-agent-team",
+      "path": "principles/small-purposeful-agent-team.md",
+      "title": "Small, Purposeful Agent Team"
+    },
+    {
+      "id": "evidence-before-completion",
+      "path": "principles/evidence-before-completion.md",
+      "title": "Evidence Before Completion"
+    },
+    {
+      "id": "independent-challenge",
+      "path": "principles/independent-challenge.md",
+      "title": "Independent Challenge"
+    },
+    {
+      "id": "runtime-simplicity",
+      "path": "principles/runtime-simplicity.md",
+      "title": "Runtime Simplicity"
+    },
+    {
+      "id": "clear-source-of-responsibility",
+      "path": "principles/clear-source-of-responsibility.md",
+      "title": "Clear Source of Responsibility"
+    },
+    {
+      "id": "degrade-gracefully",
+      "path": "principles/degrade-gracefully.md",
+      "title": "Degrade Gracefully"
+    },
+    {
+      "id": "understand-before-changing",
+      "path": "principles/understand-before-changing.md",
+      "title": "Understand Before Changing"
+    },
+    {
+      "id": "route-before-loading",
+      "path": "principles/route-before-loading.md",
+      "title": "Route Before Loading"
+    },
+    {
+      "id": "smallest-complete-change",
+      "path": "principles/smallest-complete-change.md",
+      "title": "Prefer the Smallest Complete Change"
+    },
+    {
+      "id": "challenge-assumptions",
+      "path": "principles/challenge-assumptions.md",
+      "title": "Challenge Assumptions"
+    },
+    {
+      "id": "model-domain-explicitly",
+      "path": "principles/model-domain-explicitly.md",
+      "title": "Model the Domain Explicitly"
+    },
+    {
+      "id": "respect-boundaries",
+      "path": "principles/respect-boundaries.md",
+      "title": "Respect State and API Boundaries"
+    },
+    {
+      "id": "verifiable-increments",
+      "path": "principles/verifiable-increments.md",
+      "title": "Work in Verifiable Increments"
+    }
+  ],
+  "roles": [
+    {
+      "id": "lead",
+      "path": "agents/roles/lead.md",
+      "title": "Lead (Whale)",
+      "adapters": {
+        "opencode": "agents/adapters/opencode/vstack-lead.md",
+        "codex": "agents/adapters/codex/vstack-lead.md",
+        "claude-code": "agents/adapters/claude-code/vstack-lead.md"
+      }
+    },
+    {
+      "id": "builder",
+      "path": "agents/roles/builder.md",
+      "title": "Builder",
+      "adapters": {
+        "opencode": "agents/adapters/opencode/vstack-builder.md",
+        "codex": "agents/adapters/codex/vstack-builder.md",
+        "claude-code": "agents/adapters/claude-code/vstack-builder.md"
+      }
+    },
+    {
+      "id": "reviewer",
+      "path": "agents/roles/reviewer.md",
+      "title": "Reviewer (Goldfish)",
+      "adapters": {
+        "opencode": "agents/adapters/opencode/vstack-reviewer.md",
+        "codex": "agents/adapters/codex/vstack-reviewer.md",
+        "claude-code": "agents/adapters/claude-code/vstack-reviewer.md"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "id": "vstack-skill-authoring",
+      "path": "skills/vstack-skill-authoring/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-skill-evaluation",
+      "path": "skills/vstack-skill-evaluation/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-how",
+      "path": "skills/vstack-how/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-why",
+      "path": "skills/vstack-why/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-catchup",
+      "path": "skills/vstack-catchup/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-blast-radius",
+      "path": "skills/vstack-blast-radius/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-explain",
+      "path": "skills/vstack-explain/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-recall",
+      "path": "skills/vstack-recall/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-architect",
+      "path": "skills/vstack-architect/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-blueprint",
+      "path": "skills/vstack-blueprint/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-arena",
+      "path": "skills/vstack-arena/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-design-audit",
+      "path": "skills/vstack-design-audit/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-prototype",
+      "path": "skills/vstack-prototype/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-plan-review",
+      "path": "skills/vstack-plan-review/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-incremental-build",
+      "path": "skills/vstack-incremental-build/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-refactor",
+      "path": "skills/vstack-refactor/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-unslop",
+      "path": "skills/vstack-unslop/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-create-verification",
+      "path": "skills/vstack-create-verification/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-maintain-verification",
+      "path": "skills/vstack-maintain-verification/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-verification-audit",
+      "path": "skills/vstack-verification-audit/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-debug",
+      "path": "skills/vstack-debug/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-recovery",
+      "path": "skills/vstack-recovery/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-swarm",
+      "path": "skills/vstack-swarm/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-best-of-n",
+      "path": "skills/vstack-best-of-n/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-worktree",
+      "path": "skills/vstack-worktree/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-handoff",
+      "path": "skills/vstack-handoff/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-interrogate",
+      "path": "skills/vstack-interrogate/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-jury",
+      "path": "skills/vstack-jury/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-review-rubrics",
+      "path": "skills/vstack-review-rubrics/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-ledger",
+      "path": "skills/vstack-ledger/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-safe-pause",
+      "path": "skills/vstack-safe-pause/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-session-pickup",
+      "path": "skills/vstack-session-pickup/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-pr",
+      "path": "skills/vstack-pr/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-watch-pr",
+      "path": "skills/vstack-watch-pr/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-ready",
+      "path": "skills/vstack-ready/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-ship",
+      "path": "skills/vstack-ship/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-performance",
+      "path": "skills/vstack-performance/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-runtime-forensics",
+      "path": "skills/vstack-runtime-forensics/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-trace-forensics",
+      "path": "skills/vstack-trace-forensics/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-visual-parity",
+      "path": "skills/vstack-visual-parity/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-tdd",
+      "path": "skills/vstack-tdd/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-verify-loop",
+      "path": "skills/vstack-verify-loop/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-unstick",
+      "path": "skills/vstack-unstick/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-mode",
+      "path": "skills/vstack-mode/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-sharpen",
+      "path": "skills/vstack-sharpen/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-help",
+      "path": "skills/vstack-help/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-principles",
+      "path": "skills/vstack-principles/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-figure-it-out",
+      "path": "skills/vstack-figure-it-out/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-lessons",
+      "path": "skills/vstack-lessons/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-plan-loop",
+      "path": "skills/vstack-plan-loop/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-review-loop",
+      "path": "skills/vstack-review-loop/SKILL.md",
+      "version": "1.0.0"
+    },
+    {
+      "id": "vstack-context-reset",
+      "path": "skills/vstack-context-reset/SKILL.md",
+      "version": "1.0.0"
+    }
+  ],
+  "workflows": [
+    {
+      "id": "investigation",
+      "path": "workflows/investigation.md",
+      "category": "core-must"
+    },
+    {
+      "id": "architecture-change",
+      "path": "workflows/architecture-change.md",
+      "category": "core-must"
+    },
+    {
+      "id": "infrastructure-change",
+      "path": "workflows/infrastructure-change.md",
+      "category": "core-must"
+    },
+    {
+      "id": "documentation",
+      "path": "workflows/documentation.md",
+      "category": "core-must"
+    },
+    {
+      "id": "skill-maintenance",
+      "path": "workflows/skill-maintenance.md",
+      "category": "core-must"
+    },
+    {
+      "id": "feature-delivery",
+      "path": "workflows/feature-delivery.md",
+      "category": "should-could"
+    },
+    {
+      "id": "bug-fixing",
+      "path": "workflows/bug-fixing.md",
+      "category": "should-could"
+    },
+    {
+      "id": "refactoring",
+      "path": "workflows/refactoring.md",
+      "category": "should-could"
+    },
+    {
+      "id": "performance-investigation",
+      "path": "workflows/performance-investigation.md",
+      "category": "should-could"
+    },
+    {
+      "id": "prototype",
+      "path": "workflows/prototype.md",
+      "category": "should-could"
+    },
+    {
+      "id": "multi-phase-delivery",
+      "path": "workflows/multi-phase-delivery.md",
+      "category": "should-could"
+    },
+    {
+      "id": "autonomous-execution",
+      "path": "workflows/autonomous-execution.md",
+      "category": "should-could"
+    },
+    {
+      "id": "pr-preparation",
+      "path": "workflows/pr-preparation.md",
+      "category": "should-could"
+    },
+    {
+      "id": "pr-monitoring",
+      "path": "workflows/pr-monitoring.md",
+      "category": "should-could"
+    },
+    {
+      "id": "worktree-cleanup",
+      "path": "workflows/worktree-cleanup.md",
+      "category": "should-could"
+    },
+    {
+      "id": "runtime-forensics",
+      "path": "workflows/runtime-forensics.md",
+      "category": "should-could"
+    },
+    {
+      "id": "trace-forensics",
+      "path": "workflows/trace-forensics.md",
+      "category": "should-could"
+    },
+    {
+      "id": "visual-parity",
+      "path": "workflows/visual-parity.md",
+      "category": "should-could"
+    }
+  ],
+  "resources": {
+    "rubrics": [
+      "correctness-regression",
+      "architecture-design",
+      "security-data",
+      "performance-resources",
+      "maintainability-style",
+      "test-adequacy",
+      "documentation-migration"
+    ],
+    "templates": [
+      "delivery-plan",
+      "review-finding",
+      "handoff",
+      "task"
+    ],
+    "references": [
+      "quick-ref"
+    ],
+    "projectTemplates": [
+      "verification-skill"
+    ],
+    "evaluations": {
+      "skills": "evaluations/scenarios/skills/",
+      "playbooks": "evaluations/scenarios/playbooks/",
+      "regressionPolicy": "evaluations/regression-policy.md"
+    },
+    "research": {
+      "records": "docs/research/records/",
+      "externalPacks": [
+        "Cursor pstack",
+        "painhardcore/pstack",
+        "superpowers",
+        "DeepSeek Stack",
+        "Anthropic Skills",
+        "t3dotgg/tstack",
+        "TStack"
+      ]
+    }
+  },
+  "adapters": {
+    "opencode": {
+      "roles": [
+        "vstack-lead.md",
+        "vstack-builder.md",
+        "vstack-reviewer.md"
+      ],
+      "version": "1.0.0",
+      "generatedFrom": "canonical roles",
+      "provenance": "playbook/agents/roles/"
+    },
+    "codex": {
+      "roles": [
+        "vstack-lead.md",
+        "vstack-builder.md",
+        "vstack-reviewer.md"
+      ],
+      "version": "1.0.0",
+      "generatedFrom": "canonical roles",
+      "provenance": "playbook/agents/roles/"
+    },
+    "claude-code": {
+      "roles": [
+        "vstack-lead.md",
+        "vstack-builder.md",
+        "vstack-reviewer.md"
+      ],
+      "version": "1.0.0",
+      "generatedFrom": "canonical roles",
+      "provenance": "playbook/agents/roles/"
+    }
+  },
+  "compatibility": {
+    "opencode": ">=2.2.0",
+    "codex": ">=0.1.0",
+    "claude-code": ">=1.0.0"
+  },
+  "capabilityMatrix": "docs/capability-matrix.md",
+  "phase6Status": {
+    "adaptersComplete": true,
+    "capabilityMatrixComplete": true,
+    "codexLiveValidated": true,
+    "claudeCodeLiveValidated": true,
+    "standaloneAcceptanceTested": true,
+    "packagingComplete": true,
+    "finalAuditComplete": true,
+    "releaseReady": true
+  },
+  "packaging": {
+    "version": "0.1.0",
+    "tarball": "vstack-playbook-v0.1.0.tar.gz",
+    "zip": "vstack-playbook-v0.1.0.zip",
+    "tarballSha256": "a51ce8d52f492de23f35cd835d444b77818d5b8c0f43dbcd9ceae09458a938a2",
+    "zipSha256": "43691e10b1f8b2fe7ede08bb199d899d14491a111b68872aa6621323eceb0239",
+    "createdAt": "2026-11-02T18:56:28.108Z"
+  }
+}

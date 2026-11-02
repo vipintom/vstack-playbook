@@ -1,0 +1,121 @@
+name: Playbook CI
+
+on:
+  pull_request:
+    branches: [main, master]
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Playbook Content
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate content
+        run: pnpm validate
+
+  test-install:
+    name: Test Installation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test install script (opencode)
+        run: |
+          mkdir -p /tmp/test-project
+          node scripts/install-playbook.js opencode /tmp/test-project
+          ls -la /tmp/test-project/.opencode/agents/
+
+      - name: Test install script (codex)
+        run: |
+          mkdir -p /tmp/test-project-codex
+          node scripts/install-playbook.js codex /tmp/test-project-codex
+          ls -la /tmp/test-project-codex/.codex/agents/ 2>/dev/null || true
+
+      - name: Test install script (claude-code)
+        run: |
+          mkdir -p /tmp/test-project-claude
+          node scripts/install-playbook.js claude-code /tmp/test-project-claude
+          ls -la /tmp/test-project-claude/.claude/agents/ 2>/dev/null || true
+
+  skills-cli:
+    name: Skills CLI Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test skills CLI list
+        run: |
+          cd /tmp && mkdir skills-test && cd skills-test
+          npx skills add $(pwd)/../../playbook-ci-worktree --list 2>&1 | grep -c "vstack-"
+
+      - name: Test skills CLI single install
+        run: |
+          cd /tmp && mkdir skills-test-single && cd skills-test-single
+          npx skills add $(pwd)/../../playbook-ci-worktree --skill vstack-tdd -a opencode 2>&1 | grep "Installed 1 skill"
+
+      - name: Test skills CLI full install
+        run: |
+          cd /tmp && mkdir skills-test-full && cd skills-test-full
+          npx skills add $(pwd)/../../playbook-ci-worktree --skill '*' -a opencode 2>&1 | grep "Installed 52 skills"
+
+  package:
+    name: Package Distribution
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create distribution packages
+        run: |
+          pnpm run dist:package 2>&1 || pnpm pack:prod
+          ls -la *.tgz *.zip 2>/dev/null || true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true

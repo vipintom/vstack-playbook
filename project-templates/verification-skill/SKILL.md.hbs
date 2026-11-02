@@ -1,0 +1,133 @@
+---
+name: vstack-create-verification
+description: Inspect a project and create a project-spec
+lifecycle: draft
+---
+
+# vstack-create-verification
+
+## Project Overview
+
+This skill creates project-specific verification by inspecting the codebase and generating a verification skill that captures what to test, how to run checks, acceptance criteria, and evidence standards.
+
+## Purpose / Outcome
+
+Produces a `verification-skill.md` in the project that captures project-specific verification requirements: what to test, how to run checks, acceptance criteria, and evidence standards.
+
+---
+
+## Prerequisites
+
+- Project has a package.json, pyproject.toml, Cargo.toml, or go.mod
+- Test and check commands are discoverable
+- Access to project root directory
+
+---
+
+## Commands
+
+This skill provides the following commands:
+- `vstack-create-verification` — Inspect project and generate verification skill
+- `vstack-maintain-verification` — Update existing verification skill
+
+---
+
+## Install
+
+```bash
+# Install the verification skill
+npx skills add ./playbook --skill vstack-create-verification -a opencode
+```
+
+---
+
+## Start Development
+
+After installing the verification skill, the Lead can invoke it to generate project-specific verification:
+
+```bash
+# In your project directory
+vstack-create-verification
+```
+
+This will inspect your project and generate a `verification-skill.md` with project-specific checks.
+
+---
+
+## Run Tests
+
+To verify the generated verification skill works correctly:
+
+```bash
+# Run the project's test suite
+npm test
+
+# Run typecheck
+npm run typecheck
+
+# Run lint
+npm run lint
+```
+
+All checks should pass with zero errors.
+
+---
+
+## Build
+
+To build the project and verify it compiles:
+
+```bash
+npm run build
+```
+
+Build should succeed with no errors or warnings.
+
+---
+
+## Application Surfaces
+
+Identify the application surfaces that need verification:
+- API endpoints
+- CLI commands
+- UI routes
+- Background jobs
+- Database operations
+
+---
+
+## Verification Sections
+
+The generated verification skill includes these sections:
+
+### Setup
+Prerequisites and environment preparation.
+
+### Run
+How to execute the verification.
+
+### Health
+Health checks for the running system.
+
+### Drive
+How to drive real user/system behaviour.
+
+### Observe
+What to observe (assertions, API responses, logs, screenshots, traces, metrics).
+
+### Cleanup
+Cleanup of processes, data and temporary resources.
+
+---
+
+## Gaps & Limitations
+
+Document any known gaps in verification coverage, manual steps required, or environment assumptions that may affect results.
+
+---
+
+## Validation
+
+- Generated skill passes `vstack_skill_validate`
+- Skill can be invoked by Lead/Builder
+- Checks execute and produce evidence

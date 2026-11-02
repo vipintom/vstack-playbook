@@ -1,0 +1,60 @@
+{
+  "name": "@vstack/playbook",
+  "version": "0.1.0",
+  "description": "vstack Engineering Playbook 0.1 — portable principles, roles, skills, and workflows for AI-assisted software development",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "principles",
+    "agents",
+    "skills",
+    "workflows",
+    "resources",
+    "evaluations",
+    "scripts",
+    "manifest.json",
+    "README.md",
+    "docs/capability-matrix.md"
+  ],
+  "scripts": {
+    "validate": "node scripts/validate-content.js",
+    "test:install": "node scripts/test-install.js",
+    "install:playbook": "node scripts/install-playbook.js",
+    "install:opencode": "node scripts/install-playbook.js opencode",
+    "install:codex": "node scripts/install-playbook.js codex",
+    "install:claude-code": "node scripts/install-playbook.js claude-code",
+    "pack": "npm pack --dry-run",
+    "pack:prod": "npm pack",
+    "dist:tarball": "tar -czf vstack-playbook-v2.0.0.tar.gz --transform 's,^,vstack-playbook-v2.0.0/,' principles agents skills workflows resources evaluations scripts manifest.json README.md docs/capability-matrix.md",
+    "dist:zip": "zip -r vstack-playbook-v2.0.0.zip principles agents skills workflows resources evaluations scripts manifest.json README.md docs/capability-matrix.md",
+    "dist:package": "node scripts/package-dist.js"
+  },
+  "keywords": [
+    "vstack",
+    "playbook",
+    "engineering",
+    "ai-agents",
+    "skills",
+    "workflows",
+    "opencode",
+    "codex",
+    "claude-code"
+  ],
+  "author": "vstack contributors",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<github-username>/vstack-playbook.git"
+  },
+  "homepage": "https://github.com/<github-username>/vstack-playbook#readme",
+  "bugs": {
+    "url": "https://github.com/<github-username>/vstack-playbook/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
