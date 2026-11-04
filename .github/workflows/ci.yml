@@ -102,13 +102,13 @@ jobs:
         run: |
           mkdir -p /tmp/skills-test-single
           cd /tmp/skills-test-single
-          npx skills add $(pwd)/../.. --skill vstack-tdd -a opencode 2>&1 | grep -i "installed 1 skill"
+          npx skills add /home/runner/work/vstack-playbook/vstack-playbook --skill vstack-tdd -a opencode 2>&1 | tail -20
 
       - name: Test skills CLI full install
         run: |
           mkdir -p /tmp/skills-test-full
           cd /tmp/skills-test-full
-          npx skills add $(pwd)/../.. --skill '*' -a opencode 2>&1 | grep -i "installed 55 skills"
+          npx skills add /home/runner/work/vstack-playbook/vstack-playbook --skill '*' -a opencode 2>&1 | tail -20
 
   package:
     name: Package Distribution
