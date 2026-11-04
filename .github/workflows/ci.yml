@@ -2,17 +2,19 @@ name: Playbook CI
 
 on:
   pull_request:
-    branches: [main, master]
+    branches: [master]
   push:
-    branches: [main, master]
+    branches: [master]
   workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 1'  # Weekly on Monday 3 AM UTC
 
 permissions:
   contents: read
 
 jobs:
-  validate:
-    name: Validate Playbook Content
+  install:
+    name: Install Dependencies
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,6 +28,27 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Upload node_modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: node_modules
+          path: node_modules
+          retention-days: 1
+
+  validate:
+    name: Validate Playbook Content
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download node_modules
+        uses: actions/download-artifact@v4
+        with:
+          name: node_modules
+          path: node_modules
 
       - name: Validate content
         run: pnpm validate
@@ -33,18 +56,16 @@ jobs:
   test-install:
     name: Test Installation
     runs-on: ubuntu-latest
+    needs: install
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Download node_modules
+        uses: actions/download-artifact@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+          name: node_modules
+          path: node_modules
 
       - name: Test install script (opencode)
         run: |
@@ -67,49 +88,46 @@ jobs:
   skills-cli:
     name: Skills CLI Tests
     runs-on: ubuntu-latest
+    needs: install
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Download node_modules
+        uses: actions/download-artifact@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+          name: node_modules
+          path: node_modules
 
       - name: Test skills CLI list
         run: |
-          cd /tmp && mkdir skills-test && cd skills-test
-          npx skills add $(pwd)/../../playbook-ci-worktree --list 2>&1 | grep -c "vstack-"
+          npx skills add $(pwd) --list 2>&1 | grep -c "vstack-"
 
       - name: Test skills CLI single install
         run: |
-          cd /tmp && mkdir skills-test-single && cd skills-test-single
-          npx skills add $(pwd)/../../playbook-ci-worktree --skill vstack-tdd -a opencode 2>&1 | grep "Installed 1 skill"
+          mkdir -p /tmp/skills-test-single
+          cd /tmp/skills-test-single
+          npx skills add $(pwd)/../.. --skill vstack-tdd -a opencode 2>&1 | grep "Installed 1 skill"
 
       - name: Test skills CLI full install
         run: |
-          cd /tmp && mkdir skills-test-full && cd skills-test-full
-          npx skills add $(pwd)/../../playbook-ci-worktree --skill '*' -a opencode 2>&1 | grep "Installed 52 skills"
+          mkdir -p /tmp/skills-test-full
+          cd /tmp/skills-test-full
+          npx skills add $(pwd)/../.. --skill '*' -a opencode 2>&1 | grep "Installed 55 skills"
 
   package:
     name: Package Distribution
     runs-on: ubuntu-latest
+    needs: install
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Download node_modules
+        uses: actions/download-artifact@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+          name: node_modules
+          path: node_modules
 
       - name: Create distribution packages
         run: |
