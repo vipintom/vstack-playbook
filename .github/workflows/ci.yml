@@ -60,21 +60,18 @@ jobs:
 
       - name: Test install script (opencode)
         run: |
-          mkdir -p /tmp/test-project
-          node scripts/install-playbook.js opencode /tmp/test-project
-          ls -la /tmp/test-project/.opencode/agents/
+          node scripts/install-playbook.js opencode
+          ls -la "$HOME/.config/opencode/skills/vstack/"
 
       - name: Test install script (codex)
         run: |
-          mkdir -p /tmp/test-project-codex
-          node scripts/install-playbook.js codex /tmp/test-project-codex
-          ls -la /tmp/test-project-codex/.codex/agents/ 2>/dev/null || true
+          node scripts/install-playbook.js codex
+          ls -la "$HOME/.codex/skills/vstack/" 2>/dev/null || true
 
       - name: Test install script (claude-code)
         run: |
-          mkdir -p /tmp/test-project-claude
-          node scripts/install-playbook.js claude-code /tmp/test-project-claude
-          ls -la /tmp/test-project-claude/.claude/agents/ 2>/dev/null || true
+          node scripts/install-playbook.js claude-code
+          ls -la "$HOME/.claude/skills/vstack/" 2>/dev/null || true
 
   skills-cli:
     name: Skills CLI Tests
@@ -105,13 +102,13 @@ jobs:
         run: |
           mkdir -p /tmp/skills-test-single
           cd /tmp/skills-test-single
-          npx skills add $(pwd)/../.. --skill vstack-tdd -a opencode 2>&1 | grep "Installed 1 skill"
+          npx skills add $(pwd)/../.. --skill vstack-tdd -a opencode 2>&1 | grep -i "installed 1 skill"
 
       - name: Test skills CLI full install
         run: |
           mkdir -p /tmp/skills-test-full
           cd /tmp/skills-test-full
-          npx skills add $(pwd)/../.. --skill '*' -a opencode 2>&1 | grep "Installed 55 skills"
+          npx skills add $(pwd)/../.. --skill '*' -a opencode 2>&1 | grep -i "installed 55 skills"
 
   package:
     name: Package Distribution
