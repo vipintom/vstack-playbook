@@ -4,6 +4,7 @@ description: Use when work was interrupted mid-operation or a change must be und
 tier: continuity
 rigor: rigid
 status: stable
+harness: [focus, ledger, notify]
 pairs-with: [handoff, verify, migration]
 ---
 

@@ -4,6 +4,7 @@ description: Use when behaviour must change and a test can state the expected be
 tier: build
 rigor: rigid
 status: stable
+harness: [ledger, evidence]
 pairs-with: [verify, coverage, debug]
 ---
 

@@ -4,6 +4,7 @@ description: Use when the request is understood but the problem is not framed â€
 tier: frame
 rigor: rigid
 status: stable
+harness: [focus, knowledge]
 pairs-with: [sharpen, plan, design]
 ---
 

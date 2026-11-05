@@ -4,6 +4,7 @@ description: Use when a proposed change needs its blast radius known — callers
 tier: design
 rigor: standard
 status: stable
+harness: [knowledge]
 pairs-with: [design, migration, coverage]
 ---
 

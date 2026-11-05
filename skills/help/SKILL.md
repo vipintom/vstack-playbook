@@ -4,6 +4,7 @@ description: Use when someone asks what the pack contains, which skill fits a ta
 tier: entry
 rigor: flexible
 status: stable
+harness: [knowledge]
 pairs-with: [route, principles]
 ---
 

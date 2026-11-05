@@ -4,6 +4,7 @@ description: Use when a choice will matter later and must be recorded with its a
 tier: continuity
 rigor: standard
 status: stable
+harness: [knowledge, memory]
 pairs-with: [rationale, principles, report]
 ---
 

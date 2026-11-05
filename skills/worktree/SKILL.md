@@ -4,6 +4,7 @@ description: Use when work needs isolation from the main checkout — a parallel
 tier: continuity
 rigor: standard
 status: stable
+harness: [focus]
 pairs-with: [handoff, recovery, ship]
 ---
 

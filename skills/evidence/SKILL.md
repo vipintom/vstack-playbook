@@ -4,6 +4,7 @@ description: Use when a claim is about to be reported, committed or handed over 
 tier: build
 rigor: rigid
 status: stable
+harness: [evidence, ledger]
 pairs-with: [verify, tdd]
 ---
 

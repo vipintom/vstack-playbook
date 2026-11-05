@@ -4,6 +4,7 @@ description: Use when a change is published and CI, review comments or a rollout
 tier: review
 rigor: standard
 status: stable
+harness: [panel, notify]
 pairs-with: [ship, verify, recovery]
 ---
 

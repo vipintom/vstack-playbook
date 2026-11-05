@@ -4,6 +4,7 @@ description: Use when the same failure has survived several fixes or the work ke
 tier: build
 rigor: standard
 status: stable
+harness: [focus, memory]
 pairs-with: [debug, figure-it-out, lessons]
 ---
 

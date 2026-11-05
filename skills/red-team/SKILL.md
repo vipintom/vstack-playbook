@@ -4,6 +4,7 @@ description: Use when a design or change needs an adversary that tries to break 
 tier: design
 rigor: standard
 status: stable
+harness: [knowledge]
 pairs-with: [design, audit, verify]
 ---
 

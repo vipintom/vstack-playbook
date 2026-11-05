@@ -4,6 +4,7 @@ description: Use when a repository's ignore rules must keep secrets, build outpu
 tier: stack
 rigor: standard
 status: stable
+harness: [gate]
 pairs-with: [docker, makefile, ci]
 ---
 

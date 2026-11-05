@@ -4,6 +4,7 @@ description: Use when building or changing a Model Context Protocol server so an
 tier: stack
 rigor: standard
 status: stable
+harness: [evidence]
 pairs-with: [api-design, typescript, ci]
 ---
 

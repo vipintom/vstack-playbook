@@ -4,6 +4,7 @@ description: Use when a project's verification commands may have drifted from th
 tier: build
 rigor: standard
 status: stable
+harness: [knowledge]
 pairs-with: [verify-setup, verify, coverage]
 ---
 

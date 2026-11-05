@@ -4,6 +4,7 @@ description: Use when no playbook fits and the situation needs a bespoke sequenc
 tier: frame
 rigor: flexible
 status: stable
+harness: [focus, knowledge]
 pairs-with: [route, plan, design]
 ---
 

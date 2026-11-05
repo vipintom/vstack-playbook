@@ -4,6 +4,7 @@ description: Use when a change needs its boundaries, interfaces and data flow de
 tier: design
 rigor: rigid
 status: stable
+harness: [knowledge, focus]
 pairs-with: [blueprint, impact, red-team]
 ---
 

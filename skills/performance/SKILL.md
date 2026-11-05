@@ -4,6 +4,7 @@ description: Use when a performance claim needs a baseline and a measured change
 tier: design
 rigor: rigid
 status: stable
+harness: [evidence, gate]
 pairs-with: [forensics, evidence, verify]
 ---
 

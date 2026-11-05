@@ -4,6 +4,7 @@ description: Use when behaviour must be proven in a real browser — navigation,
 tier: stack
 rigor: standard
 status: stable
+harness: [evidence]
 pairs-with: [visual-parity, verify, coverage]
 ---
 

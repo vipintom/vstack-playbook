@@ -4,6 +4,7 @@ description: Use when developer or CI commands need one discoverable entry point
 tier: stack
 rigor: standard
 status: stable
+harness: [gate]
 pairs-with: [ci, docker, verify-setup]
 ---
 

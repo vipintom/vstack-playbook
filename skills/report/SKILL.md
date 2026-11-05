@@ -4,6 +4,7 @@ description: Use when work must be explained to someone who did not do it — re
 tier: review
 rigor: standard
 status: stable
+harness: [ledger, panel]
 pairs-with: [evidence, handoff, verify]
 ---
 

@@ -4,6 +4,7 @@ description: Use when a design question can only be answered by building somethi
 tier: frame
 rigor: standard
 status: stable
+harness: [focus]
 pairs-with: [design, plan]
 ---
 

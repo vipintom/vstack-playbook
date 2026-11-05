@@ -4,6 +4,7 @@ description: Use when an existing design, implementation or repository must be j
 tier: design
 rigor: standard
 status: stable
+harness: [knowledge, panel, todo]
 pairs-with: [rubrics, review, impact]
 ---
 

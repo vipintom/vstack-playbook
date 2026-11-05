@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "capabilities": {
+    "focus": {
+      "purpose": "current task, state and agreed actions visible outside the chat",
+      "opencode": "focus_set / focus_status / focus_add / focus_begin / focus_complete",
+      "adapter": null,
+      "cli": null,
+      "fallback": ".vstack/focus.md"
+    },
+    "knowledge": {
+      "purpose": "facts the next session must read before acting",
+      "opencode": "openchamber_knowledge",
+      "adapter": null,
+      "cli": null,
+      "fallback": ".vstack/ledger/progress.md"
+    },
+    "memory": {
+      "purpose": "preferences and decisions that outlive a delivery",
+      "opencode": "openchamber_memory",
+      "adapter": null,
+      "cli": null,
+      "fallback": "AGENTS.md note"
+    },
+    "todo": {
+      "purpose": "ordered actions for the current session",
+      "opencode": "session todos",
+      "adapter": "vstack_task",
+      "cli": "vstack task",
+      "fallback": "task list in the delivery record"
+    },
+    "plan": {
+      "purpose": "delivery plan with tasks, artifacts and checks",
+      "opencode": "project plan",
+      "adapter": "vstack_deliver",
+      "cli": "vstack deliver",
+      "fallback": "docs/deliveries/<id>.md"
+    },
+    "ledger": {
+      "purpose": "durable delivery state the tools can read",
+      "opencode": null,
+      "adapter": "vstack_status",
+      "cli": "vstack status",
+      "fallback": ".vstack/"
+    },
+    "gate": {
+      "purpose": "run a declared check and record exit code and digest",
+      "opencode": null,
+      "adapter": "vstack_gate",
+      "cli": "vstack gate run",
+      "fallback": "command output plus digest under .vstack/deliveries/<id>/logs/"
+    },
+    "evidence": {
+      "purpose": "append-only record of claims with artifacts",
+      "opencode": null,
+      "adapter": "vstack_evidence",
+      "cli": "vstack evidence",
+      "fallback": ".vstack/deliveries/<id>/evidence.jsonl"
+    },
+    "panel": {
+      "purpose": "read-only view of deliveries, gates and evidence",
+      "opencode": "OpenChamber panel projections",
+      "adapter": null,
+      "cli": "vstack report",
+      "fallback": ".vstack/state/"
+    },
+    "notify": {
+      "purpose": "tell the user when work finishes or blocks",
+      "opencode": "openchamber_notify",
+      "adapter": null,
+      "cli": null,
+      "fallback": "say it in the reply"
+    }
+  }
+}

@@ -4,6 +4,7 @@ description: Use when a decision needs the rule behind it, or two reasonable app
 tier: entry
 rigor: standard
 status: stable
+harness: [knowledge, memory]
 pairs-with: [plan, design]
 ---
 

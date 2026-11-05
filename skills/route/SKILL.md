@@ -4,6 +4,7 @@ description: Use when a request arrives with no playbook open and the approach m
 tier: entry
 rigor: standard
 status: stable
+harness: [focus, knowledge, ledger]
 pairs-with: [plan, figure-it-out, sharpen]
 ---
 

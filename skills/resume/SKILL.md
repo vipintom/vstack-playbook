@@ -4,6 +4,7 @@ description: Use when picking up work from a previous session, another agent or 
 tier: continuity
 rigor: standard
 status: stable
+harness: [focus, knowledge]
 pairs-with: [handoff, route, verify]
 ---
 

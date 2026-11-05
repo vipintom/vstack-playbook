@@ -4,6 +4,7 @@ description: Use when a new interface or a substantial visual change needs delib
 tier: stack
 rigor: flexible
 status: stable
+harness: [knowledge]
 pairs-with: [browser-testing, visual-parity, review]
 ---
 

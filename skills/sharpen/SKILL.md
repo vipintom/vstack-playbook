@@ -4,6 +4,7 @@ description: Use when a request's wording is ambiguous, its acceptance criteria 
 tier: frame
 rigor: standard
 status: stable
+harness: [focus]
 pairs-with: [shape, plan]
 ---
 

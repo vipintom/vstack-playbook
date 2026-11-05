@@ -4,6 +4,7 @@ description: Use when work is claimed complete and someone must decide whether i
 tier: review
 rigor: rigid
 status: stable
+harness: [gate, ledger, panel]
 pairs-with: [verify, review, ship]
 ---
 

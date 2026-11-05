@@ -71,6 +71,24 @@ export function validateSkill(skillDir, options = {}) {
     issue("SCHEMA_INVALID", file, `status \`${data.status}\` is not one of ${STATUS.join(", ")}`);
   }
 
+  const capabilityPath =
+    options.capabilitiesPath ?? resolve(process.cwd(), "schema/harness-capabilities.json");
+  if (Array.isArray(data.harness)) {
+    const known = new Set(Object.keys(JSON.parse(readFileSync(capabilityPath, "utf-8")).capabilities));
+    if (data.harness.length === 0) {
+      warnings.push({ code: "MISSING_HARNESS", path: file, message: "harness is empty" });
+    }
+    for (const capability of data.harness) {
+      if (!known.has(capability)) {
+        issue("UNKNOWN_CAPABILITY", file, `harness declares unknown capability \`${capability}\``);
+      }
+    }
+  } else if (data.harness !== undefined) {
+    issue("SCHEMA_INVALID", file, "harness must be an inline array");
+  } else {
+    warnings.push({ code: "MISSING_HARNESS", path: file, message: "harness capabilities are not declared" });
+  }
+
   const knownSkills = listSkillNames(options.skillsRoot ?? resolve(process.cwd(), "skills"));
   const pairs = data["pairs-with"];
   if (pairs !== undefined) {

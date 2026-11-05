@@ -4,6 +4,7 @@ description: Use when a decision's history must be reconstructed — what was ch
 tier: frame
 rigor: flexible
 status: stable
+harness: [knowledge, memory]
 pairs-with: [code-tour, decisions, principles]
 ---
 

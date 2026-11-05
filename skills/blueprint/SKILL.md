@@ -4,6 +4,7 @@ description: Use when an accepted design must become concrete interfaces, files 
 tier: design
 rigor: standard
 status: stable
+harness: [knowledge]
 pairs-with: [design, plan, tdd]
 ---
 

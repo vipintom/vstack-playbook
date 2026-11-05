@@ -4,6 +4,7 @@ description: Use when a diff, design or document must be examined for defects be
 tier: review
 rigor: standard
 status: stable
+harness: [knowledge, todo]
 pairs-with: [rubrics, verify, ready]
 ---
 

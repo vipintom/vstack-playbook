@@ -4,6 +4,7 @@ description: Use when a review needs explicit, checkable criteria instead of tas
 tier: design
 rigor: standard
 status: stable
+harness: [knowledge]
 pairs-with: [review, audit, coverage]
 ---
 

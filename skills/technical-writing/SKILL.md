@@ -4,6 +4,7 @@ description: Use when prose must let a reader complete a task — README, guide,
 tier: stack
 rigor: standard
 status: stable
+harness: [knowledge]
 pairs-with: [report, rationale, review]
 ---
 

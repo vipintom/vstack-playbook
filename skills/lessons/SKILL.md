@@ -4,6 +4,7 @@ description: Use when the same mistake has happened twice, or an incident or del
 tier: continuity
 rigor: standard
 status: stable
+harness: [memory, knowledge]
 pairs-with: [unstick, decisions, principles]
 ---
 

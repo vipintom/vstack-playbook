@@ -4,6 +4,7 @@ description: Use when work pauses and the next session or person must continue w
 tier: continuity
 rigor: rigid
 status: stable
+harness: [focus, knowledge, ledger]
 pairs-with: [resume, report, recovery]
 ---
 

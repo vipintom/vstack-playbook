@@ -4,6 +4,7 @@ description: Use when a request/response contract, event payload or error shape 
 tier: stack
 rigor: standard
 status: stable
+harness: [knowledge]
 pairs-with: [typescript, design, migration]
 ---
 

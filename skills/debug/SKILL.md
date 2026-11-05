@@ -4,6 +4,7 @@ description: Use when a failure is reproducible but its cause is unknown, and ev
 tier: build
 rigor: rigid
 status: stable
+harness: [ledger, evidence]
 pairs-with: [tdd, forensics, unstick]
 ---
 

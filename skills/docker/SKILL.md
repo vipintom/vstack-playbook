@@ -4,6 +4,7 @@ description: Use when an application or service must be built, run or shipped in
 tier: stack
 rigor: standard
 status: stable
+harness: [gate]
 pairs-with: [ci, makefile, verify]
 ---
 

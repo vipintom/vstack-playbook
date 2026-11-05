@@ -4,6 +4,7 @@ description: Use when a readiness decision is made and the change must be publis
 tier: review
 rigor: rigid
 status: stable
+harness: [ledger, panel, notify]
 pairs-with: [ready, watch-pr, verify]
 ---
 

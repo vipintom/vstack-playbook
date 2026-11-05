@@ -4,6 +4,7 @@ description: Use when structure must change while behaviour stays exactly the sa
 tier: build
 rigor: rigid
 status: stable
+harness: [ledger]
 pairs-with: [coverage, verify, review]
 ---
 

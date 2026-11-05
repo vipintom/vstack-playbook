@@ -4,6 +4,7 @@ description: Use when a profile, trace, heap snapshot, log set or core dump must
 tier: design
 rigor: standard
 status: stable
+harness: [knowledge]
 pairs-with: [performance, debug, evidence]
 ---
 

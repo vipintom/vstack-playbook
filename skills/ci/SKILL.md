@@ -4,6 +4,7 @@ description: Use when a pipeline decides what gets verified, cached, gated or re
 tier: stack
 rigor: standard
 status: stable
+harness: [gate, panel]
 pairs-with: [docker, verify, makefile]
 ---
 

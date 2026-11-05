@@ -4,6 +4,7 @@ description: Use when a project has no reliable way to prove a change works and 
 tier: build
 rigor: standard
 status: stable
+harness: [knowledge]
 pairs-with: [verify, plan, coverage]
 ---
 

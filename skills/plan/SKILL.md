@@ -4,6 +4,7 @@ description: Use when the work is framed and must be ordered into tasks with an 
 tier: frame
 rigor: rigid
 status: stable
+harness: [todo, plan, focus]
 pairs-with: [shape, route, tdd]
 ---
 

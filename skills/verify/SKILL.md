@@ -4,6 +4,7 @@ description: Use when work claims to be complete and an independent run must pro
 tier: build
 rigor: rigid
 status: stable
+harness: [gate, evidence, ledger]
 pairs-with: [evidence, ready, coverage]
 ---
 

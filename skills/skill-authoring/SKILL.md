@@ -4,6 +4,7 @@ description: Use when a new skill must be written or an existing one reshaped to
 tier: meta
 rigor: rigid
 status: stable
+harness: [knowledge]
 pairs-with: [skill-eval, principles, tdd]
 ---
 

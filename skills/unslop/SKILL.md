@@ -4,6 +4,7 @@ description: Use when generated or accumulated code has become more complex than
 tier: meta
 rigor: standard
 status: stable
+harness: [ledger]
 pairs-with: [refactor, review, coverage]
 ---
 

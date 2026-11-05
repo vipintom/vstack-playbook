@@ -4,6 +4,7 @@ description: Use when stored data, a public contract or a running system must mo
 tier: design
 rigor: rigid
 status: stable
+harness: [plan, ledger, todo]
 pairs-with: [impact, design, verify]
 ---
 

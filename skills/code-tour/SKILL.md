@@ -4,6 +4,7 @@ description: Use when someone needs to understand how existing code works — en
 tier: frame
 rigor: flexible
 status: stable
+harness: [knowledge]
 pairs-with: [rationale, debug]
 ---
 

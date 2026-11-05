@@ -4,6 +4,7 @@ description: Use when TypeScript types, module boundaries or build configuration
 tier: stack
 rigor: standard
 status: stable
+harness: [gate]
 pairs-with: [tdd, review, api-design]
 ---
 

@@ -4,6 +4,7 @@ description: Use when it is unclear whether a skill fires on the right requests 
 tier: meta
 rigor: standard
 status: stable
+harness: [evidence]
 pairs-with: [skill-authoring, evidence, coverage]
 ---
 

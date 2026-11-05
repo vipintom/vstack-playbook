@@ -4,6 +4,7 @@ description: Use when an asynchronous Python HTTP service is built or changed wi
 tier: stack
 rigor: standard
 status: stable
+harness: [gate]
 pairs-with: [api-design, tdd, docker]
 ---
 

@@ -4,6 +4,7 @@ description: Use when a UI must match a defined reference — design file, previ
 tier: build
 rigor: standard
 status: stable
+harness: [evidence]
 pairs-with: [verify, review, coverage]
 ---
 
