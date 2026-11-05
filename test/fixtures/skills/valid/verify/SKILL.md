@@ -24,6 +24,11 @@ A gate result with a command, an exit code and a digest.
 ## Failure
 A gate that cannot run is reported as not run, never as passed.
 
+## Rationalizations
+| Excuse | Reality |
+|---|---|
+| "The suite was green yesterday" | A stale run is not evidence. |
+
 ## Tracking
 Update the focus card and project knowledge; fall back to `resources/tracking.md`.
 

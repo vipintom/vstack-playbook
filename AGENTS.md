@@ -39,7 +39,11 @@ make test                                             # same, via Makefile
   exist. Old 0.1.0 names (`vstack-*`, `mode`, `how`, `why`, `architect`,
   `best-of-n`, `arena`) are rejected by the validator.
 - A skill body is at most 150 lines and describes judgement, not a
-  transcript. Steps are ordered; each ends in an artifact.
+  transcript. Steps are ordered; each ends in an artifact. `docs/skill-standard.md`
+  is the binding form: six sections plus `Tracking`, and a
+  `Rationalizations` table in every skill.
+- Long content goes to `skills/<name>/references/`, loaded on demand. A
+  skill that needs more than 150 lines is a skill plus a reference.
 - Every skill has a `## Tracking` section that names the harness surface:
   OpenChamber focus card and project knowledge, OpenCode todos and adapter
   tools, ledger file as fallback. `resources/tracking.md` is the ladder.

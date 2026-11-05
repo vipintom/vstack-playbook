@@ -5,7 +5,7 @@ import { parseFrontMatter } from "./frontmatter.js";
 export const TIERS = ["entry", "frame", "design", "build", "review", "continuity", "meta", "stack"];
 export const RIGOR = ["rigid", "standard", "flexible"];
 export const STATUS = ["stable", "experimental", "deprecated"];
-export const REQUIRED_SECTIONS = ["When to use", "Modes", "Steps", "Output", "Failure", "Tracking"];
+export const REQUIRED_SECTIONS = ["When to use", "Modes", "Steps", "Output", "Failure", "Rationalizations", "Tracking"];
 export const BODY_LINE_BUDGET = 150;
 
 const NAME_PATTERN = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;

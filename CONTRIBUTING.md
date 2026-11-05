@@ -27,8 +27,10 @@ Every skill must:
   describe a trigger, never a procedure;
 - declare `tier`, `rigor`, `status` and `pairs-with` in front matter;
 - keep the body under 150 lines with the headings `When to use`, `Modes`,
-  `Steps`, `Output`, `Failure`, `Tracking`, and `Verification` only when it
-  holds a fenced command;
+  `Steps`, `Output`, `Failure`, `Rationalizations`, `Tracking`, and
+  `Verification` only when it holds a fenced command;
+- carry a `Rationalizations` table: the excuses an agent makes, each
+  answered by what the skill does instead;
 - say how the work is tracked in `## Tracking`: the OpenChamber focus card
   and project knowledge, then OpenCode's todo and adapter tools, then the
   ledger file. `resources/tracking.md` defines the ladder;
