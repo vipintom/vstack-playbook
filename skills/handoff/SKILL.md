@@ -1,159 +1,94 @@
 ---
 name: handoff
-description: Create a complete worker-to-Lead or session-to-session handoff
-lifecycle: draft
+description: Use when work pauses and the next session or person must continue without re-reading the history, or when work must stop in a state that is safe and honestly described; not for explaining results to a stakeholder (report) or for restoring a broken state (recovery).
+tier: continuity
+rigor: rigid
+status: stable
+pairs-with: [resume, report, recovery]
 ---
 
 # handoff
 
-## Purpose / Outcome
+Leave pointers, not summaries. The next agent should reach the first useful
+action in one read, and should know exactly what is unfinished.
 
-Produces a complete context transfer package enabling seamless continuation by another worker, Lead, or session. Includes objective, scope, completed work with evidence, incomplete items, exact next action, blockers, key facts, decisions, failed approaches, and verification status.
+## When to use
 
----
+- A session ends with work in flight.
+- A different person or agent takes over.
+- Context is about to be compacted and detail would be lost.
+- Work must pause for an external dependency.
+- Work must stop because it is unsafe to continue.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- Worker completing a task (→ Lead)
-- Session ending with work in progress (→ next session)
-- Switching roles (Builder → Reviewer)
+- The work is finished → `report`.
+- A broken state must be restored → `recovery`.
+- The next step is unclear because routing was never done → `route`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
+| Mode | Handoff |
+|---|---|
+| Checkpoint | state, next action, blockers — 10 lines |
+| Session | plus decisions and evidence locations |
+| Safe pause | plus the exact reversal of any half-applied change |
 
-- For routine check-ins (use tool updates)
-- When no context transfer needed
+`rigor: rigid` — the handoff names the last verified state and the next action.
+A handoff without a next action is a diary entry.
 
----
+## Steps
 
-## Required Context / Inputs
+1. **State the last verified state** with its evidence link. Artifact:
+   `verified at`.
+2. **State the next action**, one action, with the file or command to start
+   from. Artifact: `next`.
+3. **List blockers** with what unblocks each and who owns it. Artifact:
+   blockers.
+4. **Name decisions made** and link the records, not the reasoning. Artifact:
+   decision links.
+5. **Describe anything half-applied** and the exact reversal. Artifact:
+   rollback note.
+6. **Write it where the next session reads first**: focus card detail, project
+   knowledge, or `.vstack/handoff.md`. Artifact: handoff record.
 
-- Completed or in-progress work
-- Checkpoint or runtime state
+## Output
 
----
+```markdown
+Verified: migration step 2 of 5 applied, checksum matches (log).
+Next: run backfill batch 3 — `scripts/backfill.sh orders 3000`.
+Blocked: staging DB locked by ops until 14:00 (owner: @ops).
+Half-applied: column added, not backfilled; reversal: `ALTER TABLE ... DROP COLUMN`.
+Decisions: expand/contract chosen — link.
+```
 
-## Preconditions
+## Failure
 
-- Work has verifiable progress
-- Next recipient identified
+- **The state is unknown.** Say unknown and how to establish it; do not
+  reconstruct a state you did not observe.
+- **A step is half-applied and the reversal is unknown.** That is `recovery`,
+  not a handoff; do not hand over an unsafe state silently.
+- **The next action depends on a decision.** Name the decision and the options;
+  the next session should not re-derive it.
 
----
+## Rationalizations
 
-## Procedure
+| Excuse | Reality |
+|---|---|
+| "The chat history is the handoff." | The next session cannot read it, or reads it at full cost. |
+| "I will summarise the whole session." | Pointers beat summaries; summaries drift. |
+| "Nothing is half-applied." | Then one line says so; the check is cheap. |
+| "The next step is obvious." | Obvious to you. Write it. |
 
-### Step 1: Prepare Handoff Package
+## Tracking
 
-- **Objective**: What was the goal?
-- **Scope**: What was included/excluded?
-- **Completed**: What was done with evidence?
-- **Incomplete**: What remains?
-- **Next action**: Exact next step
-- **Blockers**: Dependencies, decisions needed
-- **Key facts**: Paths, commands, versions, constraints
-- **Decisions**: Important choices made
-- **Failed approaches**: What failed and why
-- **Verification status**: Checks run, results, remaining
-
-### Step 2: Validate Completeness
-
-- All contract items addressed
-- Evidence referenced
-- No ambiguous next steps
-
-### Step 3: Transfer Context
-
-- Update `PROGRESS.md` (for session handoff)
-- Update runtime task state (if plugin available)
-- Brief recipient (async or sync)
-
-### Step 4: Recipient Validates
-
-- resume or resume
-- Confirms understanding
-- Begins from exact next action
-
----
-
-## Expected Outputs
-
-- Complete handoff document/checkpoint
-- Updated `PROGRESS.md` or task state
-- Recipient ready to proceed
-
----
+- **OpenChamber present:** focus card carries state and next action; project
+  knowledge for facts that outlive the session.
+- **OpenCode or files:** `.vstack/handoff.md`, linked from the delivery.
+- Ladder: `resources/tracking.md`.
 
 ## Verification
 
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Recipient can articulate next action
-- No information loss
-- Evidence traceable
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
-|---|---|
-| Incomplete evidence | Do not handoff, complete verification |
-| Recipient cannot validate | Escalate to Lead |
-| Ambiguous next action | Clarify before handoff |
-
----
-
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
-
-
-- Handoff complete and validated
-- Time-boxed (default: 10-15 min)
-
----
-
-## Escalation
-
-- Recipient cannot validate → escalate to Lead
-- Critical information missing → reconstruct before handoff
-
----
-
-## Fallback
-
-- Without plugin: `PROGRESS.md` + verbal/written brief
-- Without `PROGRESS.md`: detailed commit messages + git log
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** red-team (worker completion), resume (checkpoint), resume (resume), resume (reconstruction)
-- **Roles:** Worker (prepares), Lead/Next Session (receives)
-- **Tools:** PROGRESS.md, runtime state, git
-- **References:** None
-
----
-
-## Examples
-
-### Example: Worker-to-Lead Handoff
-
-**Worker:** Completed login endpoint implementation
-**Package:** Objective, 3 tests passing (evidence), 1 test pending (mock auth), next action: implement register, blocker: auth library version, key fact: JWT secret in env, decision: use refresh tokens
-
----
-
-## Dependencies / References
-
-- **Templates:** `templates/handoff.md`
-
-- **Principles:** Evidence Before Assertions, Clear Source of Responsibility, Procedures Over Vague Instructions
-- **Skills:** resume, resume, handoff, resume
-- **References:** None
-
+```bash
+docker compose run --rm pack node tools/validate.js
+```

@@ -1,153 +1,79 @@
 ---
 name: lessons
-description: Convert recurring mistakes into durable improvements
-lifecycle: draft
+description: Use when the same mistake has happened twice, or an incident or delivery revealed a rule that should change the method itself; not for recording what happened (report) or for a one-off fix (debug).
+tier: continuity
+rigor: standard
+status: stable
+pairs-with: [unstick, decisions, principles]
 ---
 
 # lessons
 
-## Purpose / Outcome
+Turn a repeated mistake into a durable change: a checklist line, a test, a
+principle edit or a skill edit. A lesson that changes nothing is a story.
 
-Converts recurring mistakes into durable improvements by identifying patterns, analyzing root causes, designing improvements (checks, conventions, templates, skills, memory entries), implementing, verifying against history, and recording in project memory.
+## When to use
 
----
+- The same failure appeared in two deliveries.
+- An incident had a cause the method could have caught.
+- A review finding keeps recurring across authors.
+- A shortcut worked and should become the default.
+- A skill's step was skipped and the outcome suffered.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- After completing a delivery
-- When a pattern of failures/bugs/rework emerges
-- During retrospective or review
-- When debug reveals systemic issue
+- One incident needs an account → `report`.
+- The immediate cause is unknown → `debug`.
+- The rule is already written and needs applying → `principles`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- For one-off incidents
-- During active implementation (use debug)
-
----
-
-## Required Context / Inputs
-
-- Completed delivery with evidence
-- History of similar issues (from project memory or history)
-- Team/project conventions
-
----
-
-## Preconditions
-
-- Pattern identified with multiple occurrences
-
----
-
-## Procedure
-
-### Step 1: Identify the Pattern
-
-- What keeps happening?
-- Same bug type? Same review finding? Same debug cycle?
-
-### Step 2: Analyze Root Cause
-
-- Why does it recur?
-- Missing check? Unclear convention? Bad default? Knowledge gap?
-
-### Step 3: Design Improvement
-
-- What prevents recurrence?
-- New check/assertion?
-- Convention update?
-- Template/pattern?
-- Skill update?
-- Project memory entry?
-
-### Step 4: Implement Improvement
-
-- Add check, update doc, create template
-
-### Step 5: Verify
-
-- Would this have caught the last 3 occurrences?
-
-### Step 6: Record in Project Memory
-
-- Lesson, improvement, validation
-
----
-
-## Expected Outputs
-
-- Pattern description with examples
-- Root cause analysis
-- Implemented improvement (check, doc, template, skill)
-- Project memory entry
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Improvement addresses root cause, not symptom
-- Improvement would have caught historical occurrences
-- Improvement is enforceable/checkable (not just documentation)
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Change |
 |---|---|
-| Pattern requires architectural change | blueprint, Lead decision |
-| Pattern external to project | Document workaround, monitor |
+| Checklist | one line in the relevant skill |
+| Test | a regression or pack evaluation |
+| Principle | new or amended rule with its test |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Name the recurrence with evidence**: two instances, links to both.
+   Artifact: instances.
+2. **Find the shared cause** — a missing step, an unchecked assumption, an
+   ambiguous rule. Artifact: cause.
+3. **Choose the smallest durable change**: checklist line, test, or principle.
+   Artifact: chosen change.
+4. **Write the change in the method**, not in a retrospective document.
+   Artifact: diff to skill, principle or test.
+5. **Prove it would have caught the instance**: run the new test against the
+   old behaviour or walk the checklist against the incident. Artifact: proof.
+6. **Record the lesson** briefly, linking the change. Artifact: lesson entry.
 
+## Output
 
-- Improvement implemented and validated against history
+The method diff plus the proof it addresses the recurrence. The lesson text is
+one paragraph, not an essay.
 
----
+## Failure
 
-## Escalation
+- **The instances share no cause.** They are two lessons or none; do not force
+  a narrative.
+- **The change is too large to make now.** Record it as a proposed principle
+  change with the evidence; do not let it evaporate.
+- **The same lesson already exists.** Strengthen the existing line or test;
+  duplication weakens both.
 
-- Pattern requires architectural change → blueprint, Lead decision
-- Pattern external to project → document workaround, monitor
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "We learned, no doc needed." | Learning that lives in heads is lost at the next handoff. |
+| "A retrospective doc is the deliverable." | Documents do not run; checklists and tests do. |
+| "One occurrence is not a pattern." | Then record it; the second occurrence is the trigger. |
+| "The method is fine, people erred." | The method's job is to make the error hard. |
 
-## Skill / Role / Tool Routing
+## Tracking
 
-- **Skills invoked:** debug (reveals patterns), review (findings may reveal patterns), resume (preserves lessons at boundaries), skill-authoring (skill updates)
-- **Roles:** Builder (identifies), Lead (approves improvement)
-- **Tools:** Project memory, git history
-- **References:** None
-
----
-
-## Examples
-
-### Example: Recurring Null Pointer
-
-**Pattern:** 4 null pointer bugs in auth module in 2 months
-**Root cause:** Optional chaining not enforced, no lint rule
-**Improvement:** Add ESLint rule for strict null checks
-**Verify:** Rule catches all 4 historical patterns
-**Record:** Lesson added to project memory
-
----
-
-## Dependencies / References
-
-- **Principles:** Encode Lessons in Structure, Procedures Over Vague Instructions, Evidence Before Assertions
-- **Skills:** debug, review, resume, skill-authoring
-- **References:** None
-
+- **OpenChamber present:** project knowledge entry linking the method change.
+- **OpenCode or files:** `docs/lessons.md` with one line per lesson and a link
+  to the diff.
+- Ladder: `resources/tracking.md`.

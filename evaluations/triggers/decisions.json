@@ -1,15 +1,15 @@
 {
   "positive": [
-    "For consequential decisions (architecture, design, process)",
-    "When unstick changes approach",
-    "When recovery restores state",
-    "For Extended execution profile",
-    "For Extended execution profile"
+    "Record this schema choice with the alternatives and what it constrains later.",
+    "A decision was made in a meeting; write it so it is not relitigated.",
+    "We overrode a principle here; document the risk and who accepted it.",
+    "Write an ADR for choosing expand/contract over a flag day.",
+    "Keep a durable record of why we picked the event bus."
   ],
   "negative": [
-    "For routine minor actions",
-    "For decisions already in ADRs or project memory",
-    "summarise last quarter's revenue"
+    "Reconstruct why an old decision was made, with sources.",
+    "Which principle applies to this choice, and what is its test?",
+    "Write the final result summary for the delivery."
   ],
   "expected": {
     "skill": "decisions"

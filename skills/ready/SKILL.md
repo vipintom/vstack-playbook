@@ -1,159 +1,93 @@
 ---
 name: ready
-description: Produce a merge-readiness assessment without merging
-lifecycle: draft
+description: Use when work is claimed complete and someone must decide whether it is safe to merge or release, weighing gates, findings and open risks; not for producing the evidence (verify) or performing the review (review).
+tier: review
+rigor: rigid
+status: stable
+pairs-with: [verify, review, ship]
 ---
 
 # ready
 
-## Purpose / Outcome
+A readiness decision, not a summary. It names what is proven, what is not, and
+what risk the owner accepts by proceeding.
 
-Produces a merge-readiness assessment (READY / NOT READY) without merging. Final gate before authorized delivery via ship.
+## When to use
 
----
+- A delivery close is requested.
+- A merge or release needs a go/no-go with reasons.
+- Gates are green but findings are open.
+- A previous "ready" was based on stale evidence.
+- An override is being considered for a missing gate.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "Ready to merge?" / "Assess readiness"
-- After watch-pr confirms CI and reviews clean
-- Before any merge/delivery action
-- As final gate before ship
+- The gates have not run → `verify`.
+- The review has not happened → `review`.
+- The decision is to publish → `ship`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
+| Mode | Output |
+|---|---|
+| Merge | gate table + open findings + verdict |
+| Release | plus rollback plan and observability |
+| Waiver | explicit risk acceptance with a name |
 
-- When PR not ready
-- When merge not intended
+`rigor: rigid` — no verdict without a gate table. "Looks ready" is not a
+verdict.
 
----
+## Steps
 
-## Required Context / Inputs
+1. **Collect the gate table** from `verify`, including `not_run` and `blocked`.
+   Artifact: gate table.
+2. **Collect open findings** from `review` and classify: blocking, accepted,
+   deferred. Artifact: findings list.
+3. **Check the claim set**: every published claim has an evidence line.
+   Artifact: claim-to-evidence map.
+4. **Apply the rule:** any required gate not passed, or any blocking finding
+   open, means not ready. Artifact: rule outcome.
+5. **If waiving**, record the gate, the risk, the accepting person and the date.
+   Artifact: waiver.
+6. **State the verdict** with the three facts a reader needs: what is proven,
+   what is not, what happens on failure. Artifact: readiness record.
 
-- PR with passing CI
-- Dispositioned review findings
-- Complete evidence
+## Output
 
----
+```
+Verdict: not ready.
+Proven: unit, types, acceptance (3/3 gates).
+Not proven: e2e — no staging host today.
+Open finding: session survives logout (high) — fix in this branch.
+On failure: none, nothing ships.
+```
 
-## Preconditions
+## Failure
 
-- All required verifications pass
-- No open blocking findings
-- Acceptance criteria met
+- **Evidence is stale** (tree changed since the run). Rerun; a stale pass is a
+  `not_run`.
+- **A gate is waived without a name.** Not a waiver; not ready.
+- **The decision is political.** State the technical facts and let the owner
+  decide; record who decided.
 
----
+## Rationalizations
 
-## Procedure
+| Excuse | Reality |
+|---|---|
+| "The gates were green yesterday." | The tree changed; yesterday's pass is history. |
+| "The finding is minor, ship it." | Minor findings are recorded and accepted, not erased. |
+| "A waiver slows the release." | An unrecorded waiver is the release failing later, unexplained. |
+| "Ready is a feeling." | It is a table with three facts. |
 
-### Step 1: Verify Completeness
+## Tracking
 
-- All acceptance criteria met with evidence
-- All required verifications pass
-- All review findings dispositioned
-- No open blockers
-
-### Step 2: Assess Risks
-
-- Residual risks (accepted, deferred)
-- Rollback complexity
-- Monitoring needs post-merge
-
-### Step 3: Produce Readiness Report
-
-- Delivery objective
-- Acceptance criteria status
-- Verification summary
-- Review disposition summary
-- Residual risks
-- Rollback plan
-- Recommendation: READY / NOT READY
-
-### Step 4: Stop Before Merge
-
-- Do not merge unless separately authorized
-- Report to Lead/user for decision
-
----
-
-## Expected Outputs
-
-- Merge-readiness assessment
-- Evidence summary
-- Residual risks documented
-- Explicit recommendation
-
----
+- **OpenChamber present:** the verdict on the delivery note; the panel shows it
+  next to the gate table.
+- **OpenCode or files:** `docs/deliveries/<id>.md` under "Readiness".
+- Ladder: `resources/tracking.md`.
 
 ## Verification
 
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- All criteria checked
-- Evidence traceable
-- Recommendation justified
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
-|---|---|
-| Incomplete criteria | NOT READY, address gaps |
-| Unresolved blocker | NOT READY, escalate |
-| Evidence gaps | NOT READY, collect evidence |
-
----
-
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
-
-
-- Assessment complete
-- Time-boxed (default: 15-30 min)
-
----
-
-## Escalation
-
-- NOT READY → do not proceed, address gaps
-- Disagreement on readiness → escalate to Lead
-
----
-
-## Fallback
-
-- Without formal PR: verbal/written readiness confirmation
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** watch-pr (monitoring), verify (verification), review (review), ship (delivery)
-- **Roles:** Lead (assesses), Builder (provides evidence)
-- **Tools:** PR, CI, verification records
-- **References:** None
-
----
-
-## Examples
-
-### Example: Feature Ready Assessment
-
-**Delivery:** Auth feature
-**Check:** All 5 acceptance criteria VERIFIED, 3 review findings fixed, CI passing
-**Risks:** None residual, rollback = revert PR, monitoring = standard
-**Recommendation:** READY
-
----
-
-## Dependencies / References
-
-- **Principles:** Evidence Before Assertions, Verifiable Increments, Degrade Gracefully
-- **Skills:** watch-pr, verify, review, ship
-- **References:** None
-
+```bash
+docker compose run --rm pack node tools/validate.js
+```

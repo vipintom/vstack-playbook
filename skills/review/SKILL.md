@@ -1,166 +1,85 @@
 ---
 name: review
-description: Obtain fresh-context review and resolve findings
-lifecycle: draft
+description: Use when a diff, design or document must be examined for defects before it is accepted, and findings must be specific enough to act on; not for judging a whole repository (audit) or for running the gates (verify).
+tier: review
+rigor: standard
+status: stable
+pairs-with: [rubrics, verify, ready]
 ---
 
 # review
 
-## Purpose / Outcome
+Read the change as a stranger who must maintain it. Findings carry a location, a
+consequence and a smallest fix. Taste without a consequence is not a finding.
 
-Obtains independent fresh-context review of implementation against acceptance criteria using structured lenses. Resolves findings through fix/defer/reject cycle with re-review confirmation.
+## When to use
 
----
+- A branch is ready for merge and needs a second reader.
+- A design or plan must be accepted before work starts.
+- Someone asks "does this look right?" with a diff attached.
+- A previous review produced opinions and the author is stuck.
+- A skill, playbook or principle changes.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "Review this" / "Independent review for..."
-- After implementation and verification complete
-- When plan assigns review tasks
-- When Lead requests independent assessment
-- For high-risk changes (always)
+- The question is whether the whole repo is sound → `audit`.
+- The gates must be run → `verify`.
+- The question is readiness to ship → `ready` after review.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- During implementation → verify
-- Trivial changes with low risk (Lead judgment)
-- Multi-reviewer needed → red-team
-
----
-
-## Required Context / Inputs
-
-- Objective and acceptance criteria
-- Changes under review (diffs, files)
-- Verification evidence (test results, check outputs)
-- Project conventions and rubrics
-- Specific review lenses requested
-
----
-
-## Preconditions
-
-- Implementation complete with evidence
-- Independent reviewer available
-
----
-
-## Procedure
-
-### Phase A: Lead — Request Review
-
-1. Prepare review package: objective, criteria, changes, evidence, lenses
-2. Dispatch Reviewer with fresh context (new session, no implementation history)
-3. Specify lenses from `rubrics/`
-
-### Phase B: Reviewer — Conduct Review
-
-1. **Read only the review package** — no implementation context
-2. **Apply each lens systematically:**
-   - Correctness & Regression
-   - Architecture & Design
-   - Security & Data
-   - Performance & Resources
-   - Maintainability & Style
-   - Test Adequacy
-   - Documentation & Migration
-3. **Record findings per lens:**
-   - Severity: critical/high/medium/low/informational
-   - Category: lens name
-   - Description with file:line reference
-   - Evidence reference (what supports this)
-   - Recommendation (concrete, testable)
-4. **Overall assessment** — accept / accept with fixes / reject
-
-### Phase C: Lead — Resolve Findings
-
-1. Review each finding with Builder
-2. **Fix** — Builder addresses, provides evidence
-3. **Defer** — document reason, track for later
-4. **Reject** — document rationale (rare, requires evidence)
-5. **Re-review** — Reviewer confirms fixes address root cause
-
----
-
-## Expected Outputs
-
-- Review report with findings
-- Resolved findings with fix evidence
-- Final assessment
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Reviewer had no implementation context
-- Each finding has severity, location, evidence, recommendation
-- Critical/high findings resolved or explicitly waived
-- Re-review confirms fixes
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Depth |
 |---|---|
-| Reviewer cannot assess without missing evidence | Lead provides |
-| Fundamental disagreement on severity | Lead decides, documents both positions |
-| Multiple independent reviews needed | red-team |
+| Diff | correctness, tests, boundaries in one pass |
+| Design | boundaries, failure modes, alternatives |
+| Pack | standard compliance, trigger quality, references |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Read the stated intent first** — the delivery's outcome and done
+   predicate. Artifact: quoted intent.
+2. **Read the diff, not only the summary.** Note files skipped. Artifact: files
+   reviewed.
+3. **Check the three questions:** does it do what it claims, does it break what
+   it touches, can the next person change it? Artifact: answers with evidence.
+4. **Write findings** with location, consequence and smallest fix; severity
+   high/medium/low. Artifact: findings table.
+5. **Verify each high finding** by running or reading the cited line; drop the
+   ones you cannot substantiate. Artifact: confirmed list.
+6. **State what was not reviewed** — generated files, vendor code, areas out
+   of scope. Artifact: coverage note.
+7. **Hand to `ready` or back to the author.** Artifact: verdict.
 
+## Output
 
-- All critical/high findings resolved
-- Reviewer accepts (or Lead accepts with documented waivers)
+| Severity | Location | Consequence | Fix |
+|---|---|---|---|
+| high | `src/auth.ts:88` | session survives logout | delete row on revoke |
+| low | `README.md:12` | stale command | regenerate |
 
----
+Verdict: approve, approve with findings, or request changes.
 
-## Escalation
+## Failure
 
-- Reviewer cannot assess without missing evidence → Lead provides
-- Fundamental disagreement on severity → Lead decides, documents both positions
-- Multiple independent reviews needed → red-team
+- **The diff is too large to review.** Ask for it split; reviewing 2000 lines
+  produces approval, not review.
+- **A finding is disputed.** Keep the location and the consequence; let the
+  author rebut with evidence, not preference.
+- **The intent is unclear.** Stop; review against a stated done predicate or it
+  becomes a style debate.
 
----
+## Rationalizations
 
-## Skill / Role / Tool Routing
+| Excuse | Reality |
+|---|---|
+| "Tests pass, so it is fine." | Tests prove what they assert, not what the diff forgot. |
+| "I skimmed it." | Then say which files were skimmed; silence implies coverage. |
+| "This is a nit, I will not mention it." | Nits with consequences are findings; nits without are noise. |
+| "The author knows the codebase." | The next maintainer does not. |
 
-- **Skills invoked:** verify (provides evidence), red-team (multiple reviewers), rubrics (lenses)
-- **Roles:** Lead (requests, resolves), Reviewer (assesses), Builder (fixes)
-- **Tools:** Review dispatch, finding tracking
-- **References:** rubrics/
+## Tracking
 
----
-
-## Examples
-
-### Example: Auth Refactor Review
-
-**Package:** Objective, diff, test results, 7 lenses
-**Reviewer findings:** 3 critical (token validation), 2 high (error handling), 4 medium
-**Resolution:** Builder fixes critical/high, provides evidence, reviewer re-reviews, accepts
-**Final:** Accept with fixes
-
----
-
-## Dependencies / References
-
-- **Templates:** `templates/review-finding.md`
-
-- **Rubrics:** `rubrics/architecture-design.md`, `rubrics/correctness-regression.md`, `rubrics/documentation-migration.md`, `rubrics/maintainability-style.md`, `rubrics/performance-resources.md`, `rubrics/security-data.md`, `rubrics/test-adequacy.md`
-
-- **Principles:** Independent Challenge, Evidence Before Assertions, Prove It Works
-- **Skills:** verify, red-team, rubrics
-- **References:** rubrics/
-
+- **OpenChamber present:** findings on the delivery note; request-changes
+  verdict sets `focus_status` back to implementing.
+- **OpenCode or files:** `docs/deliveries/<id>.md` under "Review".
+- Ladder: `resources/tracking.md`.

@@ -47,22 +47,31 @@ Profiles: `core` 46 skills, `stack` 0, `full` 46.
 - **verify-setup** — Use when a project has no reliable way to prove a change works and the verification instructions must be created and made runnable; not for running existing verification (verify) or for keeping it current (verify-maintain).
 - **visual-parity** — Use when a UI must match a defined reference — design file, previous build or specification — and the difference must be shown, not described; not for checking behaviour on a live page (browser-testing) or for a general review (review).
 
-## unassigned (17)
+## review (5)
 
-- **decisions** — Record important decisions, pivots, failed approaches and evidence references
+- **ready** — Use when work is claimed complete and someone must decide whether it is safe to merge or release, weighing gates, findings and open risks; not for producing the evidence (verify) or performing the review (review).
+- **report** — Use when work must be explained to someone who did not do it — reviewer, stakeholder or future session — grounded in artifacts rather than narrative; not for compressing a session for continuation (handoff) or for publishing a release (ship).
+- **review** — Use when a diff, design or document must be examined for defects before it is accepted, and findings must be specific enough to act on; not for judging a whole repository (audit) or for running the gates (verify).
+- **ship** — Use when a readiness decision is made and the change must be published — merge, tag, release, deploy — with the record written as part of the act; not for deciding readiness (ready) or for watching the result afterwards (watch-pr).
+- **watch-pr** — Use when a change is published and CI, review comments or a rollout must be observed until a definite outcome; not for performing the merge (ship) or for re-verifying after local changes (verify).
+
+## continuity (6)
+
+- **decisions** — Use when a choice will matter later and must be recorded with its alternatives, evidence and consequences so it is not relitigated; not for reconstructing an old decision (rationale) or for applying a rule (principles).
+- **handoff** — Use when work pauses and the next session or person must continue without re-reading the history, or when work must stop in a state that is safe and honestly described; not for explaining results to a stakeholder (report) or for restoring a broken state (recovery).
+- **lessons** — Use when the same mistake has happened twice, or an incident or delivery revealed a rule that should change the method itself; not for recording what happened (report) or for a one-off fix (debug).
+- **recovery** — Use when work was interrupted mid-operation or a change must be undone, and the system must return to a known-good state before anything else; not for pausing safely (handoff) or for re-verifying finished work (verify).
+- **resume** — Use when picking up work from a previous session, another agent or a recorded handoff, and the current state must be validated before continuing; not for starting new work (route) or for restoring a broken state (recovery).
+- **worktree** — Use when work needs isolation from the main checkout — a parallel task, a risky change, a review of someone else's branch — and the workspace must be created, inspected or removed safely; not for handing over work in progress (handoff) or recovering a broken checkout (recovery).
+
+## meta (3)
+
+- **skill-authoring** — Use when a new skill must be written or an existing one reshaped to the pack's standard, with a trigger description, a procedure and an evaluation; not for scoring whether a skill fires (skill-eval) or for editing playbooks (maintain-playbook).
+- **skill-eval** — Use when it is unclear whether a skill fires on the right requests or its procedure produces the claimed output; not for writing the skill (skill-authoring) or for scoring a delivery (rubrics).
+- **unslop** — Use when generated or accumulated code has become more complex than the problem — duplication, dead paths, speculative abstraction — and must be reduced without changing behaviour; not for improving structure with tests as the goal (refactor) or for reviewing correctness (review).
+
+## unassigned (3)
+
 - **docker** — _no description_
 - **gitignore** — _no description_
-- **handoff** — Create a complete worker-to-Lead or session-to-session handoff
-- **lessons** — Convert recurring mistakes into durable improvements
 - **makefile** — _no description_
-- **ready** — Produce a merge-readiness assessment without merging
-- **recovery** — Restore a safe state after failed, interrupted or partially applied work
-- **report** — Produce a concise, source-grounded explanation for a developer, reviewer, or stakeholder from discovery findings
-- **resume** — Reconstruct current task or project context after interruption
-- **review** — Obtain fresh-context review and resolve findings
-- **ship** — Prepare a focused, reviewable pull request with evidence
-- **skill-authoring** — Write skills to v2 contract standard: draft, static validation, external research, evaluation, lifecycle management
-- **skill-eval** — Evaluate skill trigger accuracy, procedure quality, outputs and failure handling through scenario-based testing
-- **unslop** — Remove unnecessary complexity, duplication and low-quality generated changes
-- **watch-pr** — Monitor CI and review findings, then address and reverify valid issues
-- **worktree** — Establish, inspect and safely clean isolated workspaces

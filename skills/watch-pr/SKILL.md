@@ -1,153 +1,80 @@
 ---
 name: watch-pr
-description: Monitor CI and review findings, then address and reverify valid issues
-lifecycle: draft
+description: Use when a change is published and CI, review comments or a rollout must be observed until a definite outcome; not for performing the merge (ship) or for re-verifying after local changes (verify).
+tier: review
+rigor: standard
+status: stable
+pairs-with: [ship, verify, recovery]
 ---
 
 # watch-pr
 
-## Purpose / Outcome
+Observe until there is an outcome. Do not poll in a loop, do not guess from a
+half-finished pipeline, and do not call a flaky job green.
 
-Monitors PR for CI completion and review findings, addresses valid issues, re-verifies, repeats until clean state for ready assessment.
+## When to use
 
----
+- A pull request is open and checks or reviews are pending.
+- A deployment is rolling out and needs observation.
+- A release job must be confirmed before announcing.
+- A reviewer left comments that must be addressed and rechecked.
+- A failure appeared and its cause is not yet known.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "Watch PR" / "Monitor CI and reviews"
-- After ship creates PR
-- When CI/review feedback arrives
-- Until ready confirms readiness
+- The merge is still to be performed → `ship`.
+- Local changes need checking → `verify`.
+- The rollout failed and state must be restored → `recovery`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- PRs not requiring monitoring
-- When no CI/review integration
-
----
-
-## Required Context / Inputs
-
-- Open PR
-- CI/review system access (if available)
-
----
-
-## Preconditions
-
-- PR exists with evidence summary
-
----
-
-## Procedure
-
-### Phase 1: Monitor CI
-
-- Watch for CI completion
-- On failure: diagnose, fix, reverify, push
-- Record evidence
-
-### Phase 2: Monitor Reviews
-
-- Watch for review findings
-- For each finding: validate, fix if valid, reverify
-- Disposition: fixed / dismissed / deferred / accepted risk
-- Record disposition rationale
-
-### Phase 3: Reverify After Fixes
-
-- Run affected verifications
-- Update evidence
-- Push updates
-
-### Phase 4: Repeat Until Clean
-
-- CI passes
-- No unresolved blocking findings
-- All findings dispositioned
-
----
-
-## Expected Outputs
-
-- Passing CI
-- All findings dispositioned
-- Updated evidence
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- CI passes
-- No open blocking findings
-- All findings have valid disposition
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Trigger |
 |---|---|
-| Unresolvable finding | Escalate to Lead |
-| CI flakiness | Investigate, don't ignore |
-| Reviewer conflict | Escalate to Lead |
+| PR | checks and review comments |
+| Release | tag pipeline, artefact availability |
+| Rollout | health signals, error rate, saturation |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Record what is being watched and the success condition.** Artifact:
+   `watch target`.
+2. **Subscribe rather than poll** where the harness supports it; otherwise set
+   a bounded schedule and stop when it ends. Artifact: watch link or schedule.
+3. **On failure, read the failing job's log** before changing code. Artifact:
+   failing step and message.
+4. **Classify the failure:** caused by the change, pre-existing, or
+   infrastructure. Artifact: classification with evidence.
+5. **Fix caused failures under `tdd`; re-run the specific job** before the
+   whole pipeline. Artifact: new run.
+6. **Report the outcome** with the final state and links. Artifact: delivery
+   note update.
 
+## Output
 
-- PR ready for ready
-- Time-boxed per cycle (default: per CI run + review cycle)
+The final state — merged, deployed, failed with cause, or still pending with
+the exact condition that will end the watch. No "should be fine".
 
----
+## Failure
 
-## Escalation
+- **A check is flaky.** Record the rate and rerun once; do not merge on a flaky
+  pass without noting it.
+- **The watch has no end condition.** Set a deadline and report what is still
+  pending at it.
+- **The pipeline is red for unrelated reasons.** Name the pre-existing failure
+  and its evidence; do not "fix" it inside this change.
 
-- Unresolvable finding → escalate to Lead
-- CI flakiness → investigate, don't ignore
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "It usually passes." | Usually is a flake rate; record it. |
+| "I will check back later." | Later loses the log and the order of events. |
+| "Green means merged." | Green means the checks passed on a commit; merge is a separate act. |
+| "The failing job is unrelated." | Say how you know, with the log line. |
 
-## Fallback
+## Tracking
 
-- Without CI/review monitoring: manual check before ready
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** ship (PR creation), verify (reverification), review (review findings), ready (readiness gate)
-- **Roles:** Builder (monitors/fixes), Lead (escalation)
-- **Tools:** CI system, PR platform, verification harness
-- **References:** None
-
----
-
-## Examples
-
-### Example: CI Failure Cycle
-
-**PR:** Auth feature
-**CI fails:** Test timeout in integration test
-**Action:** Diagnose (flaky DB), fix (increase timeout), reverify (local pass), push, CI passes
-**Review finding:** Missing error handling
-**Action:** Validate (valid), fix, reverify, disposition: fixed
-
----
-
-## Dependencies / References
-
-- **Principles:** Prove It Works, Evidence Before Assertions, Fix Root Causes
-- **Skills:** ship, verify, review, ready
-- **References:** None
-
+- **OpenChamber present:** a watch link on the delivery note; `focus_status`
+  stays "waiting external" until the outcome.
+- **OpenCode or files:** the outcome and its links in the delivery note.
+- Ladder: `resources/tracking.md`.

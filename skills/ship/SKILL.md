@@ -1,156 +1,84 @@
 ---
 name: ship
-description: Prepare a focused, reviewable pull request with evidence
-lifecycle: draft
+description: Use when a readiness decision is made and the change must be published — merge, tag, release, deploy — with the record written as part of the act; not for deciding readiness (ready) or for watching the result afterwards (watch-pr).
+tier: review
+rigor: rigid
+status: stable
+pairs-with: [ready, watch-pr, verify]
 ---
 
 # ship
 
-## Purpose / Outcome
+Publish exactly what was verified. The shipped commit is named before the
+action, and the record is written in the same step, not after.
 
-Creates a focused, reviewable pull request with evidence summary after implementation and verification complete. Links to delivery/task records, requests reviewers per project policy.
+## When to use
 
----
+- `ready` returned ready and the owner asked to publish.
+- A version tag, release note or deployment is due.
+- A pull request is approved and must be merged.
+- A hotfix must go out with a recorded reason.
+- A package must be published to a registry.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "Create PR for..." / "Prepare pull request"
-- After implementation and verification complete
-- When project workflow requires PR
-- Before watch-pr and ready
+- Readiness is undecided → `ready`.
+- The result must be observed → `watch-pr`.
+- The work is not complete → back to the delivery.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- Direct-to-main workflows
-- When changes not ready for review
-- Before verification complete
-
----
-
-## Required Context / Inputs
-
-- Verified implementation
-- Evidence records
-- Independent review complete (if warranted)
-
----
-
-## Preconditions
-
-- All required verifications pass
-- Blocking review findings resolved
-- Delivery acceptance criteria met
-
----
-
-## Procedure
-
-### Step 1: Confirm Readiness
-
-- All tasks PASS
-- Evidence recorded for acceptance criteria
-- Review findings dispositioned
-
-### Step 2: Prepare PR
-
-- Focused scope (single delivery)
-- Clear title and description
-- Link to delivery/task records
-- Include evidence summary
-
-### Step 3: Evidence Summary
-
-- Verification results (pass/fail/skipped)
-- Review findings and dispositions
-- Known limitations and risks
-
-### Step 4: Submit
-
-- Create or update PR
-- Request reviewers per project policy
-- Link in delivery/task records
-
----
-
-## Expected Outputs
-
-- PR with evidence summary
-- Linked delivery/task references
-- Reviewers assigned
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- PR passes CI (if configured)
-- Reviewers can verify evidence
-- Scope matches delivery
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Act |
 |---|---|
-| CI fails | Fix and reverify before PR |
-| Reviewers unavailable | Escalate to Lead |
-| Evidence incomplete | Do not create PR, address gaps |
+| Merge | merge commit or squash, branch protection respected |
+| Release | tag, changelog, artefact, publish |
+| Deploy | apply from the reviewed source of truth, observe the rollout |
 
----
+`rigor: rigid` — the commit hash being shipped is recorded before the action.
+Shipping an unnamed tree is shipping hope.
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+## Steps
 
+1. **Name the artefact:** commit hash, tag or image digest. Artifact: `shipped`.
+2. **Confirm the gate table is for that artefact**, not an earlier tree.
+   Artifact: gate table reference.
+3. **Run the release steps from the project's documented path**, not from
+   memory. Artifact: command log.
+4. **Write the record as you go**: what shipped, where, by which command, with
+   links. Artifact: delivery note and evidence lines.
+5. **Publish the note**: changelog or release description that states what
+   changed and what to do about it. Artifact: release note.
+6. **Hand to `watch-pr`** when a pipeline or rollout must be observed. Artifact:
+   watch link.
 
-- PR created and review requested
-- Time-boxed (default: 15-30 min)
+## Output
 
----
+`shipped <hash> to <environment> via <command>` plus the release note and the
+monitoring link. A reader can tell whether what they have is what was verified.
 
-## Escalation
+## Failure
 
-- CI fails → fix and reverify before PR
-- Reviewers unavailable → escalate to Lead
+- **The tree changed after verification.** Stop and re-`verify`; never ship an
+  unverified delta.
+- **The release step fails halfway.** Record the state, do not retry blindly;
+  follow the rollback from the delivery's rollout plan.
+- **The owner asks to skip the record.** Ship, then write it immediately in the
+  same session; an unrecorded ship becomes an unexplained incident.
 
----
+## Rationalizations
 
-## Fallback
+| Excuse | Reality |
+|---|---|
+| "It is just a merge." | Merges are what reach users; they deserve the same record. |
+| "The changelog can be generated later." | Generated later means missing context and wrong audience. |
+| "Nobody reads release notes." | Users and on-call do, at the worst moment. |
+| "The pipeline is the record." | Pipelines show success, not what changed or why. |
 
-- Without PR workflow: deliver via project convention
+## Tracking
 
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** verify (verification), review (review), watch-pr (monitoring), ready (readiness)
-- **Roles:** Builder (prepares), Lead (reviewers)
-- **Tools:** Git, PR platform API
-- **References:** None
-
----
-
-## Examples
-
-### Example: Feature Delivery PR
-
-**Delivery:** User authentication (login, register, logout)
-**PR:** Title "feat(auth): add JWT authentication", description with evidence summary, links to delivery record, reviewers assigned
-
----
-
-## Dependencies / References
-
-- **Templates:** `templates/delivery-plan.md`
-
-- **Principles:** Evidence Before Assertions, Smallest Complete Change
-- **Skills:** verify, review, watch-pr, ready
-- **References:** None
-
+- **OpenChamber present:** `focus_complete` on the delivery action only after
+  the record is written; the release note is linked.
+- **vstack adapter present:** `vstack_deliver` carries the artefact hash and
+  the gate table.
+- **Files:** `docs/deliveries/<id>.md` plus the release note.
+- Ladder: `resources/tracking.md`.

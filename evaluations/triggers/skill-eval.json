@@ -1,15 +1,15 @@
 {
   "positive": [
-    "Before promoting a skill to Stable",
-    "After modifying a skill's trigger, procedure, output, safety rule, or stop condition",
-    "When adding a new skill to the playbook",
-    "Periodic regression evaluation of Stable skills",
-    "Periodic regression evaluation of Stable skills"
+    "Measure whether the new skill fires on the right requests and near misses.",
+    "The description changed; check which sibling now wins the routing.",
+    "Run the procedure on a realistic task and check the artifacts it claims.",
+    "Give me per-skill precision and recall for the pack release.",
+    "Users say this skill never fires; find out whether the corpus agrees."
   ],
   "negative": [
-    "For skills in Draft state (use informal testing)",
-    "For one-off procedure validation",
-    "summarise last quarter's revenue"
+    "Write the skill and its description from scratch.",
+    "Run the delivery gates and report each result.",
+    "Check whether the skill body matches the standard mechanically."
   ],
   "expected": {
     "skill": "skill-eval"

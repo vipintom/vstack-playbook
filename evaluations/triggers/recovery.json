@@ -1,15 +1,15 @@
 {
   "positive": [
-    "After unstick when changes need cleanup",
-    "After interrupted session with partial changes",
-    "When verification reveals broken state",
-    "When resume detects unsafe state",
-    "When resume detects unsafe state"
+    "The migration stopped halfway and the database must return to a known state.",
+    "A deploy broke production; revert it and preserve the evidence.",
+    "A script ran twice and wrote partial data; restore and record what was lost.",
+    "The working tree is in an unknown state after the crash; get back to a target.",
+    "Tests fail everywhere and nothing is known; isolate and restore first."
   ],
   "negative": [
-    "For routine cleanup (use unslop)",
-    "When state is already safe",
-    "summarise last quarter's revenue"
+    "Pause cleanly with the state known-good and hand it over.",
+    "Verify the finished delivery and record the gate table.",
+    "Find the cause of the failure before any restoration."
   ],
   "expected": {
     "skill": "recovery"

@@ -1,181 +1,81 @@
 ---
 name: report
-description: Produce a concise, source-grounded explanation for a developer, reviewer, or stakeholder from discovery findings
-lifecycle: draft
+description: Use when work must be explained to someone who did not do it — reviewer, stakeholder or future session — grounded in artifacts rather than narrative; not for compressing a session for continuation (handoff) or for publishing a release (ship).
+tier: review
+rigor: standard
+status: stable
+pairs-with: [evidence, handoff, verify]
 ---
 
 # report
 
-## Purpose / Outcome
+Write for the reader who has the code and not the context. Lead with the
+result, then the evidence, then what remains. No journey.
 
-Produces concise, audience-tailored explanations from discovery findings. Transforms raw facts from code-tour/rationale into structured communication with explicit source citations, labeled inferences, and clear implications.
+## When to use
 
----
+- A delivery, incident or investigation needs a written account.
+- A stakeholder asks what changed and what it means.
+- A review or audit needs a summary with citations.
+- A session ends and the next person needs the outcome, not the transcript.
+- A claim must be summarised without losing its scope.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "Explain this to..." / "Communicate findings to..."
-- After code-tour/rationale produce findings needing communication
-- Preparing review briefs for review
-- Documenting decisions for decisions
+- The next session needs pointers to continue → `handoff`.
+- The work must be published → `ship` writes the release note.
+- The question is why a choice was made → `rationale`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- Raw discovery → code-tour / rationale
-- Decision recording → decisions
-- Review assessment → review
-- Session resumption → resume
-
----
-
-## Required Context / Inputs
-
-- Findings from code-tour and/or rationale (with source citations)
-- Target audience: developer / reviewer / stakeholder
-- Desired detail level
-
----
-
-## Preconditions
-
-- Discovery complete with source citations
-- Audience identified
-
----
-
-## Procedure
-
-### Step 1: Determine Audience and Purpose
-
-- **Developer:** Implementation details, code references, technical depth
-- **Reviewer:** Risks, changes, verification approach, decision support
-- **Stakeholder:** Impact, trade-offs, timeline, business implications
-
-### Step 2: Select Key Findings
-
-- Focus on decision-relevant information only
-- Omit exploratory dead ends
-- Include unknowns and assumptions explicitly
-
-### Step 3: Structure Explanation
-
-**Context** — What was investigated and why (1-2 sentences)
-
-**Key Findings** — Observed facts with source references (file:line, commit, evidence)
-
-**Inferences** — Labeled as inferences with confidence (High/Medium/Low)
-
-**Unknowns** — Explicitly stated gaps
-
-**Implications** — For the current task/decision
-
-### Step 4: Ground in Sources
-
-- Every factual claim has file:line or evidence reference
-- Use consistent citation format
-- Link to relevant code/commits/evidence
-
-### Step 5: Keep Concise
-
-- Lead with conclusion/implication
-- Support with evidence
-- Avoid narrative fluff
-- Time-box: default 10-20 min
-
----
-
-## Expected Outputs
-
-- Concise explanation (Markdown or structured text)
-- Source citations for all claims
-- Clear implications for current work
-- Audience-appropriate detail level
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Another engineer can verify claims from citations
-- No unverified assertions
-- Inferences separated from observations
-- Unknowns explicit
-- Appropriate detail for audience
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Length |
 |---|---|
-| Missing source for claim | Mark as UNKNOWN, do not assert |
-| Audience needs more detail | Provide appendix or deep-dive reference |
-| Critical finding cannot be explained | Escalate to Lead |
+| Result | 5 lines: outcome, evidence, gaps |
+| Delivery | structured record with gate table and findings |
+| Stakeholder | result plus impact and next decision |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Write the result in one sentence** with its scope (what was and was not
+   checked). Artifact: `result`.
+2. **Attach the evidence**: commands, digests, links, gate table. Artifact:
+   evidence references.
+3. **List what is still open** with owner or next step. Artifact: open list.
+4. **State the limits** — environment, sample, unverified claims. Artifact:
+   limits.
+5. **Cut everything that is process narration.** If a sentence describes what
+   you did rather than what is true, delete it. Artifact: final draft.
+6. **Record** in the delivery file and link from the thread. Artifact: report.
 
+## Output
 
-- Explanation communicates necessary understanding
-- All claims have source citations
-- Time-box respected
+```markdown
+Result: retries are idempotent by event id (verified locally, 12/12 tests).
+Evidence: `test/queue.test.ts`, run log, digest 41aa…
+Open: production replay not tested — needs staging.
+Limit: single-process fixture; concurrency untested.
+```
 
----
+## Failure
 
-## Escalation
+- **No evidence exists for a claim.** Remove the claim or mark it unverified;
+  a report is not a place to hope.
+- **The reader needs a decision.** Give options with costs, not a narrative.
+- **The account is long because the work was long.** Length is not evidence;
+  cut to result, evidence, gaps.
 
-- Cannot explain critical finding → escalate to Lead
-- Audience needs more detail → provide appendix or deep-dive
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "More detail shows the work." | Readers want the result; the code shows the work. |
+| "The reader will trust a confident tone." | Confidence without evidence is the thing reports exist to replace. |
+| "I will omit the failed attempts." | Then the next session repeats them. One line each. |
+| "Stakeholders need the technical detail." | They need impact and decision; link the detail. |
 
-## Skill / Role / Tool Routing
+## Tracking
 
-- **Skills invoked:** code-tour (source of facts), rationale (source of rationale), impact (source of impact), decisions (consumer)
-- **Roles:** Explainer (produces), Reviewer/Stakeholder (consumes)
-- **Tools:** File references, git, evidence artifacts
-- **References:** None
-
----
-
-## Examples
-
-### Example: Developer Explanation
-
-**Audience:** Developer implementing fix
-**Findings:** code-tour traced auth flow through middleware chain
-**Explanation:**
-- Context: Auth flow from login to protected route
-- Key Findings: JWT validation in `auth/middleware.ts:45`, token refresh in `auth/refresh.ts:12`
-- Inferences: Race condition possible on concurrent refresh (Medium)
-- Unknowns: Behavior under clock skew
-- Implications: Fix must handle concurrent refresh atomically
-
-### Example: Reviewer Brief
-
-**Audience:** Reviewer for review
-**Findings:** rationale found ADR-007 chose email-only index
-**Explanation:**
-- Context: Why users table indexed on email only
-- Key Findings: ADR-007 "Email-only index for uniqueness", commit a1b2c3d
-- Inferences: Status filter added later, not in original design (High)
-- Unknowns: Composite index performance impact
-- Implications: Preserve email uniqueness; consider composite if status filter hot
-
----
-
-## Dependencies / References
-
-- **Principles:** Procedures Over Vague Instructions, Evidence Before Assertions
-- **Skills:** code-tour, rationale, impact, decisions
-- **References:** None
-
+- **OpenChamber present:** the report is the delivery note; project knowledge
+  only for what outlives it.
+- **OpenCode or files:** `docs/deliveries/<id>.md`.
+- Ladder: `resources/tracking.md`.

@@ -1,15 +1,15 @@
 {
   "positive": [
-    "\"Create PR for...\" / \"Prepare pull request\"",
-    "After implementation and verification complete",
-    "When project workflow requires PR",
-    "Before watch-pr and ready",
-    "Before watch-pr and ready"
+    "The readiness decision is made; merge it and write the release record.",
+    "Tag version 0.2.0, publish the changelog and record what shipped.",
+    "Deploy the reviewed build from the tagged image and record the digest.",
+    "Publish the package to the registry and link the release note.",
+    "The hotfix is approved; ship it and record why it went out early."
   ],
   "negative": [
-    "Direct-to-main workflows",
-    "When changes not ready for review",
-    "Before verification complete"
+    "Run the gates and tell me whether this is safe to release.",
+    "Watch the pipeline and tell me when it finishes or fails.",
+    "Decide whether we accept the open finding before release."
   ],
   "expected": {
     "skill": "ship"

@@ -1,139 +1,79 @@
 ---
 name: resume
-description: Reconstruct current task or project context after interruption
-lifecycle: draft
+description: Use when picking up work from a previous session, another agent or a recorded handoff, and the current state must be validated before continuing; not for starting new work (route) or for restoring a broken state (recovery).
+tier: continuity
+rigor: standard
+status: stable
+pairs-with: [handoff, route, verify]
 ---
 
 # resume
 
-## When to Use
-- Starting a new session after interruption
-- Switching between tasks/deliveries
-- Onboarding to an existing delivery
-- After context window reset
+Read the handoff, check it against reality, then continue. Old context is a
+claim, not a fact.
 
-## When Not to Use
-- For initial task setup (use `route` → `sharpen`)
-- When no prior context exists (fresh task)
+## When to use
 
-## Required Context
-- Access to project memory (if plugin available)
-- Access to `.vstack/` runtime state (if plugin available)
-- PROGRESS.md or equivalent checkpoint
-- Git status (branch, commit, uncommitted changes)
+- A session starts with a delivery already in flight.
+- Another agent left a handoff or a task list.
+- Work resumes after days away.
+- Context was compacted and the summary may be stale.
+- A branch exists with unclear status.
 
-## Preconditions
-- Prior work was checkpointed or has runtime state
+Near misses:
 
-## Procedure
+- The work is new → `route`.
+- The state is broken and must be restored → `recovery`.
+- The session ended cleanly with results → read the `report`.
 
-1. **Read checkpoint**
-   - **Action:** Read `PROGRESS.md` or project-equivalent checkpoint
-   - **Evidence:** Goal, acceptance criteria, next action, open questions, key facts, decisions, failed approaches, verification status documented
-   - **Decision:** If no checkpoint exists → proceed to fallback reconstruction
+## Modes
 
-2. **Validate repository state**
-   - **Action:** Run `git status` — check branch, commit, uncommitted changes
-   - **Evidence:** Current branch, commit hash, list of uncommitted files
-   - **Decision:** If branch/commit matches checkpoint → proceed; if differs → investigate discrepancies
-
-3. **Check runtime state** (if plugin available)
-   - **Action:** Query active deliveries, task assignments, evidence, decisions, recovery attempts
-   - **Evidence:** Runtime state snapshot
-   - **Decision:** If plugin unavailable → skip to fallback
-
-4. **Reconcile checkpoint vs reality**
-   - **Action:** Compare repository and runtime state with checkpoint
-   - **Evidence:** List of discrepancies (if any)
-   - **Decision:** If matches → proceed from next action; if differs → investigate discrepancies
-
-5. **Update checkpoint if needed**
-   - **Action:** Record stale information, update next action if work completed externally, note new blockers/decisions
-   - **Evidence:** Updated checkpoint with reconciliation notes
-   - **Decision:** If no discrepancies → no update needed
-
-6. **Summarize current state**
-   - **Action:** Produce validated state summary
-   - **Evidence:** Goal, exact next action, open questions/blockers, key facts
-   - **Decision:** If next action unclear → escalate to Lead
-
-## Expected Outputs
-- Validated current state summary
-- Updated checkpoint (if discrepancies found)
-- Clear next action
-- List of reconciled discrepancies
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-- Checkpoint accurately reflects repository state
-- Next action is specific and actionable
-- No stale work reported as completed
-
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
-- Current state understood and validated
-- Ready to proceed with next action
-- Time-boxed (default: 10-15 min)
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Check |
 |---|---|
-| No checkpoint available | Reconstruct from git history and memory, document reconstruction |
-| Major checkpoint/reality mismatch | Escalate to Lead, do not proceed |
-| Cannot determine current state | Escalate to Lead, do not guess |
-| Plugin unavailable | Fallback to PROGRESS.md + git only, document fallback |
-| Runtime state unavailable | Fallback to PROGRESS.md + git only, document fallback |
+| Quick | handoff read, one command confirms the state |
+| Full | re-run the affected gates before continuing |
+| Forensics | the handoff disagrees with the tree; reconstruct |
 
-## Escalation
-- Major discrepancy between checkpoint and reality → escalate to Lead
-- Cannot determine current state → escalate, do not guess
+## Steps
 
-## Skill / Role / Tool Routing
+1. **Read the handoff or delivery record** and quote its "verified at" and
+   "next". Artifact: quoted state.
+2. **Check the tree**: branch, commit, dirty files, running services. Artifact:
+   actual state.
+3. **Compare and reconcile.** Any difference means the record is stale; update
+   it before continuing. Artifact: reconciliation note.
+4. **Re-run the smallest gate** that proves the last verified state still
+   holds. Artifact: gate result.
+5. **Confirm the next action still makes sense** in this session's context.
+   Artifact: confirmed or revised next action.
+6. **Take the action** or route it if the situation changed. Artifact: first
+   step of the new work.
 
-- **Skills invoked:** resume (creates checkpoint), resume (uses catchup output)
-- **Roles:** Lead (owns reconciliation), Builder (executes validation)
-- **Tools:** git, project memory plugin (if available), PROGRESS.md
-- **References:** resume, handoff, decisions
+## Output
 
-## Examples
+A reconciliation: recorded state, actual state, what still holds, the next
+action. Then continue; do not re-plan work that is already agreed.
 
-### Example: Session Resume After Weekend
-**Context:** Developer returns after 2 days, needs to resume feature-delivery work.
+## Failure
 
-**Execution:**
-1. Read PROGRESS.md: goal = "Add user profile API", next action = "Implement GET /profile endpoint"
-2. Git status: on branch feature/profile, commit abc123, 2 uncommitted files (matches checkpoint)
-3. Runtime state: delivery active, task "GET /profile" assigned
-4. Reconcile: all matches, proceed from next action
-5. No checkpoint update needed
-6. Summary: goal clear, next action exact, ready to proceed
+- **No handoff exists.** Say so and reconstruct from git and the delivery file;
+  mark the reconstruction as inferred.
+- **The tree is mid-operation** (rebase, half migration) → `recovery`.
+- **The next action is blocked.** Record the blocker and pick the next
+  unblocked action from the plan, not an invented one.
 
-### Example: Task Switch with Discrepancy
-**Context:** Switching from bug-fixing to feature-delivery, checkpoint shows different branch.
+## Rationalizations
 
-**Execution:**
-1. Read PROGRESS.md: goal = "Fix null pointer in auth", branch = bugfix/auth
-2. Git status: on branch feature/profile, commit def456 (differs from checkpoint)
-3. Investigate: work was switched externally, bugfix branch has uncommitted fix
-4. Update checkpoint: record branch switch, note auth fix in progress
-5. Summarize: goal = profile API, next action = implement endpoint, blocker = auth fix pending
+| Excuse | Reality |
+|---|---|
+| "The handoff says it is done." | The tree is the authority; check it. |
+| "Re-running gates is wasteful." | One command versus continuing on a false premise. |
+| "I remember where we were." | Memory is the thing the handoff replaces. |
+| "I will re-plan from scratch." | Then the previous session's decisions are lost and repeated. |
 
-## Dependencies / References
-- resume (creates checkpoint)
-- resume (uses catchup output)
-- handoff (creates checkpoint)
-- decisions (decision history)
+## Tracking
 
-## Migration Record
-
-- **Previous name/path:** skills/resume/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 6-step reconciliation (checkpoint → validate → check runtime → reconcile → update → summarize), fallback to git/PROGRESS.md, escalation on mismatch
-- **Procedures rewritten:** Explicit Action/Evidence/Decision per step, failure handling table, fallback documentation, time-boxed stop condition
-- **Disposition:** rewrite
+- **OpenChamber present:** focus card read first; the reconciliation updates its
+  detail.
+- **OpenCode or files:** `.vstack/handoff.md` and the delivery record.
+- Ladder: `resources/tracking.md`.

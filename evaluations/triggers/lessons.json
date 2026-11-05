@@ -1,15 +1,15 @@
 {
   "positive": [
-    "After completing a delivery",
-    "When a pattern of failures/bugs/rework emerges",
-    "During retrospective or review",
-    "When debug reveals systemic issue",
-    "When debug reveals systemic issue"
+    "The same review finding keeps appearing across three deliveries; make it durable.",
+    "This incident exposed a gap the method should have caught.",
+    "Turn the repeated mistake into a checklist line or a test.",
+    "A skill step keeps getting skipped; change the method, not the person.",
+    "Record what we learned from the second occurrence so it stops recurring."
   ],
   "negative": [
-    "For one-off incidents",
-    "During active implementation (use debug)",
-    "summarise last quarter's revenue"
+    "Write the incident account with a timeline and evidence.",
+    "Find the cause of the current failure before changing anything.",
+    "Apply the existing principle to this decision."
   ],
   "expected": {
     "skill": "lessons"

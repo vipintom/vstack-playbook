@@ -1,15 +1,15 @@
 {
   "positive": [
-    "\"Ready to merge?\" / \"Assess readiness\"",
-    "After watch-pr confirms CI and reviews clean",
-    "Before any merge/delivery action",
-    "As final gate before ship",
-    "As final gate before ship"
+    "The gates are green but two findings are open; decide whether this can merge.",
+    "Give me a go or no-go for tonight's release with the reasons and the gaps.",
+    "We want to waive the e2e gate; record the risk and who accepted it.",
+    "The previous ready call used a run from two commits ago; reassess.",
+    "Decide whether this delivery is safe to publish and what is still unproven."
   ],
   "negative": [
-    "When PR not ready",
-    "When merge not intended",
-    "summarise last quarter's revenue"
+    "Produce the gate table by running every declared check.",
+    "Review the diff for correctness and maintainability.",
+    "Merge the approved branch and write the release note."
   ],
   "expected": {
     "skill": "ready"

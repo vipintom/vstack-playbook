@@ -36,3 +36,11 @@ const BUILD = ["tdd", "debug", "refactor", "unstick", "evidence", "verify", "cov
 
 test("design tier meets the standard", () => assertStandard(DESIGN));
 test("build tier meets the standard", () => assertStandard(BUILD));
+
+const REVIEW = ["review", "ready", "ship", "watch-pr", "report"];
+const CONTINUITY = ["handoff", "resume", "recovery", "decisions", "lessons", "worktree"];
+const META = ["skill-authoring", "skill-eval", "unslop"];
+
+test("review tier meets the standard", () => assertStandard(REVIEW));
+test("continuity tier meets the standard", () => assertStandard(CONTINUITY));
+test("meta tier meets the standard", () => assertStandard(META));

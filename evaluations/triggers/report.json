@@ -1,15 +1,15 @@
 {
   "positive": [
-    "\"Explain this to...\" / \"Communicate findings to...\"",
-    "After code-tour/rationale produce findings needing communication",
-    "Preparing review briefs for review",
-    "Documenting decisions for decisions",
-    "Documenting decisions for decisions"
+    "Write the result for a reviewer who has the code but not the session context.",
+    "Give me a delivery summary with evidence, gaps and what remains open.",
+    "Explain to the stakeholder what changed and what decision they face.",
+    "Summarise the incident with a timeline and the evidence behind each claim.",
+    "Turn this investigation into an account with citations, not a narrative."
   ],
   "negative": [
-    "Raw discovery",
-    "Decision recording",
-    "Review assessment"
+    "Leave pointers for the next session to continue this work.",
+    "Publish the release notes and the changelog for this version.",
+    "Reconstruct why the retry design was chosen, with sources."
   ],
   "expected": {
     "skill": "report"

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "playbookVersion": "0.2.0",
-  "contentHash": "sha256:22e5bd6205bbc3dcf702f9ec7774cb409db54480ce32708a03935f7bc7dcd3b1",
+  "contentHash": "sha256:86a1436b5f8d816fd59abdcd6fb86fb5511a6f62c59013564375c60b6dc84e5f",
   "counts": {
     "skills": 46,
     "playbooks": 0,
@@ -79,11 +79,15 @@
     {
       "name": "decisions",
       "path": "skills/decisions/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Record important decisions, pivots, failed approaches and evidence references"
+      "tier": "continuity",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "rationale",
+        "principles",
+        "report"
+      ],
+      "description": "Use when a choice will matter later and must be recorded with its alternatives, evidence and consequences so it is not relitigated; not for reconstructing an old decision (rationale) or for applying a rule (principles)."
     },
     {
       "name": "design",
@@ -157,11 +161,15 @@
     {
       "name": "handoff",
       "path": "skills/handoff/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Create a complete worker-to-Lead or session-to-session handoff"
+      "tier": "continuity",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "resume",
+        "report",
+        "recovery"
+      ],
+      "description": "Use when work pauses and the next session or person must continue without re-reading the history, or when work must stop in a state that is safe and honestly described; not for explaining results to a stakeholder (report) or for restoring a broken state (recovery)."
     },
     {
       "name": "help",
@@ -191,11 +199,15 @@
     {
       "name": "lessons",
       "path": "skills/lessons/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Convert recurring mistakes into durable improvements"
+      "tier": "continuity",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "unstick",
+        "decisions",
+        "principles"
+      ],
+      "description": "Use when the same mistake has happened twice, or an incident or delivery revealed a rule that should change the method itself; not for recording what happened (report) or for a one-off fix (debug)."
     },
     {
       "name": "makefile",
@@ -285,20 +297,28 @@
     {
       "name": "ready",
       "path": "skills/ready/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Produce a merge-readiness assessment without merging"
+      "tier": "review",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "verify",
+        "review",
+        "ship"
+      ],
+      "description": "Use when work is claimed complete and someone must decide whether it is safe to merge or release, weighing gates, findings and open risks; not for producing the evidence (verify) or performing the review (review)."
     },
     {
       "name": "recovery",
       "path": "skills/recovery/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Restore a safe state after failed, interrupted or partially applied work"
+      "tier": "continuity",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "handoff",
+        "verify",
+        "migration"
+      ],
+      "description": "Use when work was interrupted mid-operation or a change must be undone, and the system must return to a known-good state before anything else; not for pausing safely (handoff) or for re-verifying finished work (verify)."
     },
     {
       "name": "red-team",
@@ -329,29 +349,41 @@
     {
       "name": "report",
       "path": "skills/report/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Produce a concise, source-grounded explanation for a developer, reviewer, or stakeholder from discovery findings"
+      "tier": "review",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "evidence",
+        "handoff",
+        "verify"
+      ],
+      "description": "Use when work must be explained to someone who did not do it — reviewer, stakeholder or future session — grounded in artifacts rather than narrative; not for compressing a session for continuation (handoff) or for publishing a release (ship)."
     },
     {
       "name": "resume",
       "path": "skills/resume/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Reconstruct current task or project context after interruption"
+      "tier": "continuity",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "handoff",
+        "route",
+        "verify"
+      ],
+      "description": "Use when picking up work from a previous session, another agent or a recorded handoff, and the current state must be validated before continuing; not for starting new work (route) or for restoring a broken state (recovery)."
     },
     {
       "name": "review",
       "path": "skills/review/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Obtain fresh-context review and resolve findings"
+      "tier": "review",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "rubrics",
+        "verify",
+        "ready"
+      ],
+      "description": "Use when a diff, design or document must be examined for defects before it is accepted, and findings must be specific enough to act on; not for judging a whole repository (audit) or for running the gates (verify)."
     },
     {
       "name": "route",
@@ -407,29 +439,41 @@
     {
       "name": "ship",
       "path": "skills/ship/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Prepare a focused, reviewable pull request with evidence"
+      "tier": "review",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "ready",
+        "watch-pr",
+        "verify"
+      ],
+      "description": "Use when a readiness decision is made and the change must be published — merge, tag, release, deploy — with the record written as part of the act; not for deciding readiness (ready) or for watching the result afterwards (watch-pr)."
     },
     {
       "name": "skill-authoring",
       "path": "skills/skill-authoring/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Write skills to v2 contract standard: draft, static validation, external research, evaluation, lifecycle management"
+      "tier": "meta",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "skill-eval",
+        "principles",
+        "tdd"
+      ],
+      "description": "Use when a new skill must be written or an existing one reshaped to the pack's standard, with a trigger description, a procedure and an evaluation; not for scoring whether a skill fires (skill-eval) or for editing playbooks (maintain-playbook)."
     },
     {
       "name": "skill-eval",
       "path": "skills/skill-eval/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Evaluate skill trigger accuracy, procedure quality, outputs and failure handling through scenario-based testing"
+      "tier": "meta",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "skill-authoring",
+        "evidence",
+        "coverage"
+      ],
+      "description": "Use when it is unclear whether a skill fires on the right requests or its procedure produces the claimed output; not for writing the skill (skill-authoring) or for scoring a delivery (rubrics)."
     },
     {
       "name": "tdd",
@@ -447,11 +491,15 @@
     {
       "name": "unslop",
       "path": "skills/unslop/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Remove unnecessary complexity, duplication and low-quality generated changes"
+      "tier": "meta",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "refactor",
+        "review",
+        "coverage"
+      ],
+      "description": "Use when generated or accumulated code has become more complex than the problem — duplication, dead paths, speculative abstraction — and must be reduced without changing behaviour; not for improving structure with tests as the goal (refactor) or for reviewing correctness (review)."
     },
     {
       "name": "unstick",
@@ -521,20 +569,28 @@
     {
       "name": "watch-pr",
       "path": "skills/watch-pr/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Monitor CI and review findings, then address and reverify valid issues"
+      "tier": "review",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "ship",
+        "verify",
+        "recovery"
+      ],
+      "description": "Use when a change is published and CI, review comments or a rollout must be observed until a definite outcome; not for performing the merge (ship) or for re-verifying after local changes (verify)."
     },
     {
       "name": "worktree",
       "path": "skills/worktree/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Establish, inspect and safely clean isolated workspaces"
+      "tier": "continuity",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "handoff",
+        "recovery",
+        "ship"
+      ],
+      "description": "Use when work needs isolation from the main checkout — a parallel task, a risky change, a review of someone else's branch — and the workspace must be created, inspected or removed safely; not for handing over work in progress (handoff) or recovering a broken checkout (recovery)."
     }
   ],
   "playbooks": [],

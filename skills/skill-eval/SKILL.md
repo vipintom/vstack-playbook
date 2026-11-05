@@ -1,177 +1,81 @@
 ---
 name: skill-eval
-description: Evaluate skill trigger accuracy, procedure quality, outputs and failure handling through scenario-based testing
-lifecycle: draft
+description: Use when it is unclear whether a skill fires on the right requests or its procedure produces the claimed output; not for writing the skill (skill-authoring) or for scoring a delivery (rubrics).
+tier: meta
+rigor: standard
+status: stable
+pairs-with: [skill-authoring, evidence, coverage]
 ---
 
 # skill-eval
 
-## Purpose / Outcome
+Measure two things separately: does the skill get chosen, and does following it
+work. A skill can win routing and still be useless.
 
-Evaluates skill quality through static validation, behavioural scenario testing (trigger accuracy, procedure quality, failure handling, harness fallbacks), cross-harness evaluation, and regression evaluation.
+## When to use
 
----
+- A new skill is about to be published.
+- A description changed and siblings may now compete.
+- Users report a skill never fires, or always fires wrongly.
+- A procedure's output is disputed.
+- A pack release needs accuracy numbers.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- Before promoting a skill to Stable
-- After modifying a skill's trigger, procedure, output, safety rule, or stop condition
-- When adding a new skill to the playbook
-- Periodic regression evaluation of Stable skills
+- The skill does not exist yet → `skill-authoring`.
+- The question is whether a delivery passed → `verify`.
+- The question is whether a skill matches the standard → the validator.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- For skills in Draft state (use informal testing)
-- For one-off procedure validation
-
----
-
-## Required Context / Inputs
-
-- Skill under evaluation
-- Evaluation fixtures and scenarios
-- Access to supported harnesses for cross-harness testing
-
----
-
-## Preconditions
-
-- Skill has valid frontmatter and all contract sections
-- Static validation passes
-- Evaluation fixtures available for the skill's domain
-
----
-
-## Procedure
-
-1. **Static validation: run validator, verify structure, check for unbounded loops and proprietary APIs**
-   - **Action:** Run `pnpm --filter @vstack/playbook validate`; verify frontmatter, required sections, unique IDs, link resolution; check for unbounded loops, missing stop/escalation conditions; verify no proprietary OpenCode APIs
-   - **Evidence:** Validator output (0 errors), frontmatter valid, all links resolve
-   - **Decision:** If validation fails → BLOCKED until fixed
-
-2. **Behavioural scenario testing: trigger accuracy, procedure quality, failure handling, harness fallbacks**
-   - **Action:** Run positive trigger cases, negative trigger cases, edge cases; verify steps actionable with expected outputs, evidence requirements met, stop conditions fire; test retry bounds, escalation thresholds, fallback behaviour; test subagents/worktrees/plugin fallbacks
-   - **Evidence:** Per-scenario PASS/FAIL, trigger accuracy metrics, procedure quality evidence, fallback documentation
-   - **Decision:** If any Tier 1 scenario FAIL → BLOCKED until fixed
-
-3. **Cross-harness evaluation: install and test in OpenCode, Codex, Claude Code**
-   - **Action:** Install skill via Skills CLI in clean profiles; verify loads, invokes, produces expected outputs; test selective installation
-   - **Evidence:** Per-harness load/invoke/output results, selective install test
-   - **Decision:** If primary harness fails → BLOCKED; if secondary fails → document gap
-
-4. **Regression evaluation: compare with baseline, identify regressions/false positives, update status**
-   - **Action:** Compare current results with previous baseline; identify regressions and false positives; update evaluation status and changelog
-   - **Evidence:** Regression comparison report, updated status/changelog
-   - **Decision:** If regression in Stable skill → BLOCK release, investigate
-
-5. **Record results: store with full provenance in evals/results/**
-   - **Action:** Write JSON with scenario ID, fixture version, model/harness/version, date, prompts, actual evidence, deterministic PASS/FAIL, qualitative rubric scores, evaluator, limitations
-   - **Evidence:** Result file with complete provenance
-   - **Decision:** If recording fails → BLOCKED
-
----
-
-## Expected Outputs
-
-- Evaluation report with deterministic PASS/FAIL for each scenario
-- Qualitative assessment with rubric scores
-- Regression comparison with previous version
-- Updated skill evaluation status (Draft/Experimental/Stable/Deprecated)
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- All Tier 1 (deterministic) assertions PASS
-- Tier 2 (qualitative) assessments documented
-- No regressions from previous evaluation
-- Results stored with full provenance
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Measure |
 |---|---|
-| Critical regression in Stable skill | Block release, investigate |
-| Missing evaluation fixtures | Create fixtures before evaluation |
-| Harness capability gap | Document in compatibility matrix |
+| Trigger | fixture accuracy: chosen skill vs expected |
+| Procedure | run the skill on a task, check artifacts |
+| Pack | whole-corpus routing and cost |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Fix the corpus**: hand-written positives and near-miss negatives per
+   skill; record the version. Artifact: fixture hash.
+2. **Run the trigger suite** and record per-skill precision and recall, not
+   only the total. Artifact: results table.
+3. **Inspect every miss**: wrong sibling, no fire, or ambiguous request.
+   Artifact: miss list with the failing request.
+4. **Run the procedure** on at least one realistic task; check the named
+   artifacts exist and are usable. Artifact: run log.
+5. **Change one thing** (description, step, boundary) and re-run. Artifact:
+   before/after table.
+6. **Record the evaluation** with corpus hash, model, harness and date; numbers
+   without those are not comparable. Artifact: evaluation record.
 
+## Output
 
-- All required scenarios executed
-- Results recorded with evidence
-- Skill status updated
+| Skill | Precision | Recall | Misses | Procedure run |
+|---|---|---|---|---|
+| verify | 0.94 | 0.90 | 1 (chose evidence) | passed |
 
----
+## Failure
 
-## Escalation
+- **The corpus is tiny or self-written by the same model.** Say so; the number
+  is a smoke test, not accuracy.
+- **A skill fires for everything.** The description is a subject summary;
+  return to `skill-authoring`.
+- **The procedure run fails.** The skill needs a step or a reference, not a
+  better description.
 
-- Critical regression in Stable skill → block release, investigate
-- Missing evaluation fixtures → create fixtures before evaluation
-- Harness capability gap → document in compatibility matrix
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "Total accuracy is 90%, good enough." | One skill at 40% is hidden by the total and fires every day. |
+| "The model is the same one that wrote it." | Then the test measures agreement, not accuracy. |
+| "Trigger tests are enough." | Routing without a working procedure is a confident detour. |
+| "Numbers speak for themselves." | Only with corpus, model, harness and date attached. |
 
-## Fallback
+## Tracking
 
-- Without automated evaluation: human-reviewed rubric assessment
-- Without cross-harness: test primary harness, document gaps
-
----
-
-## Examples
-
-### Example: Evaluating debug Skill
-
-**Context:** New debugging skill written, needs evaluation before Stable promotion.
-
-**Execution:**
-1. Static validation: 0 errors, 3 warnings (procedure format)
-2. Trigger accuracy: 8/8 positive cases PASS, 6/6 negative cases PASS, 3/3 edge cases PASS
-3. Procedure quality: 16/16 steps actionable, 16/16 evidence requirements met, 4/4 stop conditions fire
-4. Failure handling: 3/3 retry bounds respected, 2/2 escalation thresholds correct, 3/3 fallbacks work
-5. Cross-harness: OpenCode PASS, Codex PASS, selective install PASS
-6. Regression: No regressions from v1 baseline
-7. Results recorded: evals/results/debug-...json
-
-**Outcome:** All Tier 1 PASS, Tier 2 scores documented, promoted to Stable
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** skill-authoring (structure validation), review (content review)
-- **Roles:** Evaluator (executes), Lead (status update)
-- **Tools:** Validator, harness CLI, evaluation fixtures
-- **References:** evals/ fixtures and rubrics
-
----
-
-## Dependencies / References
-
-- **Principles:** Evidence Before Completion, Loops Are First-Class, Independent Challenge, Degrade Gracefully
-- **Skills:** skill-authoring (structure validation), review (content review)
-- **Tools:** Validator (`tools/validate.js`), harness CLIs, evaluation fixtures
-- **References:** evals/ fixtures and rubrics, playbook/evaluations/regression-policy.md
-
----
-
-## Skill Lifecycle
-
-- State: Draft → Experimental → Stable → Deprecated
-- Owner: Playbook maintainer
-- Evaluation: Required for Stable promotion; re-run on any contract change
-
+- **OpenChamber present:** results table on the delivery note; regressions as
+  project todos.
+- **OpenCode or files:** `evaluations/results/<date>-<corpus>.json`.
+- Ladder: `resources/tracking.md`.

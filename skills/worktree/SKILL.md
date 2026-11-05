@@ -1,168 +1,79 @@
 ---
 name: worktree
-description: Establish, inspect and safely clean isolated workspaces
-lifecycle: draft
+description: Use when work needs isolation from the main checkout — a parallel task, a risky change, a review of someone else's branch — and the workspace must be created, inspected or removed safely; not for handing over work in progress (handoff) or recovering a broken checkout (recovery).
+tier: continuity
+rigor: standard
+status: stable
+pairs-with: [handoff, recovery, ship]
 ---
 
 # worktree
 
-## Purpose / Outcome
+Isolate before editing. Detect existing isolation first, then use the native
+tool, then fall back to git. Never fight the harness.
 
-Manages git worktrees for parallel work isolation: creates, configures, executes in, inspects, integrates or discards, and cleans up worktrees.
+## When to use
 
----
+- A second task must proceed while another branch is checked out.
+- A risky change should not touch the main working tree.
+- A review requires checking out someone else's branch.
+- A build or test pollutes the working directory.
+- A session was moved into an isolated workspace and needs verifying.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- For red-team worker isolation
-- For red-team candidate isolation
-- When concurrent writers need separation
+- Work is complete and must be integrated → `ship`.
+- The checkout is broken → `recovery`.
+- Work must pause and transfer → `handoff`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- When sequential execution is simpler
-- When harness doesn't support worktrees
-- For single-threaded work
-
----
-
-## Required Context / Inputs
-
-- Base commit/branch
-- Workspace purpose (swarm task, best-of-n candidate)
-- Isolation requirements
-
----
-
-## Preconditions
-
-- Git repository
-- Harness supports worktree operations (or fallback available)
-
----
-
-## Procedure
-
-### Step 1: Create Worktree
-
-- `git worktree add <path> <base-commit>`
-- Verify clean state
-- Record worktree path and purpose
-
-### Step 2: Configure Workspace
-
-- Install dependencies if needed
-- Apply project config
-- Set up tooling
-
-### Step 3: Execute Work
-
-- Worker operates in worktree
-- Changes isolated to worktree
-- Commit within worktree
-
-### Step 4: Inspect and Validate
-
-- Review changes in worktree
-- Run verification
-- Confirm isolation (no cross-worktree writes)
-
-### Step 5: Integrate or Discard
-
-- If PASS: merge or cherry-pick to main
-- If DISCARD: remove worktree
-
-### Step 6: Clean Up
-
-- `git worktree remove <path>`
-- Verify no orphaned worktrees
-- Clean build artifacts
-
----
-
-## Expected Outputs
-
-- Isolated workspace for work
-- Clean integration or clean removal
-- No cross-contamination
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Worktree changes don't affect other worktrees
-- Integration passes verification
-- Clean removal leaves no artifacts
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Isolation |
 |---|---|
-| Worktree creation fails | Fallback to branch/directory isolation |
-| Merge conflicts | Resolve in main worktree |
-| Orphaned worktrees | Clean up with force |
+| Detect | confirm whether isolation already exists |
+| Create | new worktree on a new branch |
+| Clean | remove a worktree after merge or abandonment |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Detect existing isolation**: compare git dir and common dir; check for a
+   submodule. Artifact: isolation state.
+2. **Prefer the harness's native workspace tool** when one exists. Artifact:
+   workspace path.
+3. **Otherwise create a worktree** from the default branch, in an ignored
+   directory. Artifact: worktree path and branch.
+4. **Set up dependencies and run the baseline suite** before editing. Artifact:
+   baseline result.
+5. **Record the path and branch** where the next session will look. Artifact:
+   handoff or focus detail.
+6. **Clean up only after merge or explicit abandonment**, never while work is
+   in flight. Artifact: removal record with the branch state.
 
+## Output
 
-- Work complete and integrated/discarded
-- Time-boxed per worktree
+Workspace path, branch, baseline result, and the cleanup condition. A reader
+can tell which tree holds which work.
 
----
+## Failure
 
-## Escalation
+- **The directory is not ignored.** Add it to `.gitignore` and commit before
+  creating; an unignored worktree commits itself.
+- **Creation is denied by the sandbox.** Say so and work in place; do not
+  simulate isolation.
+- **Cleanup would discard unmerged work.** Refuse and show the unmerged
+  commits; force-removal needs the owner.
 
-- Worktree creation fails → fallback to branch/directory isolation
-- Merge conflicts → resolve in main worktree
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "I am obviously not in a worktree." | Detection is two commands; guessing has cost. |
+| "The directory is probably ignored." | `git check-ignore` settles it; a wrong guess commits the tree. |
+| "Cleanup can wait." | Stale worktrees accumulate and confuse the next session. |
+| "Isolation is only for big changes." | It is cheapest for small ones run in parallel. |
 
-## Fallback
+## Tracking
 
-- Without worktree support: branch + directory isolation
-- Without Git: separate working directories
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** red-team (worker isolation), red-team (candidate isolation), handoff (sequential fallback)
-- **Roles:** Worker (executes), Lead (integrates)
-- **Tools:** git, build tools
-- **References:** None
-
----
-
-## Examples
-
-### Example: Parallel Test Execution
-
-**Purpose:** red-team worker for package testing
-**Create:** `git worktree add ../test-pkg-1 HEAD`
-**Config:** npm ci
-**Execute:** npm test
-**Validate:** Tests pass, no cross-worktree changes
-**Integrate:** No changes to integrate (test only)
-**Cleanup:** git worktree remove ../test-pkg-1
-
----
-
-## Dependencies / References
-
-- **Principles:** Harness Independence, Evidence Before Assertions, Clear Source of Responsibility
-- **Skills:** red-team, red-team, handoff
-- **References:** None
-
+- **OpenChamber present:** worktree path in the session's focus detail.
+- **OpenCode or files:** `.vstack/workspaces.md` with path, branch, owner.
+- Ladder: `resources/tracking.md`.

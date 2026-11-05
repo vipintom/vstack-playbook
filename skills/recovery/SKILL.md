@@ -1,171 +1,89 @@
 ---
 name: recovery
-description: Restore a safe state after failed, interrupted or partially applied work
-lifecycle: draft
+description: Use when work was interrupted mid-operation or a change must be undone, and the system must return to a known-good state before anything else; not for pausing safely (handoff) or for re-verifying finished work (verify).
+tier: continuity
+rigor: rigid
+status: stable
+pairs-with: [handoff, verify, migration]
 ---
 
 # recovery
 
-## Purpose / Outcome
+Return to a state you can name. Restore first, diagnose second, re-plan third.
+No new features during recovery.
 
-Restores repository to a verified safe state after failed, interrupted, or partially applied work by assessing current state, determining safe baseline, planning and executing recovery, and verifying.
+## When to use
 
----
+- A migration, deploy or rebase stopped halfway.
+- A change broke production and must be reverted.
+- The working tree is in an unknown state after a crash.
+- A script ran twice and wrote partial data.
+- Tests fail everywhere and the cause is unknown.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- After unstick when changes need cleanup
-- After interrupted session with partial changes
-- When verification reveals broken state
-- When resume detects unsafe state
+- The state is known-good and work pauses → `handoff`.
+- The state is known-good and work finished → `verify`.
+- The cause must be found → `debug` after recovery.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
+| Mode | Scope |
+|---|---|
+| Revert | undo one change to the last good commit |
+| Restore | data or environment from backup or snapshot |
+| Isolation | stop the bleeding, keep the system up, then restore |
 
-- For routine cleanup (use unslop)
-- When state is already safe
+`rigor: rigid` — name the target state before acting, and prove you reached it.
+Recovery without a target is more change.
 
----
+## Steps
 
-## Required Context / Inputs
+1. **Name the target state** — commit, snapshot, version or row count — and how
+   it will be proven. Artifact: `target`.
+2. **Stop the source of change**: pause the job, disable the flag, halt the
+   deploy. Artifact: stopped evidence.
+3. **Preserve evidence** before overwriting: logs, dumps, the failing commit.
+   Artifact: evidence archive path.
+4. **Apply the reversal** by the documented path; if none exists, the smallest
+   reversible step. Artifact: command log.
+5. **Prove the target state** with the check from step 1. Artifact: proof.
+6. **Record the incident**: timeline, cause (if known), and what was restored.
+   Artifact: incident note.
+7. **Hand back** to `handoff` or `debug`; recovery does not fix the cause.
 
-- Current repository state
-- Checkpoint or runtime state (if available)
-- Failed changes to clean up
+## Output
 
----
+The target state, proof of reaching it, preserved evidence, and the incident
+note. A reader can tell what was lost, if anything.
 
-## Preconditions
+## Failure
 
-- Unsafe state identified
-- Safe baseline known (checkpoint commit or clean state)
+- **No target state is known.** Stop and ask; guessing a restore point is how
+  one incident becomes two.
+- **Reversal would lose data.** Preserve first, then choose between restore
+  and forward-fix with the owner.
+- **The reversal fails.** Escalate with the evidence and the exact step that
+  failed; do not iterate on production state alone.
 
----
+## Rationalizations
 
-## Procedure
+| Excuse | Reality |
+|---|---|
+| "Let me just fix forward quickly." | Forward-fix is a choice; make it after preserving evidence. |
+| "Backups are probably fine." | Prove the restore point before relying on it. |
+| "No time to record, we are down." | One line now saves the postmortem; recording is not the delay. |
+| "The revert will be clean." | Prove the target state; clean reverts are the exception. |
 
-### Step 1: Assess Current State
+## Tracking
 
-- `git status` — uncommitted changes
-- `git diff` — what changed
-- Compare with checkpoint/runtime state
-- Identify partial/failed changes
-
-### Step 2: Determine Safe Baseline
-
-- Last known good commit (from checkpoint or evidence)
-- Or: clean main branch
-- Document baseline
-
-### Step 3: Plan Recovery
-
-- Option A: Revert to baseline (`git checkout`, `git reset`)
-- Option B: Selectively undo failed changes
-- Option C: Complete partial changes if viable
-- Choose safest option
-
-### Step 4: Execute Recovery
-
-- Apply chosen recovery action
-- Clean build artifacts, caches
-- Restore config if modified
-
-### Step 5: Verify Safe State
-
-- Run baseline verification
-- Confirm no residual broken state
-- Update checkpoint if needed
-
-### Step 6: Record Recovery
-
-- What failed
-- Recovery action taken
-- Baseline restored to
-- Lessons for prevention
-
----
-
-## Expected Outputs
-
-- Repository in verified safe state
-- Recovery record (in decisions or plugin)
-- Updated checkpoint
-
----
+- **OpenChamber present:** `focus_status` "blocked" until the target is reached;
+  incident note on the delivery.
+- **OpenCode or files:** `docs/incidents/<date>-<slug>.md`.
+- Ladder: `resources/tracking.md`.
 
 ## Verification
 
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Baseline verification passes
-- No partial/failed changes remain
-- Clean `git status` (or documented exceptions)
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
-|---|---|
-| Cannot determine safe baseline | Escalate to Lead |
-| Recovery would lose significant work | Escalate |
-| Multiple recovery options | Choose safest, document rationale |
-
----
-
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
-
-
-- Safe state restored and verified
-- Time-boxed (default: 30 min)
-
----
-
-## Escalation
-
-- Cannot determine safe baseline → escalate to Lead
-- Recovery would lose significant work → escalate
-
----
-
-## Fallback
-
-- Without checkpoint: use `git log` to find last clean commit
-- Without plugin: manual recovery with documented steps
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** unstick (triggers recovery), resume (detects unsafe state), resume (checkpoint), decisions (recovery record)
-- **Roles:** Builder (recovers), Lead (escalation)
-- **Tools:** git, PROGRESS.md, runtime state
-- **References:** None
-
----
-
-## Examples
-
-### Example: Interrupted Refactor
-
-**State:** Mid-refactor, tests failing, partial commits
-**Assessment:** 3 uncommitted files, 2 partial commits
-**Baseline:** Commit abc123 (last green)
-**Recovery:** `git reset --hard abc123`, clean artifacts
-**Verify:** Full test suite passes
-**Record:** Refactor interrupted, reset to baseline, lesson: commit incrementally
-
----
-
-## Dependencies / References
-
-- **Principles:** Fix Root Causes, Evidence Before Assertions, Clear Source of Responsibility
-- **Skills:** unstick, resume, resume, decisions
-- **References:** None
-
+```bash
+docker compose run --rm pack node tools/validate.js
+```

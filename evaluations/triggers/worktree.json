@@ -1,15 +1,15 @@
 {
   "positive": [
-    "For red-team worker isolation",
-    "For red-team candidate isolation",
-    "When concurrent writers need separation",
-    "When concurrent writers need separation",
-    "When concurrent writers need separation"
+    "Set up an isolated workspace for the risky refactor without touching the main checkout.",
+    "I need to review someone else's branch while my work stays where it is.",
+    "Check whether this session is already in a worktree before creating another.",
+    "Clean up the merged worktree and tell me what branches remain.",
+    "Move this task into a separate worktree on a new branch from main."
   ],
   "negative": [
-    "When sequential execution is simpler",
-    "When harness doesn't support worktrees",
-    "For single-threaded work"
+    "Leave a checkpoint for the next session to resume this work.",
+    "Restore the broken checkout to a known-good state.",
+    "Merge the finished branch and write the release record."
   ],
   "expected": {
     "skill": "worktree"

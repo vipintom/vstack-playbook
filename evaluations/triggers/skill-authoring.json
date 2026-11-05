@@ -1,15 +1,15 @@
 {
   "positive": [
-    "\"Create skill for X\" / \"Write skill\"",
-    "\"Update skill X\"",
-    "\"Author skill to v2 contract\"",
-    "Skill maintenance work",
-    "Skill maintenance work"
+    "Write a new skill for the method gap we have hit three times.",
+    "This skill is too long and never fires; reshape it to the standard.",
+    "Split this skill because it carries two different procedures.",
+    "Rewrite this borrowed idea in our own voice with our own steps.",
+    "Add trigger fixtures and a description for the new skill before writing the body."
   ],
   "negative": [
-    "\"Use skill X\"",
-    "\"Evaluate skill X\"",
-    "\"How does skill X work?\""
+    "Score whether the new skill fires on the right requests.",
+    "Fix the failing test in the evidence writer.",
+    "Review this pull request for correctness and style."
   ],
   "expected": {
     "skill": "skill-authoring"
