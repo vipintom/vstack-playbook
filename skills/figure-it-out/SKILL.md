@@ -54,8 +54,8 @@ Near misses:
 
 ## Output
 
-A six-to-ten-line playbook: steps, skill per step, artifact per step, exit
-check, budget, and the rejection note. A reader should be able to run it
+A six-to-ten-line playbook on `templates/playbook.md`: steps, skill per step,
+artifact per step, exit check, budget, and the rejection note. A reader should be able to run it
 without asking what was meant.
 
 ## Failure

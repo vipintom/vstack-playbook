@@ -2,7 +2,7 @@
 
 # vstack skill catalogue
 
-vstack 0.2.0 ships **54 skills**, **13 playbooks**, **17 principles**, **3 roles**, **7 rubrics** and **4 templates**.
+vstack 0.2.0 ships **54 skills**, **13 playbooks**, **12 principles**, **3 roles**, **7 rubrics** and **6 templates**.
 
 Profiles: `core` 43 skills, `stack` 11, `full` 54.
 

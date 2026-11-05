@@ -1,38 +1,28 @@
-# Review Lens: Maintainability & Style
+# Maintainability and style
 
-## Purpose
-Verify the code is readable, consistent, and easy to modify.
+**Question.** Can the next person change this safely?
 
-## Questions to Answer
+Apply every line; a line that does not apply is recorded as not applicable with
+a reason. Each verdict needs evidence: a command, a file, a screenshot or a
+quote.
 
-### Readability
-- [ ] Can a new contributor understand the flow in 5 minutes?
-- [ ] Are names descriptive (no abbreviations, clear intent)?
-- [ ] Are functions small and single-purpose?
-- [ ] Is nesting depth reasonable (< 3 levels)?
+| Line | Pass condition |
+|---|---|
+| Names | domain terms, one name per concept |
+| Duplication | no third copy of the same logic |
+| Dead code | no unreachable branches or unused options introduced |
+| Boundaries | no module reaches into another's storage |
+| Size | the diff is reviewable in one sitting, or split with a reason |
+| Comments | explain why, not what; no commented-out code |
 
-### Consistency
-- [ ] Does it follow project style guide (lint passes)?
-- [ ] Are patterns used consistently?
-- [ ] Are error handling patterns uniform?
+## Verdicts
 
-### Documentation
-- [ ] Are public APIs documented (purpose, params, returns, errors)?
-- [ ] Are complex algorithms commented (why, not what)?
-- [ ] Are TODOs actionable with owner/date?
+- **pass** — evidence exists and the condition holds.
+- **fail** — the condition does not hold; becomes a finding with the smallest fix.
+- **not applicable** — with a reason.
+- **unverified** — cannot be checked here; never counts as pass.
 
-### Technical Debt
-- [ ] Are there no dead code, commented-out code, unused imports?
-- [ ] Are magic numbers replaced with constants?
-- [ ] Are type annotations present (no `any` without reason)?
+## Scoring
 
-## Severity Guide
-- **Critical:** Unreadable, inconsistent, blocks future work
-- **High:** Significant inconsistency, missing critical docs
-- **Medium:** Style violations, unclear names, missing types
-- **Low:** Minor style, missing TODO context
-- **Informational:** Alternative style preference
-
-## Evidence Required
-- Lint/typecheck results
-- Code samples demonstrating issues
+No score is computed. A percentage over six lines invites arguments about
+weights; the verdicts are the result.

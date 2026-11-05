@@ -1,36 +1,28 @@
-# Review Lens: Correctness & Regression
+# Correctness and regression
 
-## Purpose
-Verify the implementation correctly satisfies requirements and doesn't regress existing behavior.
+**Question.** Does it do what it claims without breaking what exists?
 
-## Questions to Answer
+Apply every line; a line that does not apply is recorded as not applicable with
+a reason. Each verdict needs evidence: a command, a file, a screenshot or a
+quote.
 
-### Functional Correctness
-- [ ] Does the code do what the acceptance criteria specify?
-- [ ] Are edge cases handled (empty, null, boundary, overflow)?
-- [ ] Are error conditions handled appropriately?
-- [ ] Is the logic sound (no off-by-one, wrong condition, missing case)?
+| Line | Pass condition |
+|---|---|
+| Claim to test | each acceptance criterion maps to a test that can fail |
+| Negative control | the new test fails on the previous commit |
+| Edge inputs | empty, null, maximum, duplicate and hostile inputs are covered |
+| Existing suite | no test deleted, skipped or weakened to reach green |
+| Error behaviour | errors return the specified shape, not a stack trace |
+| Idempotence | repeated identical operations are safe where claimed |
 
-### Regression Risk
-- [ ] Do existing tests still pass?
-- [ ] Are there tests for the new/changed behavior?
-- [ ] Could this change break callers not covered by tests?
-- [ ] Are invariants preserved (idempotence, ordering, uniqueness)?
+## Verdicts
 
-### Data Integrity
-- [ ] Are inputs validated before use?
-- [ ] Are outputs consistent with inputs?
-- [ ] Is state mutated correctly (no partial updates)?
-- [ ] Are transactions/atomicity respected?
+- **pass** — evidence exists and the condition holds.
+- **fail** — the condition does not hold; becomes a finding with the smallest fix.
+- **not applicable** — with a reason.
+- **unverified** — cannot be checked here; never counts as pass.
 
-## Severity Guide
-- **Critical:** Data loss, security breach, complete feature failure
-- **High:** Incorrect behavior for common cases, broken contracts
-- **Medium:** Edge case failures, performance regressions
-- **Low:** Minor logic issues with workarounds
-- **Informational:** Style, naming, documentation gaps
+## Scoring
 
-## Evidence Required
-- Test results covering acceptance criteria
-- Regression test results
-- Edge case test results
+No score is computed. A percentage over six lines invites arguments about
+weights; the verdicts are the result.

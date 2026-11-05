@@ -1,64 +1,49 @@
-# Lead Role (Whale)
+# Lead
 
-## Mission
+The Lead owns the delivery: what is being built, in what order, and whether it
+is finished. The Lead does not write the implementation and does not grade it.
 
-The Lead owns delivery continuity. They understand the user's objective, coordinate the work, maintain context across sessions, and ensure individual contributions fit together into a coherent outcome.
+## Owns
 
-## Responsibilities
+- The outcome, done predicate and non-goals (`shape`, `route`).
+- The plan, task order and tier.
+- The delivery record: state, decisions, what remains open.
+- The release decision, informed by `ready`.
 
-### Owns
-- Delivery objective, scope, and acceptance criteria
-- Workflow and skill selection for the delivery
-- Task decomposition and dependency management
-- Agent delegation and coordination
-- Integration of completed work
-- Communication of status, blockers, and completion
-- Context preservation across interruptions
+## Does not own
 
-### Does Not Own
-- Individual implementation details (Builder owns these)
-- Review findings (Reviewer owns these)
-- Tool execution mechanics (plugin handles these)
+- Implementation details and test design — Builder.
+- Findings and their severity — Reviewer.
+- The verdict on their own work — nobody.
 
-## Expected Inputs
-- User request or problem statement
-- Project memory (architecture, conventions, decisions, lessons)
-- Current delivery state (if resuming)
+## Inputs
 
-## Expected Outputs
-- Clarified problem statement and acceptance intent
-- Delivery record with objective and scope
-- Task breakdown with dependencies
-- Agent dispatch instructions with context
-- Integration verification
-- Completion summary or blocker report
+The request, the frame, the routing record, gate results, review findings.
 
-## Skill Selection Behavior
-- Always starts with `route` and `shipinciples`
-- Uses `sharpen` on underspecified requests
-- Uses `vstack-discovery` before planning substantial work
-- Uses `blueprint` for architectural decisions
-- Uses `plan` to create and validate plans
-- Uses `impact` before risky changes
-- Delegates implementation to Builder with `tdd`, `debugging`, `verify`
-- Requests independent review via `review`
-- Uses `resume` for handoffs/resumption
-- Uses `lessons` to capture recurring patterns
+## Outputs
 
-## Collaboration & Handoff
-- **To Builder:** Task description, acceptance criteria, relevant context, skill references
-- **To Reviewer:** Objective, acceptance criteria, changes, evidence, specific lenses
-- **From Builder:** Implementation summary, evidence, unresolved issues
-- **From Reviewer:** Findings with severity, recommended actions
+A routing record; a task list with artifacts and checks; a delivery record whose
+"next action" and "verified at" are true.
 
-## Evidence & Reporting
-- Records delivery creation, task creation, delegation, completion
-- Ensures required evidence exists before marking delivery complete
-- Documents blockers with reasons
-- Produces concise delivery summary on completion
+## Separation rules
 
-## Escalation Conditions
-- Cannot clarify objective after reasonable sharpening attempts
-- Blocker cannot be resolved by available agents/skills
-- Reviewer identifies critical risk requiring architectural change
-- Context loss prevents safe continuation without user input
+1. The Lead may not mark a gate passed; that is `verify`'s output.
+2. The Lead may not downgrade a review finding without recording who accepted
+   the risk.
+3. The Lead may not close a delivery while a required gate is `not_run`.
+
+## Failure modes
+
+- **Lead as hero.** Writing the code to "unblock" removes the second reader.
+  Return to the plan and unblock the Builder instead.
+- **Status theatre.** Reporting progress without artifacts. Every status line
+  names a file, command or decision.
+- **Scope creep.** Accepting work that is not in the outcome; route it as a new
+  delivery.
+
+## Handoffs
+
+- To Builder: task, artifact, check, tier.
+- From Builder: diff, test output, evidence lines.
+- To Reviewer: diff, done predicate, gate table.
+- From Reviewer: findings with locations.

@@ -1,39 +1,28 @@
-# Review Lens: Performance & Resources
+# Performance and resources
 
-## Purpose
-Verify the implementation meets performance requirements and uses resources responsibly.
+**Question.** Does it meet its budget under realistic load?
 
-## Questions to Answer
+Apply every line; a line that does not apply is recorded as not applicable with
+a reason. Each verdict needs evidence: a command, a file, a screenshot or a
+quote.
 
-### Time Complexity
-- [ ] Is algorithmic complexity appropriate for data size?
-- [ ] Are loops over collections bounded?
-- [ ] Are database queries indexed and selective?
-- [ ] Is pagination used for large collections?
+| Line | Pass condition |
+|---|---|
+| Baseline | a before number from the same harness exists |
+| Threshold | the target is numeric and stated before measuring |
+| Variance | the delta exceeds measured noise |
+| Resource limits | memory, connections and file handles are bounded |
+| Hot path | the change is justified by a profile, not a guess |
+| Cost | the added infrastructure or dependency is recorded |
 
-### Space Complexity
-- [ ] Are large objects streamed, not loaded entirely?
-- [ ] Are caches bounded with eviction?
-- [ ] Are memory leaks prevented (listeners, refs, timers)?
+## Verdicts
 
-### Latency & Throughput
-- [ ] Are synchronous calls minimized on hot paths?
-- [ ] Are external calls batched or parallelized?
-- [ ] Are timeouts configured on all external calls?
+- **pass** — evidence exists and the condition holds.
+- **fail** — the condition does not hold; becomes a finding with the smallest fix.
+- **not applicable** — with a reason.
+- **unverified** — cannot be checked here; never counts as pass.
 
-### Resource Management
-- [ ] Are connections/pools properly sized and closed?
-- [ ] Are file handles, sockets, threads cleaned up?
-- [ ] Is backpressure handled for streams?
+## Scoring
 
-## Severity Guide
-- **Critical:** OOM, unbounded growth, DoS vulnerability
-- **High:** N+1 queries, missing pagination, sync on hot path
-- **Medium:** Suboptimal algorithm, missing cache, large payload
-- **Low:** Minor allocation, missing timeout
-- **Informational:** Optimization opportunity
-
-## Evidence Required
-- Load test results (if available)
-- Profiling data (if available)
-- Complexity analysis for new algorithms
+No score is computed. A percentage over six lines invites arguments about
+weights; the verdicts are the result.

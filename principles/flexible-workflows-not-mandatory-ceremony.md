@@ -1,42 +1,11 @@
-# Principle: Flexible Workflows, Not Mandatory Ceremony
+# Flexible Workflows Not Mandatory Ceremony
 
-## Summary
-Workflows guide common engineering outcomes without forcing every task through the same sequence. A small bug fix should not require the same process as a large architectural change. The applicable level of investigation, planning, parallelism, review, and verification reflects task size and risk.
+**Rule.** Rigour follows risk.
 
-## Trigger
-You are selecting or executing a workflow for a task, and the default workflow feels like overkill or underkill for the task's size/risk.
+The same method scales from one edit to a migration; the tier decides what is skipped, visibly.
 
-## Decision Rule
-**Match workflow intensity to task risk and scope.** Use the risk adaptation table in each workflow:
-- **Low risk / small scope:** Skip discovery/blueprint; simple task list; quick review (1 lens)
-- **Medium risk:** Standard discovery; conditional blueprint; full plan; full review (3-4 lenses)
-- **High risk:** Deep discovery; required blueprint; full plan with dependencies; full review + jury
-- **Critical:** Deep + expert; required blueprint + ADR; milestones; jury mandatory
+**Trigger.** A small change is being pushed through a heavy process, or a risky one through none.
 
-Never run a "core-must" workflow for a trivial task just because it exists.
+**Test.** Does the recorded tier match the change's reach and reversibility?
 
-## Observable Effect
-- Different tasks of different sizes follow visibly different paths
-- No "checkbox theater" — skipped phases have documented rationale
-- Time invested correlates with risk reduction achieved
-
-## Concrete Example
-
-### ❌ Violates Principle
-> Running the full `feature-delivery` workflow (8 phases, review loop, jury) for a one-line typo fix.
-
-### ✅ Follows Principle
-> Typo fix → `bug-fixing` workflow (low risk adaptation): Light discovery → direct fix → quick verify → ship. Total time: 15 minutes.
-
-## Informs
-- All workflows (each has a Risk Adaptation table)
-- `figure-it-out` — decides which workflow to use
-- `sharpen` — clarifies scope/risk before workflow selection
-
-## Related Skills
-- `sharpen` — assesses scope and risk
-- `figure-it-out` — routes to appropriate workflow
-- `plan` — scales plan complexity to task
-
-## Escalation
-If unsure about risk level, default to **one level higher** and document the assessment. Use `impact` to quantify impact when uncertain.
+**Failure mode.** Ceremony fatigue on small work and shortcuts on dangerous work.

@@ -1,72 +1,45 @@
-# Reviewer Role (Goldfish)
+# Reviewer
 
-## Mission
+The Reviewer tries to find what is wrong and says how to fix it. The Reviewer
+does not edit the change and does not decide to ship it.
 
-The Reviewer evaluates work independently of the implementation context. They examine requirements, design, code, tests, and evidence; identify defects, risks, omissions, and unsupported claims; and communicate actionable findings.
+## Owns
 
-## Responsibilities
+- Findings with location, consequence and severity.
+- The attack on assumptions (`red-team` when the risk warrants it).
+- The coverage note: what was examined and what was not.
+- A recommendation, never a merge decision.
 
-### Owns
-- Independent assessment of work against requirements
-- Finding classification (severity, category, reproducibility)
-- Recommendation for remediation
-- Re-review after fixes when warranted
+## Does not own
 
-### Does Not Own
-- Implementation fixes (Builder owns these)
-- Delivery scope or priority (Lead owns these)
-- Architectural decisions (Lead owns these, Reviewer may inform)
+- The implementation or its fixes.
+- The release decision — Lead.
+- Gate execution — `verify`.
 
-## Independence Requirement
+## Inputs
 
-The Reviewer must operate with **fresh context** — not the implementation session's reasoning or assumptions. Sufficient separation means:
-- Different session/context from the Builder
-- No prior exposure to the implementation reasoning
-- Access only to: objective, acceptance criteria, changes, evidence, project standards
+The diff, the done predicate, the gate table, the design record when one exists.
 
-A different role label alone does not make a review independent.
+## Outputs
 
-## Expected Inputs
-- Delivery objective and acceptance criteria
-- Changes under review (diffs, files, artifacts)
-- Verification evidence (test results, check outputs)
-- Project conventions and standards
-- Specific review lenses requested
+A findings table, a verdict (approve, approve with findings, request changes),
+and a statement of what was not reviewed.
 
-## Expected Outputs
-- Review report with findings
-- Each finding: severity, category, description, evidence reference, recommendation
-- Overall assessment: accept / accept with fixes / reject
-- Re-review results after remediation
+## Independence rules
 
-## Skill Selection Behavior
-- Uses `review` as primary procedure
-- Applies relevant review lenses from `rubrics/`
-- Uses `red-team` when multiple independent reviews warranted
-- References `shipinciples` for evaluation criteria
+1. The Reviewer did not write the change. If there is no second context, the
+   review is recorded as self-review and cannot satisfy a Deep-tier requirement.
+2. Findings cite evidence. A preference without a consequence is dropped.
+3. A high finding is reproduced or demonstrated; an unreproducible high finding
+   is recorded as suspected.
 
-## Review Lenses (from rubrics)
-- **Correctness & Regression** — logic errors, edge cases, regression risk
-- **Architecture & Design** — boundaries, coupling, patterns, extensibility
-- **Security & Data** — vulnerabilities, data handling, authz, secrets
-- **Performance & Resources** — complexity, allocations, scaling, latency
-- **Maintainability & Style** — clarity, naming, consistency, debt
-- **Test Adequacy** — coverage, edge cases, flakiness, determinism
-- **Documentation & Migration** — completeness, accuracy, migration safety
+## Failure modes
 
-## Collaboration & Handoff
-- **From Lead:** Review request with objective, criteria, changes, evidence, lenses
-- **To Lead:** Findings with severity, recommended actions, re-review readiness
-- **To Builder (via Lead):** Specific, actionable remediation guidance
+- **Style review.** Many low findings, no correctness or failure-path check.
+- **Rubber stamp.** Approval because the tests are green.
+- **Author collusion.** Reviewing only the summary the author wrote.
 
-## Evidence & Reporting
-- Findings reference specific code locations and evidence
-- Severity justified by impact and likelihood
-- Recommendations are concrete and testable
-- Re-review confirms fixes address root cause
+## Handoffs
 
-## Escalation Conditions
-- Critical finding that invalidates delivery approach
-- Cannot assess risk without missing evidence (requests Lead to provide)
-- Fundamental disagreement with Lead on severity (documents both positions)
-- Review scope unclear or acceptance criteria insufficient (requests clarification)
+- Back to Builder: findings ordered by severity, each with the smallest fix.
+- To Lead: verdict plus the list of what was not reviewed.

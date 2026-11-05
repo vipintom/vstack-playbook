@@ -1,39 +1,28 @@
-# Review Lens: Security & Data
+# Security and data
 
-## Purpose
-Verify the implementation protects data and resists abuse.
+**Question.** Can this leak, lose or corrupt data?
 
-## Questions to Answer
+Apply every line; a line that does not apply is recorded as not applicable with
+a reason. Each verdict needs evidence: a command, a file, a screenshot or a
+quote.
 
-### Input Validation & Sanitization
-- [ ] Are all external inputs validated (API, user, file, env)?
-- [ ] Is validation allow-list (not block-list)?
-- [ ] Are outputs encoded for context (HTML, SQL, shell, JSON)?
+| Line | Pass condition |
+|---|---|
+| Authorization | every read and write checks the actor's right to it |
+| Input bounds | size, shape and rate limits are enforced |
+| Secrets | no secret in code, logs, images or fixtures |
+| Personal data | minimised, scoped and not logged in clear |
+| Destructive operations | guarded, confirmed and reversible or explicitly accepted |
+| Dependencies | new packages are pinned and audited |
 
-### Authentication & Authorization
-- [ ] Are permissions checked at every access point?
-- [ ] Is authorization centralized, not scattered?
-- [ ] Are tokens/secrets handled correctly (no logs, no URLs)?
+## Verdicts
 
-### Data Protection
-- [ ] Is sensitive data encrypted at rest and in transit?
-- [ ] Is PII minimized and access-controlled?
-- [ ] Are secrets externalized (env, vault, not code)?
+- **pass** — evidence exists and the condition holds.
+- **fail** — the condition does not hold; becomes a finding with the smallest fix.
+- **not applicable** — with a reason.
+- **unverified** — cannot be checked here; never counts as pass.
 
-### Injection & Abuse
-- [ ] SQL/NoSQL: parameterized queries only?
-- [ ] Command: no shell interpolation, argv arrays only?
-- [ ] Path: no traversal, validated against allow-list?
-- [ ] Rate limiting / DoS protection on public endpoints?
+## Scoring
 
-## Severity Guide
-- **Critical:** RCE, SQLi, auth bypass, data exposure
-- **High:** Missing authz, weak validation, secret leakage
-- **Medium:** Insufficient rate limiting, weak encryption
-- **Low:** Missing security headers, info disclosure
-- **Informational:** Hardening opportunities
-
-## Evidence Required
-- Security test results (SAST, dependency scan)
-- Threat model reference (if applicable)
-- Penetration test results (if available)
+No score is computed. A percentage over six lines invites arguments about
+weights; the verdicts are the result.

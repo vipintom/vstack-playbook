@@ -1,40 +1,28 @@
-# Review Lens: Test Adequacy
+# Test adequacy
 
-## Purpose
-Verify the test suite provides confidence in correctness and prevents regressions.
+**Question.** Do the tests prove the claim, or only execute lines?
 
-## Questions to Answer
+Apply every line; a line that does not apply is recorded as not applicable with
+a reason. Each verdict needs evidence: a command, a file, a screenshot or a
+quote.
 
-### Coverage
-- [ ] Are all acceptance criteria covered by tests?
-- [ ] Are edge cases tested (empty, boundary, error, concurrent)?
-- [ ] Are integration points tested (not just mocks)?
-- [ ] Is coverage meaningful (not just line count)?
+| Line | Pass condition |
+|---|---|
+| Criterion map | every acceptance criterion has a named test |
+| Can fail | each new test was seen red without the change |
+| Isolation | tests do not depend on order, network or wall clock |
+| Realism | the test exercises real code, not its own mock |
+| Failure output | a failure names the behaviour, not a line number |
+| Budget | the suite runs in the time the project promises |
 
-### Quality
-- [ ] Are tests deterministic (no flakiness)?
-- [ ] Are tests fast (unit < 100ms, integration < 5s)?
-- [ ] Are tests independent (no shared state, order-independent)?
-- [ ] Do tests fail for the right reason (assert on behavior)?
+## Verdicts
 
-### Maintainability
-- [ ] Are test names descriptive (what + scenario + expected)?
-- [ ] Is test setup minimal and clear?
-- [ ] Are test utilities/helpers used for common patterns?
+- **pass** — evidence exists and the condition holds.
+- **fail** — the condition does not hold; becomes a finding with the smallest fix.
+- **not applicable** — with a reason.
+- **unverified** — cannot be checked here; never counts as pass.
 
-### Regression Prevention
-- [ ] Does every bug fix have a regression test?
-- [ ] Are contract tests present for external interfaces?
-- [ ] Are property-based tests used where applicable?
+## Scoring
 
-## Severity Guide
-- **Critical:** No tests for critical path, flaky tests masking failures
-- **High:** Missing acceptance criteria tests, no regression tests
-- **Medium:** Low edge case coverage, slow tests, brittle mocks
-- **Low:** Naming improvements, minor setup duplication
-- **Informational:** Test pattern suggestions
-
-## Evidence Required
-- Test run results (pass/fail, duration)
-- Coverage report (if available)
-- Flakiness history (if available)
+No score is computed. A percentage over six lines invites arguments about
+weights; the verdicts are the result.

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 2,
   "playbookVersion": "0.2.0",
-  "contentHash": "sha256:ea12c260bc2e80adceeeb30f26291ebf544199ba7a5b6e4bb2f5297acf281663",
+  "contentHash": "sha256:8e1612469ff60a68aa6bf914c1b27600c7f9644005dfe67a18f7970429f770f0",
   "counts": {
     "skills": 54,
     "playbooks": 13,
-    "principles": 17,
+    "principles": 12,
     "roles": 3,
     "rubrics": 7,
-    "templates": 4,
+    "templates": 6,
     "triggerFixtures": 54
   },
   "skills": [
@@ -764,20 +764,15 @@
     }
   ],
   "principles": [
-    "challenge-assumptions",
-    "clear-source-of-responsibility",
     "degrade-gracefully",
     "evidence-before-completion",
     "flexible-workflows-not-mandatory-ceremony",
     "harness-independence-first",
     "independent-challenge",
-    "loops-are-first-class",
     "model-domain-explicitly",
     "procedures-over-vague-instructions",
     "respect-boundaries",
     "route-before-loading",
-    "runtime-simplicity",
-    "small-purposeful-agent-team",
     "smallest-complete-change",
     "understand-before-changing",
     "verifiable-increments"
@@ -798,8 +793,10 @@
       "test-adequacy"
     ],
     "templates": [
+      "decision",
       "delivery-plan",
       "handoff",
+      "playbook",
       "review-finding",
       "task"
     ]

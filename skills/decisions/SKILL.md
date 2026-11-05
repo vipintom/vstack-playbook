@@ -48,7 +48,7 @@ Near misses:
 5. **Name the owner and the date**; a decision with no owner is a suggestion.
    Artifact: owner, date.
 6. **Record it** next to the work: `decisions/<date>-<slug>.md` or the delivery
-   record. Artifact: record.
+   record, following `templates/decision.md`. Artifact: record.
 7. **Mark superseded decisions** rather than editing them. Artifact: status
    change.
 
