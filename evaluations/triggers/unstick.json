@@ -1,15 +1,15 @@
 {
   "positive": [
-    "3+ failed fix attempts on same task (same error/wrong behavior)",
-    "Explicit user request: \"unstick this\"",
-    "Notice retrying small variations of same fix",
-    "Same assumption failing repeatedly",
-    "Same assumption failing repeatedly"
+    "Three fixes failed the same way and we keep assuming the cache key is right.",
+    "We are looping on one hypothesis; break out and list genuinely different approaches.",
+    "The agent keeps running the same commands with different wording; reset the path.",
+    "Name the shared assumption behind every failed attempt and test it directly.",
+    "We have spent a day circling; restart clean from the reproduction."
   ],
   "negative": [
-    "First or second failure",
-    "Different errors each time",
-    "Design phase"
+    "Find the cause of a reproducible failure on the first attempt.",
+    "No playbook fits this situation; build a bespoke sequence.",
+    "Turn the repeated mistake into a durable lesson after the work is done."
   ],
   "expected": {
     "skill": "unstick"

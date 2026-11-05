@@ -30,3 +30,9 @@ export function assertStandard(names) {
 test("entry and frame tiers meet the standard", () => {
   assertStandard(["route", "help", "principles", "shape", "sharpen", "plan", "figure-it-out", "code-tour", "rationale", "prototype"]);
 });
+
+const DESIGN = ["design", "blueprint", "impact", "red-team", "rubrics", "audit", "performance", "forensics", "migration"];
+const BUILD = ["tdd", "debug", "refactor", "unstick", "evidence", "verify", "coverage", "verify-setup", "verify-maintain", "visual-parity"];
+
+test("design tier meets the standard", () => assertStandard(DESIGN));
+test("build tier meets the standard", () => assertStandard(BUILD));

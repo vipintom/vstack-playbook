@@ -1,15 +1,15 @@
 {
   "positive": [
-    "Bug fix with clear, cheap test path",
-    "Explicit user request for TDD",
-    "Regression test needed",
-    "When the bug has an obvious local test target",
-    "When the bug has an obvious local test target"
+    "Write the failing test for password reset before touching the implementation.",
+    "I want the regression captured in a test that fails on the current main branch.",
+    "Implement the retry budget test first, watch it fail, then make it pass.",
+    "Every new branch in this parser needs a test that fails without it.",
+    "Fix the bug under TDD so the test proves the fix and blocks the regression."
   ],
   "negative": [
-    "Throwaway prototypes",
-    "Generated code",
-    "Configuration files"
+    "Characterise the existing behaviour before we refactor this module.",
+    "Build a disposable sketch to decide whether canvas is feasible.",
+    "Find the cause of the intermittent failure before writing the fix."
   ],
   "expected": {
     "skill": "tdd"

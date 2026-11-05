@@ -1,15 +1,15 @@
 {
   "positive": [
-    "When unslop identifies structural issues",
-    "When improving code without changing behaviour",
-    "When preparing code for new features",
-    "When preparing code for new features",
-    "When preparing code for new features"
+    "Restructure this module while behaviour stays exactly the same, suite green throughout.",
+    "Extract the duplicated retry logic in mechanical steps I can review separately.",
+    "Prepare the ground for the new feature without changing any behaviour yet.",
+    "Rename and move these symbols with an empty surface diff at the end.",
+    "The reviewer asked for structure; do it without touching behaviour."
   ],
   "negative": [
-    "When behaviour must change (that's implementation, not refactor)",
-    "When no verification exists to prove equivalence",
-    "For premature abstraction"
+    "Change the validation behaviour so empty emails are rejected.",
+    "Move the boundary into a separate service that callers depend on.",
+    "Map which criteria currently have no test that could fail."
   ],
   "expected": {
     "skill": "refactor"

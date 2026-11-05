@@ -1,194 +1,101 @@
 ---
 name: design
-description: "Cross-boundary design: sketch types, signatures, module structure before code; synthesize alternatives; fill in against chosen sketch"
-lifecycle: draft
+description: Use when a change needs its boundaries, interfaces and data flow decided before implementation, and the decision must survive review; not for ordering known work (plan) or for auditing a design that already exists (audit).
+tier: design
+rigor: rigid
+status: stable
+pairs-with: [blueprint, impact, red-team]
 ---
 
 # design
 
-## Purpose / Outcome
+Decide the shape before writing it. A design is a set of boundaries, contracts
+and trade-offs with a named alternative for each choice you reject.
 
-Produces a cross-boundary design sketch before implementation: usage sketch (caller perspective), type sketch (signatures, module map), and rationale. Invokes red-team for design alternatives when needed.
+## When to use
 
----
+- New module, service, schema or public interface.
+- A change crosses a boundary that other code depends on.
+- Two plausible shapes exist and the wrong one is expensive to undo.
+- The work is Deep tier, or irreversible, or touches data.
+- A previous implementation failed because the seams were wrong.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "Architect this" / "Design this"
-- Cross-boundary work: new module boundaries, data flows, contracts
-- Non-trivial work where jumping to code would lock in wrong shape
-- Explicit user request for design phase before implementation
+- The work is local and reversible → `plan` then `tdd`.
+- The design exists and needs scrutiny → `audit`.
+- The problem is not framed → `shape` first.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
+| Mode | Depth |
+|---|---|
+| Sketch | boundaries, one interface, one trade-off |
+| Standard | components, interfaces, data flow, failure modes |
+| Deep | Standard plus a red-team pass and a migration window |
 
-- Straightforward implementation (no design alternatives) → skip, go to feature-delivery
-- Single-module changes without boundary implications → skip
-- Pure implementation tasks → feature-delivery playbook without architect
-- Adversarial review needed → red-team
-- Parallel coverage/races → red-team
+`rigor: rigid` — steps 2 and 3 cannot be skipped. A design with no rejected
+alternative is a preference.
 
----
+## Steps
 
-## Required Context / Inputs
+1. **Restate the forces.** Outcome, constraints, non-goals, and the quality
+   attributes that matter (latency, safety, cost, change frequency). Artifact:
+   forces list.
+2. **Draw the boundaries.** What owns state, what is pure, what crosses a
+   process or network edge. Name what stays out. Artifact: component map.
+3. **Write the contracts.** Types, signatures, error shapes, invariants — in
+   the language of the system, not prose. Artifact: interface sketch (see
+   `blueprint` for the expansion).
+4. **Follow the data.** One happy path and two failure paths end to end,
+   naming where state changes and what happens on retry. Artifact: data flow.
+5. **Name the rejected alternative and its cost.** At least one, with the
+   reason it lost. Artifact: trade-off table.
+6. **Price the change.** Which callers move, what breaks, what can ship in
+   stages. Artifact: impact summary, from `impact` when the blast radius is
+   non-obvious.
+7. **Record it** in the delivery's design section and hand to `blueprint`.
+   Artifact: design record.
 
-- Sharpened problem statement with acceptance criteria
-- Understanding of surrounding systems (via code-tour/rationale)
-- Access to red-team for design alternatives
-- Ability to implement against sketch (or handoff to builder)
+## Output
 
----
+```markdown
+Boundaries: `auth` owns sessions; `api` is stateless; `jobs` may read, never write.
+Contract: `createSession(userId) -> {token, expiresAt}`; errors: InvalidUser, RateLimited.
+Data: token issued → stored hash → refresh reads hash → revoke deletes row.
+Rejected: JWT-only (no revocation without a denylist) — cost: one table + 2 queries.
+Stages: table, issue path, refresh path, revoke. Callers: 3, all in `api`.
+```
 
-## Preconditions
+## Failure
 
-- Problem framed with falsifiable done predicate
-- Relevant subsystems understood (how/why completed if needed)
-- red-team available for alternative generation
+- **A boundary cannot be decided.** The unknown is empirical: run a
+  `prototype` or `spike`, then return with data.
+- **Two designs are equally good.** Pick the one that is cheaper to reverse
+  and record why; do not average them.
+- **The design breaks a caller you cannot migrate.** That is a compatibility
+  problem, not a design one: open `migration` and sequence the change.
+- **The team wants to skip the record.** Write four lines. A design that lives
+  only in a meeting will be re-decided by whoever is next.
 
----
+## Rationalizations
 
-## Procedure
+| Excuse | Reality |
+|---|---|
+| "The code will reveal the design." | It reveals one design, after the cost is paid. |
+| "We are agile, design is up front." | A ten-minute boundary sketch is not waterfall; rewriting a contract is. |
+| "Interfaces can change later." | Only at the cost of every caller; that cost is the design. |
+| "One option is obviously right." | Then naming the loser takes one line and proves it. |
 
-### Phase A: Ground the Problem
+## Tracking
 
-- **Run code-tour** on relevant subsystems to build real mental model of every system the new code touches
-- **Run rationale** if the design redefines ownership or layering — rationale becomes constraint, not guess
-- **Skip Phase A only** when work is genuinely greenfield with no surrounding system to integrate
-- Produce: architectural explanation of touched subsystems, constraints from why
-
-### Phase B: Sketch via Arena
-
-- **Invoke red-team** with design-sketch task and Phase A grounding artifacts
-- **Require 2+ structurally distinct candidates** — not cosmetic variations
-- **Screen candidates against design red flags** (references/design-red-flags.md) before synthesis
-- **Apply interface depth principle** — prefer design that hides complexity behind smaller public surface
-- Arena returns: synthesized sketch + synthesis note (base, why, judge verdict, grafts, rejections, convergence, verification)
-
-### Phase C: Agree (Opt-in Checkpoint)
-
-- **Present sketch to user** — usage sketch + type sketch + rationale
-- **Checkpoint ONLY when explicitly requested** by user ("review sketch before implementing")
-- If no explicit request: proceed to implementation
-- Record: checkpoint requested (yes/no), user feedback if any
-
-### Phase D: Implement Against Sketch
-
-- Fill in the sketch with real implementation
-- **Sketch is contract** — deviations from sketch are signal, not drift
-- If deviation needed: record why, update sketch, continue
-- Apply TDD (tdd) for bug fixes with clear test paths
-- Apply verification (verify) per task
-
-### Phase E: Scrap When Wrong
-
-- **Stop and redesign** when these patterns appear:
-  - **Workarounds** — code that exists only to compensate for earlier design choice
-  - **Escape hatches** — "temporary" flags, bypasses, special cases accumulating
-  - **Lock reflex** — same module touched repeatedly for related changes
-  - **Caller knowledge** — callers reaching into internals they shouldn't know
-- When triggered: return to Phase B with new constraints from scrap analysis
-
----
-
-## Expected Outputs
-
-- **Usage sketch** — caller perspective first: what the consumer writes, what they get back
-- **Type sketch** — signatures, types, module map, data flow
-- **Rationale** — per template (references/rationale-template.md): usage sketch, synthesis decision, constraints, trade-offs
-- **Synthesis note** (from arena): base candidate, why, judge verdict, grafts, rejections, convergence, verification
-
----
+- **OpenChamber present:** design section on the delivery note; a project note
+  when the design outlives the delivery.
+- **OpenCode or files:** `docs/deliveries/<id>.md` under "Design".
+- Ladder: `resources/tracking.md`.
 
 ## Verification
 
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Grounding completed (how/why) before sketch unless greenfield
-- 2+ structurally distinct arena candidates
-- Red-flags screening applied
-- Opt-in checkpoint behavior correct
-- Implementation matches sketch or deviations recorded
-- Scrap triggers detected and acted on
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
-|---|---|
-| No surrounding system to ground | Skip Phase A, proceed to sketch |
-| Arena returns <2 distinct candidates | Re-frame task, re-run arena with clearer rubric |
-| Checkpoint requested but user unavailable | BLOCKED until checkpoint resolved |
-| Scrap trigger detected | Return to Phase B, document scrap reason |
-| Implementation deviates without recording | STOP, record deviation, update sketch |
-
----
-
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
-
-
-- Sketch produced and (optionally) checkpointed
-- Implementation complete against sketch
-- All scrap triggers resolved or no triggers present
-- Verification passes
-
----
-
-## Escalation
-
-- User decision required: checkpoint feedback, scope change
-- Lead decision required: cross-boundary ownership dispute
-- Architect decision required: scrap trigger on fundamental boundary
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** code-tour, rationale (Phase A), red-team (Phase B), tdd (Phase D), verify (Phase D)
-- **Roles:** Architect (owns design), Builder (implements against sketch), Reviewer (checkpoint if requested)
-- **Tools:** red-team, host implementation tools
-- **References:** design-red-flags.md, rationale-template.md
-
----
-
-## Examples
-
-### Example: New Payment Module
-
-**Request:** "Architect a payment processing module"
-
-**Execution:**
-1. Ground: how on billing, orders, notifications; why on current payment coupling
-2. Arena: 3 candidates — (a) strategy pattern, (b) event-driven, (c) mediator
-3. Red-flags: (c) mediator creates central coupling
-4. Judge picks (a) strategy, grafts error handling from (b)
-5. Sketch: PaymentProcessor interface, Stripe/PayPal strategies, factory
-6. Implement: TDD per strategy, verify-loop integration
-7. No scrap triggers → complete
-
-### Example: Greenfield API
-
-**Request:** "Design the public API for the new service"
-
-**Execution:**
-1. Ground: skip (greenfield)
-2. Arena: 2 candidates — (a) REST, (b) GraphQL
-3. Red-flags: (b) overkill for simple CRUD
-4. Judge picks (a), grafts versioning from (b)
-5. Sketch: OpenAPI spec, handlers, middleware
-6. Implement: feature-delivery playbook
-
----
-
-## Dependencies / References
-
-- **Principles:** Harness Independence, Procedures Over Vague, Interface Depth, Prove It Works
-- **Skills:** code-tour, rationale, red-team, tdd, verify
-- **References:** design-red-flags.md, rationale-template.md
-
+```bash
+docker compose run --rm pack node tools/validate.js
+```

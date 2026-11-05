@@ -1,167 +1,80 @@
 ---
 name: audit
-description: Audit an existing design or implementation against relevant quality attributes
-lifecycle: draft
+description: Use when an existing design, implementation or repository must be judged against stated quality attributes with evidence, rather than reviewed as a diff; not for reviewing a change (review) or for improving a measured metric (performance).
+tier: design
+rigor: standard
+status: stable
+pairs-with: [rubrics, review, impact]
 ---
 
 # audit
 
-## Purpose / Outcome
+Judge what exists, not what was intended. Every finding names a file and line,
+a reproduction where possible, and a severity. Withdraw claims you cannot
+support.
 
-Performs structured audit of a design or implementation against defined quality attributes (correctness, security, performance, maintainability, scalability, observability, operability), scoring each attribute and producing prioritized findings with actionable recommendations.
+## When to use
 
----
+- Taking over a codebase and needing a truthful baseline.
+- Deciding whether to extend, refactor or replace a subsystem.
+- A release claim needs checking against the code.
+- Security, licensing or dependency posture must be assessed.
+- A previous audit's findings need re-verification.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- Before major changes to assess current state
-- After implementation to validate against design
-- When inheriting unfamiliar code
-- As part of review for high-risk changes
+- The object is an unmerged diff → `review`.
+- The goal is a faster number → `performance`.
+- The goal is to understand behaviour → `code-tour`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- For routine changes with clear scope
-- When design is already validated
-
----
-
-## Required Context / Inputs
-
-- Target design or implementation
-- Quality attributes relevant to context
-- Access to code and documentation
-
----
-
-## Preconditions
-
-- Quality attributes defined for audit scope
-
----
-
-## Procedure
-
-### Step 1: Define Audit Scope and Attributes
-
-- Attributes: correctness, security, performance, maintainability, scalability, observability, operability
-- Select relevant subset for context
-- Define pass/fail criteria per attribute
-
-### Step 2: Inspect Against Each Attribute
-
-- **Correctness**: invariants, edge cases, error handling, state consistency
-- **Security**: authorization, input validation, secrets, data exposure, attack surface
-- **Performance**: complexity, resource usage, bottlenecks, scalability limits
-- **Maintainability**: coupling, cohesion, naming, documentation, test coverage
-- **Scalability**: horizontal/vertical limits, partition strategy, state management
-- **Observability**: logging, metrics, tracing, alerting coverage
-- **Operability**: deployment, rollback, config, debugging support
-
-### Step 3: Collect Evidence
-
-- Code references for each finding
-- Metrics/benchmarks where available
-- Test coverage gaps
-
-### Step 4: Score and Summarize
-
-- Per-attribute: PASS / CONCERN / FAIL
-- Overall: acceptable / needs improvement / blocking
-- Prioritize findings by risk
-
-### Step 5: Report Findings
-
-- Structured findings with location, severity, evidence, recommendation
-- Recommendations per finding
-- Risk of not addressing
-
----
-
-## Expected Outputs
-
-- Audit report with per-attribute scores
-- Structured findings (location, severity, evidence, recommendation)
-- Prioritized improvement list
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- All scoped attributes evaluated
-- Findings grounded in code evidence
-- Recommendations actionable
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Scope |
 |---|---|
-| Blocking finding | Escalate to Lead, do not proceed without mitigation |
-| Scope creep | Return to defined scope |
+| Targeted | one attribute across the repository |
+| Full | correctness, security, maintainability, tests, packaging |
+| Claim check | verify published claims against reality |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Write the attributes and their tests** before reading code. Artifact:
+   attribute list.
+2. **Gather ground truth:** build, tests, type check, dependency audit, entry
+   points. Record failures as data. Artifact: command results.
+3. **Sample the code along the riskiest paths**, not uniformly. Artifact: paths
+   examined with citations.
+4. **Write findings with severity and evidence.** No evidence, no finding —
+   demote it to a question. Artifact: findings table.
+5. **Separate blockers from majors from drift.** A blocker prevents use; drift
+   is documentation disagreeing with code. Artifact: ranked list.
+6. **Withdraw unsupported claims** and say what would settle each. Artifact:
+   withdrawn list.
+7. **Record the audit** with date, scope and commit. Artifact: audit record.
 
+## Output
 
-- Audit complete for scoped attributes
-- Time-boxed (default: 1-2 hours)
+A ranked findings table: id, severity, evidence (`path:line`, command output),
+impact, and the smallest credible fix. Plus what was not examined.
 
----
+## Failure
 
-## Escalation
+- **The code does not build.** That is the first finding; everything else is
+  conditional on it.
+- **A claim cannot be checked offline.** Mark `unverified`; do not infer.
+- **The audit becomes a rewrite proposal.** Stop; that is `design`.
 
-- Blocking finding → escalate to Lead, do not proceed without mitigation
-- Scope creep → return to defined scope
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "The tests pass, so the code is sound." | Tests can bypass the failing path; check what they exercise. |
+| "I reviewed the main files." | Then say which files were not reviewed; silence reads as coverage. |
+| "Severity is obvious." | It is not, and the reader needs the ranking to act. |
+| "One bad file means the whole repo is bad." | Audits report distribution, not impressions. |
 
-## Fallback
+## Tracking
 
-- Without formal audit: document key concerns in review brief
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** code-tour (current behaviour), rationale (design rationale), review (consumer), red-team (adversarial audit)
-- **Roles:** Auditor (executes), Lead (receives)
-- **Tools:** Code analysis, metrics, benchmarks
-- **References:** None
-
----
-
-## Examples
-
-### Example: API Service Audit
-
-**Scope:** Payment service before migration
-**Attributes:** Correctness, Security, Performance, Operability
-**Findings:**
-- Correctness: CONCERN — missing idempotency key validation
-- Security: FAIL — hardcoded API key in config
-- Performance: PASS — latency within limits
-- Operability: CONCERN — no rollback procedure for migration
-**Recommendations:** Add idempotency, rotate key, document rollback
-
----
-
-## Dependencies / References
-
-- **Rubrics:** `rubrics/architecture-design.md`, `rubrics/correctness-regression.md`, `rubrics/documentation-migration.md`, `rubrics/maintainability-style.md`, `rubrics/performance-resources.md`, `rubrics/security-data.md`, `rubrics/test-adequacy.md`
-
-- **Principles:** Evidence Before Assertions, Model Domain Explicitly, Procedures Over Vague Instructions
-- **Skills:** code-tour, rationale, review, red-team
-- **References:** None
-
+- **OpenChamber present:** findings on the delivery note; blockers also as
+  project todos so they are not lost.
+- **OpenCode or files:** `docs/audits/<date>-<scope>.md`.
+- Ladder: `resources/tracking.md`.

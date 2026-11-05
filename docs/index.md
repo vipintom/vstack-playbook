@@ -2,9 +2,9 @@
 
 # vstack skill catalogue
 
-vstack 0.2.0 ships **45 skills**, **0 playbooks**, **17 principles**, **3 roles**, **7 rubrics** and **4 templates**.
+vstack 0.2.0 ships **46 skills**, **0 playbooks**, **17 principles**, **3 roles**, **7 rubrics** and **4 templates**.
 
-Profiles: `core` 45 skills, `stack` 0, `full` 45.
+Profiles: `core` 46 skills, `stack` 0, `full` 46.
 
 ## entry (3)
 
@@ -22,43 +22,47 @@ Profiles: `core` 45 skills, `stack` 0, `full` 45.
 - **shape** — Use when the request is understood but the problem is not framed — outcome, boundaries, unknowns and proof are still unstated; not for clarifying ambiguous wording (sharpen) or ordering known work (plan).
 - **sharpen** — Use when a request's wording is ambiguous, its acceptance criteria are missing, or its scope is stated as a feeling; not for framing a request that is already clear (shape) or ordering agreed work (plan).
 
-## build (2)
+## design (9)
 
+- **audit** — Use when an existing design, implementation or repository must be judged against stated quality attributes with evidence, rather than reviewed as a diff; not for reviewing a change (review) or for improving a measured metric (performance).
+- **blueprint** — Use when an accepted design must become concrete interfaces, files and signatures that an implementer can follow without re-deciding; not for choosing the design (design) or for ordering the work (plan).
+- **design** — Use when a change needs its boundaries, interfaces and data flow decided before implementation, and the decision must survive review; not for ordering known work (plan) or for auditing a design that already exists (audit).
+- **forensics** — Use when a profile, trace, heap snapshot, log set or core dump must be interpreted into a cause; not for measuring an improvement (performance) or for reproducing a bug (debug).
+- **impact** — Use when a proposed change needs its blast radius known — callers, contracts, data, runtime effects — before work starts; not for deciding the change (design) or for verifying it after (verify).
+- **migration** — Use when stored data, a public contract or a running system must move from one shape to another without a flag day; not for a fresh implementation (design) or a same-shape refactor (refactor).
+- **performance** — Use when a performance claim needs a baseline and a measured change under the same conditions; not for interpreting an existing profile (forensics) or for asserting speed without a number (evidence).
+- **red-team** — Use when a design or change needs an adversary that tries to break it before users or attackers do; not for checking it meets its spec (review) or for running the gates (verify).
+- **rubrics** — Use when a review needs explicit, checkable criteria instead of taste, or a pack artefact needs scoring against a fixed lens; not for performing the review itself (review) or judging whether gates pass (verify).
+
+## build (10)
+
+- **coverage** — Use when it is unclear whether the tests prove the acceptance criteria, or existing behaviour needs a safety net before change; not for writing the next test (tdd) or for running the gates (verify).
+- **debug** — Use when a failure is reproducible but its cause is unknown, and evidence must narrow it before any fix; not for interpreting a profile (forensics) or for fixing a known cause (tdd).
 - **evidence** — Use when a claim is about to be reported, committed or handed over and needs a recorded artifact behind it; not for producing the proof of a whole delivery (verify) or for writing the failing test (tdd).
+- **refactor** — Use when structure must change while behaviour stays exactly the same, and the safety net must exist before the first edit; not for changing behaviour (tdd) or moving a boundary other code depends on (design).
+- **tdd** — Use when behaviour must change and a test can state the expected behaviour before the implementation exists; not for characterising unknown existing behaviour (coverage) or for a disposable experiment (prototype).
+- **unstick** — Use when the same failure has survived several fixes or the work keeps circling one assumption; not for a first debugging attempt (debug) or for a missing playbook (figure-it-out).
 - **verify** — Use when work claims to be complete and an independent run must prove it before merge, handoff or release; not for writing the failing test first (tdd) or recording one claim (evidence).
+- **verify-maintain** — Use when a project's verification commands may have drifted from the code, or a change alters how the project is checked; not for creating verification from scratch (verify-setup) or for running a delivery's gates (verify).
+- **verify-setup** — Use when a project has no reliable way to prove a change works and the verification instructions must be created and made runnable; not for running existing verification (verify) or for keeping it current (verify-maintain).
+- **visual-parity** — Use when a UI must match a defined reference — design file, previous build or specification — and the difference must be shown, not described; not for checking behaviour on a live page (browser-testing) or for a general review (review).
 
-## unassigned (33)
+## unassigned (17)
 
-- **audit** — Audit an existing design or implementation against relevant quality attributes
-- **blueprint** — Turn an accepted design into interfaces, components, data flows and implementation boundaries
-- **coverage** — Identify untested acceptance criteria, weak checks and gaps between tests and real application behaviour
-- **debug** — Systematic root cause investigation: reproduce failure, gather evidence, form hypothesis, test minimally, implement fix with failing test
 - **decisions** — Record important decisions, pivots, failed approaches and evidence references
-- **design** — Cross-boundary design: sketch types, signatures, module structure before code; synthesize alternatives; fill in against chosen sketch
 - **docker** — _no description_
-- **forensics** — Diagnose live runtime symptoms using available instrumentation
 - **gitignore** — _no description_
 - **handoff** — Create a complete worker-to-Lead or session-to-session handoff
-- **impact** — Identify affected callers, components, data contracts, external behaviour and failure paths for a proposed change
 - **lessons** — Convert recurring mistakes into durable improvements
 - **makefile** — _no description_
-- **performance** — Establish a baseline and investigate measured performance issues
 - **ready** — Produce a merge-readiness assessment without merging
 - **recovery** — Restore a safe state after failed, interrupted or partially applied work
-- **red-team** — Adversarial review: adversaries try to break a change/design, findings survive only when proven by a run against real code
-- **refactor** — Preserve behaviour while improving structure and maintaining evidence of equivalence
 - **report** — Produce a concise, source-grounded explanation for a developer, reviewer, or stakeholder from discovery findings
 - **resume** — Reconstruct current task or project context after interruption
 - **review** — Obtain fresh-context review and resolve findings
-- **rubrics** — Supply reusable review lenses for security, performance, maintainability, accessibility and data integrity
 - **ship** — Prepare a focused, reviewable pull request with evidence
 - **skill-authoring** — Write skills to v2 contract standard: draft, static validation, external research, evaluation, lifecycle management
 - **skill-eval** — Evaluate skill trigger accuracy, procedure quality, outputs and failure handling through scenario-based testing
-- **tdd** — Test-first implementation for bug fixes with clear, cheap test paths. Red-Green-Refactor with mandatory failure verification
 - **unslop** — Remove unnecessary complexity, duplication and low-quality generated changes
-- **unstick** — Break out of repeating failure cycles: name the shared assumption, test it directly, list different approaches, pick one, restart clean
-- **verify-maintain** — Keep project verification instructions aligned with actual code, commands and behaviour
-- **verify-setup** — Inspect a project and create a project-specific application verification skill
-- **visual-parity** — Verify UI behaviour and visual appearance against a defined reference
 - **watch-pr** — Monitor CI and review findings, then address and reverify valid issues
 - **worktree** — Establish, inspect and safely clean isolated workspaces

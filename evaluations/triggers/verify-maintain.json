@@ -1,15 +1,15 @@
 {
   "positive": [
-    "After project changes that may affect verification",
-    "Periodic review of verification skill",
-    "When coverage finds gaps",
-    "When verification fails unexpectedly",
-    "When verification fails unexpectedly"
+    "The documented test command broke after we moved to pnpm; realign the verification doc.",
+    "Check whether CI and the verification document still agree after the tooling change.",
+    "A verification step failed for an unrelated reason; fix the drift, not the code.",
+    "Re-run every documented command from a clean checkout after the release.",
+    "Update the declared gates because the project's build system changed."
   ],
   "negative": [
-    "When verification skill is current and working",
-    "For one-off verification failures (debug instead)",
-    "summarise last quarter's revenue"
+    "Create verification for a repository that has none.",
+    "Run the delivery's gates and report each result.",
+    "Find which behaviours have no test behind them."
   ],
   "expected": {
     "skill": "verify-maintain"

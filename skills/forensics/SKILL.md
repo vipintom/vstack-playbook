@@ -1,161 +1,79 @@
 ---
 name: forensics
-description: Diagnose live runtime symptoms using available instrumentation
-lifecycle: draft
+description: Use when a profile, trace, heap snapshot, log set or core dump must be interpreted into a cause; not for measuring an improvement (performance) or for reproducing a bug (debug).
+tier: design
+rigor: standard
+status: stable
+pairs-with: [performance, debug, evidence]
 ---
 
 # forensics
 
-## Purpose / Outcome
+Read the artifact the runtime produced and turn it into a ranked cause. The
+artifact is the authority; your hypothesis is not.
 
-Diagnoses live runtime symptoms by characterizing the symptom, gathering live data (logs, metrics, traces), correlating, hypothesizing and probing safely, diagnosing root cause, and applying immediate mitigation.
+## When to use
 
----
+- A flame graph, trace or heap snapshot exists and nobody has read it.
+- A production incident left logs, metrics or a core dump.
+- Memory grows and the heap shows retained objects.
+- A latency spike needs attribution to a span.
+- A tool's output is large and the question is what matters in it.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- Live system showing symptoms (errors, latency, crashes)
-- When debug needs runtime context
-- When performance needs live data
+- You need a number before and after → `performance`.
+- You need to reproduce the failure → `debug`.
+- You need to know how the code flows → `code-tour`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- For code-level bugs reproducible in test
-- Without runtime access
-
----
-
-## Required Context / Inputs
-
-- Access to running system
-- Instrumentation (logs, metrics, traces)
-- Symptom description
-
----
-
-## Preconditions
-
-- System accessible for diagnosis
-- Instrumentation available
-
----
-
-## Procedure
-
-### Step 1: Characterize Symptom
-
-- What, when, frequency, scope
-- Error messages, stack traces
-- Affected users/requests
-
-### Step 2: Gather Live Data
-
-- Logs (recent, correlated)
-- Metrics (latency, error rate, saturation)
-- Traces (request flows)
-- System state (memory, CPU, connections)
-
-### Step 3: Correlate
-
-- Time-correlate logs, metrics, traces
-- Identify pattern: sudden/gradual, constant/intermittent
-- Narrow to component/dependency
-
-### Step 4: Hypothesize and Probe
-
-- Form hypothesis
-- Safe probe: increase log level, add metric, test request
-- Observe effect
-
-### Step 5: Diagnose and Mitigate
-
-- Root cause identified
-- Immediate mitigation (config, restart, scale)
-- Long-term fix via debug/performance
-
----
-
-## Expected Outputs
-
-- Root cause or narrowed hypothesis
-- Immediate mitigation
-- Long-term fix plan
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Symptom mitigated
-- Root cause plausible
-- No new symptoms from mitigation
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Artifact |
 |---|---|
-| Cannot diagnose | Escalate to on-call/Lead |
-| Mitigation risks | Escalate |
-| No instrumentation | Add temporary logging, restart |
+| Profile | CPU or allocation profile |
+| Trace | distributed trace, spans and timings |
+| Postmortem | logs, metrics, events around an incident |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **State the question the artifact should answer** ("what holds 2 GB after
+   ten minutes?"). Artifact: `question`.
+2. **Record provenance:** tool, version, sample rate, time window, commit.
+   An artifact without provenance is an anecdote. Artifact: provenance block.
+3. **Find the dominant share** — top frames, slowest span, largest retainer.
+   Artifact: ranked list with percentages.
+4. **Trace one instance to code** and cite `path:line`. Artifact: cause
+   candidate.
+5. **State what the artifact cannot show** (sampling bias, missing spans).
+   Artifact: limits.
+6. **Propose the confirming measurement** and hand to `performance` or
+   `debug`; do not claim the fix from the profile alone. Artifact: next test.
 
+## Output
 
-- Diagnosis complete or mitigation applied
-- Time-boxed (default: 1-2 hours for live incident)
+A ranked cause list with the share each explains, the code citation, and the
+one measurement that would confirm or kill it.
 
----
+## Failure
 
-## Escalation
+- **The artifact is too coarse.** Say so; propose the instrumentation needed.
+- **Sampling missed the hot path.** The absence is a finding about the tool.
+- **Two causes explain the same share.** They may be the same cause at two
+  layers; test the lower one first.
 
-- Cannot diagnose → escalate to on-call/Lead
-- Mitigation risks → escalate
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "The top frame is the bug." | It is where time is spent, not why. Follow one instance to code. |
+| "The profile matches my theory." | Then check the share it explains; a 3% frame is not the cause of a 10× regression. |
+| "Production data is too sensitive to share." | Aggregate and cite shape; the reasoning does not need payloads. |
+| "One snapshot is enough." | Growth needs two points in time; a single heap is a still photo. |
 
-## Fallback
+## Tracking
 
-- Without instrumentation: add temporary logging, restart
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** debug (code-level), performance (optimization), forensics (trace analysis)
-- **Roles:** Builder (diagnoses), Lead/On-call (escalation)
-- **Tools:** Logging, metrics, tracing systems
-- **References:** None
-
----
-
-## Examples
-
-### Example: Sudden Error Spike
-
-**Symptom:** 500 errors spike to 15% at 14:32
-**Data:** Logs show DB connection pool exhausted, metrics confirm saturation, traces show new query path
-**Correlate:** New code deploy at 14:30 introduced N+1 query
-**Hypothesis:** Connection pool too small for new query pattern
-**Probe:** Increase pool size → errors drop to 0.1%
-**Mitigate:** Scale pool, long-term: fix N+1 in debug
-
----
-
-## Dependencies / References
-
-- **Principles:** Fix Root Causes, Attack the Premise, Prove It Works
-- **Skills:** debug, performance, forensics
-- **References:** None
-
+- **OpenChamber present:** cause list on the delivery note; artifacts linked,
+  not pasted.
+- **OpenCode or files:** `docs/deliveries/<id>.md` under "Forensics", artifacts
+  under `.vstack/deliveries/<id>/`.
+- Ladder: `resources/tracking.md`.

@@ -1,15 +1,15 @@
 {
   "positive": [
-    "\"Interrogate this\" / \"Adversarial review\" / \"Multi-model review\"",
-    "\"Challenge this\" / \"Stress test this code\" / \"Find blind spots\"",
-    "\"Tear this apart\"",
-    "When design/change needs adversarial pressure before shipping",
-    "When design/change needs adversarial pressure before shipping"
+    "Try to break the new permission check before this ships to production.",
+    "Attack the retry path and tell me how to create a duplicate charge.",
+    "Play adversary against this design: what claim fails first under bad input?",
+    "Find the sibling bug to the incident we just fixed, with reproductions.",
+    "Show me the cheapest way an unauthorised user reads another tenant's data."
   ],
   "negative": [
-    "Cooperative verification",
-    "Design synthesis",
-    "Structured review with lenses"
+    "Check whether the change meets the spec we wrote for it.",
+    "Run the gates and report every result, including the ones that did not run.",
+    "The page is slow under load; measure the saturation point."
   ],
   "expected": {
     "skill": "red-team"

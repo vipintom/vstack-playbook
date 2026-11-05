@@ -1,160 +1,84 @@
 ---
 name: refactor
-description: Preserve behaviour while improving structure and maintaining evidence of equivalence
-lifecycle: draft
+description: Use when structure must change while behaviour stays exactly the same, and the safety net must exist before the first edit; not for changing behaviour (tdd) or moving a boundary other code depends on (design).
+tier: build
+rigor: rigid
+status: stable
+pairs-with: [coverage, verify, review]
 ---
 
 # refactor
 
-## Purpose / Outcome
+Behaviour preserved, structure improved. The suite is green before the first
+edit and after every step; any red is a stop, not a warning.
 
-Performs behaviour-preserving structural improvements by establishing baseline, planning incremental transformations, executing with verification at each step, and documenting changes.
+## When to use
 
----
+- Duplication, long functions, unclear names or tangled dependencies.
+- Preparing ground for a feature without changing behaviour yet.
+- Moving code between modules when no caller sees a difference.
+- A review asked for structure and the behaviour is agreed.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- When unslop identifies structural issues
-- When improving code without changing behaviour
-- When preparing code for new features
+- Behaviour changes at all → `tdd`.
+- A public boundary moves → `design` plus `migration`.
+- There is no test coverage → `coverage` first.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- When behaviour must change (that's implementation, not refactor)
-- When no verification exists to prove equivalence
-- For premature abstraction
-
----
-
-## Required Context / Inputs
-
-- Target code identified
-- Current behaviour verified (baseline)
-- Verification suite available
-
----
-
-## Preconditions
-
-- Baseline verification passes
-- Refactoring goal clearly stated
-
----
-
-## Procedure
-
-### Step 1: Establish Behaviour Baseline
-
-- Run full verification suite
-- Record current outputs/behaviour
-- Identify behaviour that must be preserved
-
-### Step 2: Plan Refactoring Steps
-
-- Decompose into small, safe transformations
-- Each step: one structural change, same verification
-- Order: extract → rename → reorganize → generalize
-
-### Step 3: Execute Incrementally
-
-- For each step: change → verify → commit
-- If verification fails: revert, diagnose, retry
-- Never weaken verification to pass
-
-### Step 4: Verify Equivalence
-
-- Run full verification suite after each commit
-- Run broader regression tests
-- Compare outputs with baseline where applicable
-
-### Step 5: Document Changes
-
-- What was restructured and why
-- Evidence of behavioural equivalence
-- Any edge cases discovered
-
----
-
-## Expected Outputs
-
-- Refactored code with preserved behaviour
-- Verification evidence for each step
-- Documentation of structural improvements
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- All original verifications pass
-- No behavioural changes
-- Code structure improved (measurable: complexity, duplication, coupling)
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Step size |
 |---|---|
-| Verification fails repeatedly | Revert, diagnose, unstick |
-| Behavioural difference found | Revert, analyze, decide |
+| Rename/extract | one mechanical move per commit |
+| Restructure | one seam per commit, suite green between |
+| Pre-feature | characterise, then refactor, then change behaviour |
 
----
+`rigor: rigid` — no refactor without a green baseline, and no behaviour change
+inside a refactor commit.
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+## Steps
 
+1. **Prove the baseline** by running the suite; record the counts. Artifact:
+   baseline output.
+2. **Write down the invariant** that stays true ("same responses for these 12
+   cases"). Artifact: invariant list.
+3. **Make one structural change**, mechanical where possible. Artifact: diff.
+4. **Run the suite**; any failure means revert this step, not patch forward.
+   Artifact: green output.
+5. **Repeat** until the structure is as intended. Artifact: commit series.
+6. **Compare the surface** before and after: exports, routes, payloads.
+   Artifact: surface diff (should be empty).
+7. **Record** the refactor separately in history from any behaviour change.
+   Artifact: delivery note and commit series.
 
-- Refactoring goal achieved
-- All verifications pass
-- Time-boxed (default: 1-2 hours per session)
+## Output
 
----
+A commit series where each commit is one mechanical move and the suite is green
+at every point. The reviewer can stop after any commit.
 
-## Escalation
+## Failure
 
-- Verification fails repeatedly → revert, diagnose, unstick
-- Behavioural difference found → revert, analyze, decide
+- **No tests cover the area.** Stop, write characterisation tests via
+  `coverage`; refactoring blind is rewriting.
+- **The suite is already red.** Fix or record the pre-existing failures before
+  starting; otherwise you cannot tell your damage from theirs.
+- **A step needs behaviour change.** Split it out into `tdd`; never hide it in
+  a refactor.
+- **The diff grows beyond review size.** Stop and split; a refactor nobody can
+  read is a rewrite with extra risk.
 
----
+## Rationalizations
 
-## Fallback
+| Excuse | Reality |
+|---|---|
+| "Tests are slow, I'll run them at the end." | Then a break is buried under ten changes. |
+| "I'll fix this bug while I'm here." | That is two commits; separate them and keep the refactor provable. |
+| "The tests are probably wrong." | Then fix the test first, visibly, not inside the refactor. |
+| "The structure is obviously better." | Better is not the claim; unchanged behaviour is. |
 
-- Without full verification: manual equivalence testing with documented evidence
+## Tracking
 
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** verify (verification discipline), plan (step size), unslop (identifies need)
-- **Roles:** Builder (refactors), Reviewer (verifies)
-- **Tools:** Verification suite, git
-- **References:** None
-
----
-
-## Examples
-
-### Example: Extract Service Layer
-
-**Goal:** Move business logic from controller to service
-**Baseline:** All tests pass
-**Steps:** 1) Extract service class (verify), 2) Update controller (verify), 3) Remove old code (verify)
-**Evidence:** Each commit passes full suite
-**Result:** Cleaner separation, same behaviour
-
----
-
-## Dependencies / References
-
-- **Principles:** Procedures Over Vague Instructions, Evidence Before Assertions, Prove It Works
-- **Skills:** verify, plan, unslop
-- **References:** None
-
+- **OpenChamber present:** one action per mechanical step; `focus_status`
+  "implementing".
+- **OpenCode or files:** commit series is the record; delivery note links it.
+- Ladder: `resources/tracking.md`.

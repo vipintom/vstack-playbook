@@ -1,185 +1,81 @@
 ---
 name: rubrics
-description: Supply reusable review lenses for security, performance, maintainability, accessibility and data integrity
-lifecycle: draft
+description: Use when a review needs explicit, checkable criteria instead of taste, or a pack artefact needs scoring against a fixed lens; not for performing the review itself (review) or judging whether gates pass (verify).
+tier: design
+rigor: standard
+status: stable
+pairs-with: [review, audit, coverage]
 ---
 
 # rubrics
 
-## Purpose / Outcome
+A rubric turns "looks good" into a list of checks with a pass condition. Pick
+the lens, apply every line, record the evidence for each verdict.
 
-Provides reusable review lenses/criteria for systematic quality assessment. Supplies 5 rubric categories covering security, performance, maintainability, accessibility, and data integrity for use in review, red-team, and red-team.
+## When to use
 
----
+- A review keeps producing opinion instead of findings.
+- Two reviewers disagree and the disagreement is about criteria.
+- A design, skill, playbook or doc must be scored consistently over time.
+- An audit needs a fixed definition of good before it starts.
+- A team is calibrating what "done" means.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "Apply rubrics for..." / "Review lenses for..."
-- For every review
-- For red-team shared rubric
-- For red-team systematic challenge
-- As reference for self-review
+- The review is ready to run → `review` applies the lens.
+- The question is whether tests pass → `verify`.
+- The question is what to build → `design`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- As substitute for domain expertise
-- For domains not covered by available rubrics
-
----
-
-## Required Context / Inputs
-
-- Review target and scope
-- Applicable quality attributes
-
----
-
-## Preconditions
-
-- Rubric selected for review scope
-
----
-
-## Procedure
-
-### Step 1: Select Applicable Rubrics
-
-Choose from 5 categories based on review scope
-
-### Step 2: Apply Systematically
-
-Each lens independently, then consolidate
-
-### Step 3: Generate Findings Per Lens
-
-Tag findings by rubric/lens
-
-### Step 4: Consolidate
-
-Deduplicate, prioritize
-
----
-
-## Available Rubrics
-
-### Security & Data Integrity
-
-- Authorization: every endpoint/data access checked
-- Input validation: all untrusted input validated at boundaries
-- Secrets: no hardcoded secrets, proper rotation
-- Encryption: data at rest/in transit
-- Audit: sensitive operations logged
-- Injection: SQL, command, XSS, path traversal prevented
-
-### Performance & Resources
-
-- Complexity: algorithmic bounds appropriate
-- Database: queries indexed, N+1 avoided
-- Memory: no leaks, bounded caches
-- Concurrency: no deadlocks, proper pooling
-- Scaling: horizontal/vertical limits known
-
-### Maintainability & Style
-
-- Coupling: low between modules, high cohesion
-- Naming: consistent, intention-revealing
-- Duplication: DRY, no copy-paste
-- Abstraction: appropriate level, not over-engineered
-- Documentation: public APIs documented, decisions recorded
-
-### Accessibility & UX
-
-- Semantic HTML, ARIA where needed
-- Keyboard navigation
-- Color contrast
-- Error messages actionable
-- Loading states
-
-### Data Integrity & Correctness
-
-- Invariants: encoded in types/schemas
-- Transactions: ACID where required
-- Idempotency: retryable operations safe
-- Migrations: backward compatible, tested
-- Edge cases: null, empty, boundary, concurrent
-
----
-
-## Expected Outputs
-
-- Findings tagged by rubric/lens
-- Coverage across applicable quality attributes
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- All applicable rubrics applied
-- Findings reference specific rubric criteria
-- No quality attribute silently ignored
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Coverage |
 |---|---|
-| Rubric reveals Blocker | Escalate per review process |
-| Domain not covered | Document gap, use ad-hoc review |
+| Single lens | one rubric, all lines |
+| Full review | every applicable lens, one finding list |
+| Calibration | two reviewers score independently, then reconcile |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Name the artifact and the lens.** Read the rubric file in `rubrics/`
+   before applying it. Artifact: lens name.
+2. **Mark lines that do not apply** and say why. A skipped line is recorded,
+   not silently dropped. Artifact: applicability table.
+3. **For each applicable line, record the verdict and the evidence**: command,
+   file, screenshot or quote. Artifact: scored table.
+4. **Treat any `fail` as a finding**, with the smallest fix. Artifact: findings.
+5. **Compute the score only if the lens defines one**; otherwise report the
+   verdicts. A percentage with no definition is invented precision. Artifact:
+   summary.
+6. **Hand the findings to `review` or `audit`** for resolution. Artifact: handoff.
 
+## Output
 
-- Rubrics applied for scoped attributes
-- Time-boxed (default: included in review time)
+| Line | Applicable | Verdict | Evidence |
+|---|---|---|---|
+| Boundaries named | yes | pass | design record §2 |
+| Failure paths covered | yes | fail | retry path absent in `src/jobs/run.ts:88` |
 
----
+## Failure
 
-## Escalation
+- **The lens does not fit the artifact.** Say so and stop; forcing a rubric
+  produces false findings.
+- **A line is unanswerable without running something.** Run it or mark
+  `unverified`, never `pass`.
+- **Reviewers disagree on a verdict.** The evidence decides; if it does not,
+  the line is ambiguous and gets rewritten for the next review.
 
-- Rubric reveals Blocker → escalate per review process
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "Rubrics make reviews mechanical." | They make them checkable; judgement enters at the line definitions, not the verdicts. |
+| "I can score from memory." | Then the evidence column is empty and the score is taste. |
+| "A failed line can be waived informally." | Waivers are recorded with a name, or they are not waivers. |
+| "Every lens must be applied." | Applicability is the first judgement; say why a lens does not apply. |
 
-## Fallback
+## Tracking
 
-- Without formal rubrics: ad-hoc review with documented focus areas
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** review (consumer), red-team (shared rubric), red-team (adversarial lenses)
-- **Roles:** Reviewer (applies), Lead (selects applicable)
-- **Tools:** Rubric criteria lists
-- **References:** None
-
----
-
-## Examples
-
-### Example: API Security Review
-
-**Scope:** New payment endpoint
-**Selected:** Security & Data Integrity, Data Integrity & Correctness
-**Findings:** Missing authorization check (critical), unvalidated input (high), no audit log (medium)
-
----
-
-## Dependencies / References
-
-- **Principles:** Evidence Before Assertions, Procedures Over Vague Instructions
-- **Skills:** review, red-team, red-team
-- **References:** None
-
+- **OpenChamber present:** the scored table on the delivery note; the panel
+  shows which lens produced which finding.
+- **OpenCode or files:** `docs/deliveries/<id>.md` under "Review".
+- Ladder: `resources/tracking.md`.

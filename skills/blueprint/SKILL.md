@@ -1,175 +1,87 @@
 ---
 name: blueprint
-description: Turn an accepted design into interfaces, components, data flows and implementation boundaries
-lifecycle: draft
+description: Use when an accepted design must become concrete interfaces, files and signatures that an implementer can follow without re-deciding; not for choosing the design (design) or for ordering the work (plan).
+tier: design
+rigor: standard
+status: stable
+pairs-with: [design, plan, tdd]
 ---
 
 # blueprint
 
-## Purpose / Outcome
+Expand a design into the shapes code will take: modules, exported names,
+signatures, data types, files touched. The implementer should never have to
+invent an interface that the design already implies.
 
-Produces detailed design specification from an accepted architecture: component interfaces, data flows, implementation boundaries, migration strategy, and verification approach. Consumed by plan for task planning.
+## When to use
 
----
+- Design is agreed and someone else will implement it.
+- The change introduces new modules or public types.
+- Multiple implementers must agree on names and signatures.
+- A type or schema change ripples through several files.
+- You want the compiler to catch integration mistakes early.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "Blueprint this" / "Specify interfaces for..."
-- After design selects a design
-- Before plan for implementation planning
-- When decomposing a feature into implementable units
+- The boundaries are still open → `design`.
+- The work is a single-file change → write the signature inline and start.
+- The task is to test an existing interface → `coverage` or `tdd`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- Architectural exploration → design
-- Trivial changes with obvious implementation
-- No accepted architecture decision
-
----
-
-## Required Context / Inputs
-
-- Accepted architecture decision (from design)
-- Current system boundaries (from code-tour)
-
----
-
-## Preconditions
-
-- Architecture decision recorded
-- Component boundaries defined at high level
-
----
-
-## Procedure
-
-### Step 1: Define Component Interfaces
-
-- Public APIs (signatures, contracts, schemas)
-- Internal module boundaries
-- Error and event contracts
-
-### Step 2: Design Data Flows
-
-- Input validation and transformation
-- State transitions and persistence
-- Inter-component communication
-- Serialization boundaries
-
-### Step 3: Specify Implementation Boundaries
-
-- Files/modules to create or modify
-- Ownership per component
-- Shared utilities vs component-specific code
-
-### Step 4: Plan Implementation Sequence
-
-- Dependency order (what must be built first)
-- Integration points
-- Test boundaries
-
-### Step 5: Define Migration Strategy (if applicable)
-
-- Schema migrations
-- Data migration scripts
-- Backward compatibility
-- Rollback procedure
-
-### Step 6: Identify Verification Approach
-
-- Unit test boundaries
-- Integration test scenarios
-- Contract tests
-- Performance baselines
-
----
-
-## Expected Outputs
-
-- Component interface specifications
-- Data flow descriptions
-- Implementation task breakdown
-- Migration plan (if applicable)
-- Verification strategy
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- All components have defined interfaces
-- Dependencies are acyclic
-- Migration plan addresses all breaking changes
-- Verification strategy covers acceptance criteria
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Output |
 |---|---|
-| Interface design conflicts | red-team or escalate to Lead |
-| Migration complexity high | Escalate to Lead |
-| Cyclic dependencies detected | Redesign boundaries, re-run blueprint |
+| Sketch | exported names and signatures only |
+| Full | file map, types, signatures, error paths, test seams |
+| Contract | Full plus generated types or a schema that enforces it |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Read the design record.** If a boundary is missing, stop and resolve it
+   in `design`; do not invent it here. Artifact: referenced design.
+2. **List files and owners.** New, modified, deleted; one line each. Artifact:
+   file map.
+3. **Write the exported surface.** Names, parameters, return types, thrown or
+   returned errors. Artifact: interface block.
+4. **Write the internal seams** that tests will need: injectable clock, client
+   or store. Artifact: seam list.
+5. **Name the invariants** the implementation must preserve, as assertions or
+   types rather than comments. Artifact: invariant list.
+6. **Check it compiles as a sketch** — types only, bodies throwing. Artifact:
+   type-check output.
+7. **Hand to `plan`.** Each blueprint surface becomes one task. Artifact:
+   blueprint record.
 
+## Output
 
-- Blueprint complete enough for task planning
-- Time-boxed (default: 30-60 min)
+```ts
+// files: src/session/{store.ts,create.ts,index.ts}
+export interface SessionStore { put(s: Session): Promise<void>; get(id: string): Promise<Session | null>; }
+export function createSession(deps: { store: SessionStore; now: () => Date }, userId: string): Promise<Session>;
+// invariant: expiresAt = now + 30m, never mutated after issue
+```
 
----
+## Failure
 
-## Escalation
+- **The design is too vague to type.** Return to `design`; naming the missing
+  decision is the deliverable.
+- **The types need a decision the design did not make.** Record it as a design
+  amendment, not a silent choice.
+- **The sketch cannot type-check.** Fix it now; the compiler is the cheapest
+  reviewer available.
 
-- Interface design conflicts → red-team or escalate
-- Migration complexity high → escalate to Lead
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "The implementer can choose names." | Then two modules will disagree and someone writes an adapter. |
+| "Types are bureaucracy." | Types are the only contract that fails at build time. |
+| "I'll design it while coding." | That is how interfaces become accidental. |
+| "The sketch is throwaway." | It is the cheapest artifact in the delivery; keep it. |
 
-## Fallback
+## Tracking
 
-- Without formal blueprint: document key interfaces in plan
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** design (accepted design), code-tour (current boundaries), plan (consumer)
-- **Roles:** Architect (produces), Builder (consumes for planning)
-- **Tools:** Architecture decision records, interface definition tools
-- **References:** None
-
----
-
-## Examples
-
-### Example: Payment Module Blueprint
-
-**Architecture decision:** Strategy pattern with Stripe/PayPal providers
-**Blueprint:**
-1. Interfaces: PaymentProvider (charge, refund, webhook), PaymentFactory
-2. Data flows: Request → validate → provider.charge() → persist → response
-3. Boundaries: providers/stripe/, providers/paypal/, factory/, types/
-4. Sequence: types → factory → stripe provider → paypal provider → integration tests
-5. Migration: New providers added without changing factory
-6. Verification: Unit per provider, contract tests for factory, integration for webhooks
-
----
-
-## Dependencies / References
-
-- **Principles:** Interface Depth, Model Domain Explicitly, Procedures Over Vague Instructions
-- **Skills:** design, code-tour, plan
-- **References:** None
-
+- **OpenChamber present:** blueprint on the delivery note; tasks added with
+  `focus_add` for the first three.
+- **OpenCode or files:** `docs/deliveries/<id>.md` under "Blueprint".
+- Ladder: `resources/tracking.md`.

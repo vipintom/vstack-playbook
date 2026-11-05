@@ -1,201 +1,85 @@
 ---
 name: impact
-description: Identify affected callers, components, data contracts, external behaviour and failure paths for a proposed change
-lifecycle: draft
+description: Use when a proposed change needs its blast radius known — callers, contracts, data, runtime effects — before work starts; not for deciding the change (design) or for verifying it after (verify).
+tier: design
+rigor: standard
+status: stable
+pairs-with: [design, migration, coverage]
 ---
 
 # impact
 
-## Purpose / Outcome
+Map what a change touches before touching it: callers, consumers, stored data,
+public contracts and the people who would notice. Unknown impact is the most
+expensive kind.
 
-Analyzes the impact radius of a proposed change: affected modules, callers, data contracts, external integrations, failure paths, security boundaries, performance implications, and rollout requirements. Scales depth to risk level.
+## When to use
 
----
+- A signature, schema, event or config key changes.
+- A shared module is edited by several teams.
+- The change can affect data already stored.
+- A rollout needs a safe order.
+- A review asks "what else does this break?".
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "What breaks if I change X?" / "Blast radius of..."
-- Before any change with meaningful scope or risk
-- Planning migrations or breaking changes
-- When code-tour reveals complex dependencies
-- As input to plan for risk assessment
+- The shape of the change is undecided → `design`.
+- The change is already made and must be proven → `verify`.
+- The question is how code works → `code-tour`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- Trivial/local changes (one-line fixes, typo corrections)
-- When blast radius is obviously minimal and documented
-- Current behaviour questions → code-tour
-
----
-
-## Required Context / Inputs
-
-- Target change identified
-- code-tour completed for target area
-- Repository access
-
----
-
-## Preconditions
-
-- Current behaviour understood (code-tour)
-- Change scope defined
-
----
-
-## Procedure
-
-### Step 1: Identify Directly Affected Modules
-
-- Files that will be modified
-- Modules that import/depend on modified code
-- Public APIs that will change
-
-### Step 2: Trace Callers and Dependents
-
-- Use grep/IDE to find all callers of modified functions/classes
-- Trace transitive dependencies (callers of callers)
-- Note test files that will need updates
-
-### Step 3: Analyze Data Contracts
-
-- Schema changes (database, API, config, messages)
-- Migration requirements (backward/forward compatibility)
-- Persisted state that may be affected
-
-### Step 4: Identify External Integrations
-
-- Downstream services consuming changed APIs
-- Upstream providers with contract changes
-- CI/CD pipelines affected
-
-### Step 5: Map Failure and Retry Paths
-
-- Error handling that may be affected
-- Retry logic that may behave differently
-- Timeout and circuit breaker configurations
-
-### Step 6: Assess Permissions and Security Boundaries
-
-- Authorization checks in affected paths
-- Data access patterns that may change
-- Audit/logging implications
-
-### Step 7: Evaluate Performance and Resource Implications
-
-- Complexity changes (algorithmic, memory, CPU)
-- Database query plan changes
-- Cache behavior changes
-
-### Step 8: Determine Rollout Requirements
-
-- Canary/feature flag needed?
-- Rollback procedure
-- Monitoring/alerting updates
-
-### Step 9: Scale Depth to Risk
-
-- **Low risk:** Direct callers only
-- **Medium risk:** Transitive dependencies + contracts
-- **High risk:** Full transitive closure + external + performance
-
----
-
-## Expected Outputs
-
-- Affected modules list (direct + transitive)
-- Public API changes
-- Data contract changes + migration needs
-- External integration impacts
-- Failure path changes
-- Security/permission implications
-- Performance/resource impact assessment
-- Rollout/rollback requirements
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- All direct callers identified
-- No unknown external dependencies
-- Migration plan exists for contract changes
-- Rollback procedure documented
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Reach |
 |---|---|
-| Cannot trace all callers | Document known, mark unknowns |
-| External system access unavailable | Note as assumption, escalate if critical |
-| Migration path unclear for contract change | Escalate to Lead, do not proceed |
+| Local | imports and call sites in this repository |
+| Cross-repo | consumers, published packages, other services |
+| Data | stored rows, events, caches, backups |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **State the change in one line**, including what is removed. Artifact:
+   `change`.
+2. **Find direct callers** with symbol search, not memory. Count them. Artifact:
+   caller list with `path:line`.
+3. **Find indirect consumers:** serialized shapes, database columns, event
+   payloads, config files, docs, dashboards. Artifact: consumer list.
+4. **Classify each by consequence:** breaks at build, breaks at runtime,
+   silently changes meaning, unaffected. Artifact: impact table.
+5. **Name the irreversible parts:** data written in the old shape, external
+   consumers you do not control. Artifact: `irreversible` list.
+6. **Recommend a sequence** and, when data or external callers are involved,
+   route to `migration`. Artifact: rollout order.
+7. **Record it** with the change, or the change does not start. Artifact:
+   impact record.
 
+## Output
 
-- Blast radius understood proportional to risk
-- Time-boxed (default: 15-30 min medium, 1-2 hours high)
-- Sufficient for planning and risk assessment
+| Consumer | Kind | Consequence | Action |
+|---|---|---|---|
+| `api/handlers.ts:41` | caller | build break | update in same PR |
+| `orders.status` column | data | silent meaning change | backfill + dual read |
+| partner webhook | external | runtime break | version the payload |
 
----
+## Failure
 
-## Escalation
+- **A consumer cannot be found.** Say the search was incomplete and name what
+  would settle it (log sampling, schema registry, asking the owner).
+- **The change is safe but the data is not.** Data wins: open `migration`.
+- **Impact is unbounded** (a widely imported type). Split the change so each
+  step is bounded, or version instead of editing.
 
-- Unknown external dependencies → escalate to Lead
-- Breaking change without migration path → escalate, do not proceed
-- Cross-team impact → coordinate with affected teams
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "Only one caller, I checked." | Checked how? Grep, count, and record the command. |
+| "Types will catch it." | Types do not catch serialized payloads or stored rows. |
+| "We will fix consumers in a follow-up." | That is a broken main branch with extra steps. |
+| "Impact is obvious." | Obvious is what the table replaces. |
 
-## Fallback
+## Tracking
 
-- Without full code search: document known impacts, mark unknowns
-- Without external system access: note as assumption
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** code-tour (prerequisite), rationale (migration rationale), plan (consumer)
-- **Roles:** Builder (executes), Lead (escalation)
-- **Tools:** grep/IDE, git, dependency analysis tools
-- **References:** None
-
----
-
-## Examples
-
-### Example: Medium Risk API Change
-
-**Change:** Modify UserService.getUser() signature
-**Execution:**
-1. Direct: user-service.ts, 3 callers in auth, 2 in billing
-2. Transitive: 5 more via auth/billing
-3. Contracts: API response schema changes, needs versioning
-4. External: mobile app consumes /users, web dashboard
-5. Failure: 404 handling in callers
-6. Security: No authz change
-7. Performance: Same complexity
-8. Rollout: API version v2, canary 10%, rollback to v1
-9. Depth: Medium → transitive + contracts
-
----
-
-## Dependencies / References
-
-- **Principles:** Model Domain Explicitly, Procedures Over Vague Instructions, Evidence Before Assertions
-- **Skills:** code-tour, rationale, plan
-- **References:** None
-
+- **OpenChamber present:** impact table on the delivery note, so the panel
+  shows what the change reaches.
+- **OpenCode or files:** `docs/deliveries/<id>.md` under "Impact".
+- Ladder: `resources/tracking.md`.

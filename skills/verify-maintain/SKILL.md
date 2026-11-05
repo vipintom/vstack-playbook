@@ -1,171 +1,80 @@
 ---
 name: verify-maintain
-description: Keep project verification instructions aligned with actual code, commands and behaviour
-lifecycle: draft
+description: Use when a project's verification commands may have drifted from the code, or a change alters how the project is checked; not for creating verification from scratch (verify-setup) or for running a delivery's gates (verify).
+tier: build
+rigor: standard
+status: stable
+pairs-with: [verify-setup, verify, coverage]
 ---
 
 # verify-maintain
 
-## Purpose / Outcome
+Keep the proof aligned with the code. A verification doc that no longer runs is
+worse than none: it manufactures confidence.
 
-Maintains project verification skill currency by detecting changes between skill and reality, updating affected sections, and validating the updated skill.
+## When to use
 
----
+- The build system, scripts or test runner changed.
+- New services, fixtures or environment variables were added.
+- A verification step failed for a reason unrelated to the change.
+- A delivery's gates no longer match the project.
+- After any release, as a cheap check.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- After project changes that may affect verification
-- Periodic review of verification skill
-- When coverage finds gaps
-- When verification fails unexpectedly
+- No verification exists → `verify-setup`.
+- The task is to run the gates → `verify`.
+- The question is what to test → `coverage`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- When verification skill is current and working
-- For one-off verification failures (debug instead)
-
----
-
-## Required Context / Inputs
-
-- Existing project verification skill
-- Access to project code and config
-- Recent verification failures or changes
-
----
-
-## Preconditions
-
-- Project verification skill exists
-- Project can be run for validation
-
----
-
-## Procedure
-
-### Step 1: Identify Maintenance Triggers
-
-- Changed: scripts, entry points, routes, APIs, UI surfaces
-- Changed: test framework, config, feature flags
-- Observed: verification failures, discrepancies
-- Stale: validation timestamp exceeded threshold
-
-### Step 2: Compare Skill vs Reality
-
-- Setup commands vs package.json/scripts
-- Run commands vs actual dev/test commands
-- Health checks vs actual endpoints
-- Drive steps vs current app surfaces
-- Observe channels vs actual logging/metrics
-- Cleanup vs actual process management
-
-### Step 3: Detect Changes
-
-- Command/artifact hash changes (package-lock, config hashes)
-- Semantic changes (new routes, changed APIs, new UI)
-- Tool/framework upgrades
-
-### Step 4: Update Skill
-
-- Modify affected sections
-- Update version/timestamp
-- Mark unresolved gaps explicitly
-
-### Step 5: Validate
-
-- Run smoke test through updated skill
-- Execute representative journey
-- Verify all steps work
-
-### Step 6: Record
-
-- Update `lastValidated` timestamp
-- Update content hash
-- Note changes in skill changelog
-
----
-
-## Expected Outputs
-
-- Updated project verification skill
-- Validation evidence
-- Updated metadata (version, hash, timestamp)
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Skill executes without errors
-- Representative journey passes
-- No stale commands/references
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Trigger |
 |---|---|
-| Validation fails repeatedly | debug verification itself |
-| Unresolvable gap | Document in skill, escalate to Lead |
-| Skill directory unavailable | Update in project fallback location |
+| Quick | run each documented command, fix what broke |
+| Structural | update commands and gates after a tooling change |
+| Audit | compare claims to what is actually executed |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Run every documented command** from a clean checkout. Artifact: results
+   table.
+2. **Compare with what CI runs.** Divergence is a finding, in either direction.
+   Artifact: drift list.
+3. **Update commands, prerequisites and expected output.** Artifact: diff to the
+   verification doc.
+4. **Re-run from clean** to prove the edit. Artifact: clean-run log.
+5. **Update declared gates** if the project's delivery contract changed.
+   Artifact: gate list diff.
+6. **Record the maintenance** in the repo history; verification docs have no
+   changelog of their own. Artifact: commit.
 
+## Output
 
-- Skill current and validated
-- Time-boxed (default: 30-60 min)
+A diff-limited change to the verification doc and gate list, with a clean-run
+log proving the result.
 
----
+## Failure
 
-## Escalation
+- **A command is broken upstream.** Mark it, link the cause, and provide a
+  temporary substitute; do not delete the check silently.
+- **CI and docs disagree about intent.** Ask which is authoritative; the answer
+  belongs in the doc.
+- **The doc has grown into a second test suite.** Move repeated logic into a
+  script and call it from the doc.
 
-- Validation fails repeatedly → debug verification itself
-- Unresolvable gap → document in skill, escalate to Lead
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "It worked last month." | The code changed since; that is the drift. |
+| "CI covers it." | CI covers CI's path, not the documented one. |
+| "Nobody reads the doc." | Agents do, and they act on it. |
+| "Updating docs is a separate task." | A stale command is a defect in this change's proof. |
 
-## Fallback
+## Tracking
 
-- Without full validation: update known changes, mark rest for review
-- Without harness skill dir: update project fallback location
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** verify-setup (initial creation), coverage (gap detection), verify (uses verification)
-- **Roles:** Builder (maintains), Lead (validates)
-- **Tools:** Project commands, diff/hash tools
-- **References:** None
-
----
-
-## Examples
-
-### Example: API Route Addition
-
-**Trigger:** New `/api/v2/users` route added
-**Detection:** Semantic change in routes vs skill drive steps
-**Update:** Add drive step for new endpoint, update observation channels
-**Validate:** Run skill, verify new endpoint reachable
-**Record:** Update timestamp, hash, changelog entry
-
----
-
-## Dependencies / References
-
-- **Principles:** Harness Independence, Procedures Over Vague Instructions, Evidence Before Assertions
-- **Skills:** verify-setup, coverage, verify
-- **References:** None
-
+- **OpenChamber present:** project knowledge points at the doc; drift findings
+  become todos.
+- **OpenCode or files:** the doc and gate list in the repo; commit is the
+  record.
+- Ladder: `resources/tracking.md`.

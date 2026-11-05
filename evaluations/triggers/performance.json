@@ -1,15 +1,15 @@
 {
   "positive": [
-    "When performance requirements exist",
-    "When verify reveals performance regression",
-    "When lessons identifies performance patterns",
-    "When lessons identifies performance patterns",
-    "When lessons identifies performance patterns"
+    "Establish a p95 baseline, then improve it and measure again with the same command.",
+    "Someone says checkout is slow; measure it before changing anything.",
+    "Prove the new cache improves throughput at twenty requests per second.",
+    "Compare the two releases under the same fixture and report the spread.",
+    "Find the dominant cost before optimising, then show the delta."
   ],
   "negative": [
-    "For functional correctness issues",
-    "Without measurable performance criteria",
-    "summarise last quarter's revenue"
+    "Interpret this heap snapshot and tell me what retains two gigabytes.",
+    "Record the latency number with a digest for the release note.",
+    "Attack the new rate limiter for ways around it."
   ],
   "expected": {
     "skill": "performance"

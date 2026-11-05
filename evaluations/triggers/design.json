@@ -1,15 +1,15 @@
 {
   "positive": [
-    "\"Architect this\" / \"Design this\"",
-    "Cross-boundary work: new module boundaries, data flows, contracts",
-    "Non-trivial work where jumping to code would lock in wrong shape",
-    "Explicit user request for design phase before implementation",
-    "Explicit user request for design phase before implementation"
+    "We need to decide the boundaries and contracts for the new billing module before anyone writes code.",
+    "Two shapes look plausible for the event pipeline and the wrong one is expensive to undo.",
+    "This change crosses a service boundary, so sketch components, interfaces and data flow first.",
+    "Decide how sessions are stored and revoked, including what we deliberately leave out.",
+    "The last implementation failed because the seams were wrong; design them properly this time."
   ],
   "negative": [
-    "Straightforward implementation (no design alternatives)",
-    "Single-module changes without boundary implications",
-    "Pure implementation tasks"
+    "Break the agreed outcome into ordered tasks, each with an artifact and a check.",
+    "Audit the existing scheduler design against latency and maintainability with evidence.",
+    "The request is vague; restate it with acceptance criteria before we decide anything."
   ],
   "expected": {
     "skill": "design"

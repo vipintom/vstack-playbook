@@ -1,212 +1,81 @@
 ---
 name: unstick
-description: "Break out of repeating failure cycles: name the shared assumption, test it directly, list different approaches, pick one, restart clean"
-lifecycle: draft
+description: Use when the same failure has survived several fixes or the work keeps circling one assumption; not for a first debugging attempt (debug) or for a missing playbook (figure-it-out).
+tier: build
+rigor: standard
+status: stable
+pairs-with: [debug, figure-it-out, lessons]
 ---
 
 # unstick
 
-## Purpose / Outcome
+Name the shared assumption, test it directly, list genuinely different
+approaches, pick one, restart clean. More effort on the same path is not a new
+attempt.
 
-Breaks assumption cycles after 3+ failed fix attempts. Names the shared assumption, tests it directly, lists materially different approaches, picks one, restarts clean.
+## When to use
 
----
+- Three fixes in a row failed the same way.
+- The work keeps returning to one file or one hypothesis.
+- A test passes alone and fails together, and nobody knows why.
+- The agent is looping: same commands, same output, new wording.
+- A reviewer says "you are assuming X" and X was never checked.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- 3+ failed fix attempts on same task (same error/wrong behavior)
-- Explicit user request: "unstick this"
-- Notice retrying small variations of same fix
-- Same assumption failing repeatedly
+- First attempt at a cause → `debug`.
+- No approach exists at all → `figure-it-out`.
+- The failure is flaky infrastructure → `verify`'s flake policy.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- First or second failure → debug / tdd normal cycle
-- Different errors each time → debug each
-- Design phase → design
-
----
-
-## Required Context / Inputs
-
-- Failed attempt history (what changed, what happened, exact error)
-- Ability to test assumptions (print, log, which, grep, minimal script)
-- Ability to restart clean (git stash/checkout or equivalent)
-
----
-
-## Preconditions
-
-- At least 3 failed fix attempts documented
-- Same error or wrong behavior each time
-
----
-
-## Procedure
-
-### Step 1: Stop Editing
-
-- Do not try a third (or fourth, fifth) variation of the same fix
-- Acknowledge: the problem is likely a wrong belief, not a wrong edit
-
-### Step 2: Document Failed Attempts
-
-- Write each failed attempt in one line:
-  - What you changed
-  - What happened
-  - **Exact error text**
-- Keep this list — most useful for final report
-
-### Step 3: Name the Shared Assumption
-
-- Write the assumption that ALL failed attempts shared
-- One sentence
-- Typical examples:
-  - "This file is the one that runs"
-  - "The config is loaded"
-  - "The function receives a string"
-  - "The cache is cleared"
-  - "The error comes from my code"
-
-### Step 4: Test the Assumption Directly
-
-- Use the **cheapest probe** that gives a yes/no answer:
-  - Print statement / log line
-  - `which` or `--version`
-  - `grep` for the real call site
-  - Minimal script
-  - Read docs for exact version installed
-- Paste the result
-
-### Step 5: If Assumption is FALSE
-
-- You found the real problem
-- Plan fix from the new fact
-- Return to debug / tdd with corrected understanding
-
-### Step 6: If Assumption HOLDS
-
-- List **3 materially different approaches** (different mechanism / library / layer / data path)
-  - Not variations of the same approach
-  - Must be structurally different
-- Pick one, say why in one sentence
-
-### Step 7: Restart Clean
-
-- If debris from failed attempts: clean state (git stash / checkout / fresh checkout)
-- Record false assumption (or confirmed assumption) and chosen approach in checkpoint
-
-### Step 8: Return to Verification
-
-- Return to verify with new approach
-- Run verification on new approach
-
----
-
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
-
-
-- Probe explains failure → fix from new fact
-- New approach passes verification
-- **Two rounds of unstick failed** → report to user with:
-  - All failed attempts
-  - Assumptions tested
-  - Evidence gathered
-  - Approaches tried
-  - Recommendation
-
----
-
-## Rules
-
-- Do not repeat a failed fix even with small changes
-- Evidence beats reasoning
-- Keep failed-attempt list (most useful for report)
-- Clean state before new approach
-- Two rounds maximum, then report
-
----
-
-## Expected Outputs
-
-- Failed attempts list (change + result + exact error)
-- Shared assumption (one sentence)
-- Probe result (yes/no + evidence)
-- If assumption holds: 3 materially different approaches + chosen + why
-- Checkpoint record
-- If two rounds failed: full report to user
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Trigger only after 3+ failures
-- Failed attempts documented with exact errors
-- Shared assumption named (one sentence)
-- Probe tests assumption directly (cheapest possible)
-- If holds: 3 materially different approaches listed
-- Clean restart before new approach
-- Checkpoint recording
-- Two-round limit enforced
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Use |
 |---|---|
-| Cannot identify shared assumption | List all assumptions from attempts, test each |
-| Probe inconclusive | Try different probe, document |
-| No 3 materially different approaches | Report to user with what was explored |
-| Clean restart not possible | Document debris, proceed with caution |
+| Assumption test | one belief, one cheap experiment |
+| Path reset | abandon the current branch, restart from the repro |
+| Approach survey | three different strategies, pick by cost |
 
----
+## Steps
 
-## Escalation
+1. **Write the loop as a sequence:** what was tried, what happened, what was
+   concluded. Artifact: attempt table.
+2. **Name the shared assumption** every attempt relied on. If none is visible,
+   the loop is environmental — check versions and state. Artifact:
+   `assumption`.
+3. **Test the assumption directly**, not the symptom. Artifact: result.
+4. **List three approaches that do not share it**, with cost and first step.
+   Artifact: option list.
+5. **Pick one and restart clean**: fresh branch or fresh context, repro first.
+   Artifact: chosen approach and clean baseline.
+6. **Record what the loop taught** so the next attempt does not repeat it.
+   Artifact: lessons entry.
 
-- User decision required: two rounds exhausted, fundamental assumption wrong
-- Lead decision required: architectural assumption invalid
+## Output
 
----
+The broken assumption, the evidence against it, the chosen new approach, and
+the clean baseline you restarted from. The old branch is abandoned or labelled.
 
-## Skill / Role / Tool Routing
+## Failure
 
-- **Skills invoked:** debug, tdd, verify, resume
-- **Roles:** Builder (executes), Lead (if two rounds failed)
-- **Tools:** git, print/log, grep, minimal scripts, docs
-- **References:** None
+- **The assumption is true.** Then the loop is in the diagnosis, not the
+  belief: gather a new observation rather than a new fix.
+- **No alternative approach exists.** The problem may be unsolvable as framed;
+  return to `shape` and change the outcome, not the effort.
+- **The environment is the variable.** Reproduce on a clean machine before
+  another code change.
 
----
+## Rationalizations
 
-## Examples
+| Excuse | Reality |
+|---|---|
+| "One more attempt will work." | That is the definition of the loop. Count attempts; at three, stop. |
+| "Restarting loses progress." | Progress is the attempt table; the branch is not. |
+| "The assumption is obviously true." | Obvious assumptions are the ones nobody tests. |
+| "A different approach means starting over." | It means starting from the repro, which is the only reusable part. |
 
-### Example: Cache Not Clearing
+## Tracking
 
-**Failed attempts (3):**
-1. Added `cache.clear()` call → same stale data
-2. Increased TTL → same stale data
-3. Switched to `cache.flushAll()` → same stale data
-
-**Shared assumption:** "The cache is the source of stale data"
-
-**Probe:** `grep -r "cache" --include="*.ts" | head -20` → reveals data comes from `localStorage`, not cache
-
-**Result:** Assumption FALSE. Real problem: localStorage not cleared. Fix: clear localStorage on logout.
-
----
-
-## Dependencies / References
-
-- **Principles:** Attack the Premise, Fix Root Causes, Prove It Works
-- **Skills:** debug, tdd, verify, resume
-- **References:** None
-
+- **OpenChamber present:** the attempt table is the record; `focus_status`
+  stays "blocked" until the assumption is tested.
+- **OpenCode or files:** `docs/deliveries/<id>.md` under "Unstick".
+- Ladder: `resources/tracking.md`.

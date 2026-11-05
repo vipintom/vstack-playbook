@@ -1,15 +1,15 @@
 {
   "positive": [
-    "Live system showing symptoms (errors, latency, crashes)",
-    "When debug needs runtime context",
-    "When performance needs live data",
-    "When performance needs live data",
-    "When performance needs live data"
+    "Read this flame graph and tell me which frame explains the regression.",
+    "Interpret the heap snapshot: what holds memory after ten minutes?",
+    "Attribute the latency spike to a span in this distributed trace.",
+    "Work out from these logs and metrics what happened during the incident.",
+    "The profiler output is huge; find the part that matters and cite the code."
   ],
   "negative": [
-    "For code-level bugs reproducible in test",
-    "Without runtime access",
-    "summarise last quarter's revenue"
+    "Measure a before and after improvement with the same benchmark harness.",
+    "Reproduce the failing test and find the cause in the code.",
+    "Explain the control flow from the API to the worker."
   ],
   "expected": {
     "skill": "forensics"

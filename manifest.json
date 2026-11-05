@@ -1,34 +1,42 @@
 {
   "schemaVersion": 2,
   "playbookVersion": "0.2.0",
-  "contentHash": "sha256:25230a0691ff0df0692d6c39742475d1f5b7c6499e2a96be9c00f0470813efea",
+  "contentHash": "sha256:22e5bd6205bbc3dcf702f9ec7774cb409db54480ce32708a03935f7bc7dcd3b1",
   "counts": {
-    "skills": 45,
+    "skills": 46,
     "playbooks": 0,
     "principles": 17,
     "roles": 3,
     "rubrics": 7,
     "templates": 4,
-    "triggerFixtures": 45
+    "triggerFixtures": 46
   },
   "skills": [
     {
       "name": "audit",
       "path": "skills/audit/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Audit an existing design or implementation against relevant quality attributes"
+      "tier": "design",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "rubrics",
+        "review",
+        "impact"
+      ],
+      "description": "Use when an existing design, implementation or repository must be judged against stated quality attributes with evidence, rather than reviewed as a diff; not for reviewing a change (review) or for improving a measured metric (performance)."
     },
     {
       "name": "blueprint",
       "path": "skills/blueprint/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Turn an accepted design into interfaces, components, data flows and implementation boundaries"
+      "tier": "design",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "design",
+        "plan",
+        "tdd"
+      ],
+      "description": "Use when an accepted design must become concrete interfaces, files and signatures that an implementer can follow without re-deciding; not for choosing the design (design) or for ordering the work (plan)."
     },
     {
       "name": "code-tour",
@@ -45,20 +53,28 @@
     {
       "name": "coverage",
       "path": "skills/coverage/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Identify untested acceptance criteria, weak checks and gaps between tests and real application behaviour"
+      "tier": "build",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "tdd",
+        "verify",
+        "rubrics"
+      ],
+      "description": "Use when it is unclear whether the tests prove the acceptance criteria, or existing behaviour needs a safety net before change; not for writing the next test (tdd) or for running the gates (verify)."
     },
     {
       "name": "debug",
       "path": "skills/debug/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Systematic root cause investigation: reproduce failure, gather evidence, form hypothesis, test minimally, implement fix with failing test"
+      "tier": "build",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "tdd",
+        "forensics",
+        "unstick"
+      ],
+      "description": "Use when a failure is reproducible but its cause is unknown, and evidence must narrow it before any fix; not for interpreting a profile (forensics) or for fixing a known cause (tdd)."
     },
     {
       "name": "decisions",
@@ -72,11 +88,15 @@
     {
       "name": "design",
       "path": "skills/design/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Cross-boundary design: sketch types, signatures, module structure before code; synthesize alternatives; fill in against chosen sketch"
+      "tier": "design",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "blueprint",
+        "impact",
+        "red-team"
+      ],
+      "description": "Use when a change needs its boundaries, interfaces and data flow decided before implementation, and the decision must survive review; not for ordering known work (plan) or for auditing a design that already exists (audit)."
     },
     {
       "name": "docker",
@@ -115,11 +135,15 @@
     {
       "name": "forensics",
       "path": "skills/forensics/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Diagnose live runtime symptoms using available instrumentation"
+      "tier": "design",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "performance",
+        "debug",
+        "evidence"
+      ],
+      "description": "Use when a profile, trace, heap snapshot, log set or core dump must be interpreted into a cause; not for measuring an improvement (performance) or for reproducing a bug (debug)."
     },
     {
       "name": "gitignore",
@@ -154,11 +178,15 @@
     {
       "name": "impact",
       "path": "skills/impact/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Identify affected callers, components, data contracts, external behaviour and failure paths for a proposed change"
+      "tier": "design",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "design",
+        "migration",
+        "coverage"
+      ],
+      "description": "Use when a proposed change needs its blast radius known — callers, contracts, data, runtime effects — before work starts; not for deciding the change (design) or for verifying it after (verify)."
     },
     {
       "name": "lessons",
@@ -179,13 +207,30 @@
       "description": ""
     },
     {
+      "name": "migration",
+      "path": "skills/migration/SKILL.md",
+      "tier": "design",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "impact",
+        "design",
+        "verify"
+      ],
+      "description": "Use when stored data, a public contract or a running system must move from one shape to another without a flag day; not for a fresh implementation (design) or a same-shape refactor (refactor)."
+    },
+    {
       "name": "performance",
       "path": "skills/performance/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Establish a baseline and investigate measured performance issues"
+      "tier": "design",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "forensics",
+        "evidence",
+        "verify"
+      ],
+      "description": "Use when a performance claim needs a baseline and a measured change under the same conditions; not for interpreting an existing profile (forensics) or for asserting speed without a number (evidence)."
     },
     {
       "name": "plan",
@@ -258,20 +303,28 @@
     {
       "name": "red-team",
       "path": "skills/red-team/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Adversarial review: adversaries try to break a change/design, findings survive only when proven by a run against real code"
+      "tier": "design",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "design",
+        "audit",
+        "verify"
+      ],
+      "description": "Use when a design or change needs an adversary that tries to break it before users or attackers do; not for checking it meets its spec (review) or for running the gates (verify)."
     },
     {
       "name": "refactor",
       "path": "skills/refactor/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Preserve behaviour while improving structure and maintaining evidence of equivalence"
+      "tier": "build",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "coverage",
+        "verify",
+        "review"
+      ],
+      "description": "Use when structure must change while behaviour stays exactly the same, and the safety net must exist before the first edit; not for changing behaviour (tdd) or moving a boundary other code depends on (design)."
     },
     {
       "name": "report",
@@ -316,11 +369,15 @@
     {
       "name": "rubrics",
       "path": "skills/rubrics/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Supply reusable review lenses for security, performance, maintainability, accessibility and data integrity"
+      "tier": "design",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "review",
+        "audit",
+        "coverage"
+      ],
+      "description": "Use when a review needs explicit, checkable criteria instead of taste, or a pack artefact needs scoring against a fixed lens; not for performing the review itself (review) or judging whether gates pass (verify)."
     },
     {
       "name": "shape",
@@ -377,11 +434,15 @@
     {
       "name": "tdd",
       "path": "skills/tdd/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Test-first implementation for bug fixes with clear, cheap test paths. Red-Green-Refactor with mandatory failure verification"
+      "tier": "build",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "verify",
+        "coverage",
+        "debug"
+      ],
+      "description": "Use when behaviour must change and a test can state the expected behaviour before the implementation exists; not for characterising unknown existing behaviour (coverage) or for a disposable experiment (prototype)."
     },
     {
       "name": "unslop",
@@ -395,11 +456,15 @@
     {
       "name": "unstick",
       "path": "skills/unstick/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Break out of repeating failure cycles: name the shared assumption, test it directly, list different approaches, pick one, restart clean"
+      "tier": "build",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "debug",
+        "figure-it-out",
+        "lessons"
+      ],
+      "description": "Use when the same failure has survived several fixes or the work keeps circling one assumption; not for a first debugging attempt (debug) or for a missing playbook (figure-it-out)."
     },
     {
       "name": "verify",
@@ -417,29 +482,41 @@
     {
       "name": "verify-maintain",
       "path": "skills/verify-maintain/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Keep project verification instructions aligned with actual code, commands and behaviour"
+      "tier": "build",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "verify-setup",
+        "verify",
+        "coverage"
+      ],
+      "description": "Use when a project's verification commands may have drifted from the code, or a change alters how the project is checked; not for creating verification from scratch (verify-setup) or for running a delivery's gates (verify)."
     },
     {
       "name": "verify-setup",
       "path": "skills/verify-setup/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Inspect a project and create a project-specific application verification skill"
+      "tier": "build",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "verify",
+        "plan",
+        "coverage"
+      ],
+      "description": "Use when a project has no reliable way to prove a change works and the verification instructions must be created and made runnable; not for running existing verification (verify) or for keeping it current (verify-maintain)."
     },
     {
       "name": "visual-parity",
       "path": "skills/visual-parity/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Verify UI behaviour and visual appearance against a defined reference"
+      "tier": "build",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "verify",
+        "review",
+        "coverage"
+      ],
+      "description": "Use when a UI must match a defined reference — design file, previous build or specification — and the difference must be shown, not described; not for checking behaviour on a live page (browser-testing) or for a general review (review)."
     },
     {
       "name": "watch-pr",
@@ -503,13 +580,13 @@
     ]
   },
   "evaluations": {
-    "triggers": 45,
+    "triggers": 46,
     "playbooks": 0
   },
   "profiles": {
-    "core": 45,
+    "core": 46,
     "stack": 0,
-    "full": 45,
+    "full": 46,
     "lists": {
       "core": [
         "audit",
@@ -529,6 +606,7 @@
         "impact",
         "lessons",
         "makefile",
+        "migration",
         "performance",
         "plan",
         "principles",
@@ -577,6 +655,7 @@
         "impact",
         "lessons",
         "makefile",
+        "migration",
         "performance",
         "plan",
         "principles",

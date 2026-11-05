@@ -1,208 +1,80 @@
 ---
 name: verify-setup
-description: Inspect a project and create a project-specific application verification skill
-lifecycle: draft
+description: Use when a project has no reliable way to prove a change works and the verification instructions must be created and made runnable; not for running existing verification (verify) or for keeping it current (verify-maintain).
+tier: build
+rigor: standard
+status: stable
+pairs-with: [verify, plan, coverage]
 ---
 
 # verify-setup
 
-## Purpose / Outcome
+Write down how this project proves a change, then make each step a command a
+stranger can run. The result is a project-specific verification skill or
+document, not advice.
 
-Generates a project-specific verification skill that can drive the real application: inspects project structure, classifies application surface, establishes run commands, defines health checks, application driving, observation channels, isolation, and cleanup.
+## When to use
 
----
+- A new repository has no test command, or it is tribal knowledge.
+- Verification steps exist in a wiki but fail when followed.
+- An agent keeps guessing how to check its work.
+- A delivery needs declared gates and no gate list exists.
+- The project's checks depend on services, fixtures or credentials.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- First time using vstack on a project
-- When no project verification skill exists
-- When project changes require new verification approach
+- The gate list exists and must be run → `verify`.
+- The checks exist but drifted from the code → `verify-maintain`.
+- The question is what to test → `coverage`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- When project verification skill exists and is current
-- For projects without runnable application (libraries only)
-
----
-
-## Required Context / Inputs
-
-- Project repository access
-- Project documentation (README, package.json, etc.)
-- Ability to run project commands
-
----
-
-## Preconditions
-
-- Project can be built and run locally
-- Test identities/fixtures available or creatable
-
----
-
-## Procedure
-
-### Step 1: Inspect Project Structure
-
-- `package.json` / `pyproject.toml` / `Cargo.toml` / `go.mod` — scripts, dependencies
-- Build/test configuration
-- Application entry points
-- Existing tests and test utilities
-
-### Step 2: Classify Application Surface
-
-- Web (browser, API)
-- Mobile (iOS/Android)
-- CLI
-- Desktop
-- Service/Library
-
-### Step 3: Determine Prerequisites
-
-- Required services (DB, Redis, etc.)
-- Configuration (env vars, config files)
-- Test data/fixtures
-
-### Step 4: Establish Run Commands
-
-- Install: `npm ci`, `pip install`, `cargo build`, `go mod download`
-- Build: `npm run build`, `cargo build --release`, `go build`
-- Start dev: `npm run dev`, `python manage.py runserver`
-- Start test: `npm run test`, `pytest`, `cargo test`, `go test`
-
-### Step 5: Verify Health Checks
-
-- How to confirm correct instance running
-- Health endpoint / ready signal
-- Port/URL for access
-
-### Step 6: Define Application Driving
-
-- Browser automation (Playwright, Cypress, Selenium)
-- API client (curl, HTTPie, generated client)
-- CLI invocation
-- Test identities and safe test data
-
-### Step 7: Define Observation Channels
-
-- Expected responses/assertions
-- Logs to check
-- Screenshots/traces/metrics
-- Database state verification
-
-### Step 8: Define Isolation
-
-- Separate test database/schema
-- Ephemeral ports
-- Test-specific config
-- No production data access
-
-### Step 9: Define Cleanup
-
-- Stop test processes
-- Clean test data
-- Reset config
-
-### Step 10: Identify Gaps
-
-- What cannot be automated
-- Manual verification needed
-- Known flaky areas
-
-### Step 11: Generate Skill
-
-- Create `SKILL.md` in project's harness skill directory (e.g., `.opencode/skills/<project>-verification/`)
-- Use template from `playbook/project-templates/verification-skill/`
-- Include all sections above
-
-### Step 12: Validate
-
-- Run skill against representative scenario
-- Have Lead/Reviewer inspect correctness
-
----
-
-## Expected Outputs
-
-- Project verification skill at harness-specific location
-- Skill includes: setup, run, health, drive, observe, cleanup, gaps
-- Validation evidence
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Skill executes setup → run → health → drive → observe → cleanup
-- At least one representative journey verified
-- Lead/Reviewer approval
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Output |
 |---|---|
-| Project cannot be run locally | Escalate to Lead |
-| Critical gap unaddressable | Document in skill |
-| Harness skill dir unavailable | Create in project root `.vstack-verification/` |
+| Minimal | install, test, type check, lint — four commands |
+| Project | plus integration, e2e, migration and smoke commands |
+| Hermetic | plus container or fixture setup, usable offline |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Inventory what must be proven**: build, behaviour, contract, deployment.
+   Artifact: claim list.
+2. **Discover the real commands** by running them in a clean checkout; record
+   failures and prerequisites. Artifact: command log.
+3. **Make each command hermetic** (fixtures, env vars, container) or mark the
+   prerequisite. Artifact: runbook.
+4. **Write the verification skill or doc** using `templates/verification-skill.md.hbs`.
+   Artifact: the file.
+5. **Prove it from scratch**: fresh clone or container, follow only the doc.
+   Artifact: clean-run log.
+6. **Declare the gates** the project's deliveries must run. Artifact: gate
+   list in the project config.
 
+## Output
 
-- Skill created and validated
-- Time-boxed (default: 1-2 hours)
+A verification document whose every step is a fenced command with expected
+output, plus the declared gate list. A newcomer can run it without asking.
 
----
+## Failure
 
-## Escalation
+- **A step needs credentials or production data.** Mark it optional, with a
+  local substitute; never put a secret in the doc.
+- **The command depends on global machine state.** Containerise it or list the
+  state as a prerequisite.
+- **The clean run fails.** The doc is not done; fix it before handing over.
 
-- Project cannot be run locally → escalate to Lead
-- Critical gap unaddressable → document in skill
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "Everyone knows `make test`." | Newcomers, agents and CI do not. Write it down. |
+| "The wiki is close enough." | Close enough breaks silently; run it and fix it. |
+| "Setup is one-time work." | Every new machine pays it again. |
+| "A failing example is fine in docs." | Then the doc teaches failure. |
 
-## Fallback
+## Tracking
 
-- Without harness skill dir: create in project root `.vstack-verification/`
-- Without full automation: document manual steps clearly
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** verify-maintain (ongoing), verify (uses project verification), coverage (gap analysis)
-- **Roles:** Builder (creates), Lead (validates)
-- **Tools:** Project commands, harness skill installation
-- **References:** playbook/project-templates/verification-skill/
-
----
-
-## Examples
-
-### Example: Web Application Verification Skill
-
-**Project:** React + Node.js API
-**Surface:** Web (browser + API)
-**Generated skill:** Setup (npm ci), Run (npm run dev), Health (GET /health), Drive (Playwright for UI, curl for API), Observe (screenshots, API responses, logs), Cleanup (stop processes, reset DB), Gaps (mobile testing manual)
-
----
-
-## Dependencies / References
-
-- **Templates:** `templates/verification-skill.md.hbs`
-
-- **Principles:** Harness Independence, Procedures Over Vague Instructions, Prove It Works
-- **Skills:** verify-maintain, verify, coverage
-- **References:** playbook/project-templates/verification-skill/
-
+- **OpenChamber present:** project knowledge entry pointing at the verification
+  doc; the gate list on the delivery template.
+- **OpenCode or files:** the doc in the repo, linked from `README.md`.
+- Ladder: `resources/tracking.md`.

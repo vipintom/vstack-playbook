@@ -1,15 +1,15 @@
 {
   "positive": [
-    "\"Debug this\" / \"Diagnose this failure\"",
-    "Test failure reproduction",
-    "Bug reproduction before fix",
-    "Unexpected behavior investigation",
-    "After 2 failed fixes"
+    "This test fails intermittently; find the cause before changing anything.",
+    "The error points at a symptom; narrow it to the actual cause with evidence.",
+    "It worked yesterday and fails today; reproduce and explain the difference.",
+    "A previous fix did not hold; work out why the failure returned.",
+    "Bisect the working and failing environments down to one variable."
   ],
   "negative": [
-    "3+ failed attempts",
-    "Live system symptoms",
-    "Design phase"
+    "Read the heap snapshot and tell me what retains the objects.",
+    "Three fixes failed the same way; name the assumption we keep making.",
+    "Add the failing test for the behaviour we already understand."
   ],
   "expected": {
     "skill": "debug"

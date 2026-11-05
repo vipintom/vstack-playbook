@@ -1,15 +1,15 @@
 {
   "positive": [
-    "For UI changes (web, mobile, desktop)",
-    "When visual regression testing needed",
-    "When design system compliance required",
-    "When design system compliance required",
-    "When design system compliance required"
+    "Compare the built page to the design file at mobile and desktop widths.",
+    "Show me the image diff for the error state; something overlaps the button.",
+    "Capture the redesign at three viewports and classify every difference.",
+    "The screenshot baseline changed; tell me which regions actually moved.",
+    "Prove the type scale matches the reference instead of saying it looks right."
   ],
   "negative": [
-    "For non-UI changes",
-    "Without defined visual reference",
-    "summarise last quarter's revenue"
+    "Check that the checkout flow works end to end in a real browser.",
+    "Review the component code for accessibility and structure.",
+    "Decide the layout direction before anyone builds it."
   ],
   "expected": {
     "skill": "visual-parity"
