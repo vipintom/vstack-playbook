@@ -1,9 +1,6 @@
-# Dependencies
-node_modules/
-
-# Build artifacts
-*.log
-*.tsbuildinfo
+# OS
+.DS_Store
+Thumbs.db
 
 # IDE
 .vscode/
@@ -11,21 +8,10 @@ node_modules/
 *.swp
 *.swo
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Test coverage
-/coverage/
-!skills/coverage/
-.nyc_output/
-
-# Distribution
-*.tar.gz
-*.zip
-*.sha256
-
-# Environment
+# Local environment
 .env
 .env.local
 .env.*.local
+
+# Logs
+*.log

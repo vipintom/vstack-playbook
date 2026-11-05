@@ -1,6 +1,6 @@
 # NOTICE
 
-vstack 0.2.0 is MIT licensed. It is an original work; the entries below record
+vstack 0.2.0 is MIT licensed. It is an original work. The entries below record
 where ideas and structure were learned from, not copied text.
 
 ## superpowers
@@ -8,26 +8,32 @@ where ideas and structure were learned from, not copied text.
 - Author: Jesse Vincent (obra)
 - Source: https://github.com/obra/superpowers
 - Licence: MIT
-- Influence: test-driven development discipline, systematic debugging,
-  brainstorming before building, skill authoring as pressure-tested procedure,
-  and the executor/implementer separation used by the execution playbooks.
+- Influence: test-driven discipline, systematic debugging, design before
+  building, skill authoring as a procedure, and separation between the agent
+  that builds and the agent that verifies.
 
 ## pstack
 
 - Author: Lauren Tan
 - Source: https://github.com/lauren/pstack
 - Licence: MIT
-- Influence: route-first skill loading and the verification-skill pattern
-  (`verify-setup`, `verify-maintain`).
+- Influence: route-first skill loading and the `verify-setup` /
+  `verify-maintain` verification pattern.
 
-Two files carry close paraphrase rather than shared ideas: `worktree` follows
-the structure of superpowers' worktree skill, and `tdd`'s rationalization rows
-follow the same excuses. Both are credited here rather than in-file.
+## jeffallan skills
 
-No source files are copied from either project. Where a vstack file adapts an
-idea from one of them, the file says so in its own text.
+- Source: https://github.com/jeffallan
+- Licence: MIT
+- Influence: the `docker`, `gitignore` and `makefile` pattern libraries.
+  Rewritten to this pack's standard; command tables live under each skill's
+  `references/`.
 
-Docker, gitignore and makefile references
-  Derived in part from skill material authored by jeffallan
-  (https://github.com/jeffallan), MIT licence. Rewritten to this pack's
-  standard; long command tables preserved under each skill's references/.
+## Anthropic skill conventions
+
+- Source: https://github.com/anthropics/skills
+- Licence: MIT
+- Influence: the `name` + `description` skill format and progressive
+  disclosure through references.
+
+No source files are copied. Where a vstack file adapts an idea, the file says
+so in its own text.

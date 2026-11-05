@@ -1,196 +1,73 @@
 # vstack Playbook
 
-Portable engineering playbook for AI-assisted software development.
+A portable agentic-development method: 54 skills, 13 playbooks and 12 principles in plain Markdown.
 
-## Contents
+The pack works with no vstack software. In OpenCode you can add the optional recorder plugin to track deliveries, tasks and evidence in `.vstack/`; in OpenChamber the panel shows that record read-only. Neither is required.
 
-- **principles/** — 17 core operating principles
-- **agents/roles/** — Canonical role definitions (Lead, Builder, Reviewer)
-- **agents/adapters/** — Harness-specific adapters (OpenCode, Codex, Claude Code)
-- **skills/** — 55 reusable procedures
-- **workflows/** — 18 recipes for common engineering outcomes
-- **resources/** — Rubrics, templates, references
+## What is here
 
-## Installation
+| Path | Holds |
+|---|---|
+| `skills/<name>/SKILL.md` | 54 skills, one directory each |
+| `playbooks/*.md` | 13 situation-based entry points |
+| `principles/*.md` | 12 rules, each with trigger, rule, test and failure mode |
+| `skills/*/references/` | Depth loaded only when a skill asks for it |
 
-### All Skills (All Agents)
+Start with `skills/route/SKILL.md`. It picks one playbook, one rigour tier and at most two skills.
+
+## Install
+
+### Clone the pack (full method)
 
 ```bash
-# From npm (after publish)
-npx skills add @vipintom/vstack --skill '*' --agent '*'
-
-# From GitHub (no npm needed)
-npx skills add github:vipintom/vstack-playbook --skill '*' --agent '*'
+git clone https://github.com/vipintom/vstack-playbook.git
 ```
 
-### Selective Skills
+Point your harness at `skills/`, or copy each skill directory into its skills directory. Keep the clone: `playbooks/` and `principles/` are part of the method.
+
+OpenCode user skills live in `~/.config/opencode/skills/`:
 
 ```bash
-npx skills add @vipintom/vstack --skill tdd verify debug --agent opencode
+cp -r vstack-playbook/skills/* ~/.config/opencode/skills/
 ```
 
-### For Specific Harnesses
+Claude Code and Codex mappings are experimental in 0.2.0. The Markdown works; the exact discovery path does not.
+
+### Skills CLI
 
 ```bash
-# OpenCode
-npx skills add @vipintom/vstack --agent opencode
-# Or from GitHub
-npx skills add github:vipintom/vstack-playbook --agent opencode
-
-# Claude Code
-npx skills add @vipintom/vstack --agent claude-code
-
-# Codex
-npx skills add @vipintom/vstack --agent codex
+npx skills add github:vipintom/vstack-playbook --skill '*' --agent opencode
 ```
 
-## Quick Start
+This installs the skills only. Read `playbooks/` and `principles/` from the clone.
 
-1. **Read principles** → `principles/index.md`
-2. **Identify your role** → `agents/roles/lead.md` | `builder.md` | `reviewer.md`
-3. **Select workflow** → `workflows/feature-delivery.md` | `bug-fixing.md` | `refactoring.md`
-4. **Apply skills** → Use `help` to find relevant skills
+## Use
 
-## Skills (55)
+1. `route` — choose the playbook and tier.
+2. Follow the playbook: Shape → Plan → Build → Prove → Review → Close, shortened for Quick work.
+3. Keep the artifact each step names: a plan, a test result, a decision, a commit, a handoff.
+4. Close only when the done-predicate is proven.
 
-### Foundation (7)
-| Skill | Purpose |
-|---|---|
-| `skill-authoring` | Skill creation guidelines |
-| `skill-eval` | Skill evaluation methodology |
-| `route` | Establish working method |
-| `shipinciples` | Core rules reference |
-| `help` | Find relevant skills |
-| `sharpen` | Clarify request |
-| `figure-it-out` | Bespoke playbook design |
+A claim without an artifact is not evidence. A check that did not run is reported as not run.
 
-### Discovery (6)
-| Skill | Purpose |
-|---|---|
-| `code-tour` | Code walkthroughs |
-| `rationale` | Design rationale |
-| `impact` | Analyze impact |
-| `report` | Code explanation |
-| `resume` | Context retrieval |
-| `blueprint` | Technical specifications |
+## Optional recorder
 
-### Architecture (5)
-| Skill | Purpose |
-|---|---|
-| `design` | System architecture decisions |
-| `red-team` | Design comparison |
-| `audit` | Design review |
-| `shipototype` | Prototyping |
-| `red-team` | Best-of-N evaluation |
+The `vstack-opencode` plugin adds exactly six tools — `vstack_route`, `vstack_task`, `vstack_evidence`, `vstack_decision`, `vstack_handoff`, `vstack_close` — and writes `.vstack/` in the project. It refuses a task completion with no evidence and a close with open work.
 
-### Planning (5)
-| Skill | Purpose |
-|---|---|
-| `plan` | Create & validate plan |
-| `plan` | Fresh-context plan validation |
-| `plan` | Incremental delivery |
-| `refactor` | Safe refactoring |
-| `unslop` | AI tell removal |
+Every skill completes without it. Where a skill offers a recording call, the same fact goes into the plan, commit or handoff when the plugin is absent.
 
-### Implementation (1)
-| Skill | Purpose |
-|---|---|
-| `tdd` | Test-driven development |
+## Optional panel
 
-### Verification (4)
-| Skill | Purpose |
-|---|---|
-| `verify` | Execute checks, iterate |
-| `verify-setup` | Project verification skill creation |
-| `verify-maintain` | Verification maintenance |
-| `coverage` | Verification quality audit |
+The `vstack-openchamber` extension reads `.vstack/` and shows six views: Now, Plan, Evidence, Timeline, Decisions, Health. It never writes and never invents a value.
 
-### Debug/Recovery (4)
-| Skill | Purpose |
-|---|---|
-| `debug` | Systematic debugging |
-| `recovery` | Failure recovery |
-| `unstick` | Change approach when stuck |
-| `forensics` | Runtime analysis |
+## Quality bar
 
-### Collaboration (5)
-| Skill | Purpose |
-|---|---|
-| `red-team` | Parallel execution |
-| `handoff` | Context handoff |
-| `worktree` | Worktree management |
-| `red-team` | Deep code review |
-| `red-team` | Jury evaluation |
+- 54 skills, 13 playbooks, 12 principles.
+- Front matter carries a name and a description only.
+- Every step names its artifact.
+- No skill requires the plugin.
+- Public repository, read-only: issues are welcome, pull requests are not accepted in 0.2.0.
 
-### Review (4)
-| Skill | Purpose |
-|---|---|
-| `rubrics` | Review criteria |
-| `review` | Independent review |
-| `ship` | PR preparation |
-| `watch-pr` | PR monitoring |
+## Licence
 
-### Continuity (5)
-| Skill | Purpose |
-|---|---|
-| `decisions` | Decision/lesson tracking |
-| `handoff` | Safe interruption |
-| `resume` | Session resumption |
-| `ready` | Readiness check |
-| `ship` | Release execution |
-
-### Extended (4)
-| Skill | Purpose |
-|---|---|
-| `performance` | Performance optimization |
-| `forensics` | Trace analysis |
-| `visual-parity` | Visual regression |
-| `lessons` | Pattern-to-improvement |
-
-### Utils (3)
-| Skill | Purpose |
-|---|---|
-| `docker` | Docker & Docker Compose patterns |
-| `makefile` | Modern Makefile automation |
-| `gitignore` | .gitignore templates |
-
-**Retired (v1 legacy):** `vstack-discovery`, `debugging` — superseded
-
-## Workflows (18)
-
-| Workflow | Category | Use For |
-|---|---|---|
-| `investigation` | Core Must | Deep codebase investigation |
-| `architecture-change` | Core Must | Architectural decisions |
-| `infrastructure-change` | Core Must | Infrastructure modifications |
-| `documentation` | Core Must | Documentation updates |
-| `skill-maintenance` | Core Must | Skill updates/validation |
-| `feature-delivery` | Should/Could | Multi-step new functionality |
-| `bug-fixing` | Should/Could | Defect repair with regression test |
-| `refactoring` | Should/Could | Structure improvement, behavior preserved |
-| `performance-investigation` | Should/Could | Performance analysis |
-| `prototype` | Should/Could | Prototyping |
-| `multi-phase-delivery` | Should/Could | Multi-phase features |
-| `autonomous-execution` | Should/Could | Autonomous delivery |
-| `pr-preparation` | Should/Could | PR readiness |
-| `pr-monitoring` | Should/Could | PR tracking |
-| `worktree-cleanup` | Should/Could | Worktree management |
-| `runtime-forensics` | Should/Could | Runtime investigation |
-| `trace-forensics` | Should/Could | Trace analysis |
-| `visual-parity` | Should/Could | Visual regression |
-
-## Validation
-
-```bash
-node scripts/validate-content.js
-```
-
-## Requirements
-
-- Compatible with Agent Skills CLI (`npx skills`)
-- Works with OpenCode, Codex, Claude Code
-- No runtime dependencies — pure Markdown content
-
-## License
-
-MIT
+MIT. See `LICENSE` and `NOTICE`.

@@ -2,41 +2,34 @@
 
 vstack 0.2.0 is a personal framework, published read-only.
 
-- **Issues are welcome.** Bug reports, unclear instructions and evaluation
-  failures all help.
-- **Pull requests are not accepted in 0.2.0.** The repository stays
-  read-only for contributors so that one owner keeps the method coherent.
-- **Forks are fine.** The MIT licence lets you adapt the pack; keep the
-  `NOTICE` file with any redistribution.
+- **Issues are welcome.** A failing instruction, a broken reference or a skill that fires at the wrong moment is useful.
+- **Pull requests are not accepted in 0.2.0.** One owner keeps the method coherent.
+- **Forks are fine.** The MIT licence lets you adapt the pack; keep `NOTICE` with any redistribution.
 
-## What a change has to meet
+## What a change has to show
 
-If you are proposing work through an issue, describe it the way the pack
-itself requires:
+Describe the change the way the pack requires:
 
 1. **Trigger** — the situation where the current content fails.
-2. **Baseline** — what an agent does today, quoted.
+2. **Baseline** — what an agent does today, quoted from a run.
 3. **Change** — the smallest edit that fixes it.
-4. **Evidence** — the command and its output that show the fix.
+4. **Evidence** — the command and output that show the fix; for a skill, one run with the skill and one without.
 
-## Skill standard (0.2.0)
+## Skill bar
 
-Every skill must:
+- Front matter is `name` and `description` only.
+- The description says when to use it and when not to.
+- 60–90 lines, 120 maximum.
+- Every step names its artifact.
+- No `## Tracking`, `## Rationalizations`, `## Modes` or `## Verification` section.
+- No plugin requirement. A `vstack_*` call is optional and paired with a file fallback.
+- No old 0.1.0 skill name.
+- Every referenced skill, playbook and principle exists.
+- The skill completes without `.vstack/` and without the recorder.
 
-- start its `description` with `Use when`, stay under 1024 characters, and
-  describe a trigger, never a procedure;
-- declare `tier`, `rigor`, `status` and `pairs-with` in front matter;
-- keep the body under 150 lines with the headings `When to use`, `Modes`,
-  `Steps`, `Output`, `Failure`, `Rationalizations`, `Tracking`, and
-  `Verification` only when it holds a fenced command;
-- carry a `Rationalizations` table: the excuses an agent makes, each
-  answered by what the skill does instead;
-- say how the work is tracked in `## Tracking`: the OpenChamber focus card
-  and project knowledge, then OpenCode's todo and adapter tools, then the
-  ledger file. `resources/tracking.md` defines the ladder;
-- reference only skills, rubrics and templates that exist;
-- ship `evaluations/triggers/<skill>.json` with five positive and three
-  negative prompts.
+Run the checks in `AGENTS.md` before opening an issue with a patch suggestion.
 
-`node tools/validate.js` enforces all of the above. A change that cannot
-pass it is not ready.
+## Read-only
+
+The repository is public and read-only for contributions. Issues are the input
+channel; changes are made by the owner.
