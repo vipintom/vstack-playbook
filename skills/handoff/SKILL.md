@@ -40,17 +40,20 @@ A handoff without a next action is a diary entry.
 
 ## Steps
 
-1. **State the last verified state** with its evidence link. Artifact:
+1. **Commit or stash work in progress** and record `git status --porcelain`.
+   A handoff over a dirty tree is a handoff with hidden work. Artifact: clean
+   status or the stash id.
+2. **State the last verified state** with its evidence link. Artifact:
    `verified at`.
-2. **State the next action**, one action, with the file or command to start
+3. **State the next action**, one action, with the file or command to start
    from. Artifact: `next`.
-3. **List blockers** with what unblocks each and who owns it. Artifact:
+4. **List blockers** with what unblocks each and who owns it. Artifact:
    blockers.
-4. **Name decisions made** and link the records, not the reasoning. Artifact:
+5. **Name decisions made** and link the records, not the reasoning. Artifact:
    decision links.
-5. **Describe anything half-applied** and the exact reversal. Artifact:
+6. **Describe anything half-applied** and the exact reversal. Artifact:
    rollback note.
-6. **Write it where the next session reads first**: focus card detail, project
+7. **Write it where the next session reads first**: focus card detail, project
    knowledge, or `.vstack/handoff.md`. Artifact: handoff record.
 
 ## Output
@@ -88,8 +91,3 @@ Decisions: expand/contract chosen — link.
 - **OpenCode or files:** `.vstack/handoff.md`, linked from the delivery.
 - Ladder: `resources/tracking.md`.
 
-## Verification
-
-```bash
-docker compose run --rm pack node tools/validate.js
-```

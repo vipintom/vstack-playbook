@@ -95,8 +95,3 @@ Stages: table, issue path, refresh path, revoke. Callers: 3, all in `api`.
 - **OpenCode or files:** `docs/deliveries/<id>.md` under "Design".
 - Ladder: `resources/tracking.md`.
 
-## Verification
-
-```bash
-docker compose run --rm pack node tools/validate.js
-```

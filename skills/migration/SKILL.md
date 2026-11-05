@@ -48,16 +48,16 @@ production. The order is the safety.
    schema or contract.
 3. **Add the new shape** without removing the old: column, field, version.
    Artifact: expand change.
-4. **Backfill in batches**, idempotent, resumable, with a progress counter.
+4. **Prove rollback** before anything is written for real: restore and start
+   on the old shape. Artifact: rollback log.
+5. **Backfill in batches**, idempotent, resumable, with a progress counter.
    Artifact: backfill job and counts.
-5. **Dual-read or dual-write**, compare results, fix divergences. Artifact:
+6. **Dual-read or dual-write**, compare results, fix divergences. Artifact:
    comparison report.
-6. **Cut over reads**, keep writes compatible for one release. Artifact:
+7. **Cut over reads**, keep writes compatible for one release. Artifact:
    cutover change.
-7. **Remove the old path** in a separate change, after the window closes.
+8. **Remove the old path** in a separate change, after the window closes.
    Artifact: contract change and deletion.
-8. **Prove rollback** before step 4 runs in production: restore and start on
-   the old shape. Artifact: rollback log.
 
 ## Output
 
@@ -93,8 +93,3 @@ that allows the next step. Plus the rollback command per step.
   in `.vstack/deliveries/<id>/migration/`.
 - Ladder: `resources/tracking.md`.
 
-## Verification
-
-```bash
-docker compose run --rm pack node tools/validate.js
-```

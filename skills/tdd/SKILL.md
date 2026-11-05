@@ -86,8 +86,9 @@ evidence file holds the failing and passing runs for the same test.
 - **Files:** `docs/deliveries/<id>.md` plus evidence JSONL.
 - Ladder: `resources/tracking.md`.
 
+
 ## Verification
 
 ```bash
-docker compose run --rm pack node tools/validate.js
+pnpm test
 ```

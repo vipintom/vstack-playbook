@@ -89,8 +89,3 @@ On failure: none, nothing ships.
 - **vstack adapter present:** `vstack_gate` supplies the table the verdict
   reads; otherwise the gate logs are attached directly.
 
-## Verification
-
-```bash
-docker compose run --rm pack node tools/validate.js
-```

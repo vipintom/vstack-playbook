@@ -106,8 +106,9 @@ decide it. A verdict with no `not_run` disclosure is a false report.
 - **Neither:** `docs/deliveries/<id>.md` gate table plus
   `.vstack/deliveries/<id>/logs/*`. Ladder: `resources/tracking.md`.
 
+
 ## Verification
 
 ```bash
-docker compose run --rm pack node tools/validate.js
+git rev-parse HEAD && git status --porcelain
 ```

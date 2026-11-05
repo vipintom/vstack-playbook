@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "playbookVersion": "0.2.0",
-  "contentHash": "sha256:f655156cf39053720262b08d5c13c284faad0235d43d7e9fffd26356c7d937f4",
+  "contentHash": "sha256:931f8ca9e183e5a687b16ca0be318389ed3ff6a718af118b6b64b25dc747e36e",
   "counts": {
     "skills": 54,
     "playbooks": 13,

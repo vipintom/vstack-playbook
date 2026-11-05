@@ -98,8 +98,3 @@ from the record alone. No record, no route.
 - **Neither:** `.vstack/focus.md`, then `docs/deliveries/<id>.md` once the
   delivery is named. Full ladder: `resources/tracking.md`.
 
-## Verification
-
-```bash
-docker compose run --rm pack node tools/validate.js
-```

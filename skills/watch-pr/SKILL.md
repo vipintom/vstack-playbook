@@ -57,8 +57,9 @@ the exact condition that will end the watch. No "should be fine".
 
 ## Failure
 
-- **A check is flaky.** Record the rate and rerun once; do not merge on a flaky
-  pass without noting it.
+- **A check is flaky.** Before calling it flake, check the base is current
+  (`git merge-base --is-ancestor origin/main HEAD`). A stale base or an
+  identical second failure is a real failure; rerun once and record both.
 - **The watch has no end condition.** Set a deadline and report what is still
   pending at it.
 - **The pipeline is red for unrelated reasons.** Name the pre-existing failure

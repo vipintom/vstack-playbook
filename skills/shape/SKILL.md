@@ -92,8 +92,3 @@ Risk: auth path, irreversible emails — Deep. Proof: design gate + verify.
 - **OpenCode or files:** `.vstack/frame.md`, then `docs/deliveries/<id>.md`.
 - Ladder: `resources/tracking.md`.
 
-## Verification
-
-```bash
-docker compose run --rm pack node tools/validate.js
-```

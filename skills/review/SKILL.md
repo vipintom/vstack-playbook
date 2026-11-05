@@ -37,20 +37,23 @@ Near misses:
 
 ## Steps
 
-1. **Read the stated intent first** — the delivery's outcome and done
+1. **Name the reviewer and what they get.** The reviewer did not write the
+   diff; they receive the branch range and the intent, not the author's chat
+   history. Artifact: reviewer identity and handoff.
+2. **Read the stated intent first** — the delivery's outcome and done
    predicate. Artifact: quoted intent.
-2. **Read the diff, not only the summary.** Note files skipped. Artifact: files
+3. **Read the diff, not only the summary.** Note files skipped. Artifact: files
    reviewed.
-3. **Check the three questions:** does it do what it claims, does it break what
+4. **Check the three questions:** does it do what it claims, does it break what
    it touches, can the next person change it? Artifact: answers with evidence.
-4. **Write findings** with location, consequence and smallest fix; severity
+5. **Write findings** with location, consequence and smallest fix; severity
    high/medium/low, one entry per `templates/review-finding.md`. Artifact:
    findings table.
-5. **Verify each high finding** by running or reading the cited line; drop the
+6. **Verify each high finding** by running or reading the cited line; drop the
    ones you cannot substantiate. Artifact: confirmed list.
-6. **State what was not reviewed** — generated files, vendor code, areas out
+7. **State what was not reviewed** — generated files, vendor code, areas out
    of scope. Artifact: coverage note.
-7. **Hand to `ready` or back to the author.** Artifact: verdict.
+8. **Hand to `ready` or back to the author.** Artifact: verdict.
 
 ## Output
 

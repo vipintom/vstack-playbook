@@ -83,8 +83,3 @@ note. A reader can tell what was lost, if anything.
 - **OpenCode or files:** `docs/incidents/<date>-<slug>.md`.
 - Ladder: `resources/tracking.md`.
 
-## Verification
-
-```bash
-docker compose run --rm pack node tools/validate.js
-```

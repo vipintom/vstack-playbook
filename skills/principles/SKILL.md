@@ -40,9 +40,9 @@ Near misses:
 
 1. **State the decision in one sentence**, including the alternatives.
    Artifact: `decision`.
-2. **Find the principle that governs it.** Read
-   `principles/index.md` — the rule text, not a summary. Artifact: principle
-   id and its test.
+2. **Find the principle that governs it.** Use `principles/index.md` as the
+   index, then read the leaf file it names — the index row is a summary. Artifact:
+   principle file and its test.
 3. **Run the test against each alternative.** The test is written to be
    answerable yes or no. Artifact: test result per alternative.
 4. **Apply precedence when tests conflict:** truth before safety, safety before
@@ -57,9 +57,9 @@ Near misses:
 
 ```
 Decision: retry with idempotency keys, not blind retries.
-Principle: P4 — a side effect must be safe to repeat (test: does a second identical call change state?).
-Result: blind retries fail the test; idempotency keys pass.
-Precedence: safety (P4) beat speed (P9).
+Principle: evidence-before-completion (test: point at the artifact for this claim).
+Result: "it should be fine" has no artifact; the idempotency test does.
+Precedence: truth before speed.
 ```
 
 ## Failure

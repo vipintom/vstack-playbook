@@ -93,8 +93,3 @@ Task template: `templates/task.md`. A plan a stranger cannot start from is a sum
 - **Neither:** `.vstack/plan.md` plus `docs/deliveries/<id>.md`.
 - Ladder: `resources/tracking.md`.
 
-## Verification
-
-```bash
-docker compose run --rm pack node tools/validate.js
-```

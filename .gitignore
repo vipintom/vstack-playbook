@@ -16,7 +16,8 @@ node_modules/
 Thumbs.db
 
 # Test coverage
-coverage/
+/coverage/
+!skills/coverage/
 .nyc_output/
 
 # Distribution
