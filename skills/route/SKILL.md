@@ -41,7 +41,7 @@ Near misses, and where they belong instead:
    you deliberately skip, with the reason. Artifact: `skills` and `skipped`.
 6. **Record the route.** With the recorder installed, call `vstack_route` with
    the playbook, tier, skills and skipped. Without it, write the same fields at
-   the top of `docs/deliveries/<id>.md` or the project plan. Artifact: the
+   the top of `.vstack/deliveries/<id>.md` or the project plan. Artifact: the
    routing record below.
 7. **Hand off.** Invoke the first skill with `outcome`, `done-when` and the
    artifact paths. Do not restate that skill's steps.
@@ -51,7 +51,7 @@ Near misses, and where they belong instead:
 ```json
 {"playbook": "fix-bug", "tier": "standard", "skills": ["debug", "tdd"],
  "skipped": ["red-team"], "done-when": "the flaky case fails 0/50 runs",
- "recorded": "docs/deliveries/2026-11-05-build-flake.md"}
+ "recorded": ".vstack/deliveries/2026-11-05-build-flake.md"}
 ```
 
 A reader must be able to answer "what was chosen, what was skipped and why"
@@ -64,6 +64,6 @@ from the record alone. No record, no route.
   tier, and the tier is expensive to change later.
 - **The user overrides the route.** Keep their choice, record the override and
   the reason in the same record. Never silently re-route mid-delivery.
-- **No delivery record yet.** Create `docs/deliveries/<id>.md` before step 7;
+- **No delivery record yet.** Create `.vstack/deliveries/<id>.md` before step 7;
   a route that exists only in the conversation is not a route.
 - **Two playbooks tie.** Take the one whose exit criteria are checkable now.
