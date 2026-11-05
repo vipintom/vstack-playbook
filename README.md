@@ -1,8 +1,11 @@
 # vstack Playbook
 
-A portable agentic-development method: 54 skills, 13 playbooks and 12 principles in plain Markdown.
+Version 0.2.0. A portable agentic-development method: 54 skills, 13 playbooks
+and 12 principles in plain Markdown.
 
-The pack works with no vstack software. In OpenCode you can add the optional recorder plugin to track deliveries, tasks and evidence in `.vstack/`; in OpenChamber the panel shows that record read-only. Neither is required.
+The pack works with no vstack software. In OpenCode you can add the optional
+recorder plugin to track deliveries, tasks and evidence in `.vstack/`; in
+OpenChamber the panel shows that record read-only. Neither is required.
 
 ## What is here
 
@@ -41,6 +44,17 @@ npx skills add github:vipintom/vstack-playbook --skill '*' --agent opencode
 
 This installs the skills only. Read `playbooks/` and `principles/` from the clone.
 
+### Offline and Windows
+
+The pack is Markdown; a clone works offline with no install step. On Windows,
+point your harness at the clone with forward slashes, for example
+`C:/work/vstack-playbook/skills`. No script or native dependency is involved.
+
+### Uninstall
+
+Remove the skill directories you copied, or delete the clone. The pack adds
+nothing outside the target skills directory.
+
 ## Use
 
 1. `route` — choose the playbook and tier.
@@ -60,6 +74,15 @@ Every skill completes without it. Where a skill offers a recording call, the sam
 
 The `vstack-openchamber` extension reads `.vstack/` and shows seven views: Now, Plan, Evidence, Timeline, Decisions, Deliveries, Health. It never writes and never invents a value.
 
+## Compatibility
+
+- Pack: 0.2.0, no runtime and no state format. It works alone.
+- Recorder: `@vipintom/vstack-opencode` 0.2.0 is optional and reads or writes
+  state schema 1.
+- Panel: `@vstack/openchamber` 0.2.0 is optional and reads state schema 1.
+- A mismatch is named by the component that sees it; the pack itself has no
+  version check to fail.
+
 ## Quality bar
 
 - 54 skills, 13 playbooks, 12 principles.
@@ -68,6 +91,7 @@ The `vstack-openchamber` extension reads `.vstack/` and shows seven views: Now, 
 - No skill requires the plugin.
 - Public repository, read-only: issues are welcome, pull requests are not accepted in 0.2.0.
 
-## Licence
+## Release notes and licence
 
-MIT. See `LICENSE` and `NOTICE`.
+- `RELEASE-NOTES.md` — scope, the 0.1.0 rename map, migration and verification.
+- MIT. See `LICENSE` and `NOTICE`.
