@@ -32,3 +32,8 @@ test("rejects a skill that does not say how to track its work", () => {
 test("accepts the valid fixture", () => {
   assert.deepEqual(validateSkill(`${FIX}/valid/verify`).errors, []);
 });
+
+test("rejects a body that cites a 0.1.0 skill name", () => {
+  const r = validateSkill(`${FIX}/invalid/old-name`);
+  assert.ok(r.errors.some((e) => e.code === "OLD_SKILL_NAME"));
+});

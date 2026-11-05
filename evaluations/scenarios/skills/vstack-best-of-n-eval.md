@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-best-of-n
+# Evaluation Scenario: red-team
 
-**Skill:** vstack-best-of-n
+**Skill:** red-team
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -147,7 +147,7 @@ All candidates FAIL rubric thresholds
 ```
 
 **Expected Behavior:**
-- Returns to vstack-architect
+- Returns to design
 - Does not force selection
 
 **Acceptance Criteria:**

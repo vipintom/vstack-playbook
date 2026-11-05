@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-review-loop
+# Evaluation Scenario: review
 
-**Skill:** vstack-review-loop
+**Skill:** review
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -180,7 +180,7 @@ High-risk change requiring multiple reviewers
 ```
 
 **Expected Behavior:**
-- Escalates to vstack-jury
+- Escalates to red-team
 - Documents why jury needed
 
 **Acceptance Criteria:**

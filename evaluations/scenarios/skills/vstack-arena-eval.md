@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-arena
+# Evaluation Scenario: red-team
 
-**Skill:** vstack-arena
+**Skill:** red-team
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

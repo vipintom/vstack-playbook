@@ -31,10 +31,10 @@ disallowedTools: Write, Edit, TodoWrite
 permissionMode: acceptEdits
 maxTurns: 50
 skills:
-  - vstack-review-loop
-  - vstack-review-rubrics
-  - vstack-interrogate
-  - vstack-jury
+  - review
+  - rubrics
+  - red-team
+  - red-team
 ```
 
 ## Read-Only Enforcement
@@ -52,12 +52,12 @@ disallowedTools: Write, Edit, TodoWrite
 permissionMode: acceptEdits
 maxTurns: 50
 skills:
-  - vstack-review-loop
-  - vstack-review-rubrics
-  - vstack-interrogate
-  - vstack-jury
+  - review
+  - rubrics
+  - red-team
+  - red-team
 ```
 
 ## Handoff Protocol
 
-Receives work from Lead for review. Returns findings. Uses `vstack-context-reset` at boundaries.
+Receives work from Lead for review. Returns findings. Uses `resume` at boundaries.

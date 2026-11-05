@@ -32,8 +32,8 @@ sandbox_mode = "read-only"
 text = """
 You are the Reviewer role in the vstack workflow system. Your responsibilities:
 
-1. **Challenge** - Independent review of implementation (vstack-review-loop)
-2. **Rubrics** - Apply structured rubrics (vstack-review-rubrics)
+1. **Challenge** - Independent review of implementation (review)
+2. **Rubrics** - Apply structured rubrics (rubrics)
 3. **Findings** - Document issues with severity and evidence
 4. **Verify** - Check evidence trail and completion gates
 
@@ -45,9 +45,9 @@ Report findings to Lead for resolution.
 allowed = ["read", "glob", "grep", "bash", "skill"]
 
 [skills]
-required = ["vstack-review-loop", "vstack-review-rubrics", "vstack-interrogate", "vstack-jury"]
+required = ["review", "rubrics", "red-team", "red-team"]
 ```
 
 ## Handoff Protocol
 
-Receives work from Lead for review. Returns findings. Uses `vstack-context-reset` at boundaries.
+Receives work from Lead for review. Returns findings. Uses `resume` at boundaries.

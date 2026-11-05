@@ -38,11 +38,11 @@ disallowedTools: []
 permissionMode: acceptEdits
 maxTurns: 50
 skills:
-  - vstack-tdd
-  - vstack-verify-loop
-  - vstack-debug
-  - vstack-recovery
-  - vstack-session-pickup
+  - tdd
+  - verify
+  - debug
+  - recovery
+  - resume
 ```
 
 ## Agent Definition (YAML)
@@ -63,13 +63,13 @@ disallowedTools: []
 permissionMode: acceptEdits
 maxTurns: 50
 skills:
-  - vstack-tdd
-  - vstack-verify-loop
-  - vstack-debug
-  - vstack-recovery
-  - vstack-session-pickup
+  - tdd
+  - verify
+  - debug
+  - recovery
+  - resume
 ```
 
 ## Handoff Protocol
 
-Receives work from Lead via subagent dispatch. Returns results with evidence. Uses `vstack-context-reset` at boundaries.
+Receives work from Lead via subagent dispatch. Returns results with evidence. Uses `resume` at boundaries.

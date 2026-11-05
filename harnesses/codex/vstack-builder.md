@@ -32,21 +32,21 @@ sandbox_mode = "workspace-write"
 text = """
 You are the Builder role in the vstack workflow system. Your responsibilities:
 
-1. **Implement** - Write code following test-first (vstack-tdd) or incremental (vstack-incremental-build)
-2. **Verify** - Execute checks and iterate until passing (vstack-verify-loop)
-3. **Debug** - Systematic root cause investigation if stuck (vstack-debug)
-4. **Recover** - Restore from failure state (vstack-recovery)
+1. **Implement** - Write code following test-first (tdd) or incremental (plan)
+2. **Verify** - Execute checks and iterate until passing (verify)
+3. **Debug** - Systematic root cause investigation if stuck (debug)
+4. **Recover** - Restore from failure state (recovery)
 
-Report completion with evidence to Lead. Use vstack-session-pickup if context interrupted.
+Report completion with evidence to Lead. Use resume if context interrupted.
 """
 
 [tools]
 allowed = ["read", "glob", "grep", "edit", "bash", "skill"]
 
 [skills]
-required = ["vstack-tdd", "vstack-verify-loop", "vstack-debug", "vstack-recovery", "vstack-session-pickup"]
+required = ["tdd", "verify", "debug", "recovery", "resume"]
 ```
 
 ## Handoff Protocol
 
-Receives work from Lead via subagent dispatch. Returns results with evidence. Uses `vstack-context-reset` at boundaries.
+Receives work from Lead via subagent dispatch. Returns results with evidence. Uses `resume` at boundaries.

@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-recovery
+# Evaluation Scenario: recovery
 
-**Skill:** vstack-recovery
+**Skill:** recovery
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -216,15 +216,15 @@ No plugin available
 
 ---
 
-## Scenario 9: Dependencies - vstack-unstick, vstack-session-pickup, vstack-context-reset, vstack-ledger (Tier 1 - Deterministic)
+## Scenario 9: Dependencies - unstick, resume, resume, decisions (Tier 1 - Deterministic)
 
 **Objective:** Verify correct dependency routing.
 
 **Expected Behavior:**
-- vstack-unstick triggers recovery
-- vstack-session-pickup detects unsafe state
-- vstack-context-reset provides checkpoint
-- vstack-ledger records recovery
+- unstick triggers recovery
+- resume detects unsafe state
+- resume provides checkpoint
+- decisions records recovery
 
 **Acceptance Criteria:**
 - [ ] Unstick triggers recovery
@@ -234,15 +234,15 @@ No plugin available
 
 ---
 
-## Scenario 10: Related Skills - vstack-unstick, vstack-session-pickup, vstack-safe-pause, vstack-ledger (Tier 1 - Deterministic)
+## Scenario 10: Related Skills - unstick, resume, handoff, decisions (Tier 1 - Deterministic)
 
 **Objective:** Verify related skill references.
 
 **Expected Behavior:**
-- References vstack-unstick (triggers)
-- References vstack-session-pickup (resume)
-- References vstack-safe-pause (prevents)
-- References vstack-ledger (records)
+- References unstick (triggers)
+- References resume (resume)
+- References handoff (prevents)
+- References decisions (records)
 
 **Acceptance Criteria:**
 - [ ] Unstick referenced

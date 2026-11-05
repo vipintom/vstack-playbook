@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-ship
+# Evaluation Scenario: ship
 
-**Skill:** vstack-ship
+**Skill:** ship
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -183,7 +183,7 @@ Merge fails due to conflict
 ```
 
 **Expected Behavior:**
-- Invokes vstack-recovery
+- Invokes recovery
 - Escalates to Lead
 - Documents failure
 

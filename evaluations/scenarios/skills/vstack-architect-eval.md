@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-architect
+# Evaluation Scenario: design
 
-**Skill:** vstack-architect
+**Skill:** design
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -18,14 +18,14 @@ Context: Existing billing, orders, notification systems
 ```
 
 **Expected Behavior:**
-- Runs vstack-how on billing, orders, notifications
-- Runs vstack-why if design redefines ownership/layering
+- Runs code-tour on billing, orders, notifications
+- Runs rationale if design redefines ownership/layering
 - Produces architectural explanation of touched subsystems
 - Constraints from why become requirements, not guesses
 
 **Acceptance Criteria:**
-- [ ] vstack-how invoked on relevant subsystems
-- [ ] vstack-why invoked when ownership/layering changes
+- [ ] code-tour invoked on relevant subsystems
+- [ ] rationale invoked when ownership/layering changes
 - [ ] Grounding complete before Phase B (Sketch)
 - [ ] Constraints documented
 
@@ -64,7 +64,7 @@ Grounding: completed
 ```
 
 **Expected Behavior:**
-- Invokes vstack-arena with design-sketch task
+- Invokes red-team with design-sketch task
 - Requires 2+ structurally distinct candidates (not cosmetic)
 - Screens candidates against design-red-flags.md
 - Applies interface depth principle

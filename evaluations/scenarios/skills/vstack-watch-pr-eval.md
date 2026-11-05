@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-watch-pr
+# Evaluation Scenario: watch-pr
 
-**Skill:** vstack-watch-pr
+**Skill:** watch-pr
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -143,7 +143,7 @@ No CI/review monitoring available
 ```
 
 **Expected Behavior:**
-- Manual check before vstack-ready
+- Manual check before ready
 - Documents fallback
 
 **Acceptance Criteria:**

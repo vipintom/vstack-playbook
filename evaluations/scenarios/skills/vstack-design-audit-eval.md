@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-design-audit
+# Evaluation Scenario: audit
 
-**Skill:** vstack-design-audit
+**Skill:** audit
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

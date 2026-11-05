@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-lessons
+# Evaluation Scenario: lessons
 
-**Skill:** vstack-lessons
+**Skill:** lessons
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -152,7 +152,7 @@ Root cause: lack of saga pattern
 ```
 
 **Expected Behavior:**
-- Escalates to vstack-blueprint
+- Escalates to blueprint
 - Lead decision required
 - Documents escalation
 
@@ -189,9 +189,9 @@ Pattern: upstream library breaking changes
 **Objective:** Verify related skill routing.
 
 **Expected Behavior:**
-- vstack-debug reveals patterns
-- vstack-review-loop findings may reveal patterns
-- vstack-context-reset preserves lessons at boundaries
+- debug reveals patterns
+- review findings may reveal patterns
+- resume preserves lessons at boundaries
 - Project memory stores lessons
 
 **Acceptance Criteria:**

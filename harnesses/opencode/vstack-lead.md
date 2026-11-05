@@ -26,4 +26,4 @@ Dispatches to:
 
 ## Handoff Protocol
 
-Uses `vstack-context-reset` skill for context preservation at boundaries.
+Uses `resume` skill for context preservation at boundaries.

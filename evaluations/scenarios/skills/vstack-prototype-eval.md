@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-prototype
+# Evaluation Scenario: shipototype
 
-**Skill:** vstack-prototype
+**Skill:** shipototype
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -119,7 +119,7 @@ Results analyzed
 **Expected Behavior:**
 - Answers the question
 - Discards prototype code
-- Records findings in vstack-ledger or project memory
+- Records findings in decisions or project memory
 
 **Acceptance Criteria:**
 - [ ] Question answered

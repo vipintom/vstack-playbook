@@ -1,6 +1,6 @@
 # Evaluation Scenario: Direct Skill Invocation
 
-**Content Under Test:** vstack-mode, specialist skills
+**Content Under Test:** route, specialist skills
 **Scenario Type:** Positive Trigger / Procedure Fidelity
 **Date:** 2026-11-02
 **Version:** v2 draft
@@ -11,7 +11,7 @@
 
 ### Input Fixture
 
-**User Request:** "Use vstack-how to trace the authentication flow from login endpoint to JWT validation."
+**User Request:** "Use code-tour to trace the authentication flow from login endpoint to JWT validation."
 
 **Repository State:**
 - Branch: main
@@ -26,12 +26,12 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **vstack-mode:** NOT invoked (user directly requests specific skill)
-- **vstack-how:** Directly invoked with its procedure
+- **route:** NOT invoked (user directly requests specific skill)
+- **code-tour:** Directly invoked with its procedure
 
 #### Procedure Expectation
 1. Agent recognises direct skill invocation request
-2. Executes vstack-how procedure directly:
+2. Executes code-tour procedure directly:
    - Identify entry points (login endpoint)
    - Trace execution path (middleware → JWT validation → user lookup)
    - Map data flow (credentials → token → user object)
@@ -51,7 +51,7 @@
 
 ### Input Fixture
 
-**User Request:** "Use vstack-blast-radius to analyze impact of changing UserService.getUser() signature."
+**User Request:** "Use impact to analyze impact of changing UserService.getUser() signature."
 
 **Repository State:**
 - Branch: main
@@ -66,11 +66,11 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **vstack-mode:** NOT invoked
-- **vstack-blast-radius:** Directly invoked
+- **route:** NOT invoked
+- **impact:** Directly invoked
 
 #### Procedure Expectation
-1. Agent executes vstack-blast-radius directly:
+1. Agent executes impact directly:
    - Identify directly affected modules (UserService)
    - Trace callers (grep for getUser() calls)
    - Map data contracts (return type change impact)
@@ -84,7 +84,7 @@
 
 ### Input Fixture
 
-**User Request:** "Use vstack-architect to design a new microservice for payments."
+**User Request:** "Use design to design a new microservice for payments."
 
 **Repository State:**
 - Branch: main
@@ -99,10 +99,10 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. Agent executes vstack-architect directly
-2. **vstack-architect preconditions checked:**
-   - Requires vstack-how and vstack-why for current system
-   - Requires vstack-blast-radius for impact scope
+1. Agent executes design directly
+2. **design preconditions checked:**
+   - Requires code-tour and rationale for current system
+   - Requires impact for impact scope
 3. If preconditions not met, agent requests them first
 4. Then executes architect procedure:
    - Establish decision criteria
@@ -131,21 +131,21 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode invoked (non-trivial work)
+1. route invoked (non-trivial work)
 2. Mode executes Phases 1-6: frames, reads principles, selects feature-delivery, creates checklist
 3. **Skills invoked ONLY when triggers fire during execution:**
-   - vstack-how: When discovery phase needs runtime behaviour
-   - vstack-architect: When design alternatives needed
-   - vstack-tdd: When implementation task needs test-first
-   - vstack-verify-loop: When verification needed
-   - vstack-review-loop: When review phase reached
+   - code-tour: When discovery phase needs runtime behaviour
+   - design: When design alternatives needed
+   - tdd: When implementation task needs test-first
+   - verify: When verification needed
+   - review: When review phase reached
 4. Skills NOT loaded preemptively
 
 ---
 
 ## Negative Case: Direct Skill Request Forces Full Mode Routing
 
-**Scenario:** "Use vstack-how to trace auth flow" → vstack-mode invoked → reads all principles → selects playbook → creates checklist → then invokes vstack-how
+**Scenario:** "Use code-tour to trace auth flow" → route invoked → reads all principles → selects playbook → creates checklist → then invokes code-tour
 
 **Expected:** FAIL — direct skill invocation must bypass full mode routing
 

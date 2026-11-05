@@ -40,12 +40,12 @@ disallowedTools: []
 permissionMode: acceptEdits
 maxTurns: 50
 skills:
-  - vstack-mode
-  - vstack-sharpen
-  - vstack-plan-loop
-  - vstack-verify-loop
-  - vstack-ship
-  - vstack-context-reset
+  - route
+  - sharpen
+  - plan
+  - verify
+  - ship
+  - resume
 ```
 
 ## Agent Definition (YAML)
@@ -68,12 +68,12 @@ disallowedTools: []
 permissionMode: acceptEdits
 maxTurns: 50
 skills:
-  - vstack-mode
-  - vstack-sharpen
-  - vstack-plan-loop
-  - vstack-verify-loop
-  - vstack-ship
-  - vstack-context-reset
+  - route
+  - sharpen
+  - plan
+  - verify
+  - ship
+  - resume
 ```
 
 ## Delegation
@@ -84,4 +84,4 @@ Dispatches to:
 
 ## Handoff Protocol
 
-Uses `vstack-context-reset` skill for context preservation at boundaries.
+Uses `resume` skill for context preservation at boundaries.

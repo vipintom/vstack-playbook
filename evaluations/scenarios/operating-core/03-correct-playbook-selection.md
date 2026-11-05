@@ -1,6 +1,6 @@
 # Evaluation Scenario: Correct Primary Playbook Selection
 
-**Content Under Test:** vstack-mode
+**Content Under Test:** route
 **Scenario Type:** Procedure Fidelity / Trigger Precision
 **Date:** 2026-11-02
 **Version:** v2 draft
@@ -26,12 +26,12 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **Should activate vstack-mode:** YES
+- **Should activate route:** YES
 - **Should route to playbook:** bug-fixing
 - **Should NOT route to:** feature-delivery, refactoring, investigation
 
 #### Procedure Expectation
-1. vstack-mode classifies as "Defect or regression"
+1. route classifies as "Defect or regression"
 2. Selects bug-fixing playbook (narrowest suitable)
 3. Checklist includes: Sharpen → Discovery (focused) → Blast Radius → Plan (2-3 tasks) → TDD (regression test) → Verify → Light Review
 
@@ -61,12 +61,12 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **Should activate vstack-mode:** YES
+- **Should activate route:** YES
 - **Should route to playbook:** feature-delivery
 - **Should NOT route to:** bug-fixing, refactoring, investigation
 
 #### Procedure Expectation
-1. vstack-mode classifies as "New or changed behaviour"
+1. route classifies as "New or changed behaviour"
 2. Selects feature-delivery playbook
 3. Checklist includes: Sharpen → Discovery → Blueprint → Blast Radius → Plan → TDD → Verify → Review
 
@@ -96,12 +96,12 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **Should activate vstack-mode:** YES
+- **Should activate route:** YES
 - **Should route to playbook:** refactoring
 - **Should NOT route to:** feature-delivery, bug-fixing
 
 #### Procedure Expectation
-1. vstack-mode classifies as "Behaviour-preserving structural change"
+1. route classifies as "Behaviour-preserving structural change"
 2. Selects refactoring playbook
 3. Checklist includes: Sharpen (behaviour criteria) → Discovery → Blast Radius (required) → Blueprint → Plan → TDD (add tests first) → Verify → Review (Architecture + Correctness + Maintainability)
 
@@ -131,12 +131,12 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **Should activate vstack-mode:** YES
+- **Should activate route:** YES
 - **Should route to playbook:** architecture-change
 - **Should NOT route to:** feature-delivery, refactoring
 
 #### Procedure Expectation
-1. vstack-mode classifies as "Cross-cutting structural change"
+1. route classifies as "Cross-cutting structural change"
 2. Selects architecture-change playbook (not feature-delivery — it's architecture)
 3. Checklist includes: Sharpen → Deep Discovery (how/why/blast-radius) → Architect + Arena → Blueprint → Phased Plan → TDD (contract tests) → Verify per phase → Jury Review
 
@@ -149,7 +149,7 @@
 
 ## Negative Case: Bug Fix Incorrectly Routes to feature-delivery
 
-**Scenario:** "Fix null pointer in UserService" → vstack-mode selects feature-delivery → creates feature checklist with architect/arena
+**Scenario:** "Fix null pointer in UserService" → route selects feature-delivery → creates feature checklist with architect/arena
 
 **Expected:** FAIL — defect must route to bug-fixing, not feature-delivery
 

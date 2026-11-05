@@ -1,6 +1,6 @@
 # Evaluation Scenario: Missing Capability Fallbacks
 
-**Content Under Test:** vstack-mode, playbooks, skills
+**Content Under Test:** route, playbooks, skills
 **Scenario Type:** Failure Handling / Procedure Fidelity
 **Date:** 2026-11-02
 **Version:** v2 draft
@@ -25,7 +25,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode selects feature-delivery playbook
+1. route selects feature-delivery playbook
 2. **Phase 6:** Detects no native todo support
 3. **Fallback activated:** Creates checklist in session context (or PROGRESS.md)
 4. Checklist maintains: step text, state (DONE/SKIP/BLOCKED/IN_PROGRESS), skip reason
@@ -57,8 +57,8 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode selects performance-investigation or figure-it-out
-2. Playbook calls for vstack-swarm (parallel execution)
+1. route selects performance-investigation or figure-it-out
+2. Playbook calls for red-team (parallel execution)
 3. **Fallback activated:** Sequential execution with same verification
 4. Each config tested sequentially:
    - Run benchmark
@@ -78,7 +78,7 @@
 
 ### Input Fixture
 
-**User Request:** "Compare 3 API design alternatives using vstack-arena."
+**User Request:** "Compare 3 API design alternatives using red-team."
 
 **Repository State:**
 - Branch: main
@@ -92,7 +92,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-arena invoked (direct or via playbook)
+1. red-team invoked (direct or via playbook)
 2. **Isolation needed:** 3 independent implementations
 3. **Fallback activated:** Directory isolation with git branches
    - Create 3 directories: candidate-a/, candidate-b/, candidate-c/
@@ -121,7 +121,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. Lead requests vstack-review-loop
+1. Lead requests review
 2. **Reviewer independence:** Fresh session started
 3. **Fallback for read-only:**
    - Reviewer agent instructed: "Do not modify files. Read only. Report findings."
@@ -152,11 +152,11 @@
 
 #### Procedure Expectation
 1. New session starts
-2. **vstack-session-pickup invoked:**
-   - Runs vstack-catchup (reads PROGRESS.md, validates git state)
+2. **resume invoked:**
+   - Runs resume (reads PROGRESS.md, validates git state)
    - Revalidates completed work
    - Confirms next action
-3. **vstack-mode re-invoked explicitly** for next phase
+3. **route re-invoked explicitly** for next phase
 4. No assumption of persistent context
 5. Handback includes: "Mode re-invoked (no persistent mode)"
 
@@ -164,7 +164,7 @@
 
 ## Negative Case: Capability Missing → Error or Fake Success
 
-**Scenario:** No subagent support → vstack-swarm throws error or reports "parallel complete" without actual parallel execution
+**Scenario:** No subagent support → red-team throws error or reports "parallel complete" without actual parallel execution
 
 **Expected:** FAIL — must use honest fallback, not error or fake success
 

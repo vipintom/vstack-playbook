@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-why
+# Evaluation Scenario: rationale
 
-**Skill:** vstack-why
+**Skill:** rationale
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

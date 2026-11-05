@@ -11,7 +11,7 @@ metadata:
   role: engineer
   scope: implementation
   output-format: code
-  related-skills: docker-compose, makefile, devops-engineer, fastapi-backend, angular-dashboard
+  related-skills: docker, makefile, devops-engineer, fastapi-backend, angular-dashboard
 ---
 
 # .gitignore Patterns & Best Practices
@@ -190,7 +190,7 @@ data/
 - GitHub gitignore templates: https://github.com/github/gitignore
 - gitignore.io: https://www.toptal.com/developers/gitignore
 - Git docs: https://git-scm.com/docs/gitignore
-- [docker-compose] — for docker/.dockerignore patterns
+- [docker] — for docker/.dockerignore patterns
 - [makefile] — for Makefile patterns
 
 ---
@@ -317,8 +317,8 @@ pip-wheel-metadata/
 
 # --- Docker ---
 .dockerignore
-docker-compose.override.yml
-docker-compose.*.local.yml
+docker.override.yml
+docker.*.local.yml
 
 # --- CI/CD ---
 .circleci/

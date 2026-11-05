@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-unstick
+# Evaluation Scenario: unstick
 
-**Skill:** vstack-unstick
+**Skill:** unstick
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

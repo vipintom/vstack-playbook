@@ -1,6 +1,6 @@
 # Evaluation Scenario: Task Rerouting After New Evidence
 
-**Content Under Test:** vstack-mode, playbooks
+**Content Under Test:** route, playbooks
 **Scenario Type:** Procedure Fidelity / Decision Quality
 **Date:** 2026-11-02
 **Version:** v2 draft
@@ -29,8 +29,8 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode initially selects feature-delivery (new behaviour, assumed low-medium risk)
-2. **Phase 7 (Execute):** Discovery phase runs vstack-how/vstack-blast-radius
+1. route initially selects feature-delivery (new behaviour, assumed low-medium risk)
+2. **Phase 7 (Execute):** Discovery phase runs code-tour/impact
 3. **Reassessment triggered:** Discovery reveals cross-cutting impact
 4. **Checklist revised:**
    - Architect step: ACTIVATED (was skipped)
@@ -44,7 +44,7 @@
 
 #### Decision Quality Expectation
 - **Branch point:** Reassessment after evidence
-- **Principle applied:** Reassess when evidence changes (vstack-mode Phase 7)
+- **Principle applied:** Reassess when evidence changes (route Phase 7)
 - **Expected choice:** Revise checklist, don't continue disproven plan
 
 ---
@@ -68,12 +68,12 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode selects bug-fixing playbook
+1. route selects bug-fixing playbook
 2. **Execution:** TDD (regression test) → Implement fix (add lock) → Verify
 3. **Verification FAILS:** Race condition persists (lock not sufficient)
-4. **vstack-debug invoked:** Reproduces, gathers evidence, hypothesizes
-5. **vstack-debug finds:** Root cause is application-level logic, not DB lock
-6. **vstack-unstick triggered** (3 failed attempts):
+4. **debug invoked:** Reproduces, gathers evidence, hypothesizes
+5. **debug finds:** Root cause is application-level logic, not DB lock
+6. **unstick triggered** (3 failed attempts):
    - Lists attempts: lock, transaction, retry
    - Questions assumption: "Is DB lock the right level?"
    - Chooses materially different approach: Application-level idempotency key
@@ -108,11 +108,11 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode initially routing: feature-delivery for profile page
+1. route initially routing: feature-delivery for profile page
 2. **User request received:** New scope (admin dashboard)
 3. **Reassessment:** New request = separate feature or expanded scope
 4. **Lead decision:** 
-   - Option A: Separate delivery (new vstack-mode invocation for admin dashboard)
+   - Option A: Separate delivery (new route invocation for admin dashboard)
    - Option B: Expand current delivery (revise plan, add tasks)
 5. **If Option B:** Checklist revised with new tasks, dependencies updated
 6. **Handback includes:** "Scope expanded per user request: added admin dashboard tasks"
@@ -144,9 +144,9 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode initially plans sequential (no subagent)
+1. route initially plans sequential (no subagent)
 2. **Mid-execution discovery:** Subagent capability found
-3. **Reassessment:** vstack-swarm can now use parallel execution
+3. **Reassessment:** red-team can now use parallel execution
 4. **Checklist revised:** Sequential → Parallel for benchmarks
 5. **Handback includes:** "Capability discovered: parallel execution enabled"
 

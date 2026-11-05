@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-blast-radius
+# Evaluation Scenario: impact
 
-**Skill:** vstack-blast-radius
+**Skill:** impact
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

@@ -1,10 +1,10 @@
 ---
-name: vstack-create-verification
+name: verify-setup
 description: Inspect a project and create a project-spec
 lifecycle: draft
 ---
 
-# vstack-create-verification
+# verify-setup
 
 ## Project Overview
 
@@ -27,8 +27,8 @@ Produces a `verification-skill.md` in the project that captures project-specific
 ## Commands
 
 This skill provides the following commands:
-- `vstack-create-verification` — Inspect project and generate verification skill
-- `vstack-maintain-verification` — Update existing verification skill
+- `verify-setup` — Inspect project and generate verification skill
+- `verify-maintain` — Update existing verification skill
 
 ---
 
@@ -36,7 +36,7 @@ This skill provides the following commands:
 
 ```bash
 # Install the verification skill
-npx skills add ./playbook --skill vstack-create-verification -a opencode
+npx skills add ./playbook --skill verify-setup -a opencode
 ```
 
 ---
@@ -47,7 +47,7 @@ After installing the verification skill, the Lead can invoke it to generate proj
 
 ```bash
 # In your project directory
-vstack-create-verification
+verify-setup
 ```
 
 This will inspect your project and generate a `verification-skill.md` with project-specific checks.

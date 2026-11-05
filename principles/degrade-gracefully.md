@@ -39,13 +39,13 @@ You are executing a workflow or skill in an environment missing a capability the
 ## Informs
 - All workflows (mandatory "Without Plugin" section)
 - All skills with plugin tooling (document manual equivalent)
-- `vstack-mode` — documents harness capability matrix
-- `vstack-session-pickup` — manual handoff protocol
+- `route` — documents harness capability matrix
+- `resume` — manual handoff protocol
 
 ## Related Skills
-- `vstack-mode` — harness adaptation patterns
-- `vstack-session-pickup` — fresh-context handoff
-- `vstack-worktree` — worktree management (with fallback)
+- `route` — harness adaptation patterns
+- `resume` — fresh-context handoff
+- `worktree` — worktree management (with fallback)
 
 ## Escalation
 If a capability gap makes a workflow impractically slow (>10x), document as known limitation. Consider if the workflow should have a "minimal viable" variant for constrained environments.

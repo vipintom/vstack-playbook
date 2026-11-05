@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-review-rubrics
+# Evaluation Scenario: rubrics
 
-**Skill:** vstack-review-rubrics
+**Skill:** rubrics
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

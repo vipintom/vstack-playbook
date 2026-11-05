@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-ready
+# Evaluation Scenario: ready
 
-**Skill:** vstack-ready
+**Skill:** ready
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

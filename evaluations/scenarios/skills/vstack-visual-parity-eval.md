@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-visual-parity
+# Evaluation Scenario: visual-parity
 
-**Skill:** vstack-visual-parity
+**Skill:** visual-parity
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

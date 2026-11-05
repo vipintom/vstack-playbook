@@ -1,6 +1,6 @@
 # Evaluation Scenario: No Suitable Playbook → figure-it-out
 
-**Content Under Test:** vstack-mode, vstack-figure-it-out
+**Content Under Test:** route, figure-it-out
 **Scenario Type:** Positive Trigger / Procedure Fidelity
 **Date:** 2026-11-02
 **Version:** v2 draft
@@ -27,13 +27,13 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **vstack-mode:** Activates, classifies request
+- **route:** Activates, classifies request
 - **Playbook selection:** No standard playbook fits (too large for refactoring, not new behaviour for feature-delivery)
-- **vstack-figure-it-out:** Invoked (positive trigger: "No suitable match or large cross-cutting scope")
+- **figure-it-out:** Invoked (positive trigger: "No suitable match or large cross-cutting scope")
 
-#### Procedure Expectation (vstack-mode → figure-it-out)
-1. vstack-mode Phases 1-4: Frames, reads principles, classifies, finds no playbook fits
-2. vstack-mode Phase 4: Selects figure-it-out
+#### Procedure Expectation (route → figure-it-out)
+1. route Phases 1-4: Frames, reads principles, classifies, finds no playbook fits
+2. route Phase 4: Selects figure-it-out
 3. figure-it-out Phase A — Frame:
    - Outcome: All callbacks → async/await
    - Done predicate: All tests pass, no callback patterns, performance >= baseline
@@ -83,12 +83,12 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **vstack-mode:** Activates, classifies as "Behaviour-preserving structural change"
+- **route:** Activates, classifies as "Behaviour-preserving structural change"
 - **Playbook selection:** refactoring playbook fits
 - **figure-it-out:** NOT invoked (negative trigger: "Task fits refactoring playbook")
 
 #### Procedure Expectation
-1. vstack-mode selects refactoring playbook
+1. route selects refactoring playbook
 2. Standard refactoring playbook executed
 3. figure-it-out never invoked
 
@@ -101,7 +101,7 @@
 
 ## Negative Case: Standard Task Incorrectly Invokes figure-it-out
 
-**Scenario:** "Fix typo in README" → vstack-mode invokes figure-it-out → designs bespoke playbook
+**Scenario:** "Fix typo in README" → route invokes figure-it-out → designs bespoke playbook
 
 **Expected:** FAIL — figure-it-out must not be invoked when standard playbook fits
 

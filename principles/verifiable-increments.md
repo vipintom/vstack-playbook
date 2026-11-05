@@ -38,17 +38,17 @@ You are planning a delivery, breaking down a task, or reviewing a proposed incre
 > Each increment: 1-2 days, independent verification, evidence recorded.
 
 ## Informs
-- `vstack-plan-loop` — decomposes into verifiable increments
+- `plan` — decomposes into verifiable increments
 - `vstack-delivery` — tracks increments with evidence
-- `vstack-verify-loop` — verifies each increment
-- `vstack-review-loop` — reviews per increment
-- `vstack-lessons` — captures patterns from increment outcomes
+- `verify` — verifies each increment
+- `review` — reviews per increment
+- `lessons` — captures patterns from increment outcomes
 
 ## Related Skills
-- `vstack-plan-loop` — verifiable task decomposition
+- `plan` — verifiable task decomposition
 - `vstack-delivery` — increment tracking
-- `vstack-verify-loop` — increment verification
-- `vstack-review-loop` — increment review
+- `verify` — increment verification
+- `review` — increment review
 
 ## Escalation
 If an increment genuinely cannot be verified in isolation (hardware dependency, external API not ready), document as **explicit verification gap** with: stub/mock strategy, deferred verification criteria, owner, deadline. Do not mark increment "verified" without evidence.

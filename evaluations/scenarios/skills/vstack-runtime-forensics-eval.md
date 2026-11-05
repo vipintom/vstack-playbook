@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-runtime-forensics
+# Evaluation Scenario: forensics
 
-**Skill:** vstack-runtime-forensics
+**Skill:** forensics
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -108,7 +108,7 @@ Probe confirms: N+1 query from new deploy
 **Expected Behavior:**
 - Root cause identified
 - Immediate mitigation: config change, restart, scale
-- Long-term fix plan via vstack-debug/vstack-performance
+- Long-term fix plan via debug/performance
 
 **Acceptance Criteria:**
 - [ ] Root cause identified

@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-debug
+# Evaluation Scenario: debug
 
-**Skill:** vstack-debug
+**Skill:** debug
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

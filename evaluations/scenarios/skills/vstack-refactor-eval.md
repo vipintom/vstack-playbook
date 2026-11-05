@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-refactor
+# Evaluation Scenario: refactor
 
-**Skill:** vstack-refactor
+**Skill:** refactor
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -165,7 +165,7 @@ Refactoring complete
 **Expected Behavior:**
 - Reverts
 - Diagnoses
-- Invokes vstack-unstick
+- Invokes unstick
 
 **Acceptance Criteria:**
 - [ ] Reverts
@@ -216,14 +216,14 @@ No full verification suite available
 
 ---
 
-## Scenario 11: Dependencies - vstack-verify-loop, vstack-incremental-build, vstack-unslop (Tier 1 - Deterministic)
+## Scenario 11: Dependencies - verify, plan, unslop (Tier 1 - Deterministic)
 
 **Objective:** Verify correct dependency routing.
 
 **Expected Behavior:**
-- vstack-verify-loop for verification discipline
-- vstack-incremental-build for step size
-- vstack-unslop for cleanup identification
+- verify for verification discipline
+- plan for step size
+- unslop for cleanup identification
 
 **Acceptance Criteria:**
 - [ ] Verify-loop referenced
@@ -232,14 +232,14 @@ No full verification suite available
 
 ---
 
-## Scenario 12: Related Skills - vstack-incremental-build, vstack-unslop, vstack-verify-loop (Tier 1 - Deterministic)
+## Scenario 12: Related Skills - plan, unslop, verify (Tier 1 - Deterministic)
 
 **Objective:** Verify related skill references.
 
 **Expected Behavior:**
-- References vstack-incremental-build (implementation discipline)
-- References vstack-unslop (cleanup)
-- References vstack-verify-loop (evidence)
+- References plan (implementation discipline)
+- References unslop (cleanup)
+- References verify (evidence)
 
 **Acceptance Criteria:**
 - [ ] Incremental-build referenced

@@ -30,13 +30,13 @@ Never run a "core-must" workflow for a trivial task just because it exists.
 
 ## Informs
 - All workflows (each has a Risk Adaptation table)
-- `vstack-figure-it-out` — decides which workflow to use
-- `vstack-sharpen` — clarifies scope/risk before workflow selection
+- `figure-it-out` — decides which workflow to use
+- `sharpen` — clarifies scope/risk before workflow selection
 
 ## Related Skills
-- `vstack-sharpen` — assesses scope and risk
-- `vstack-figure-it-out` — routes to appropriate workflow
-- `vstack-plan-loop` — scales plan complexity to task
+- `sharpen` — assesses scope and risk
+- `figure-it-out` — routes to appropriate workflow
+- `plan` — scales plan complexity to task
 
 ## Escalation
-If unsure about risk level, default to **one level higher** and document the assessment. Use `vstack-blast-radius` to quantify impact when uncertain.
+If unsure about risk level, default to **one level higher** and document the assessment. Use `impact` to quantify impact when uncertain.

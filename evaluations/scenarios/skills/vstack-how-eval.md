@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-how
+# Evaluation Scenario: code-tour
 
-**Skill:** vstack-how
+**Skill:** code-tour
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

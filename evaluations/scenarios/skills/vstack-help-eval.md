@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-help
+# Evaluation Scenario: help
 
-**Skill:** vstack-help
+**Skill:** help
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -14,13 +14,13 @@
 **Test Cases:**
 | Problem | Expected Family |
 |---------|----------------|
-| "How does X work?" | Understanding & discovery → vstack-how |
-| "Why designed this way?" | Understanding & discovery → vstack-why |
-| "What breaks if I change X?" | Understanding & discovery → vstack-blast-radius |
-| "Add new feature" | Implementation → vstack-tdd, vstack-incremental-build |
-| "Fix bug" | Debugging & recovery → vstack-debug, vstack-unstick |
-| "Review this PR" | Review → vstack-review-loop |
-| "Switch roles" | Continuity → vstack-context-reset |
+| "How does X work?" | Understanding & discovery → code-tour |
+| "Why designed this way?" | Understanding & discovery → rationale |
+| "What breaks if I change X?" | Understanding & discovery → impact |
+| "Add new feature" | Implementation → tdd, plan |
+| "Fix bug" | Debugging & recovery → debug, unstick |
+| "Review this PR" | Review → review |
+| "Switch roles" | Continuity → resume |
 
 **Acceptance Criteria:**
 - [ ] Each problem maps to correct family
@@ -55,13 +55,13 @@ Problem: "Debug flaky test"
 
 **Input:**
 ```
-Selected: vstack-debug, vstack-unstick
+Selected: debug, unstick
 Problem: "Debug flaky test"
 ```
 
 **Expected Behavior:**
-- Reads vstack-debug "When to Use": matches
-- Reads vstack-unstick "When to Use": matches (after 3+ failures)
+- Reads debug "When to Use": matches
+- Reads unstick "When to Use": matches (after 3+ failures)
 - Confirms fit
 
 **Acceptance Criteria:**
@@ -77,12 +77,12 @@ Problem: "Debug flaky test"
 
 **Input:**
 ```
-Skills: vstack-debug, then vstack-unstick
+Skills: debug, then unstick
 ```
 
 **Expected Behavior:**
-- Completes vstack-debug first
-- Then starts vstack-unstick if needed
+- Completes debug first
+- Then starts unstick if needed
 - Does not parallelize
 
 **Acceptance Criteria:**
@@ -103,12 +103,12 @@ Problem: "Design a new company logo"
 
 **Expected Behavior:**
 - No skill matches
-- Uses vstack-sharpen to clarify
+- Uses sharpen to clarify
 - Escalates if still unclear
 
 **Acceptance Criteria:**
 - [ ] No match found
-- [ ] Uses vstack-sharpen
+- [ ] Uses sharpen
 - [ ] Escalates if needed
 
 ---
@@ -139,13 +139,13 @@ Problem: "Refactor and optimize and test"
 **Objective:** Verify related skill references.
 
 **Expected Behavior:**
-- References vstack-mode for context
-- References vstack-sharpen for underspecified problems
+- References route for context
+- References sharpen for underspecified problems
 - Integrates with skill selection
 
 **Acceptance Criteria:**
-- [ ] References vstack-mode
-- [ ] References vstack-sharpen
+- [ ] References route
+- [ ] References sharpen
 - [ ] Integrates with selection
 
 ---

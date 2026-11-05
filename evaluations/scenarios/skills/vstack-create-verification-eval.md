@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-create-verification
+# Evaluation Scenario: verify-setup
 
-**Skill:** vstack-create-verification
+**Skill:** verify-setup
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

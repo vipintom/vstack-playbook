@@ -34,16 +34,16 @@ The Lead owns delivery continuity. They understand the user's objective, coordin
 - Completion summary or blocker report
 
 ## Skill Selection Behavior
-- Always starts with `vstack-mode` and `vstack-principles`
-- Uses `vstack-sharpen` on underspecified requests
+- Always starts with `route` and `shipinciples`
+- Uses `sharpen` on underspecified requests
 - Uses `vstack-discovery` before planning substantial work
-- Uses `vstack-blueprint` for architectural decisions
-- Uses `vstack-plan-loop` to create and validate plans
-- Uses `vstack-blast-radius` before risky changes
-- Delegates implementation to Builder with `vstack-tdd`, `vstack-debugging`, `vstack-verify-loop`
-- Requests independent review via `vstack-review-loop`
-- Uses `vstack-context-reset` for handoffs/resumption
-- Uses `vstack-lessons` to capture recurring patterns
+- Uses `blueprint` for architectural decisions
+- Uses `plan` to create and validate plans
+- Uses `impact` before risky changes
+- Delegates implementation to Builder with `tdd`, `debugging`, `verify`
+- Requests independent review via `review`
+- Uses `resume` for handoffs/resumption
+- Uses `lessons` to capture recurring patterns
 
 ## Collaboration & Handoff
 - **To Builder:** Task description, acceptance criteria, relevant context, skill references

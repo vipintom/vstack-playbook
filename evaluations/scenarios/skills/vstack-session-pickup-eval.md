@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-session-pickup
+# Evaluation Scenario: resume
 
-**Skill:** vstack-session-pickup
+**Skill:** resume
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -163,9 +163,9 @@ No PROGRESS.md file
 
 ---
 
-## Scenario 8: Re-invokes vstack-mode (Tier 1 - Deterministic)
+## Scenario 8: Re-invokes route (Tier 1 - Deterministic)
 
-**Objective:** Verify re-invokes vstack-mode for next phase.
+**Objective:** Verify re-invokes route for next phase.
 
 **Input:**
 ```
@@ -173,12 +173,12 @@ Checkpoint validated, next action confirmed
 ```
 
 **Expected Behavior:**
-- Re-invokes vstack-mode
+- Re-invokes route
 - Continues from Step 6 (checklist) or Step 7 (execution)
 - Does not re-run Phase 1-5
 
 **Acceptance Criteria:**
-- [ ] vstack-mode re-invoked
+- [ ] route re-invoked
 - [ ] Continues from Step 6 or 7
 - [ ] Does not re-run earlier phases
 

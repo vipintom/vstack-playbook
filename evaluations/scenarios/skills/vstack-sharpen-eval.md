@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-sharpen
+# Evaluation Scenario: sharpen
 
-**Skill:** vstack-sharpen
+**Skill:** sharpen
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -119,7 +119,7 @@ User: "I don't know, just make it faster"
 
 **Expected Behavior:**
 - Documents assumptions
-- Proceeds with vstack-how/vstack-why discovery
+- Proceeds with code-tour/rationale discovery
 - Does not stall indefinitely
 
 **Acceptance Criteria:**
@@ -155,9 +155,9 @@ User: "Make it better" (no specifics even after probing)
 **Objective:** Verify related skill references.
 
 **Expected Behavior:**
-- References vstack-how for discovery
-- References vstack-plan-loop for planning
-- References vstack-mode for context
+- References code-tour for discovery
+- References plan for planning
+- References route for context
 
 **Acceptance Criteria:**
 - [ ] References how

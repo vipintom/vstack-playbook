@@ -9,7 +9,6 @@ export const REQUIRED_SECTIONS = ["When to use", "Modes", "Steps", "Output", "Fa
 export const BODY_LINE_BUDGET = 150;
 
 const NAME_PATTERN = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;
-const OLD_PREFIX = /^vstack-/;
 const BACKTICK = /`([^`\n]+)`/g;
 
 /**
@@ -122,8 +121,9 @@ export function validateSkill(skillDir, options = {}) {
     );
   }
 
+  const oldNames = loadOldNames(options.renamesPath ?? resolve(process.cwd(), "tools/renames.json"));
   for (const token of backticked(body)) {
-    if (OLD_PREFIX.test(token)) {
+    if (oldNames.has(token)) {
       issue("OLD_SKILL_NAME", file, `body references the 0.1.0 name \`${token}\``);
     }
   }
@@ -139,6 +139,11 @@ export function listSkillNames(skillsRoot) {
       return statSync(full).isDirectory() && existsSync(join(full, "SKILL.md"));
     }),
   );
+}
+
+function loadOldNames(path) {
+  if (!existsSync(path)) return new Set();
+  return new Set(Object.keys(JSON.parse(readFileSync(path, "utf-8"))));
 }
 
 function backticked(text) {

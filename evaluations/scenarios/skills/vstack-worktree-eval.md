@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-worktree
+# Evaluation Scenario: worktree
 
-**Skill:** vstack-worktree
+**Skill:** worktree
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

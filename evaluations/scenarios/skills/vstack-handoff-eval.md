@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-handoff
+# Evaluation Scenario: handoff
 
-**Skill:** vstack-handoff
+**Skill:** handoff
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -87,7 +87,7 @@ Recipient receives handoff
 ```
 
 **Expected Behavior:**
-- Runs vstack-catchup or vstack-session-pickup
+- Runs resume or resume
 - Confirms understanding
 - Begins from exact next action
 

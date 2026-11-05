@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-maintain-verification
+# Evaluation Scenario: verify-maintain
 
-**Skill:** vstack-maintain-verification
+**Skill:** verify-maintain
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -146,11 +146,11 @@ Validation fails 3 times
 ```
 
 **Expected Behavior:**
-- Escalates to vstack-debug verification itself
+- Escalates to debug verification itself
 - Reports to Lead
 
 **Acceptance Criteria:**
-- [ ] Escalates to vstack-debug
+- [ ] Escalates to debug
 - [ ] Reports to Lead
 
 ---

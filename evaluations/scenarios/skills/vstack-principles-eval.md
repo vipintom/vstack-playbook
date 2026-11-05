@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-principles
+# Evaluation Scenario: shipinciples
 
-**Skill:** vstack-principles
+**Skill:** shipinciples
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

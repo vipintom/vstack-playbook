@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-verify-loop
+# Evaluation Scenario: verify
 
-**Skill:** vstack-verify-loop
+**Skill:** verify
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

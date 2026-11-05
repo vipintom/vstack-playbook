@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-interrogate
+# Evaluation Scenario: red-team
 
-**Skill:** vstack-interrogate
+**Skill:** red-team
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

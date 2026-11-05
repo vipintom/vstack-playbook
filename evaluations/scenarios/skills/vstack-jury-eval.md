@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-jury
+# Evaluation Scenario: red-team
 
-**Skill:** vstack-jury
+**Skill:** red-team
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -266,11 +266,11 @@ Only 1 reviewer available
 ```
 
 **Expected Behavior:**
-- Uses vstack-interrogate instead
+- Uses red-team instead
 - Documents fallback
 
 **Acceptance Criteria:**
-- [ ] Uses vstack-interrogate
+- [ ] Uses red-team
 - [ ] Fallback documented
 
 ---

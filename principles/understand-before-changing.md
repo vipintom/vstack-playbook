@@ -8,11 +8,11 @@ You are about to edit code, change configuration, modify a schema, or alter a pr
 
 ## Decision Rule
 **Mandatory understanding phase before any change.** Minimum understanding steps:
-1. **Locate** — Find all relevant code, config, docs, tests (`vstack-how`, `vstack-why`, `grep`/`glob`)
+1. **Locate** — Find all relevant code, config, docs, tests (`code-tour`, `rationale`, `grep`/`glob`)
 2. **Read** — Read the actual implementation, not just summaries
 3. **Trace** — Understand runtime flow, data dependencies, call chains
 4. **Test** — Run existing tests to confirm current behavior
-5. **Document** — Record findings in `vstack-ledger` or `vstack-memory`
+5. **Document** — Record findings in `decisions` or `vstack-memory`
 
 **Only then** propose the change with:
 - What you're changing and why
@@ -32,25 +32,25 @@ You are about to edit code, change configuration, modify a schema, or alter a pr
 > "Fix the login timeout" — changes auth middleware without reading session handling, breaks token refresh.
 
 ### ✅ Follows Principle
-> 1. `vstack-how` "login flow" → finds `auth/middleware.ts`, `session/refresh.ts`
+> 1. `code-tour` "login flow" → finds `auth/middleware.ts`, `session/refresh.ts`
 > 2. Reads both files, traces request flow
 > 3. Runs existing auth tests — all pass
 > 4. Identifies timeout config in `config/auth.ts`, not middleware
 > 5. Proposes: "Increase `session.idleTimeout` from 15m to 30m in config. Blast radius: only session expiry. Verify: existing tests + manual login test."
 
 ## Informs
-- `vstack-how` — codebase understanding
-- `vstack-why` — design rationale discovery
-- `vstack-blast-radius` — impact analysis
-- `vstack-debug` — systematic diagnosis before fix
+- `code-tour` — codebase understanding
+- `rationale` — design rationale discovery
+- `impact` — impact analysis
+- `debug` — systematic diagnosis before fix
 - All workflows — Discovery/Blueprint phases before Implement
 
 ## Related Skills
-- `vstack-how` — codebase walkthrough
-- `vstack-why` — decision rationale
-- `vstack-blast-radius` — impact analysis
-- `vstack-debug` — systematic debugging
+- `code-tour` — codebase walkthrough
+- `rationale` — decision rationale
+- `impact` — impact analysis
+- `debug` — systematic debugging
 - `vstack-investigation` workflow — structured understanding
 
 ## Escalation
-If understanding takes >50% of estimated task time, that's expected — not a delay. If the system is genuinely incomprehensible, escalate to `architecture-change` workflow with `vstack-architect` to address technical debt.
+If understanding takes >50% of estimated task time, that's expected — not a delay. If the system is genuinely incomprehensible, escalate to `architecture-change` workflow with `design` to address technical debt.

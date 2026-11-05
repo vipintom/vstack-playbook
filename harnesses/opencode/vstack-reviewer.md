@@ -25,5 +25,5 @@ Fresh context — no implementation history. Dispatches as separate session.
 ## Skills
 
 Applies review skills:
-- `vstack-review-loop` — independent review procedure
+- `review` — independent review procedure
 - Review lenses from `../../../resources/rubrics/`

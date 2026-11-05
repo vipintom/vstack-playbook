@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-trace-forensics
+# Evaluation Scenario: forensics
 
-**Skill:** vstack-trace-forensics
+**Skill:** forensics
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -181,7 +181,7 @@ Root cause: distributed cache architecture
 ```
 
 **Expected Behavior:**
-- Escalates to vstack-architect
+- Escalates to design
 - Does not attempt code-only fix
 
 **Acceptance Criteria:**
@@ -219,7 +219,7 @@ No trace/profiling data available
 ```
 
 **Expected Behavior:**
-- Falls back to vstack-runtime-forensics live diagnosis
+- Falls back to forensics live diagnosis
 - Documents fallback
 
 **Acceptance Criteria:**

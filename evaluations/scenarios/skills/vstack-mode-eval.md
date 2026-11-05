@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-mode
+# Evaluation Scenario: route
 
-**Skill:** vstack-mode
+**Skill:** route
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -9,7 +9,7 @@
 
 ## Scenario 1: Trivial vs Non-Trivial Routing (Tier 1 - Deterministic)
 
-**Objective:** Verify vstack-mode correctly distinguishes trivial edits from non-trivial work.
+**Objective:** Verify route correctly distinguishes trivial edits from non-trivial work.
 
 **Input:**
 ```
@@ -42,12 +42,12 @@ Request: "How does the auth flow work?"
 **Expected Behavior:**
 - Classifies as read-only
 - Selects investigation playbook
-- Routes to vstack-how/vstack-why
+- Routes to code-tour/rationale
 
 **Acceptance Criteria:**
 - [ ] Classified as read-only
 - [ ] Investigation playbook selected
-- [ ] vstack-how/vstack-why invoked
+- [ ] code-tour/rationale invoked
 
 ---
 
@@ -72,7 +72,7 @@ Request: "How does the auth flow work?"
 
 ## Scenario 4: No Playbook → figure-it-out (Tier 1 - Deterministic)
 
-**Objective:** Verify vstack-figure-it-out invoked when no standard playbook fits.
+**Objective:** Verify figure-it-out invoked when no standard playbook fits.
 
 **Input:**
 ```
@@ -81,7 +81,7 @@ Request: "Migrate monolith to microservices with zero downtime, database shardin
 
 **Expected Behavior:**
 - No standard playbook matches
-- Invokes vstack-figure-it-out
+- Invokes figure-it-out
 - Designs bespoke playbook
 
 **Acceptance Criteria:**
@@ -157,17 +157,17 @@ Simple config change (feature-delivery)
 
 **Input:**
 ```
-User: "Use vstack-how to trace the login flow"
+User: "Use code-tour to trace the login flow"
 ```
 
 **Expected Behavior:**
-- Executes vstack-how directly
+- Executes code-tour directly
 - No playbook selection
 - No checklist creation
 - No rigour calibration
 
 **Acceptance Criteria:**
-- [ ] vstack-how executed directly
+- [ ] code-tour executed directly
 - [ ] No playbook selected
 - [ ] No checklist
 - [ ] No rigour calibration

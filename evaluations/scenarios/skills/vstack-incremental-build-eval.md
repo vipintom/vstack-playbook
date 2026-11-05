@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-incremental-build
+# Evaluation Scenario: plan
 
-**Skill:** vstack-incremental-build
+**Skill:** plan
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -103,7 +103,7 @@ Multiple units implemented
 
 ## Scenario 5: Escalation - Verification Fails Repeatedly (Tier 1 - Deterministic)
 
-**Objective:** Verify vstack-unstick escalation.
+**Objective:** Verify unstick escalation.
 
 **Input:**
 ```
@@ -111,11 +111,11 @@ Verification fails 3+ times on same unit
 ```
 
 **Expected Behavior:**
-- Invokes vstack-unstick
+- Invokes unstick
 - Does not keep retrying same fix
 
 **Acceptance Criteria:**
-- [ ] Invokes vstack-unstick
+- [ ] Invokes unstick
 - [ ] Does not retry same fix
 
 ---
@@ -130,7 +130,7 @@ Unit requires larger change than planned
 ```
 
 **Expected Behavior:**
-- Revises plan via vstack-plan-loop
+- Revises plan via plan
 - Does not force large change in single unit
 
 **Acceptance Criteria:**

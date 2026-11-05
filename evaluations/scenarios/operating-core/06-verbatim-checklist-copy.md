@@ -1,6 +1,6 @@
 # Evaluation Scenario: Verbatim Checklist Copy
 
-**Content Under Test:** vstack-mode
+**Content Under Test:** route
 **Scenario Type:** Procedure Fidelity
 **Date:** 2026-11-02
 **Version:** v2 draft
@@ -26,7 +26,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode selects bug-fixing playbook
+1. route selects bug-fixing playbook
 2. **Phase 6:** Creates checklist by copying bug-fixing playbook steps VERBATIM:
    - Step 1: Sharpen (reproduce steps, expected vs actual, acceptance criteria)
    - Step 2: Discovery (find root cause location, understand behaviour)
@@ -65,7 +65,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode selects bug-fixing playbook
+1. route selects bug-fixing playbook
 2. Checklist created with all bug-fixing steps verbatim
 3. **Non-applicable steps marked with skip reason:**
    - Blast Radius: `skip: Single string change, no callers affected`
@@ -100,7 +100,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode selects feature-delivery playbook
+1. route selects feature-delivery playbook
 2. **Phase 6:** Copies playbook steps verbatim to OpenCode native todo list
 3. Each step becomes a todo item with exact playbook wording
 4. Todo state tracked natively (pending/in_progress/completed)
@@ -126,7 +126,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode selects feature-delivery playbook
+1. route selects feature-delivery playbook
 2. **Phase 6:** Creates checklist in session context (or PROGRESS.md)
 3. Checklist maintains: step text, state, skip reason
 4. Lead manually updates checklist state

@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-figure-it-out
+# Evaluation Scenario: figure-it-out
 
-**Skill:** vstack-figure-it-out
+**Skill:** figure-it-out
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

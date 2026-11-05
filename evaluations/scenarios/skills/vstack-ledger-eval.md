@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-ledger
+# Evaluation Scenario: decisions
 
-**Skill:** vstack-ledger
+**Skill:** decisions
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -110,13 +110,13 @@ Decision needs Lead approval
 
 ---
 
-## Scenario 5: Trigger - vstack-unstick (Tier 1 - Deterministic)
+## Scenario 5: Trigger - unstick (Tier 1 - Deterministic)
 
 **Objective:** Verify ledger entry on approach change.
 
 **Input:**
 ```
-vstack-unstick changed approach after 3 failures
+unstick changed approach after 3 failures
 ```
 
 **Expected Behavior:**
@@ -131,13 +131,13 @@ vstack-unstick changed approach after 3 failures
 
 ---
 
-## Scenario 6: Trigger - vstack-recovery (Tier 1 - Deterministic)
+## Scenario 6: Trigger - recovery (Tier 1 - Deterministic)
 
 **Objective:** Verify ledger entry on state restoration.
 
 **Input:**
 ```
-vstack-recovery restored to baseline
+recovery restored to baseline
 ```
 
 **Expected Behavior:**
@@ -152,13 +152,13 @@ vstack-recovery restored to baseline
 
 ---
 
-## Scenario 6: Trigger - vstack-context-reset (Tier 1 - Deterministic)
+## Scenario 6: Trigger - resume (Tier 1 - Deterministic)
 
 **Objective:** Verify checkpoint link recorded.
 
 **Input:**
 ```
-vstack-context-reset updated PROGRESS.md
+resume updated PROGRESS.md
 ```
 
 **Expected Behavior:**
@@ -171,7 +171,7 @@ vstack-context-reset updated PROGRESS.md
 
 ---
 
-## Scenario 7: Trigger - vstack-session-pickup (Tier 1 - Deterministic)
+## Scenario 7: Trigger - resume (Tier 1 - Deterministic)
 
 **Objective:** Verify ledger consumed on resume.
 

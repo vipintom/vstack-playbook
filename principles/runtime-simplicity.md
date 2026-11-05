@@ -16,7 +16,7 @@ You are designing a plugin feature, considering adding orchestration logic, or t
 The plugin does **not** provide:
 - Workflow interpretation (workflows are Markdown recipes, not state machines)
 - Decision logic (skills describe procedures; agents execute them)
-- Planning/scheduling (Lead/Builder own planning via `vstack-plan-loop`)
+- Planning/scheduling (Lead/Builder own planning via `plan`)
 - Policy engine (enforcement is explicit gates, not rules)
 
 ## Observable Effect
@@ -34,13 +34,13 @@ The plugin does **not** provide:
 
 ## Informs
 - OpenCode plugin architecture (tools vs services)
-- `vstack-mode` — documents plugin as optional runtime
+- `route` — documents plugin as optional runtime
 - All workflows — "With Plugin" sections use plugin for recording/coordination only
 
 ## Related Skills
-- `vstack-mode` — plugin as optional runtime
-- `vstack-figure-it-out` — Lead decides workflow execution
-- `vstack-plan-loop` — Lead owns planning
+- `route` — plugin as optional runtime
+- `figure-it-out` — Lead decides workflow execution
+- `plan` — Lead owns planning
 
 ## Escalation
 If a plugin feature request crosses into "orchestration logic" or "decision automation," reject or defer. Document as "playbook responsibility" with manual/plugin-assisted procedure.

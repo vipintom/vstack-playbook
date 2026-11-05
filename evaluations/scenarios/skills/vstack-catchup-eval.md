@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-catchup
+# Evaluation Scenario: resume
 
-**Skill:** vstack-catchup
+**Skill:** resume
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

@@ -34,13 +34,13 @@ The Builder performs engineering work: investigation, design, implementation, de
 
 ## Skill Selection Behavior
 - Uses `vstack-discovery` to understand relevant codebase areas
-- Uses `vstack-tdd` for test-first implementation where suitable
-- Uses `vstack-debugging` for systematic failure diagnosis
-- Uses `vstack-verify-loop` to execute checks and iterate
-- Uses `vstack-unstick` when repeated attempts fail
-- Uses `vstack-blast-radius` before changes with wide impact
-- Uses `vstack-context-reset` to preserve progress at boundaries
-- References `vstack-principles` for decision guidance
+- Uses `tdd` for test-first implementation where suitable
+- Uses `debugging` for systematic failure diagnosis
+- Uses `verify` to execute checks and iterate
+- Uses `unstick` when repeated attempts fail
+- Uses `impact` before changes with wide impact
+- Uses `resume` to preserve progress at boundaries
+- References `shipinciples` for decision guidance
 
 ## Collaboration & Handoff
 - **From Lead:** Task, acceptance criteria, context, skill references
@@ -54,7 +54,7 @@ The Builder performs engineering work: investigation, design, implementation, de
 - Implementation summary references specific evidence IDs
 
 ## Escalation Conditions
-- Cannot reproduce or diagnose failure after `vstack-unstick` attempts
+- Cannot reproduce or diagnose failure after `unstick` attempts
 - Change scope exceeds task boundaries (requires Lead re-scoping)
 - Blocker requires architectural decision beyond task scope
 - Evidence requirements cannot be met with available tools

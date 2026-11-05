@@ -23,7 +23,7 @@ You are designing a new feature, refactoring existing code, or reviewing code wh
 - Domain logic is locatable, testable, and changeable in one place
 - New team members learn domain from code structure
 - Changes to business rules touch one model, not N call sites
-- `vstack-architect` reviews find domain leakage
+- `design` reviews find domain leakage
 
 ## Concrete Example
 
@@ -34,16 +34,16 @@ You are designing a new feature, refactoring existing code, or reviewing code wh
 > `class Subscription { canAccess(feature: string): boolean { ... } }` — all logic encapsulated. Callers: `subscription.canAccess('api')`. Change: modify `Subscription` class only.
 
 ## Informs
-- `vstack-architect` — domain modeling in design
-- `vstack-blueprint` — compares designs by domain clarity
-- `vstack-refactor` — extracts implicit domain
-- `vstack-design-audit` — maintainability lens checks domain modeling
+- `design` — domain modeling in design
+- `blueprint` — compares designs by domain clarity
+- `refactor` — extracts implicit domain
+- `audit` — maintainability lens checks domain modeling
 
 ## Related Skills
-- `vstack-architect` — domain-driven design
-- `vstack-refactor` — extract domain model
-- `vstack-design-audit` — review for domain leakage
-- `vstack-blueprint` — design comparison
+- `design` — domain-driven design
+- `refactor` — extract domain model
+- `audit` — review for domain leakage
+- `blueprint` — design comparison
 
 ## Escalation
-If domain is genuinely unclear (early product, exploring), document as **explicit uncertainty** in `vstack-memory`. Use `vstack-prototype` to explore. Do not cement implicit assumptions.
+If domain is genuinely unclear (early product, exploring), document as **explicit uncertainty** in `vstack-memory`. Use `shipototype` to explore. Do not cement implicit assumptions.

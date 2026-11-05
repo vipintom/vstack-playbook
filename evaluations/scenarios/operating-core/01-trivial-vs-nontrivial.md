@@ -1,13 +1,13 @@
 # Evaluation Scenario: Trivial vs Non-Trivial Request Routing
 
-**Content Under Test:** vstack-mode
+**Content Under Test:** route
 **Scenario Type:** Positive Trigger / Negative Trigger
 **Date:** 2026-11-02
 **Version:** v2 draft
 
 ---
 
-## Scenario 1A: Trivial Request (Negative Trigger for vstack-mode)
+## Scenario 1A: Trivial Request (Negative Trigger for route)
 
 ### Input Fixture
 
@@ -26,13 +26,13 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **Should activate vstack-mode:** NO
+- **Should activate route:** NO
 - **Should route to playbook:** NONE
 - **Should load skills:** NONE
 
 #### Procedure Expectation
 1. Agent recognises request as trivial edit (typo, formatting, config tweak)
-2. Agent does NOT invoke vstack-mode
+2. Agent does NOT invoke route
 3. Agent does NOT read principle index
 4. Agent does NOT create task checklist
 5. Agent makes direct edit: fixes typo in README.md
@@ -61,7 +61,7 @@
 
 | Criterion | Pass Condition | Weight |
 |---|---|---|
-| Trigger precision | vstack-mode NOT activated for trivial request | Required |
+| Trigger precision | route NOT activated for trivial request | Required |
 | Procedure fidelity | Direct edit without playbook ceremony | Required |
 | Decision quality | Route Before Loading principle applied | Required |
 | Technical outcome | Typo fixed, no collateral changes | Required |
@@ -70,7 +70,7 @@
 
 ---
 
-## Scenario 1B: Non-Trivial Engineering Task (Positive Trigger for vstack-mode)
+## Scenario 1B: Non-Trivial Engineering Task (Positive Trigger for route)
 
 ### Input Fixture
 
@@ -89,13 +89,13 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **Should activate vstack-mode:** YES
+- **Should activate route:** YES
 - **Should route to playbook:** feature-delivery
-- **Should load skills:** vstack-sharpen, vstack-how, vstack-why, vstack-architect, vstack-tdd, vstack-verify-loop, vstack-review-loop (as triggers fire)
+- **Should load skills:** sharpen, code-tour, rationale, design, tdd, verify, review (as triggers fire)
 
 #### Procedure Expectation
-1. vstack-mode invoked
-2. Phase 1: vstack-sharpen clarifies: problem=need auth, criteria=login/register endpoints, JWT, protected routes, tests
+1. route invoked
+2. Phase 1: sharpen clarifies: problem=need auth, criteria=login/register endpoints, JWT, protected routes, tests
 3. Phase 2: Reads principle index (compact)
 3. Phase 3: Classifies as "New or changed behaviour" → feature-delivery playbook
 4. Phase 4: Selects feature-delivery (not architecture-change)
@@ -126,7 +126,7 @@
 
 | Criterion | Pass Condition | Weight |
 |---|---|---|
-| Trigger precision | vstack-mode activated for non-trivial request | Required |
+| Trigger precision | route activated for non-trivial request | Required |
 | Procedure fidelity | All 9 phases executed in order | Required |
 | Decision quality | Correct playbook selected, rigour calibrated | Required |
 | Technical outcome | Auth feature implemented and verified | Required |
@@ -137,9 +137,9 @@
 
 ## Negative Case: Trivial Request Incorrectly Routes to Playbook
 
-**Scenario:** "Fix typo in README" → vstack-mode activates → selects bug-fixing playbook → creates checklist
+**Scenario:** "Fix typo in README" → route activates → selects bug-fixing playbook → creates checklist
 
-**Expected:** FAIL — vstack-mode must not activate for trivial requests
+**Expected:** FAIL — route must not activate for trivial requests
 
 ---
 

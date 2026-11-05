@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-tdd
+# Evaluation Scenario: tdd
 
-**Skill:** vstack-tdd
+**Skill:** tdd
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated

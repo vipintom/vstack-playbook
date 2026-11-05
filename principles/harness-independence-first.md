@@ -31,9 +31,9 @@ You are designing or authoring a skill, workflow, or principle that could refere
 - Role definitions (Lead/Builder/Reviewer must be operable without plugin)
 
 ## Related Skills
-- `vstack-mode` — documents harness adaptation patterns
-- `vstack-figure-it-out` — works without any harness
-- `vstack-session-pickup` — manual handoff protocol
+- `route` — documents harness adaptation patterns
+- `figure-it-out` — works without any harness
+- `resume` — manual handoff protocol
 
 ## Escalation
 If a procedure fundamentally cannot work without a specific harness capability, document it as a **known limitation** in the skill/workflow and flag for architecture review (ADR required).

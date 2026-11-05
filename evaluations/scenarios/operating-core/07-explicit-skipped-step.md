@@ -1,6 +1,6 @@
 # Evaluation Scenario: Explicit Skipped Step Handling
 
-**Content Under Test:** vstack-mode, playbooks
+**Content Under Test:** route, playbooks
 **Scenario Type:** Procedure Fidelity
 **Date:** 2026-11-02
 **Version:** v2 draft
@@ -26,7 +26,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode selects refactoring playbook
+1. route selects refactoring playbook
 2. Checklist created with all refactoring steps verbatim
 3. **Non-applicable steps identified and marked:**
    - Blueprint: `skip: Target structure already clear (ValidationService), no design alternatives needed`
@@ -61,7 +61,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode selects feature-delivery (new behaviour) but calibrates as Low risk
+1. route selects feature-delivery (new behaviour) but calibrates as Low risk
 2. **Risk adaptation table in playbook consulted:**
    - Discovery: `skip: No unknown architecture, trivial endpoint`
    - Architect: `skip: No design alternatives`
@@ -91,7 +91,7 @@
 ### Expected Behaviour
 
 #### Procedure Expectation
-1. vstack-mode initially calibrates as Low risk
+1. route initially calibrates as Low risk
 2. **Phase 7 (Reassess):** Discovery reveals cross-boundary integrations
 3. Checklist revised: Previously skipped steps (Architect, Blast Radius) now ACTIVATED
 4. Skip reasons updated: `reassessed: Discovery revealed 3rd party integrations`
@@ -100,7 +100,7 @@
 
 #### Decision Quality Expectation
 - **Branch point:** Reassessment after discovery
-- **Principle applied:** Reassess when evidence changes (vstack-mode Phase 7)
+- **Principle applied:** Reassess when evidence changes (route Phase 7)
 - **Expected choice:** Revise checklist, don't continue disproven plan
 
 ---

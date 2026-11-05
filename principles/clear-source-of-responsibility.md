@@ -41,7 +41,7 @@ Confusion about who owns a decision, record, or enforcement point — e.g., "Doe
 - Playbook roles (Lead owns decisions, Builder owns execution, Reviewer owns challenge)
 
 ## Related Skills
-- `vstack-mode` — documents harness boundaries
+- `route` — documents harness boundaries
 - `vstack-check` — plugin-owned check recording
 - `vstack-delivery` — plugin-owned delivery lifecycle
 

@@ -26,7 +26,7 @@ npx skills add github:vipintom/vstack-playbook --skill '*' --agent '*'
 ### Selective Skills
 
 ```bash
-npx skills add @vipintom/vstack --skill vstack-tdd vstack-verify-loop vstack-debug --agent opencode
+npx skills add @vipintom/vstack --skill tdd verify debug --agent opencode
 ```
 
 ### For Specific Harnesses
@@ -49,112 +49,112 @@ npx skills add @vipintom/vstack --agent codex
 1. **Read principles** → `principles/index.md`
 2. **Identify your role** → `agents/roles/lead.md` | `builder.md` | `reviewer.md`
 3. **Select workflow** → `workflows/feature-delivery.md` | `bug-fixing.md` | `refactoring.md`
-4. **Apply skills** → Use `vstack-help` to find relevant skills
+4. **Apply skills** → Use `help` to find relevant skills
 
 ## Skills (55)
 
 ### Foundation (7)
 | Skill | Purpose |
 |---|---|
-| `vstack-skill-authoring` | Skill creation guidelines |
-| `vstack-skill-evaluation` | Skill evaluation methodology |
-| `vstack-mode` | Establish working method |
-| `vstack-principles` | Core rules reference |
-| `vstack-help` | Find relevant skills |
-| `vstack-sharpen` | Clarify request |
-| `vstack-figure-it-out` | Bespoke playbook design |
+| `skill-authoring` | Skill creation guidelines |
+| `skill-eval` | Skill evaluation methodology |
+| `route` | Establish working method |
+| `shipinciples` | Core rules reference |
+| `help` | Find relevant skills |
+| `sharpen` | Clarify request |
+| `figure-it-out` | Bespoke playbook design |
 
 ### Discovery (6)
 | Skill | Purpose |
 |---|---|
-| `vstack-how` | Code walkthroughs |
-| `vstack-why` | Design rationale |
-| `vstack-blast-radius` | Analyze impact |
-| `vstack-explain` | Code explanation |
-| `vstack-recall` | Context retrieval |
-| `vstack-blueprint` | Technical specifications |
+| `code-tour` | Code walkthroughs |
+| `rationale` | Design rationale |
+| `impact` | Analyze impact |
+| `report` | Code explanation |
+| `resume` | Context retrieval |
+| `blueprint` | Technical specifications |
 
 ### Architecture (5)
 | Skill | Purpose |
 |---|---|
-| `vstack-architect` | System architecture decisions |
-| `vstack-arena` | Design comparison |
-| `vstack-design-audit` | Design review |
-| `vstack-prototype` | Prototyping |
-| `vstack-best-of-n` | Best-of-N evaluation |
+| `design` | System architecture decisions |
+| `red-team` | Design comparison |
+| `audit` | Design review |
+| `shipototype` | Prototyping |
+| `red-team` | Best-of-N evaluation |
 
 ### Planning (5)
 | Skill | Purpose |
 |---|---|
-| `vstack-plan-loop` | Create & validate plan |
-| `vstack-plan-review` | Fresh-context plan validation |
-| `vstack-incremental-build` | Incremental delivery |
-| `vstack-refactor` | Safe refactoring |
-| `vstack-unslop` | AI tell removal |
+| `plan` | Create & validate plan |
+| `plan` | Fresh-context plan validation |
+| `plan` | Incremental delivery |
+| `refactor` | Safe refactoring |
+| `unslop` | AI tell removal |
 
 ### Implementation (1)
 | Skill | Purpose |
 |---|---|
-| `vstack-tdd` | Test-driven development |
+| `tdd` | Test-driven development |
 
 ### Verification (4)
 | Skill | Purpose |
 |---|---|
-| `vstack-verify-loop` | Execute checks, iterate |
-| `vstack-create-verification` | Project verification skill creation |
-| `vstack-maintain-verification` | Verification maintenance |
-| `vstack-verification-audit` | Verification quality audit |
+| `verify` | Execute checks, iterate |
+| `verify-setup` | Project verification skill creation |
+| `verify-maintain` | Verification maintenance |
+| `coverage` | Verification quality audit |
 
 ### Debug/Recovery (4)
 | Skill | Purpose |
 |---|---|
-| `vstack-debug` | Systematic debugging |
-| `vstack-recovery` | Failure recovery |
-| `vstack-unstick` | Change approach when stuck |
-| `vstack-runtime-forensics` | Runtime analysis |
+| `debug` | Systematic debugging |
+| `recovery` | Failure recovery |
+| `unstick` | Change approach when stuck |
+| `forensics` | Runtime analysis |
 
 ### Collaboration (5)
 | Skill | Purpose |
 |---|---|
-| `vstack-swarm` | Parallel execution |
-| `vstack-handoff` | Context handoff |
-| `vstack-worktree` | Worktree management |
-| `vstack-interrogate` | Deep code review |
-| `vstack-jury` | Jury evaluation |
+| `red-team` | Parallel execution |
+| `handoff` | Context handoff |
+| `worktree` | Worktree management |
+| `red-team` | Deep code review |
+| `red-team` | Jury evaluation |
 
 ### Review (4)
 | Skill | Purpose |
 |---|---|
-| `vstack-review-rubrics` | Review criteria |
-| `vstack-review-loop` | Independent review |
-| `vstack-pr` | PR preparation |
-| `vstack-watch-pr` | PR monitoring |
+| `rubrics` | Review criteria |
+| `review` | Independent review |
+| `ship` | PR preparation |
+| `watch-pr` | PR monitoring |
 
 ### Continuity (5)
 | Skill | Purpose |
 |---|---|
-| `vstack-ledger` | Decision/lesson tracking |
-| `vstack-safe-pause` | Safe interruption |
-| `vstack-session-pickup` | Session resumption |
-| `vstack-ready` | Readiness check |
-| `vstack-ship` | Release execution |
+| `decisions` | Decision/lesson tracking |
+| `handoff` | Safe interruption |
+| `resume` | Session resumption |
+| `ready` | Readiness check |
+| `ship` | Release execution |
 
 ### Extended (4)
 | Skill | Purpose |
 |---|---|
-| `vstack-performance` | Performance optimization |
-| `vstack-trace-forensics` | Trace analysis |
-| `vstack-visual-parity` | Visual regression |
-| `vstack-lessons` | Pattern-to-improvement |
+| `performance` | Performance optimization |
+| `forensics` | Trace analysis |
+| `visual-parity` | Visual regression |
+| `lessons` | Pattern-to-improvement |
 
 ### Utils (3)
 | Skill | Purpose |
 |---|---|
-| `docker-compose` | Docker & Docker Compose patterns |
+| `docker` | Docker & Docker Compose patterns |
 | `makefile` | Modern Makefile automation |
 | `gitignore` | .gitignore templates |
 
-**Retired (v1 legacy):** `vstack-discovery`, `vstack-debugging` — superseded
+**Retired (v1 legacy):** `vstack-discovery`, `debugging` — superseded
 
 ## Workflows (18)
 

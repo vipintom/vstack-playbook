@@ -1,6 +1,6 @@
 # Evaluation Scenario: Risk-Based Rigour Selection
 
-**Content Under Test:** vstack-mode
+**Content Under Test:** route
 **Scenario Type:** Decision Quality / Procedure Fidelity
 **Date:** 2026-11-02
 **Version:** v2 draft
@@ -27,7 +27,7 @@
 
 #### Rigour Calibration
 - **Risk level:** Low
-- **Investigation:** Light (vstack-how focused on single file)
+- **Investigation:** Light (code-tour focused on single file)
 - **Design alternatives:** None (straightforward rename)
 - **Parallelism:** None (single file)
 - **Decision trail:** Not needed
@@ -35,7 +35,7 @@
 - **Approval:** None needed
 
 #### Procedure Expectation
-1. vstack-mode classifies as refactoring, low risk
+1. route classifies as refactoring, low risk
 2. Selects refactoring playbook with low-risk adaptation
 3. Checklist: Sharpen → Discovery (light) → Blast Radius → Plan (single task) → TDD → Verify → Light Review
 4. No architect, arena, swarm, jury, figure-it-out
@@ -67,15 +67,15 @@
 
 #### Rigour Calibration
 - **Risk level:** Medium
-- **Investigation:** Standard (vstack-how for Redis integration, blast-radius for 20 endpoints)
-- **Design alternatives:** Consider token bucket vs sliding window (vstack-arena if needed)
-- **Parallelism:** vstack-swarm for endpoint groups
+- **Investigation:** Standard (code-tour for Redis integration, blast-radius for 20 endpoints)
+- **Design alternatives:** Consider token bucket vs sliding window (red-team if needed)
+- **Parallelism:** red-team for endpoint groups
 - **Decision trail:** Recommended for Redis config decisions
 - **Review:** Standard (Correctness, Architecture, Performance lenses)
 - **Approval:** None (reversible config change)
 
 #### Procedure Expectation
-1. vstack-mode classifies as feature-delivery, medium risk
+1. route classifies as feature-delivery, medium risk
 2. Selects feature-delivery with standard rigour
 3. Checklist includes: Discovery → Architect (if alternatives) → Plan → Swarm → TDD → Verify → Review
 
@@ -107,16 +107,16 @@
 
 #### Rigour Calibration
 - **Risk level:** High/Critical
-- **Investigation:** Deep (vstack-how, vstack-why, vstack-blast-radius for entire data layer)
-- **Design alternatives:** Required (vstack-arena: dual-write vs big-bang vs CDC)
-- **Parallelism:** vstack-swarm for table-by-table migration
-- **Decision trail:** Mandatory (vstack-ledger for every migration decision)
-- **Review:** Jury (vstack-jury: 3 reviewers, Security + Correctness + Data Integrity lenses)
+- **Investigation:** Deep (code-tour, rationale, impact for entire data layer)
+- **Design alternatives:** Required (red-team: dual-write vs big-bang vs CDC)
+- **Parallelism:** red-team for table-by-table migration
+- **Decision trail:** Mandatory (decisions for every migration decision)
+- **Review:** Jury (red-team: 3 reviewers, Security + Correctness + Data Integrity lenses)
 - **Approval:** Explicit user authorization for each migration phase
 - **Rollback:** Required per phase
 
 #### Procedure Expectation
-1. vstack-mode classifies as architecture-change/infrastructure-change, high risk
+1. route classifies as architecture-change/infrastructure-change, high risk
 2. Selects architecture-change playbook with high-risk adaptation
 3. Checklist includes: Deep Discovery → Architect + Arena → Blueprint → Phased Plan → Jury Review per phase → Authorized execution
 
@@ -150,9 +150,9 @@
 - **Result:** Higher rigour applied (user intent respected)
 
 #### Procedure Expectation
-1. vstack-mode assesses as low risk
+1. route assesses as low risk
 2. User explicitly requests higher rigour
-3. vstack-mode respects user override, applies requested rigour
+3. route respects user override, applies requested rigour
 4. Documents: "User requested elevated rigour for learning"
 
 #### Decision Quality Expectation
@@ -164,7 +164,7 @@
 
 ## Negative Case: High Risk Task Gets Light Rigour
 
-**Scenario:** "Migrate 10M users MongoDB→PostgreSQL" → vstack-mode applies light rigour → no arena, no jury, no decision trail
+**Scenario:** "Migrate 10M users MongoDB→PostgreSQL" → route applies light rigour → no arena, no jury, no decision trail
 
 **Expected:** FAIL — rigour must scale to risk
 

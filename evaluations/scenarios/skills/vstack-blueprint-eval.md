@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-blueprint
+# Evaluation Scenario: blueprint
 
-**Skill:** vstack-blueprint
+**Skill:** blueprint
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -202,7 +202,7 @@ Acceptance criteria list
 
 ## Scenario 8: Blueprint Complete for Task Planning (Tier 1 - Deterministic)
 
-**Objective:** Verify blueprint complete enough for vstack-plan-loop.
+**Objective:** Verify blueprint complete enough for plan.
 
 **Input:**
 ```

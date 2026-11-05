@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-verification-audit
+# Evaluation Scenario: coverage
 
-**Skill:** vstack-verification-audit
+**Skill:** coverage
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -182,7 +182,7 @@ Systemic verification strategy problem
 ```
 
 **Expected Behavior:**
-- Triggers vstack-create-verification revisit
+- Triggers verify-setup revisit
 - Documents fundamental issue
 
 **Acceptance Criteria:**

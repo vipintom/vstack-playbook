@@ -11,7 +11,7 @@ Work reaches a review gate (end of implementation, before merge, architecture de
 - **Fresh context** — Reviewer did not participate in implementation
 - **No shared scratchpad** — Reviewer does not read implementer's working notes/assumptions
 - **Adversarial stance** — Reviewer's goal is to find problems, not approve
-- **Defined lenses** — Review uses `vstack-review-rubrics` lenses (correctness, security, performance, maintainability, accessibility)
+- **Defined lenses** — Review uses `rubrics` lenses (correctness, security, performance, maintainability, accessibility)
 
 **Reviewer ≠ Validator:** Validator checks "does it meet criteria?" Reviewer asks "what could go wrong?"
 
@@ -27,20 +27,20 @@ Work reaches a review gate (end of implementation, before merge, architecture de
 > Builder implements feature, then reviews own PR: "Looks good to me."
 
 ### ✅ Follows Principle
-> Builder completes implementation. Lead dispatches Reviewer (fresh session, no access to Builder's context). Reviewer runs `vstack-review-loop` with lenses: correctness, security, performance. Finds: "Race condition in cache invalidation (high)" — Builder must fix. Reviewer confirms fix in fresh verification.
+> Builder completes implementation. Lead dispatches Reviewer (fresh session, no access to Builder's context). Reviewer runs `review` with lenses: correctness, security, performance. Finds: "Race condition in cache invalidation (high)" — Builder must fix. Reviewer confirms fix in fresh verification.
 
 ## Informs
 - `reviewer.md` role — mission is independent challenge
-- `vstack-review-loop` — executes independent review
-- `vstack-review-rubrics` — defines adversarial lenses
-- `vstack-jury` — escalation for contested reviews
+- `review` — executes independent review
+- `rubrics` — defines adversarial lenses
+- `red-team` — escalation for contested reviews
 - All workflows — Review phase assigns independent Reviewer
 
 ## Related Skills
-- `vstack-review-loop` — review procedure with lenses
-- `vstack-review-rubrics` — adversarial review lenses
-- `vstack-jury` — multi-reviewer escalation
-- `vstack-handoff` — fresh-context handoff protocol
+- `review` — review procedure with lenses
+- `rubrics` — adversarial review lenses
+- `red-team` — multi-reviewer escalation
+- `handoff` — fresh-context handoff protocol
 
 ## Escalation
-If Reviewer and Builder cannot agree on a finding, escalate to `vstack-jury` (3+ independent reviewers). If jury cannot resolve, Lead makes final call with recorded rationale.
+If Reviewer and Builder cannot agree on a finding, escalate to `red-team` (3+ independent reviewers). If jury cannot resolve, Lead makes final call with recorded rationale.

@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-performance
+# Evaluation Scenario: performance
 
-**Skill:** vstack-performance
+**Skill:** performance
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -157,7 +157,7 @@ Bottleneck: database schema design
 ```
 
 **Expected Behavior:**
-- Escalates to vstack-architect
+- Escalates to design
 - Does not attempt code-only fix
 
 **Acceptance Criteria:**

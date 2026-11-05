@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-context-reset
+# Evaluation Scenario: resume
 
-**Skill:** vstack-context-reset
+**Skill:** resume
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -107,7 +107,7 @@ Interruption with failed approach
 
 **Expected Behavior:**
 - Captures pattern from failure
-- Records in vstack-lessons or project memory
+- Records in lessons or project memory
 - Links to context-reset entry
 
 **Acceptance Criteria:**

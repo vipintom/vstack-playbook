@@ -1,6 +1,6 @@
 # Evaluation Scenario: Read-Only Investigation vs Implementation
 
-**Content Under Test:** vstack-mode
+**Content Under Test:** route
 **Scenario Type:** Positive Trigger / Negative Trigger
 **Date:** 2026-11-02
 **Version:** v2 draft
@@ -26,19 +26,19 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **Should activate vstack-mode:** YES
+- **Should activate route:** YES
 - **Should route to playbook:** investigation
-- **Should load skills:** vstack-how, vstack-why, vstack-explain, vstack-recall
+- **Should load skills:** code-tour, rationale, report, resume
 
 #### Procedure Expectation
-1. vstack-mode invoked
+1. route invoked
 2. Phase 1: Sharpen clarifies: read-only question about behaviour
 3. Phase 2: Reads principle index
 3. Phase 3: Classifies as "Read-only question about behaviour or design" → investigation playbook
 4. Phase 4: Selects investigation playbook
 5. Phase 5: Calibrates rigour: Low risk → light discovery, no architect/arena
 6. Phase 6: Creates checklist: copies investigation steps verbatim
-7. Phase 7: Executes: vstack-how (trace flow), vstack-why (rationale), vstack-explain (communicate findings)
+7. Phase 7: Executes: code-tour (trace flow), rationale (rationale), report (communicate findings)
 8. Phase 8: Verify: findings grounded in source, no implementation
 9. Phase 9: Hands back: cited answer, no code changes
 
@@ -53,8 +53,8 @@
 - No code changes made
 
 #### Evidence Quality Expectation
-- vstack-how output: execution trace, data flow, ownership map
-- vstack-why output: design rationale with git history
+- code-tour output: execution trace, data flow, ownership map
+- rationale output: design rationale with git history
 - All claims grounded in actual code
 
 ---
@@ -91,12 +91,12 @@
 ### Expected Behaviour
 
 #### Trigger Expectation
-- **Should activate vstack-mode:** YES
+- **Should activate route:** YES
 - **Should route to playbook:** feature-delivery
-- **Should load skills:** vstack-how, vstack-why, vstack-architect, vstack-tdd, vstack-verify-loop, vstack-review-loop
+- **Should load skills:** code-tour, rationale, design, tdd, verify, review
 
 #### Procedure Expectation
-1. vstack-mode invoked
+1. route invoked
 2. Phase 1: Sharpen clarifies: new behaviour, acceptance criteria
 3. Phase 3: Classifies as "New or changed behaviour" → feature-delivery
 4. Phase 6: Creates checklist with implementation steps
@@ -124,7 +124,7 @@
 
 ## Negative Case: Read-Only Question Routes to Implementation Playbook
 
-**Scenario:** "How does payment work?" → vstack-mode selects feature-delivery → creates implementation checklist
+**Scenario:** "How does payment work?" → route selects feature-delivery → creates implementation checklist
 
 **Expected:** FAIL — read-only must route to investigation, not implementation
 

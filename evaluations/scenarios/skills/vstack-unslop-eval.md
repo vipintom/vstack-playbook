@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-unslop
+# Evaluation Scenario: unslop
 
-**Skill:** vstack-unslop
+**Skill:** unslop
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -128,7 +128,7 @@ Uncertain if cleanup changes behaviour
 ```
 
 **Expected Behavior:**
-- Invokes vstack-refactor with full verification
+- Invokes refactor with full verification
 - Does not guess
 - Documents uncertainty
 
@@ -149,7 +149,7 @@ No time for cleanup
 ```
 
 **Expected Behavior:**
-- Documents slop as tech debt in vstack-ledger
+- Documents slop as tech debt in decisions
 - Does not skip cleanup entirely
 - Schedules for later
 
@@ -265,7 +265,7 @@ Uncertain if cleanup changes behaviour
 ```
 
 **Expected Behavior:**
-- Invokes vstack-refactor with full verification
+- Invokes refactor with full verification
 - Does not guess
 - Documents uncertainty
 
@@ -286,7 +286,7 @@ No time for cleanup
 ```
 
 **Expected Behavior:**
-- Documents slop as tech debt in vstack-ledger
+- Documents slop as tech debt in decisions
 - Does not skip cleanup entirely
 - Schedules for later
 

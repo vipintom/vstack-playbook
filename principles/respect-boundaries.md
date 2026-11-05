@@ -28,7 +28,7 @@ You are about to: import internal types from another package, call private metho
 - Service communication via defined APIs
 - Cross-team changes go through RFC/review
 - Dependency pins are explicit (tags, versions)
-- `vstack-blast-radius` catches boundary violations
+- `impact` catches boundary violations
 
 ## Concrete Example
 
@@ -39,16 +39,16 @@ You are about to: import internal types from another package, call private metho
 > Backend exports `User` type from `backend/api/types.ts`. Frontend imports from `@backend/api`. Backend changes internal DB schema → API type unchanged → frontend unaffected.
 
 ## Informs
-- `vstack-blast-radius` — identifies boundary crossings
-- `vstack-architect` — defines module/service boundaries
-- `vstack-blueprint` — compares designs by boundary clarity
-- `vstack-migration` — boundary changes require migration plan
+- `impact` — identifies boundary crossings
+- `design` — defines module/service boundaries
+- `blueprint` — compares designs by boundary clarity
+- `migration` — boundary changes require migration plan
 
 ## Related Skills
-- `vstack-blast-radius` — boundary impact analysis
-- `vstack-architect` — boundary design
-- `vstack-migration` — safe boundary evolution
-- `vstack-review-rubrics` — maintainability lens checks boundaries
+- `impact` — boundary impact analysis
+- `design` — boundary design
+- `migration` — safe boundary evolution
+- `rubrics` — maintainability lens checks boundaries
 
 ## Escalation
 If a boundary violation is genuinely necessary (legacy, performance, no alternative), Lead must approve with recorded rationale, risk assessment, and a follow-up task to establish the proper contract. Never violate silently.

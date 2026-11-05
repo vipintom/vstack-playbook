@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-plan-review
+# Evaluation Scenario: plan
 
-**Skill:** vstack-plan-review
+**Skill:** plan
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -13,7 +13,7 @@
 
 **Input:**
 ```
-Plan from vstack-plan-loop
+Plan from plan
 ```
 
 **Expected Behavior:**

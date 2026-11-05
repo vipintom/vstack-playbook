@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-safe-pause
+# Evaluation Scenario: handoff
 
-**Skill:** vstack-safe-pause
+**Skill:** handoff
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -19,7 +19,7 @@ Work in progress, verification mid-cycle
 **Expected Behavior:**
 - Completes current verification OR reverts to last clean state
 - Does NOT pause with partial verification
-- If cannot reach clean state → vstack-recovery before pause
+- If cannot reach clean state → recovery before pause
 
 **Acceptance Criteria:**
 - [ ] Verification completes OR cleanly reverts
@@ -40,13 +40,13 @@ Branch: feature/auth, Commit: abc123, Uncommitted: task 4 changes
 ```
 
 **Expected Behavior:**
-- Runs vstack-context-reset
+- Runs resume
 - PROGRESS.md updated with: exact next action, verified work, open questions, blockers
 - Records: branch, commit, uncommitted changes
 - Checkpoint update succeeds
 
 **Acceptance Criteria:**
-- [ ] vstack-context-reset executed
+- [ ] resume executed
 - [ ] Next action exact
 - [ ] Verified work listed
 - [ ] Open questions listed
@@ -134,12 +134,12 @@ Broken state, cannot complete verification
 ```
 
 **Expected Behavior:**
-- Triggers vstack-recovery before pause
+- Triggers recovery before pause
 - Does not pause with broken state
 - Escalates if recovery fails
 
 **Acceptance Criteria:**
-- [ ] vstack-recovery triggered
+- [ ] recovery triggered
 - [ ] Does not pause broken
 - [ ] Escalates if recovery fails
 

@@ -31,16 +31,16 @@ You are planning or implementing a change and must decide on scope — how much 
 > Bug: "API returns 500 on null input." Fix: Adds null check at entry point (3 lines, 1 file). Adds test case. Verifies: bug reproduced → fix applied → test passes → no regressions. Separate task created: "Refactor validation layer" (if needed).
 
 ## Informs
-- `vstack-plan-loop` — task decomposition with clear scope
-- `vstack-blast-radius` — ensures change boundary is minimal
-- `vstack-refactor` — separate workflow for pure refactoring
-- `vstack-sharpen` — defines done predicate upfront
+- `plan` — task decomposition with clear scope
+- `impact` — ensures change boundary is minimal
+- `refactor` — separate workflow for pure refactoring
+- `sharpen` — defines done predicate upfront
 
 ## Related Skills
-- `vstack-sharpen` — defines acceptance criteria
-- `vstack-plan-loop` — scopes tasks minimally
-- `vstack-blast-radius` — verifies change boundary
-- `vstack-refactor` — dedicated refactoring workflow
+- `sharpen` — defines acceptance criteria
+- `plan` — scopes tasks minimally
+- `impact` — verifies change boundary
+- `refactor` — dedicated refactoring workflow
 
 ## Escalation
 If the "smallest complete change" requires touching a fragile area that will likely break, you have two options: (1) Make the minimal fix + add defensive test, create refactor task; (2) If risk is high, run `architecture-change` workflow to address the underlying fragility first.

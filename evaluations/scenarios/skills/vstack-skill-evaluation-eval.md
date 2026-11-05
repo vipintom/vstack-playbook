@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-skill-evaluation
+# Evaluation Scenario: skill-eval
 
-**Skill:** vstack-skill-evaluation
+**Skill:** skill-eval
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -40,7 +40,7 @@ Skill under evaluation
 
 **Input:**
 ```
-Skill: vstack-tdd
+Skill: tdd
 Test case: "Fix bug with clear test path"
 ```
 
@@ -60,7 +60,7 @@ Test case: "Fix bug with clear test path"
 
 **Input:**
 ```
-Skill: vstack-tdd
+Skill: tdd
 Test case: "Refactor without behavior change"
 ```
 
@@ -80,7 +80,7 @@ Test case: "Refactor without behavior change"
 
 **Input:**
 ```
-Skill: vstack-debug
+Skill: debug
 Test case: "Debug this" vs "Debug this issue" vs "Diagnose failure"
 ```
 
@@ -100,7 +100,7 @@ Test case: "Debug this" vs "Debug this issue" vs "Diagnose failure"
 
 **Input:**
 ```
-Skill: vstack-tdd
+Skill: tdd
 Procedure step: "Write failing test first"
 ```
 
@@ -122,7 +122,7 @@ Procedure step: "Write failing test first"
 
 **Input:**
 ```
-Skill: vstack-debug
+Skill: debug
 Procedure: "Read errors completely"
 ```
 
@@ -142,7 +142,7 @@ Procedure: "Read errors completely"
 
 **Input:**
 ```
-Skill: vstack-tdd
+Skill: tdd
 Condition: Test passes after fix
 ```
 
@@ -162,13 +162,13 @@ Condition: Test passes after fix
 
 **Input:**
 ```
-Skill: vstack-debug
+Skill: debug
 3 failed fix attempts
 ```
 
 **Expected Behavior:**
 - Stops after 3 attempts
-- Invokes vstack-unstick
+- Invokes unstick
 - Does not attempt 4th fix
 
 **Acceptance Criteria:**
@@ -184,7 +184,7 @@ Skill: vstack-debug
 
 **Input:**
 ```
-Skill: vstack-unstick
+Skill: unstick
 2 rounds of unstick failed
 ```
 
@@ -206,7 +206,7 @@ Skill: vstack-unstick
 
 **Input:**
 ```
-Skill: vstack-arena
+Skill: red-team
 Capability: subagents unavailable
 ```
 
@@ -228,7 +228,7 @@ Capability: subagents unavailable
 
 **Input:**
 ```
-Skill: vstack-swarm
+Skill: red-team
 Capability: subagents unavailable
 ```
 
@@ -250,7 +250,7 @@ Capability: subagents unavailable
 
 **Input:**
 ```
-Skill: vstack-best-of-n
+Skill: red-team
 Capability: worktrees unavailable
 ```
 
@@ -272,7 +272,7 @@ Capability: worktrees unavailable
 
 **Input:**
 ```
-Skill: vstack-ledger
+Skill: decisions
 Capability: persistent plugin unavailable
 ```
 

@@ -140,11 +140,11 @@ Applies to:
 
 | Date | Type | Component | Description | Resolution | Status |
 |------|------|-----------|-------------|------------|--------|
-| 2026-11-02 | Structural | vstack-catchup | Missing lifecycle, sections | Documented as v1 legacy (to retire) | OPEN |
-| 2026-11-02 | Structural | vstack-debugging | Missing lifecycle, sections | Documented as v1 legacy (to retire) | OPEN |
+| 2026-11-02 | Structural | resume | Missing lifecycle, sections | Documented as v1 legacy (to retire) | OPEN |
+| 2026-11-02 | Structural | debugging | Missing lifecycle, sections | Documented as v1 legacy (to retire) | OPEN |
 | 2026-11-02 | Structural | vstack-discovery | Missing lifecycle, sections | Documented as v1 legacy (to retire) | OPEN |
-| 2026-11-02 | Structural | vstack-figure-it-out | Missing Failure Handling, Routing | Added sections | FIXED |
-| 2026-11-02 | Structural | vstack-principles | Step structure warnings | Documented as principle skill (different format) | OPEN |
+| 2026-11-02 | Structural | figure-it-out | Missing Failure Handling, Routing | Added sections | FIXED |
+| 2026-11-02 | Structural | shipinciples | Step structure warnings | Documented as principle skill (different format) | OPEN |
 
 ---
 

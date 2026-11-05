@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-explain
+# Evaluation Scenario: report
 
-**Skill:** vstack-explain
+**Skill:** report
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -20,7 +20,7 @@
 
 **Input:**
 ```
-Findings from vstack-how: auth flow through middleware
+Findings from code-tour: auth flow through middleware
 Audience: Developer
 ```
 
@@ -189,15 +189,15 @@ No time for formal explanation
 
 ---
 
-## Scenario 6: Dependencies - vstack-how/vstack-why/vstack-blast-radius (Tier 1 - Deterministic)
+## Scenario 6: Dependencies - code-tour/rationale/impact (Tier 1 - Deterministic)
 
 **Objective:** Verify correct skill dependencies.
 
 **Expected Behavior:**
-- vstack-how provides facts
-- vstack-why provides rationale
-- vstack-blast-radius provides impact
-- vstack-explain consumes all three
+- code-tour provides facts
+- rationale provides rationale
+- impact provides impact
+- report consumes all three
 
 **Acceptance Criteria:**
 - [ ] Consumes how findings
@@ -212,9 +212,9 @@ No time for formal explanation
 **Objective:** Verify related skill routing.
 
 **Expected Behavior:**
-- vstack-review-loop consumes explanations
-- vstack-ledger consumes decision records
-- vstack-explain produces for both
+- review consumes explanations
+- decisions consumes decision records
+- report produces for both
 
 **Acceptance Criteria:**
 - [ ] Review loop consumes

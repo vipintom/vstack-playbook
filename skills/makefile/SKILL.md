@@ -11,7 +11,7 @@ metadata:
   role: engineer
   scope: implementation
   output-format: code
-  related-skills: docker-compose, docker-deployment, devops-engineer, fastapi-backend, angular-dashboard
+  related-skills: docker, docker-deployment, devops-engineer, fastapi-backend, angular-dashboard
 ---
 
 # Modern Makefile Patterns
@@ -197,7 +197,7 @@ make up  # Auto-decrypts at runtime
 
 ## Dependencies / References
 
-- [docker-compose] — Docker/Compose patterns this Makefile orchestrates
+- [docker] — Docker/Compose patterns this Makefile orchestrates
 - [docker-deployment] — Caddy, deployment safety
 - GNU Make manual: https://www.gnu.org/software/make/manual/
 - dotenvx: https://dotenvx.com/
@@ -232,13 +232,13 @@ DOCKER_COMPOSE_VERSION := v2.29.0
 DOTENVX_VERSION := 1.35.0
 
 # Paths
-COMPOSE_FILE := docker-compose.yml
-COMPOSE_PROD_FILE := docker-compose.prod.yml
+COMPOSE_FILE := docker.yml
+COMPOSE_PROD_FILE := docker.prod.yml
 ENV_FILE := .env
 ENV_KEYS_FILE := .env.keys
 
 # Auto-detect tools
-DOCKER_COMPOSE := $(shell command -v docker 2>/dev/null && docker compose version --short 2>/dev/null || echo "docker-compose")
+DOCKER_COMPOSE := $(shell command -v docker 2>/dev/null && docker compose version --short 2>/dev/null || echo "docker")
 DOTENVX := $(shell command -v dotenvx 2>/dev/null || echo "$(HOME)/.npm-global/bin/dotenvx")
 
 # Default target
@@ -359,7 +359,7 @@ prod: ## Deploy production stack
 	$(call COMPOSE_PROD_CMD,up -d --build)
 
 test: ## Run tests in isolated environment
-	@docker compose -f $(COMPOSE_FILE) -f docker-compose.test.yml up --build --abort-on-container-exit
+	@docker compose -f $(COMPOSE_FILE) -f docker.test.yml up --build --abort-on-container-exit
 
 ci: ## CI pipeline: lint, test, build, scan
 	$(MAKE) lint

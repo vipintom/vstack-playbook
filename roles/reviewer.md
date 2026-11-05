@@ -40,10 +40,10 @@ A different role label alone does not make a review independent.
 - Re-review results after remediation
 
 ## Skill Selection Behavior
-- Uses `vstack-review-loop` as primary procedure
+- Uses `review` as primary procedure
 - Applies relevant review lenses from `resources/rubrics/`
-- Uses `vstack-jury` when multiple independent reviews warranted
-- References `vstack-principles` for evaluation criteria
+- Uses `red-team` when multiple independent reviews warranted
+- References `shipinciples` for evaluation criteria
 
 ## Review Lenses (from rubrics)
 - **Correctness & Regression** — logic errors, edge cases, regression risk

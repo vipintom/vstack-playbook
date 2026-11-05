@@ -1,6 +1,6 @@
-# Evaluation Scenario: vstack-plan-loop
+# Evaluation Scenario: plan
 
-**Skill:** vstack-plan-loop
+**Skill:** plan
 **Lifecycle:** draft
 **Evaluation Date:** 2026-11-02
 **Evaluator:** Phase 5 automated
@@ -211,7 +211,7 @@ Plan cannot be validated by Lead
 ```
 
 **Expected Behavior:**
-- Returns to vstack-how/why/blast-radius or vstack-blueprint
+- Returns to code-tour/why/blast-radius or blueprint
 - Does not proceed with invalid plan
 
 **Acceptance Criteria:**
