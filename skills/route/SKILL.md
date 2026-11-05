@@ -8,6 +8,10 @@ description: Use when a request arrives with no playbook open and the approach m
 Pick the playbook, the rigour tier and the first skill. Record the choice so
 the next session does not repeat it. Do not do the work here.
 
+The recorder is optional. When installed it exposes six tools: `vstack_route`,
+`vstack_task`, `vstack_evidence`, `vstack_decision`, `vstack_handoff` and
+`vstack_close`. Every step below also completes with files alone.
+
 ## When to use
 
 - A new request starts work that will produce more than one artifact.

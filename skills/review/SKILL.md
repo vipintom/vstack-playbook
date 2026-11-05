@@ -34,7 +34,9 @@ Near misses:
 4. **Check the three questions:** does it do what it claims, does it break what
    it touches, can the next person change it? Artifact: answers with evidence.
 5. **Write findings** with location, consequence and smallest fix; severity
-   high/medium/low, one entry per finding. Artifact: findings table.
+   high/medium/low, one entry per finding. With the recorder installed, record
+   the verdict with `vstack_evidence`: claim "no blocking finding at <commit>",
+   check "reviewed diff <range>". Artifact: findings table and evidence line.
 6. **Verify each high finding** by running or reading the cited line; drop the
    ones you cannot substantiate. Artifact: confirmed list.
 7. **State what was not reviewed** — generated files, vendor code, areas out
