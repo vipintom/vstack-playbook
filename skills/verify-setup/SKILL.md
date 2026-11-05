@@ -1,11 +1,6 @@
 ---
 name: verify-setup
 description: Use when a project has no reliable way to prove a change works and the verification instructions must be created and made runnable; not for running existing verification (verify) or for keeping it current (verify-maintain).
-tier: build
-rigor: standard
-status: stable
-harness: [knowledge]
-pairs-with: [verify, plan, coverage]
 ---
 
 # verify-setup
@@ -28,14 +23,6 @@ Near misses:
 - The checks exist but drifted from the code → `verify-maintain`.
 - The question is what to test → `coverage`.
 
-## Modes
-
-| Mode | Output |
-|---|---|
-| Minimal | install, test, type check, lint — four commands |
-| Project | plus integration, e2e, migration and smoke commands |
-| Hermetic | plus container or fixture setup, usable offline |
-
 ## Steps
 
 1. **Inventory what must be proven**: build, behaviour, contract, deployment.
@@ -44,8 +31,8 @@ Near misses:
    failures and prerequisites. Artifact: command log.
 3. **Make each command hermetic** (fixtures, env vars, container) or mark the
    prerequisite. Artifact: runbook.
-4. **Write the verification skill or doc** using `templates/verification-skill.md.hbs`.
-   Artifact: the file.
+4. **Write the verification skill or doc**: the command, its prerequisites,
+   the expected output and the failure it catches. Artifact: the file.
 5. **Prove it from scratch**: fresh clone or container, follow only the doc.
    Artifact: clean-run log.
 6. **Declare the gates** the project's deliveries must run. Artifact: gate
@@ -63,19 +50,3 @@ output, plus the declared gate list. A newcomer can run it without asking.
 - **The command depends on global machine state.** Containerise it or list the
   state as a prerequisite.
 - **The clean run fails.** The doc is not done; fix it before handing over.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Everyone knows `make test`." | Newcomers, agents and CI do not. Write it down. |
-| "The wiki is close enough." | Close enough breaks silently; run it and fix it. |
-| "Setup is one-time work." | Every new machine pays it again. |
-| "A failing example is fine in docs." | Then the doc teaches failure. |
-
-## Tracking
-
-- **OpenChamber present:** project knowledge entry pointing at the verification
-  doc; the gate list on the delivery template.
-- **OpenCode or files:** `<repo>/docs/verification.md`, linked from the repository README.
-- Ladder: `resources/tracking.md`.

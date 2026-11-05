@@ -1,11 +1,6 @@
 ---
 name: unstick
 description: Use when the same failure has survived several fixes or the work keeps circling one assumption; not for a first debugging attempt (debug) or for a missing playbook (figure-it-out).
-tier: build
-rigor: standard
-status: stable
-harness: [focus, memory]
-pairs-with: [debug, figure-it-out, lessons]
 ---
 
 # unstick
@@ -27,14 +22,6 @@ Near misses:
 - First attempt at a cause → `debug`.
 - No approach exists at all → `figure-it-out`.
 - The failure is flaky infrastructure → `verify`'s flake policy.
-
-## Modes
-
-| Mode | Use |
-|---|---|
-| Assumption test | one belief, one cheap experiment |
-| Path reset | abandon the current branch, restart from the repro |
-| Approach survey | three different strategies, pick by cost |
 
 ## Steps
 
@@ -64,19 +51,3 @@ the clean baseline you restarted from. The old branch is abandoned or labelled.
   return to `shape` and change the outcome, not the effort.
 - **The environment is the variable.** Reproduce on a clean machine before
   another code change.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "One more attempt will work." | That is the definition of the loop. Count attempts; at three, stop. |
-| "Restarting loses progress." | Progress is the attempt table; the branch is not. |
-| "The assumption is obviously true." | Obvious assumptions are the ones nobody tests. |
-| "A different approach means starting over." | It means starting from the repro, which is the only reusable part. |
-
-## Tracking
-
-- **OpenChamber present:** the attempt table is the record; `focus_status`
-  stays "blocked" until the assumption is tested.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Unstick".
-- Ladder: `resources/tracking.md`.

@@ -1,11 +1,6 @@
 ---
 name: fastapi
 description: Use when an asynchronous Python HTTP service is built or changed with FastAPI, SQLAlchemy or background workers; not for transport-agnostic contract design (api-design) or container packaging (docker).
-tier: stack
-rigor: standard
-status: stable
-harness: [gate]
-pairs-with: [api-design, tdd, docker]
 ---
 
 # fastapi
@@ -26,14 +21,6 @@ Near misses:
 - The contract shape is the question → `api-design`.
 - Packaging and runtime image → `docker`.
 - Pure logic → `tdd`.
-
-## Modes
-
-| Mode | Scope |
-|---|---|
-| Endpoint | one route with dependencies and tests |
-| Resource | router plus models, schemas, migrations |
-| Service | lifespan, pools, workers, health checks |
 
 ## Steps
 
@@ -62,27 +49,3 @@ Models, dependency wiring, and a test that runs against a real database. No
   record the fixture.
 - **Background tasks must survive restarts.** On-demand tasks are not durable;
   use a queue and say so.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Async is faster by default." | It is faster only when nothing blocks the loop. |
-| "Tests can use SQLite." | SQLite hides the concurrency and type behaviour you ship. |
-| "One global session is simpler." | It is simpler until two requests share it. |
-| "Background tasks are good enough." | Until the process restarts mid-task. |
-
-## Tracking
-
-- **OpenChamber present:** test command and result on the delivery.
-- **OpenCode or files:** evidence line per endpoint test run in
-  `.vstack/deliveries/<id>/evidence.jsonl`.
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_gate run pytest` proves the endpoint;
-  otherwise the pytest log and digest are the artifact.
-
-## Verification
-
-```bash
-pytest -q
-```

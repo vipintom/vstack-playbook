@@ -23,8 +23,9 @@ not. Gates are commands. If a gate is not a command, it belongs in `review`.
   Blocked is not a mild failure; it is an absent result.
 - **not_run** — nobody attempted it. Reported as such, always.
 
-Only `passed` satisfies a required gate. The ledger refuses the close on
-`failed`, `blocked` or `not_run`.
+Only `passed` satisfies a required gate. A close is refused on `failed`,
+`blocked` or `not_run`; with the recorder installed, `vstack_close` enforces
+it.
 
 ## Flake policy
 

@@ -1,11 +1,6 @@
 ---
 name: refactor
 description: Use when structure must change while behaviour stays exactly the same, and the safety net must exist before the first edit; not for changing behaviour (tdd) or moving a boundary other code depends on (design).
-tier: build
-rigor: rigid
-status: stable
-harness: [ledger]
-pairs-with: [coverage, verify, review]
 ---
 
 # refactor
@@ -25,17 +20,6 @@ Near misses:
 - Behaviour changes at all → `tdd`.
 - A public boundary moves → `design` plus `migration`.
 - There is no test coverage → `coverage` first.
-
-## Modes
-
-| Mode | Step size |
-|---|---|
-| Rename/extract | one mechanical move per commit |
-| Restructure | one seam per commit, suite green between |
-| Pre-feature | characterise, then refactor, then change behaviour |
-
-`rigor: rigid` — no refactor without a green baseline, and no behaviour change
-inside a refactor commit.
 
 ## Steps
 
@@ -67,19 +51,3 @@ at every point. The reviewer can stop after any commit.
   a refactor.
 - **The diff grows beyond review size.** Stop and split; a refactor nobody can
   read is a rewrite with extra risk.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Tests are slow, I'll run them at the end." | Then a break is buried under ten changes. |
-| "I'll fix this bug while I'm here." | That is two commits; separate them and keep the refactor provable. |
-| "The tests are probably wrong." | Then fix the test first, visibly, not inside the refactor. |
-| "The structure is obviously better." | Better is not the claim; unchanged behaviour is. |
-
-## Tracking
-
-- **OpenChamber present:** one action per mechanical step; `focus_status`
-  "implementing".
-- **OpenCode or files:** commit series is the record; delivery note links it.
-- Ladder: `resources/tracking.md`.

@@ -1,11 +1,6 @@
 ---
 name: code-tour
 description: Use when someone needs to understand how existing code works — entry points, call path, state ownership — without changing it; not for explaining why a design was chosen (rationale) or for fixing it (debug).
-tier: frame
-rigor: flexible
-status: stable
-harness: [knowledge]
-pairs-with: [rationale, debug]
 ---
 
 # code-tour
@@ -27,14 +22,6 @@ Near misses:
 - The code is known and wrong → `debug`.
 - The task is to change behaviour → `plan`, then `tdd`.
 
-## Modes
-
-| Mode | Scope |
-|---|---|
-| Trace | one question, one path, ≤200 lines read |
-| Tour | one subsystem: entry, path, state, extension points |
-| Map | several subsystems, written once for the team |
-
 ## Steps
 
 1. **Write the question as one sentence.** "How does a webhook reach the
@@ -48,7 +35,7 @@ Near misses:
    truth, what is derived. Artifact: state table.
 5. **Name the gaps.** Anything you could not confirm from the code, and what
    would confirm it (a log, a test, an instrument). Artifact: gaps list.
-6. **Write the tour** as prose plus citations, at the requested mode's depth.
+6. **Write the tour** as prose plus citations, at the requested depth.
    Artifact: the answer in the thread or the delivery note.
 
 ## Output
@@ -71,20 +58,3 @@ Gap: retry count is not persisted — confirm via `worker.ts:91` log line.
 - **The code contradicts the docs.** Report both with citations; do not decide
   which is right without running it.
 - **The reader needs intent, not flow.** Hand off to `rationale`.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "I'll tidy this while tracing." | The tour loses its baseline; the reader cannot tell what is original. |
-| "Citations are noise in a chat answer." | Without them the answer is a claim, and the reader re-derives it. |
-| "I know this codebase." | Then the tour is quick to write and cheap to check. |
-| "The whole subsystem must be covered." | Cover the question; name the rest as out of scope. |
-
-## Tracking
-
-- **OpenChamber present:** a project note for tours that outlive the session;
-  nothing for a one-off question.
-- **OpenCode or files:** the answer plus a `code-tour` section in the delivery
-  note when it unblocks work.
-- Ladder: `resources/tracking.md`.

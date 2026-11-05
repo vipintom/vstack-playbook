@@ -1,11 +1,6 @@
 ---
 name: review
 description: Use when a diff, design or document must be examined for defects before it is accepted, and findings must be specific enough to act on; not for judging a whole repository (audit) or for running the gates (verify).
-tier: review
-rigor: standard
-status: stable
-harness: [knowledge, todo]
-pairs-with: [rubrics, verify, ready]
 ---
 
 # review
@@ -27,14 +22,6 @@ Near misses:
 - The gates must be run → `verify`.
 - The question is readiness to ship → `ready` after review.
 
-## Modes
-
-| Mode | Depth |
-|---|---|
-| Diff | correctness, tests, boundaries in one pass |
-| Design | boundaries, failure modes, alternatives |
-| Pack | standard compliance, trigger quality, references |
-
 ## Steps
 
 1. **Name the reviewer and what they get.** The reviewer did not write the
@@ -47,8 +34,7 @@ Near misses:
 4. **Check the three questions:** does it do what it claims, does it break what
    it touches, can the next person change it? Artifact: answers with evidence.
 5. **Write findings** with location, consequence and smallest fix; severity
-   high/medium/low, one entry per `templates/review-finding.md`. Artifact:
-   findings table.
+   high/medium/low, one entry per finding. Artifact: findings table.
 6. **Verify each high finding** by running or reading the cited line; drop the
    ones you cannot substantiate. Artifact: confirmed list.
 7. **State what was not reviewed** — generated files, vendor code, areas out
@@ -72,19 +58,3 @@ Verdict: approve, approve with findings, or request changes.
   author rebut with evidence, not preference.
 - **The intent is unclear.** Stop; review against a stated done predicate or it
   becomes a style debate.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Tests pass, so it is fine." | Tests prove what they assert, not what the diff forgot. |
-| "I skimmed it." | Then say which files were skimmed; silence implies coverage. |
-| "This is a nit, I will not mention it." | Nits with consequences are findings; nits without are noise. |
-| "The author knows the codebase." | The next maintainer does not. |
-
-## Tracking
-
-- **OpenChamber present:** findings on the delivery note; request-changes
-  verdict sets `focus_status` back to implementing.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Review".
-- Ladder: `resources/tracking.md`.

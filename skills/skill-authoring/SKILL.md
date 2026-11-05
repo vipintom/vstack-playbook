@@ -1,18 +1,13 @@
 ---
 name: skill-authoring
-description: Use when a new skill must be written or an existing one reshaped to the pack's standard, with a trigger description, a procedure and an evaluation; not for scoring whether a skill fires (skill-eval) or for editing playbooks (maintain-playbook).
-tier: meta
-rigor: rigid
-status: stable
-harness: [knowledge]
-pairs-with: [skill-eval, principles, tdd]
+description: Use when a new skill must be written or an existing one reshaped to the pack's standard — trigger description, procedure, evidence; not for scoring whether a skill fires (skill-eval) or editing playbooks (maintain-playbook).
 ---
 
 # skill-authoring
 
 A skill is a procedure with a trigger and a test. Write the trigger first, the
-failure modes second, the steps third. Prose that cannot be followed is an
-essay.
+failure it prevents second, the steps third. Prose that cannot be followed is
+an essay.
 
 ## When to use
 
@@ -20,7 +15,7 @@ essay.
 - An existing skill is too long, too vague or never fires.
 - A skill must be split because it carries two procedures.
 - A borrowed idea needs rewriting in this pack's voice.
-- A skill's evaluation shows it competing with a sibling.
+- A skill competes with a sibling for the same request.
 
 Near misses:
 
@@ -28,41 +23,35 @@ Near misses:
 - The change is to a playbook or principle → `maintain-playbook`.
 - The skill exists and needs applying → use it.
 
-## Modes
-
-| Mode | Work |
-|---|---|
-| New | description, trigger fixtures, body, evaluation |
-| Revise | one section, re-run evaluation |
-| Split | two triggers, two fixtures, cross-links |
-
-`rigor: rigid` — no body before a failing trigger fixture. The fixture is the
-skill's RED.
-
 ## Steps
 
-1. **Write the trigger fixture first**: five requests that should fire it,
-   three near misses that should reach a sibling. Artifact:
-   `evaluations/triggers/<skill>.json`.
-2. **Write the description**: `Use when <moment>; not for <near miss>.` No
-   procedure, no subject summary. Artifact: front matter.
-3. **Pick tier and rigour.** Rigid means steps cannot be skipped; say which.
-   Artifact: `tier`, `rigor`.
-4. **Write the six sections** per `docs/skill-standard.md`: when, modes, steps,
-   output, failure, rationalizations. Each step names an artifact. Artifact:
-   `SKILL.md`.
-5. **Move long material to `references/`** and load it from the body. Artifact:
-   reference files.
-6. **Run the validator and the trigger evaluation**; fix until both pass.
-   Artifact: results.
-7. **Record the change** in the pack's history and the comparison record.
-   Artifact: commit and `evaluations/comparisons/<skill>.md`.
+1. **Run one task without the skill.** Pick a realistic request the skill
+   should cover; record what the agent misses, in its own words. Artifact:
+   baseline note with the failing output.
+2. **Write the trigger set.** Five requests that should fire it, three near
+   misses that should reach a named sibling. Artifact: trigger table.
+3. **Write the description.** `Use when <moment>; not for <near miss>.` State
+   the moment, not the subject; name the sibling it must not steal. Artifact:
+   front matter.
+4. **Write four sections**: When to use, Steps, Output, Failure. Every step
+   names the artifact it leaves; the failure section says what to do when the
+   step cannot run. Artifact: `SKILL.md`.
+5. **Keep it short.** 60–90 lines, 120 maximum. Move tables, examples and long
+   command lists to `references/` and load them from the step that needs them.
+   Artifact: reference files.
+6. **Test the route.** Give the trigger set to a fresh context with only the
+   descriptions; every positive must reach this skill and every near miss its
+   sibling. Artifact: routing result.
+7. **Test the procedure.** Run the realistic task with the skill; compare with
+   the baseline. The named artifacts must exist and be usable. Artifact: run
+   log and comparison.
+8. **Record it.** Commit the skill, the baseline and the run. If an idea was
+   borrowed, add the source to `NOTICE`. Artifact: commit.
 
 ## Output
 
-A skill directory whose validator result is clean, whose fixture fires
-correctly, and whose body fits the budget. The description alone tells a router
-when to pick it.
+A skill that fires on its moment, refuses its siblings, and leaves the
+artifacts its steps name. A reader can run it without asking a question.
 
 ## Failure
 
@@ -70,22 +59,7 @@ when to pick it.
   both descriptions together.
 - **The steps exceed the budget.** It is two skills or one skill plus a
   reference; split deliberately.
-- **No failure mode can be named.** The skill is probably a principle or a
-  checklist line, not a procedure.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The skill is obvious, it needs no test." | Then a fixture is trivial to write and proves the trigger. |
-| "More detail makes it better." | Detail belongs in references; the body is a procedure. |
-| "Borrowing text is fine with attribution." | Attribution does not make it this pack's procedure; rewrite it. |
-| "Evaluation can come later." | Then nobody knows whether it fires until users complain. |
-
-## Tracking
-
-- **OpenChamber present:** the new skill's validation result on the delivery
-  note; the prompt or spec that motivated it in project knowledge.
-- **OpenCode or files:** validator output plus
-  `evaluations/comparisons/<skill>.md`.
-- Ladder: `resources/tracking.md`.
+- **No failure can be named.** The skill is probably a principle or a checklist
+  line, not a procedure.
+- **The procedure run adds nothing to the baseline.** Delete the skill; a
+  skill that does not change the outcome is ceremony.

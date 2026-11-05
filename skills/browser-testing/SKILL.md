@@ -1,11 +1,6 @@
 ---
 name: browser-testing
 description: Use when behaviour must be proven in a real browser — navigation, forms, auth flows, network conditions — rather than inferred from components; not for pixel comparison (visual-parity) or unit-level logic (tdd).
-tier: stack
-rigor: standard
-status: stable
-harness: [evidence]
-pairs-with: [visual-parity, verify, coverage]
 ---
 
 # browser-testing
@@ -28,14 +23,6 @@ Near misses:
 - The logic is pure → `tdd`.
 - The page has not been designed yet → `design`.
 
-## Modes
-
-| Mode | Tool shape |
-|---|---|
-| Scripted | Playwright test committed to the suite |
-| Exploratory | headed browser with a console and network log |
-| Ad hoc | one command against a running app, output kept |
-
 ## Steps
 
 1. **Write the user path as steps** from a cold load: URL, action, expected
@@ -48,9 +35,9 @@ Near misses:
    trace file.
 5. **Assert the outcome, not the implementation** — visible text, URL, stored
    value. Artifact: assertions.
-6. **Commit the script** to the suite and record the command; with the
-   adapter installed, `vstack_evidence` writes the line. Artifact: test file and
-   evidence line.
+6. **Commit the script** to the suite and record the command and result. With
+   the recorder installed, `vstack_evidence` writes the line; otherwise the
+   delivery record carries it. Artifact: test file and evidence line.
 
 ## Output
 
@@ -64,25 +51,3 @@ reproducible from a cold container, not from a warm developer browser.
 - **The app needs a real third party.** Mock at the network boundary and record
   what is mocked; test the real integration separately, once.
 - **Selectors break on styling changes.** Move to role and label queries.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "I clicked through it manually." | Manual clicks leave no script and no trace. |
-| "The component test covers it." | Component tests do not cover routing, hydration or storage. |
-| "Sleeps make it stable." | They make it slow and still flaky. Wait on conditions. |
-| "A screenshot is enough." | Screenshots do not prove the next click works. |
-
-## Tracking
-
-- **OpenChamber present:** the command and trace link on the delivery note.
-- **OpenCode or files:** `e2e/` in the repo plus
-  `.vstack/deliveries/<id>/traces/`.
-- Ladder: `resources/tracking.md`.
-
-## Verification
-
-```bash
-npx playwright test
-```

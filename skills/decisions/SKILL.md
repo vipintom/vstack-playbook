@@ -1,11 +1,6 @@
 ---
 name: decisions
 description: Use when a choice will matter later and must be recorded with its alternatives, evidence and consequences so it is not relitigated; not for reconstructing an old decision (rationale) or for applying a rule (principles).
-tier: continuity
-rigor: standard
-status: stable
-harness: [knowledge, memory]
-pairs-with: [rationale, principles, report]
 ---
 
 # decisions
@@ -28,14 +23,6 @@ Near misses:
 - The question is which rule applies → `principles`.
 - The choice is local and reversible within the task → just do it.
 
-## Modes
-
-| Mode | Length |
-|---|---|
-| Inline | 6 lines in the delivery record |
-| Record | one file, one page |
-| ADR | repository-level, numbered, immutable |
-
 ## Steps
 
 1. **State the decision in the active voice**: "Use expand/contract for the
@@ -49,7 +36,8 @@ Near misses:
 5. **Name the owner and the date**; a decision with no owner is a suggestion.
    Artifact: owner, date.
 6. **Record it** next to the work: `decisions/<date>-<slug>.md` or the delivery
-   record, following `templates/decision.md`. Artifact: record.
+   record, with choice, alternatives, reason, consequence and owner. Artifact:
+   record.
 7. **Mark superseded decisions** rather than editing them. Artifact: status
    change.
 
@@ -72,19 +60,3 @@ Owner: Vipin. Supersedes: none.
   would confirm it.
 - **The decision changes.** Supersede with a new record; never edit history to
   look consistent.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "We will remember why." | Nobody remembers the loser's cost three months later. |
-| "Recording decisions slows the meeting." | Six lines during the meeting; the alternative is the same meeting again. |
-| "The code documents it." | Code shows the winner, never the rejected option. |
-| "It is too small to record." | Small decisions set precedents precisely because nobody records them. |
-
-## Tracking
-
-- **OpenChamber present:** project knowledge entry for decisions that outlive
-  the delivery; the delivery note links the record.
-- **OpenCode or files:** `decisions/<date>-<slug>.md`, indexed by the delivery.
-- Ladder: `resources/tracking.md`.

@@ -17,7 +17,7 @@ when it applies, when it does not, its exit check and its skill budget.
 | `prove-ui` | a claim is about what a user sees | backend behaviour | screenshot or trace at a named viewport and state | 4 |
 | `deliver` | work is complete and must ship | unfinished work | gates passed, record written, user can reproduce | 5 |
 | `write-docs` | the artifact is explanation | code with docs as a side effect | a reader completes the task without asking | 3 |
-| `maintain-playbook` | the pack itself changes | project work | validator and evaluations green, counts generated | 4 |
+| `maintain-playbook` | the pack itself changes | project work | every changed skill still fires, every reference resolves, counts match disk | 4 |
 
 ## Choosing between neighbours
 

@@ -1,11 +1,6 @@
 ---
 name: sharpen
 description: Use when a request's wording is ambiguous, its acceptance criteria are missing, or its scope is stated as a feeling; not for framing a request that is already clear (shape) or ordering agreed work (plan).
-tier: frame
-rigor: standard
-status: stable
-harness: [focus]
-pairs-with: [shape, plan]
 ---
 
 # sharpen
@@ -26,14 +21,6 @@ Near misses:
 - The request is precise but not framed → `shape`.
 - The request is framed and needs ordering → `plan`.
 - The user wants a question answered, not work defined → answer it.
-
-## Modes
-
-| Mode | Output |
-|---|---|
-| Restate | one paragraph in your words, no questions |
-| Sharpen | restate + ambiguities + proposed criteria |
-| Interrogate | Sharpen plus at most three questions that change the work |
 
 ## Steps
 
@@ -69,19 +56,3 @@ Fork taken: "fast" = upload latency, not download (default; wrong cost: 1 day).
   boundary before planning.
 - **The user resists sharpening.** Record their words verbatim, note the risk
   of an untestable criterion, and proceed at the tier they choose.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "I know what they meant." | Then writing it down takes one minute and prevents a week of rework. |
-| "Asking questions wastes their time." | Three good questions cost less than one wrong delivery. |
-| "I'll keep the criteria loose so I can deliver sooner." | Loose criteria move the judgement to the reviewer, later, with less context. |
-| "More scope is safer than less." | Unrequested scope is the most common cause of rejection. |
-
-## Tracking
-
-- **OpenChamber present:** `focus_set` with the sharpened outcome; the block
-  goes on the delivery note.
-- **OpenCode or files:** `.vstack/frame.md` under a `sharpened` heading.
-- Ladder: `resources/tracking.md`.

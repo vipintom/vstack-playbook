@@ -1,11 +1,6 @@
 ---
 name: ci
 description: Use when a pipeline decides what gets verified, cached, gated or released, and the workflow must be fast, reproducible and honest; not for local test commands (verify-setup) or container images (docker).
-tier: stack
-rigor: standard
-status: stable
-harness: [gate, panel]
-pairs-with: [docker, verify, makefile]
 ---
 
 # ci
@@ -27,19 +22,11 @@ Near misses:
 - Image build → `docker`.
 - Release decision → `ready`.
 
-## Modes
-
-| Mode | Scope |
-|---|---|
-| Job | one workflow with lint, test, types |
-| Pipeline | jobs, dependencies, caching, artefacts |
-| Release | tag, provenance, publish, environment gates |
-
 ## Steps
 
-1. **List the gates the pipeline must run** and which block merge; with the
-   adapter installed, `vstack_gate run <name>` is the local entry point for the
-   same command. Artifact: gate list.
+1. **List the gates the pipeline must run** and which block merge. Record the
+   exact local command for each; it must be the command CI runs. Artifact: gate
+   list.
 2. **Pin the environment**: image or runner version, tool versions from the
    lockfile. Artifact: version pins.
 3. **Order jobs by cost**: fail fast, expensive jobs only after cheap ones.
@@ -66,25 +53,3 @@ with its log.
   with a date.
 - **Caching hides a failure.** Delete the cache key and rerun before trusting
   the pass.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "CI is slower than local." | Then fix the job, not the gate. |
-| "We can skip tests on docs changes." | Docs break links and commands; run the cheap gates. |
-| "The cache is fine." | Prove it with a cold run before trusting warm ones. |
-| "Required checks slow the team." | Broken main slows it more. |
-
-## Tracking
-
-- **OpenChamber present:** run links on the delivery note.
-- **OpenCode or files:** `.github/workflows/` in the repo; evidence lines per
-  gate.
-- Ladder: `resources/tracking.md`.
-
-## Verification
-
-```bash
-gh workflow view ci.yml && gh run list --limit 3
-```

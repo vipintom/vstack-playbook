@@ -1,11 +1,6 @@
 ---
 name: migration
 description: Use when stored data, a public contract or a running system must move from one shape to another without a flag day; not for a fresh implementation (design) or a same-shape refactor (refactor).
-tier: design
-rigor: rigid
-status: stable
-harness: [plan, ledger, todo]
-pairs-with: [impact, design, verify]
 ---
 
 # migration
@@ -28,17 +23,6 @@ Near misses:
 - Behaviour is preserved and nothing external sees it → `refactor`.
 - The change is a one-way cutover with no data → `change-infrastructure`
   playbook.
-
-## Modes
-
-| Mode | Plan |
-|---|---|
-| Expand/contract | add new, dual-write or dual-read, backfill, cut over, remove old |
-| Versioned contract | new version alongside, deprecate, retire by date |
-| Offline | stop writes, migrate, restart — only with a measured window |
-
-`rigor: rigid` — no step deletes the old path before the new one is proven in
-production. The order is the safety.
 
 ## Steps
 
@@ -74,22 +58,3 @@ that allows the next step. Plus the rollback command per step.
   good the forward path looks.
 - **The window is a flag day.** Reduce scope until a staged path exists, or
   get an explicit recorded acceptance of downtime.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "We can do it in one deploy." | One deploy has one failure mode and no way back. |
-| "Backfill is a one-off script." | One-off scripts run twice; make it idempotent. |
-| "Nobody reads the old field." | Prove it with query logs, not with confidence. |
-| "Rollback is obvious." | Then run it once in staging and keep the output. |
-| "Dual-write is complex." | The complexity is the price of not having a flag day. |
-
-## Tracking
-
-- **OpenChamber present:** step table on the delivery note; the panel shows the
-  current step and what unblocks the next.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Migration", plus logs
-  in `.vstack/deliveries/<id>/migration/`.
-- Ladder: `resources/tracking.md`.
-

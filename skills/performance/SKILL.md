@@ -1,11 +1,6 @@
 ---
 name: performance
 description: Use when a performance claim needs a baseline and a measured change under the same conditions; not for interpreting an existing profile (forensics) or for asserting speed without a number (evidence).
-tier: design
-rigor: rigid
-status: stable
-harness: [evidence, gate]
-pairs-with: [forensics, evidence, verify]
 ---
 
 # performance
@@ -26,17 +21,6 @@ Near misses:
 - A profile exists and needs reading → `forensics`.
 - The number exists and needs recording → `evidence`.
 - The concern is correctness under load → `red-team` or `verify`.
-
-## Modes
-
-| Mode | Rigour |
-|---|---|
-| Micro | one function, benchmark harness, many iterations |
-| End-to-end | one user path, realistic fixture |
-| Load | concurrency levels, saturation point |
-
-`rigor: rigid` — baseline before change, same conditions after. A benchmark
-without a baseline is a demonstration.
 
 ## Steps
 
@@ -69,22 +53,3 @@ without a baseline is a demonstration.
   normalise.
 - **The optimisation changes behaviour.** Stop; correctness first, then speed.
 - **The number improves only for the fixture.** Report the fixture's limits.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "It feels faster." | Feeling is not a measurement; the regression will be invisible too. |
-| "The benchmark takes too long." | A wrong optimisation costs more than the benchmark. |
-| "Variance is noise, ignore it." | Report the spread; noise larger than the delta means no result. |
-| "One run is enough." | One run measures the machine's mood. |
-
-## Tracking
-
-- **OpenChamber present:** before/after table on the delivery note; the panel
-  shows the claim next to its evidence.
-- **OpenCode or files:** `docs/deliveries/<id>.md` plus
-  `.vstack/deliveries/<id>/bench/`.
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_gate run bench` and `vstack_evidence`
-  record the numbers; otherwise the harness command and `evidence.jsonl`.

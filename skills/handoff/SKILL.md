@@ -1,11 +1,6 @@
 ---
 name: handoff
-description: Use when work pauses and the next session or person must continue without re-reading the history, or when work must stop in a state that is safe and honestly described; not for explaining results to a stakeholder (report) or for restoring a broken state (recovery).
-tier: continuity
-rigor: rigid
-status: stable
-harness: [focus, knowledge, ledger]
-pairs-with: [resume, report, recovery]
+description: Use when work pauses and the next session or person must continue without re-reading history, or must stop in a safe, honestly described state; not for explaining results to a stakeholder (report) or restoring a broken state (recovery).
 ---
 
 # handoff
@@ -27,17 +22,6 @@ Near misses:
 - A broken state must be restored → `recovery`.
 - The next step is unclear because routing was never done → `route`.
 
-## Modes
-
-| Mode | Handoff |
-|---|---|
-| Checkpoint | state, next action, blockers — 10 lines |
-| Session | plus decisions and evidence locations |
-| Safe pause | plus the exact reversal of any half-applied change |
-
-`rigor: rigid` — the handoff names the last verified state and the next action.
-A handoff without a next action is a diary entry.
-
 ## Steps
 
 1. **Commit or stash work in progress** and record `git status --porcelain`.
@@ -53,8 +37,9 @@ A handoff without a next action is a diary entry.
    decision links.
 6. **Describe anything half-applied** and the exact reversal. Artifact:
    rollback note.
-7. **Write it where the next session reads first**: focus card detail, project
-   knowledge, or `.vstack/handoff.md`. Artifact: handoff record.
+7. **Write it where the next session reads first**: the delivery record, or a
+   handoff note at the repository root. With the recorder installed,
+   `vstack_handoff` writes the same fields. Artifact: handoff record.
 
 ## Output
 
@@ -74,20 +59,3 @@ Decisions: expand/contract chosen — link.
   not a handoff; do not hand over an unsafe state silently.
 - **The next action depends on a decision.** Name the decision and the options;
   the next session should not re-derive it.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The chat history is the handoff." | The next session cannot read it, or reads it at full cost. |
-| "I will summarise the whole session." | Pointers beat summaries; summaries drift. |
-| "Nothing is half-applied." | Then one line says so; the check is cheap. |
-| "The next step is obvious." | Obvious to you. Write it. |
-
-## Tracking
-
-- **OpenChamber present:** focus card carries state and next action; project
-  knowledge for facts that outlive the session.
-- **OpenCode or files:** `.vstack/handoff.md`, linked from the delivery.
-- Ladder: `resources/tracking.md`.
-

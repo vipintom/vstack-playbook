@@ -1,11 +1,6 @@
 ---
 name: prototype
 description: Use when a design question can only be answered by building something disposable and looking at it; not for answering a factual question (understand) or for production code (tdd).
-tier: frame
-rigor: standard
-status: stable
-harness: [focus]
-pairs-with: [design, plan]
 ---
 
 # prototype
@@ -27,14 +22,6 @@ Near misses:
 - The question is factual and reading answers it → `understand`.
 - The answer must ship → `tdd` with production constraints.
 - The design is decided and needs a plan → `plan`.
-
-## Modes
-
-| Mode | Timebox | Output |
-|---|---|---|
-| Sketch | 1 hour | screenshot or transcript, findings |
-| Compare | half day | two builds, one fixture, numbers |
-| Feasibility | 1 day | the risky path proven or disproven |
 
 ## Steps
 
@@ -67,19 +54,3 @@ artifact fate. The prototype itself is evidence, never a deliverable.
 - **The result is ambiguous.** Say so; do not pick the option you prefer.
 - **Someone wants to ship it.** Refuse: prototypes have no tests, no error
   handling and no owner. Rebuild under `tdd` if the decision is yes.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "It works, so we can keep it." | It works on one path with no tests; that is a demo, not a product. |
-| "Cleanup can wait until after the demo." | Prototypes that survive unlabelled become legacy with no owner. |
-| "The prototype is faster to extend than to rebuild." | The first bug fix costs more than the rebuild. |
-| "The question can be answered without building." | Then it was not a prototype question; save the time. |
-
-## Tracking
-
-- **OpenChamber present:** findings on the delivery note; the prototype path
-  if kept, so the panel shows it is not production.
-- **OpenCode or files:** `docs/deliveries/<id>.md` findings section.
-- Ladder: `resources/tracking.md`.

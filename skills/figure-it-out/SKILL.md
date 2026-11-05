@@ -1,11 +1,6 @@
 ---
 name: figure-it-out
 description: Use when no playbook fits and the situation needs a bespoke sequence built from skills, with the same guarantees as a playbook; not for work that matches an existing playbook (route) or a cause that is simply unknown (debug).
-tier: frame
-rigor: flexible
-status: stable
-harness: [focus, knowledge]
-pairs-with: [route, plan, design]
 ---
 
 # figure-it-out
@@ -28,14 +23,6 @@ Near misses:
 - The cause is unknown → `debug` or the `understand` playbook.
 - The scope is unclear → `shape`.
 
-## Modes
-
-| Mode | Effort |
-|---|---|
-| Light | 4–6 steps, no new skills, one session |
-| Full | step list with artifacts, gates and a review |
-| Repeatable | Full plus a note on what would make it a playbook |
-
 ## Steps
 
 1. **Name why the thirteen do not fit**, against
@@ -55,8 +42,8 @@ Near misses:
 
 ## Output
 
-A six-to-ten-line playbook on `templates/playbook.md`: steps, skill per step,
-artifact per step, exit check, budget, and the rejection note. A reader should be able to run it
+A six-to-ten-line playbook: steps, skill per step, artifact per step, exit
+check, budget, and the rejection note. A reader should be able to run it
 without asking what was meant.
 
 ## Failure
@@ -69,19 +56,3 @@ without asking what was meant.
   gap is evidence for a future skill, not a reason to improvise silently.
 - **The situation recurs.** After the third occurrence, propose the playbook
   with this record as the draft.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "This is unique, so process does not apply." | Unique situations still need an exit check; the sequence is what changes. |
-| "I'll write the steps after I start." | Then the record is a transcript, and the next run repeats the discovery. |
-| "Borrowing half of two playbooks is fine." | It is fine only when written down; unwritten hybrids lose the gates. |
-| "The budget is arbitrary." | So is the point where work becomes unbounded. Set it before starting. |
-
-## Tracking
-
-- **OpenChamber present:** a delivery note holding the step list; `focus_add`
-  for the first three steps.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Bespoke sequence".
-- Ladder: `resources/tracking.md`.

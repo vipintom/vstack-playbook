@@ -1,11 +1,6 @@
 ---
 name: watch-pr
 description: Use when a change is published and CI, review comments or a rollout must be observed until a definite outcome; not for performing the merge (ship) or for re-verifying after local changes (verify).
-tier: review
-rigor: standard
-status: stable
-harness: [panel, notify]
-pairs-with: [ship, verify, recovery]
 ---
 
 # watch-pr
@@ -26,14 +21,6 @@ Near misses:
 - The merge is still to be performed → `ship`.
 - Local changes need checking → `verify`.
 - The rollout failed and state must be restored → `recovery`.
-
-## Modes
-
-| Mode | Trigger |
-|---|---|
-| PR | checks and review comments |
-| Release | tag pipeline, artefact availability |
-| Rollout | health signals, error rate, saturation |
 
 ## Steps
 
@@ -64,19 +51,3 @@ the exact condition that will end the watch. No "should be fine".
   pending at it.
 - **The pipeline is red for unrelated reasons.** Name the pre-existing failure
   and its evidence; do not "fix" it inside this change.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "It usually passes." | Usually is a flake rate; record it. |
-| "I will check back later." | Later loses the log and the order of events. |
-| "Green means merged." | Green means the checks passed on a commit; merge is a separate act. |
-| "The failing job is unrelated." | Say how you know, with the log line. |
-
-## Tracking
-
-- **OpenChamber present:** a watch link on the delivery note; `focus_status`
-  stays "waiting external" until the outcome.
-- **OpenCode or files:** the outcome and its links in the delivery note.
-- Ladder: `resources/tracking.md`.

@@ -1,11 +1,6 @@
 ---
 name: blueprint
 description: Use when an accepted design must become concrete interfaces, files and signatures that an implementer can follow without re-deciding; not for choosing the design (design) or for ordering the work (plan).
-tier: design
-rigor: standard
-status: stable
-harness: [knowledge]
-pairs-with: [design, plan, tdd]
 ---
 
 # blueprint
@@ -27,14 +22,6 @@ Near misses:
 - The boundaries are still open → `design`.
 - The work is a single-file change → write the signature inline and start.
 - The task is to test an existing interface → `coverage` or `tdd`.
-
-## Modes
-
-| Mode | Output |
-|---|---|
-| Sketch | exported names and signatures only |
-| Full | file map, types, signatures, error paths, test seams |
-| Contract | Full plus generated types or a schema that enforces it |
 
 ## Steps
 
@@ -70,19 +57,3 @@ export function createSession(deps: { store: SessionStore; now: () => Date }, us
   amendment, not a silent choice.
 - **The sketch cannot type-check.** Fix it now; the compiler is the cheapest
   reviewer available.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The implementer can choose names." | Then two modules will disagree and someone writes an adapter. |
-| "Types are bureaucracy." | Types are the only contract that fails at build time. |
-| "I'll design it while coding." | That is how interfaces become accidental. |
-| "The sketch is throwaway." | It is the cheapest artifact in the delivery; keep it. |
-
-## Tracking
-
-- **OpenChamber present:** blueprint on the delivery note; tasks added with
-  `focus_add` for the first three.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Blueprint".
-- Ladder: `resources/tracking.md`.

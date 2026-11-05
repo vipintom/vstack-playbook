@@ -1,11 +1,6 @@
 ---
 name: report
-description: Use when work must be explained to someone who did not do it — reviewer, stakeholder or future session — grounded in artifacts rather than narrative; not for compressing a session for continuation (handoff) or for publishing a release (ship).
-tier: review
-rigor: standard
-status: stable
-harness: [ledger, panel]
-pairs-with: [evidence, handoff, verify]
+description: Use when work must be explained to someone who did not do it — reviewer, stakeholder or future session — grounded in artifacts, not narrative; not for a continuation handoff (handoff) or a release (ship).
 ---
 
 # report
@@ -26,14 +21,6 @@ Near misses:
 - The next session needs pointers to continue → `handoff`.
 - The work must be published → `ship` writes the release note.
 - The question is why a choice was made → `rationale`.
-
-## Modes
-
-| Mode | Length |
-|---|---|
-| Result | 5 lines: outcome, evidence, gaps |
-| Delivery | structured record with gate table and findings |
-| Stakeholder | result plus impact and next decision |
 
 ## Steps
 
@@ -64,19 +51,3 @@ Limit: single-process fixture; concurrency untested.
 - **The reader needs a decision.** Give options with costs, not a narrative.
 - **The account is long because the work was long.** Length is not evidence;
   cut to result, evidence, gaps.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "More detail shows the work." | Readers want the result; the code shows the work. |
-| "The reader will trust a confident tone." | Confidence without evidence is the thing reports exist to replace. |
-| "I will omit the failed attempts." | Then the next session repeats them. One line each. |
-| "Stakeholders need the technical detail." | They need impact and decision; link the detail. |
-
-## Tracking
-
-- **OpenChamber present:** the report is the delivery note; project knowledge
-  only for what outlives it.
-- **OpenCode or files:** `docs/deliveries/<id>.md`.
-- Ladder: `resources/tracking.md`.

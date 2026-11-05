@@ -1,11 +1,6 @@
 ---
 name: route
 description: Use when a request arrives with no playbook open and the approach must be chosen before skills load; not for a one-file edit, a question a single read answers, or work whose route is already recorded.
-tier: entry
-rigor: standard
-status: stable
-harness: [focus, knowledge, ledger]
-pairs-with: [plan, figure-it-out, sharpen]
 ---
 
 # route
@@ -27,22 +22,11 @@ Near misses, and where they belong instead:
 - The user names the skill ("trace this with code-tour") → run that skill.
 - The question is answered by reading one file → read it and answer.
 
-## Modes
-
-| Mode | Trigger | What changes |
-|---|---|---|
-| Quick | one file, reversible, no gate | playbook `fix-bug` or none; one skill; record one line |
-| Standard | default for features, defects, refactors | playbook + tier + tracking record; skills capped at three |
-| Deep | irreversible, public, security or data | Standard plus `design` gate, `red-team`, independent `verify` |
-
-Quick is a decision, not a shortcut: say "Quick" and why, then proceed. If the
-work grows past one file, re-route at Standard — do not stretch Quick.
-
 ## Steps
 
 1. **State the outcome.** One sentence for what exists afterwards, and the
-   check that proves it. Artifact: `outcome` and `done-when` on the focus card,
-   or in `.vstack/focus.md` when no card exists.
+   check that proves it. Artifact: `outcome` and `done-when` in the delivery
+   record.
 2. **Decide triviality.** If one edit, one file, reversible — write the Quick
    line and stop routing. Artifact: `tier: quick`.
 3. **Choose the playbook.** Read `references/playbooks.md`. If nothing fits
@@ -51,9 +35,10 @@ work grows past one file, re-route at Standard — do not stretch Quick.
 4. **Choose the tier.** Read `references/tiers.md`. Artifact: `tier`.
 5. **Cap the load.** Name the first two skills — three at Deep — and the skills
    you deliberately skip, with the reason. Artifact: `skills` and `skipped`.
-6. **Record the route.** Focus card when present (`focus_set`, then
-   `focus_add` for the first action); otherwise `.vstack/focus.md`. Artifact:
-   the routing record below.
+6. **Record the route.** With the recorder installed, call `vstack_route` with
+   the playbook, tier, skills and skipped. Without it, write the same fields at
+   the top of `docs/deliveries/<id>.md` or the project plan. Artifact: the
+   routing record below.
 7. **Hand off.** Invoke the first skill with `outcome`, `done-when` and the
    artifact paths. Do not restate that skill's steps.
 
@@ -62,7 +47,7 @@ work grows past one file, re-route at Standard — do not stretch Quick.
 ```json
 {"playbook": "fix-bug", "tier": "standard", "skills": ["debug", "tdd"],
  "skipped": ["red-team"], "done-when": "the flaky case fails 0/50 runs",
- "recorded": "focus card + docs/deliveries/2026-11-05-build-flake.md"}
+ "recorded": "docs/deliveries/2026-11-05-build-flake.md"}
 ```
 
 A reader must be able to answer "what was chosen, what was skipped and why"
@@ -75,26 +60,6 @@ from the record alone. No record, no route.
   tier, and the tier is expensive to change later.
 - **The user overrides the route.** Keep their choice, record the override and
   the reason in the same record. Never silently re-route mid-delivery.
-- **No focus card and no `.vstack/`.** Write `.vstack/focus.md` before step 7;
+- **No delivery record yet.** Create `docs/deliveries/<id>.md` before step 7;
   a route that exists only in the conversation is not a route.
 - **Two playbooks tie.** Take the one whose exit criteria are checkable now.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The request is clear, routing is ceremony." | Clear requests still need a done-predicate; without one, completion is an opinion. |
-| "I'll pick the playbook once I see the code." | Then you are already exploring under the wrong tier. Route in one minute, re-route once. |
-| "Three skills are all relevant." | More relevant skills means a later first artifact. Pick two, name the rest as deferred. |
-| "Deep tier is safer, I'll use it everywhere." | Deep adds a design gate and an independent verifier; on a one-file fix that is cost without evidence. |
-| "I'll record the route at the end." | At the end the reasoning is gone and the record becomes a summary of what happened, not a decision. |
-
-## Tracking
-
-- **OpenChamber present:** `focus_set` with the outcome, `focus_add` for step 1,
-  `focus_status` as the tier begins. Project knowledge for anything the next
-  session must read.
-- **OpenCode only:** session todos in the same order as the routing record.
-- **Neither:** `.vstack/focus.md`, then `docs/deliveries/<id>.md` once the
-  delivery is named. Full ladder: `resources/tracking.md`.
-

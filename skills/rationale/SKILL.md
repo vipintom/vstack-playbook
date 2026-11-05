@@ -1,11 +1,6 @@
 ---
 name: rationale
 description: Use when a decision's history must be reconstructed — what was chosen, what was rejected and on what evidence; not for how the code works now (code-tour) or for making a new decision (principles).
-tier: frame
-rigor: flexible
-status: stable
-harness: [knowledge, memory]
-pairs-with: [code-tour, decisions, principles]
 ---
 
 # rationale
@@ -27,14 +22,6 @@ Near misses:
 - The question is about current behaviour → `code-tour`.
 - The question is a new decision → `principles`.
 - The question is what to do next → `plan`.
-
-## Modes
-
-| Mode | Evidence |
-|---|---|
-| Quick | commit messages and the diff |
-| Standard | plus issues, PR discussion, docs |
-| Deep | plus chat, incident records, older ADRs, release notes |
 
 ## Steps
 
@@ -72,20 +59,3 @@ Inferred: the 60 s backoff came from the vendor limit; no source states it.
   with a name attached.
 - **The history is irrelevant now.** Say that too: a constraint that expired
   should not keep governing the code.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The code speaks for itself." | Code says what, never what was rejected or at what cost. |
-| "I remember the discussion." | Memory is not a citation; the next reader cannot check it. |
-| "A long history is a thorough answer." | The reader needs the binding constraints, not the timeline. |
-| "Inference and evidence can be mixed." | Mixed, they cannot be audited; labelled, they inform. |
-
-## Tracking
-
-- **OpenChamber present:** project knowledge for a decision that outlives the
-  delivery; memory only for a preference.
-- **OpenCode or files:** `decisions/<date>-<slug>.md`, referenced by the
-  delivery.
-- Ladder: `resources/tracking.md`.

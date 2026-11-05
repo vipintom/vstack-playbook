@@ -1,11 +1,6 @@
 ---
 name: coverage
 description: Use when it is unclear whether the tests prove the acceptance criteria, or existing behaviour needs a safety net before change; not for writing the next test (tdd) or for running the gates (verify).
-tier: build
-rigor: standard
-status: stable
-harness: [ledger, todo]
-pairs-with: [tdd, verify, rubrics]
 ---
 
 # coverage
@@ -26,14 +21,6 @@ Near misses:
 - The next behaviour needs a failing test → `tdd`.
 - The gates must be run → `verify`.
 - The criteria themselves are unclear → `shape` or `rubrics`.
-
-## Modes
-
-| Mode | Question |
-|---|---|
-| Criteria map | every criterion has a check that can fail |
-| Characterisation | freeze current behaviour before changing it |
-| Gap hunt | mutation or fault injection to find weak tests |
 
 ## Steps
 
@@ -63,19 +50,3 @@ Near misses:
   coverage that cannot fail is worse than none.
 - **Mutation testing is too slow.** Sample the riskiest paths; say which were
   not mutated.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Coverage is 90%." | Coverage counts lines executed, not claims checked. |
-| "The test exists, so it is covered." | Only if it fails when the behaviour breaks. |
-| "Writing tests for old code is waste." | Characterising it is what makes the refactor safe. |
-| "The gap is unlikely." | Unlikely is a frequency, not a proof. |
-
-## Tracking
-
-- **OpenChamber present:** the mapping table on the delivery note; gaps as
-  todos.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Coverage".
-- Ladder: `resources/tracking.md`.

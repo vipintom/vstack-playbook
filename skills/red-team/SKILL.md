@@ -1,11 +1,6 @@
 ---
 name: red-team
 description: Use when a design or change needs an adversary that tries to break it before users or attackers do; not for checking it meets its spec (review) or for running the gates (verify).
-tier: design
-rigor: standard
-status: stable
-harness: [knowledge]
-pairs-with: [design, audit, verify]
 ---
 
 # red-team
@@ -26,14 +21,6 @@ Near misses:
 - The question is whether the code meets its spec → `review`.
 - The gates must be run → `verify`.
 - The concern is performance under load → `performance`.
-
-## Modes
-
-| Mode | Attack surfaces |
-|---|---|
-| Focused | one boundary: auth, input, retry |
-| Broad | design plus implementation plus operations |
-| Post-incident | the failed path and everything shaped like it |
 
 ## Steps
 
@@ -63,19 +50,3 @@ Near misses:
   result, not a failure.
 - **An attack needs production data.** Stop; propose a fixture that models it.
 - **A finding is disputed.** Keep the reproduction; whoever disagrees runs it.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The author already thought about this." | Then the attacks are quick to write and quicker to dismiss. |
-| "Our users are trusted." | Errors, not attackers, cause most incidents. |
-| "A finding without reproduction is still a concern." | It is a hypothesis; label it and move on. |
-| "Security is a separate team." | They will find it after release at ten times the cost. |
-
-## Tracking
-
-- **OpenChamber present:** findings on the delivery note; high severity also
-  as a project note so it is not lost in the thread.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Red team".
-- Ladder: `resources/tracking.md`.

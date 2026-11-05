@@ -1,7 +1,8 @@
-# Evidence line format
+# Evidence record format
 
-One JSON object per line, appended, never edited. The file is
-`.vstack/deliveries/<id>/evidence.jsonl` when no adapter is installed.
+One entry per claim, appended, never edited. With the recorder installed it
+lives in the recorder's state; without it, write the same fields in
+`docs/deliveries/<id>.md` or the commit message.
 
 ## Fields
 
@@ -32,8 +33,8 @@ One JSON object per line, appended, never edited. The file is
 
 The reader re-runs `check` and compares the digest. A mismatch means the tree,
 the environment or the record changed — any of which invalidates the claim
-until explained. The ledger enforces this at completion: a required gate whose
-latest line is `failed` or `blocked` blocks the close.
+until explained. At close, a required check whose latest entry is `failed` or
+`blocked` blocks completion.
 
 ## Minimal example
 

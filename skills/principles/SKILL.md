@@ -1,11 +1,6 @@
 ---
 name: principles
 description: Use when a decision needs the rule behind it, or two reasonable approaches must be adjudicated before work continues; not for a skill's procedure (help) or a project's local conventions.
-tier: entry
-rigor: standard
-status: stable
-harness: [knowledge, memory]
-pairs-with: [plan, design]
 ---
 
 # principles
@@ -27,14 +22,6 @@ Near misses:
 - The question is "how does this code work" → `code-tour`.
 - The question is "why was this chosen" → `rationale`.
 - The question is "what should the steps be" → `plan`.
-
-## Modes
-
-| Mode | Use |
-|---|---|
-| Cite | name the principle, state its test, apply it to this decision |
-| Adjudicate | two principles conflict; use the precedence below |
-| Teach | explain the rule with one example from this repository |
 
 ## Steps
 
@@ -70,19 +57,3 @@ Precedence: truth before speed.
   pretend the principle applied.
 - **The user overrides a principle.** Record the override, the reason and who
   accepted the risk. An unrecorded override is how a method rots.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Everyone knows this rule." | Knowing is not applying. State the test and the result. |
-| "The principle supports my choice, obviously." | Then the test takes ten seconds to write down. Do it. |
-| "Principles are for big decisions." | Most rot comes from small unrecorded ones; big ones get reviewed anyway. |
-| "Two principles conflict, so neither applies." | Precedence exists precisely for that. Pick and record which won. |
-
-## Tracking
-
-- **OpenChamber present:** a durable preference goes to project knowledge; a
-  delivery-local decision goes in the delivery note.
-- **OpenCode or files:** `decisions/<date>-<slug>.md` next to the delivery.
-- Ladder: `resources/tracking.md`.

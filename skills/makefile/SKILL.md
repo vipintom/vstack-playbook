@@ -1,11 +1,6 @@
 ---
 name: makefile
 description: Use when developer or CI commands need one discoverable entry point — setup, test, build, verify — instead of tribal knowledge; not for container definitions (docker) or pipeline orchestration (ci).
-tier: stack
-rigor: standard
-status: stable
-harness: [gate]
-pairs-with: [ci, docker, verify-setup]
 ---
 
 # makefile
@@ -26,14 +21,6 @@ Near misses:
 - The wrapper is a container build → `docker`.
 - The pipeline itself → `ci`.
 - The project has one command already; leave it.
-
-## Modes
-
-| Mode | Surface |
-|---|---|
-| Minimal | `help`, `setup`, `test`, `verify` |
-| Project | plus `build`, `lint`, `format`, `clean` |
-| Environments | `dev`, `prod`, `test` variants sharing one target |
 
 ## Steps
 
@@ -62,26 +49,3 @@ verify runnable from clean. Structure and examples: `references/patterns.md`.
 - **Targets run in the wrong order.** Declare dependencies; do not encode order
   in prose.
 - **`make` fails only in CI.** Compare the shell and environment; record both.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The commands are in the README." | READMEs drift; a target either runs or is fixed. |
-| "Make adds indirection." | It removes the question of which command is current. |
-| "CI has its own commands." | Then local and CI prove different things. |
-| "Help text is obvious." | It is the first thing an agent reads. |
-
-## Tracking
-
-- **OpenChamber present:** the clean-run log on the delivery note.
-- **OpenCode or files:** evidence line with `make verify` output.
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_gate run make-test` proves the targets;
-  otherwise the `make help && make test` log is the artifact.
-
-## Verification
-
-```bash
-make help && make test
-```

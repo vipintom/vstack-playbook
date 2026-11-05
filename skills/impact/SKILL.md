@@ -1,11 +1,6 @@
 ---
 name: impact
 description: Use when a proposed change needs its blast radius known — callers, contracts, data, runtime effects — before work starts; not for deciding the change (design) or for verifying it after (verify).
-tier: design
-rigor: standard
-status: stable
-harness: [knowledge]
-pairs-with: [design, migration, coverage]
 ---
 
 # impact
@@ -27,14 +22,6 @@ Near misses:
 - The shape of the change is undecided → `design`.
 - The change is already made and must be proven → `verify`.
 - The question is how code works → `code-tour`.
-
-## Modes
-
-| Mode | Reach |
-|---|---|
-| Local | imports and call sites in this repository |
-| Cross-repo | consumers, published packages, other services |
-| Data | stored rows, events, caches, backups |
 
 ## Steps
 
@@ -68,19 +55,3 @@ Near misses:
 - **The change is safe but the data is not.** Data wins: open `migration`.
 - **Impact is unbounded** (a widely imported type). Split the change so each
   step is bounded, or version instead of editing.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Only one caller, I checked." | Checked how? Grep, count, and record the command. |
-| "Types will catch it." | Types do not catch serialized payloads or stored rows. |
-| "We will fix consumers in a follow-up." | That is a broken main branch with extra steps. |
-| "Impact is obvious." | Obvious is what the table replaces. |
-
-## Tracking
-
-- **OpenChamber present:** impact table on the delivery note, so the panel
-  shows what the change reaches.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Impact".
-- Ladder: `resources/tracking.md`.

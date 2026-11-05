@@ -1,11 +1,6 @@
 ---
 name: typescript
 description: Use when TypeScript types, module boundaries or build configuration decide whether a change is safe; not for runtime behaviour tests (tdd) or API contract shape (api-design).
-tier: stack
-rigor: standard
-status: stable
-harness: [gate]
-pairs-with: [tdd, review, api-design]
 ---
 
 # typescript
@@ -26,14 +21,6 @@ Near misses:
 - The question is what the API should expose → `api-design`.
 - The question is whether behaviour works → `tdd`.
 - The question is style → `review`.
-
-## Modes
-
-| Mode | Check |
-|---|---|
-| Local | `tsc --noEmit` on the package |
-| Boundary | build all references, check emitted declarations |
-| Migration | dual types during a transition, then remove the old |
 
 ## Steps
 
@@ -59,26 +46,3 @@ declaration diff. No new `any` without a comment naming the reason.
   runtime check; do not scatter casts.
 - **Strict mode is off.** Turning it on is its own change; record the count of
   new errors before deciding.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "`any` is faster." | It moves the failure to runtime, where it costs more. |
-| "The cast is obviously safe." | Then a type guard or a parser can prove it. |
-| "Types are documentation." | They are a build-time gate; documentation does not fail builds. |
-| "Strict mode breaks too much." | Record the count; the number is the debt, not the argument. |
-
-## Tracking
-
-- **OpenChamber present:** compiler output on the delivery note.
-- **OpenCode or files:** evidence line with the command and digest.
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_gate run typecheck` proves the surface;
-  otherwise the `tsc --noEmit` log is the artifact.
-
-## Verification
-
-```bash
-npx tsc --noEmit
-```

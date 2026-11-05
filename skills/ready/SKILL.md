@@ -1,11 +1,6 @@
 ---
 name: ready
 description: Use when work is claimed complete and someone must decide whether it is safe to merge or release, weighing gates, findings and open risks; not for producing the evidence (verify) or performing the review (review).
-tier: review
-rigor: rigid
-status: stable
-harness: [gate, ledger, panel]
-pairs-with: [verify, review, ship]
 ---
 
 # ready
@@ -26,17 +21,6 @@ Near misses:
 - The gates have not run → `verify`.
 - The review has not happened → `review`.
 - The decision is to publish → `ship`.
-
-## Modes
-
-| Mode | Output |
-|---|---|
-| Merge | gate table + open findings + verdict |
-| Release | plus rollback plan and observability |
-| Waiver | explicit risk acceptance with a name |
-
-`rigor: rigid` — no verdict without a gate table. "Looks ready" is not a
-verdict.
 
 ## Steps
 
@@ -70,22 +54,3 @@ On failure: none, nothing ships.
 - **A gate is waived without a name.** Not a waiver; not ready.
 - **The decision is political.** State the technical facts and let the owner
   decide; record who decided.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The gates were green yesterday." | The tree changed; yesterday's pass is history. |
-| "The finding is minor, ship it." | Minor findings are recorded and accepted, not erased. |
-| "A waiver slows the release." | An unrecorded waiver is the release failing later, unexplained. |
-| "Ready is a feeling." | It is a table with three facts. |
-
-## Tracking
-
-- **OpenChamber present:** the verdict on the delivery note; the panel shows it
-  next to the gate table.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Readiness".
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_gate` supplies the table the verdict
-  reads; otherwise the gate logs are attached directly.
-

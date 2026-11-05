@@ -1,11 +1,6 @@
 ---
 name: gitignore
 description: Use when a repository's ignore rules must keep secrets, build output and local state out of history, or a file is tracked that should not be; not for cleaning a repository that already committed a secret (recovery).
-tier: stack
-rigor: standard
-status: stable
-harness: [gate]
-pairs-with: [docker, makefile, ci]
 ---
 
 # gitignore
@@ -26,14 +21,6 @@ Near misses:
 - The secret is already committed → `recovery` and rotation, not a rule.
 - The file is build output that should be shipped → packaging, not ignore.
 - The question is container context size → `docker`.
-
-## Modes
-
-| Mode | Scope |
-|---|---|
-| Minimal | secrets, dependencies, build output |
-| Project | plus toolchain caches and local state |
-| Monorepo | per-package rules with a root baseline |
 
 ## Steps
 
@@ -62,26 +49,3 @@ no tracked file that the rules exclude. Patterns: `references/patterns.md`.
   files people later need.
 - **Negation does not work** (`!file` after a directory rule). Re-include the
   parent directory first.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Everyone knows `.env` is ignored." | Check it; assumptions leak credentials. |
-| "I can add it in the next commit." | One commit is enough for a secret to spread. |
-| "Deleting the file removes it." | History keeps it; rotate before cleaning. |
-| "A broad glob is tidier." | It hides source, and the next person debugs why. |
-
-## Tracking
-
-- **OpenChamber present:** `git check-ignore` output on the delivery note.
-- **OpenCode or files:** evidence line with the command and result.
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_gate run ignore-check` proves the rules;
-  otherwise the `git check-ignore` log is the artifact.
-
-## Verification
-
-```bash
-git check-ignore -v .env node_modules dist .worktrees
-```

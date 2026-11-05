@@ -1,11 +1,6 @@
 ---
 name: debug
 description: Use when a failure is reproducible but its cause is unknown, and evidence must narrow it before any fix; not for interpreting a profile (forensics) or for fixing a known cause (tdd).
-tier: build
-rigor: rigid
-status: stable
-harness: [ledger, evidence]
-pairs-with: [tdd, forensics, unstick]
 ---
 
 # debug
@@ -26,17 +21,6 @@ Near misses:
 - No reproduction exists → gather one first; `understand` if necessary.
 - A profile or dump needs reading → `forensics`.
 - The same failure keeps returning after fixes → `unstick`.
-
-## Modes
-
-| Mode | Method |
-|---|---|
-| Bisect | narrow by commit, input or configuration |
-| Instrument | logs, traces, assertions at boundaries |
-| Differential | working vs failing environment, one variable at a time |
-
-`rigor: rigid` — reproduce before changing code, and confirm the cause before
-fixing. Steps 1 and 3 are load-bearing.
 
 ## Steps
 
@@ -70,21 +54,3 @@ commit message names the cause, not the symptom.
   evidence; fix by containment and open the upstream report.
 - **The fix works but the explanation does not.** Keep digging; an unexplained
   fix will regress.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "I know what it is, let me just fix it." | Then the repro is quick and the fix is proven. Otherwise it is a guess. |
-| "It only happens in production." | Then production data or conditions are part of the cause. Model them. |
-| "Adding logs is slower than reading code." | Reading code finds plausible causes, not the actual one. |
-| "The fix works, the cause can wait." | It will return, and next time with less context. |
-
-## Tracking
-
-- **OpenChamber present:** `focus_status` "implementing"; the cause goes on the
-  delivery note so the panel shows why the change exists.
-- **OpenCode or files:** repro log under `.vstack/deliveries/<id>/`.
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_evidence` records the cause and the
-  green run; otherwise `evidence.jsonl` next to the repro log.

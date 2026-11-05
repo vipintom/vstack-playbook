@@ -1,11 +1,6 @@
 ---
 name: mcp-server
 description: Use when building or changing a Model Context Protocol server so an agent can call external capabilities safely; not for plain HTTP APIs (api-design) or agent instructions (skill-authoring).
-tier: stack
-rigor: standard
-status: stable
-harness: [evidence]
-pairs-with: [api-design, typescript, ci]
 ---
 
 # mcp-server
@@ -26,14 +21,6 @@ Near misses:
 - The interface is for humans or other services → `api-design`.
 - The question is agent behaviour → `skill-authoring`.
 - Packaging and release → `ci`.
-
-## Modes
-
-| Mode | Scope |
-|---|---|
-| Tool | one tool with schema and tests |
-| Server | tools, resources, prompts, errors |
-| Distribution | stdio/HTTP transport, install, versioning |
 
 ## Steps
 
@@ -62,26 +49,3 @@ test that runs without an agent. Descriptions answer when and when not.
   unsafe and unselectable.
 - **Transport differs between harnesses.** Document each, and test the one you
   ship.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The model will figure it out." | It figures out the description you gave it. |
-| "Errors can be plain strings." | Structured errors let the agent recover. |
-| "Testing through the agent is enough." | It tests the model, not the server. |
-| "Permissions are fine for now." | Tools outlive the experiment that created them. |
-
-## Tracking
-
-- **OpenChamber present:** protocol test output on the delivery note.
-- **OpenCode or files:** server repo README plus evidence lines.
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_evidence` records each protocol test;
-  otherwise `evidence.jsonl` in the server repository.
-
-## Verification
-
-```bash
-npx @modelcontextprotocol/inspector --cli node dist/server.js --method tools/list
-```

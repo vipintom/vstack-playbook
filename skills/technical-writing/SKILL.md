@@ -1,11 +1,6 @@
 ---
 name: technical-writing
 description: Use when prose must let a reader complete a task — README, guide, reference, runbook — and accuracy, order and scannability decide whether it works; not for reporting results to a stakeholder (report) or recording decisions (decisions).
-tier: stack
-rigor: standard
-status: stable
-harness: [knowledge]
-pairs-with: [report, rationale, review]
 ---
 
 # technical-writing
@@ -26,14 +21,6 @@ Near misses:
 - The reader needs a result summary → `report`.
 - The reader needs the reason behind a choice → `rationale`.
 - The artifact is code → `tdd`.
-
-## Modes
-
-| Mode | Shape |
-|---|---|
-| README | what it is, install, first success, next steps |
-| Guide | one task, ordered, with checkpoints |
-| Reference | complete and scannable, no narrative |
 
 ## Steps
 
@@ -65,24 +52,3 @@ newcomer reaches first success without asking a question.
   design problem; say so.
 - **Output differs between machines.** Document the supported environment
   explicitly.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The code is self-documenting." | It documents what, never how to start. |
-| "I will fix the commands later." | Then the docs teach failure now. |
-| "More detail is safer." | Detail that is not needed hides the step that is. |
-| "Readers will figure out the order." | Then the outline is the work you skipped. |
-
-## Tracking
-
-- **OpenChamber present:** the run log on the delivery note.
-- **OpenCode or files:** docs in the repo, linked from the README.
-- Ladder: `resources/tracking.md`.
-
-## Verification
-
-```bash
-npx markdown-link-check README.md
-```

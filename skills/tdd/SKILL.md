@@ -1,11 +1,6 @@
 ---
 name: tdd
 description: Use when behaviour must change and a test can state the expected behaviour before the implementation exists; not for characterising unknown existing behaviour (coverage) or for a disposable experiment (prototype).
-tier: build
-rigor: rigid
-status: stable
-harness: [ledger, evidence]
-pairs-with: [verify, coverage, debug]
 ---
 
 # tdd
@@ -26,17 +21,6 @@ Near misses:
 - Existing behaviour needs a safety net first → `coverage`.
 - The question is exploratory → `prototype`.
 - The failure has no cause yet → `debug` finds it, then `tdd` fixes it.
-
-## Modes
-
-| Mode | Cycle |
-|---|---|
-| Standard | one test, minimal code, repeat |
-| Seam | characterise the seam first (coverage), then TDD |
-| Contract | consumer test drives producer work |
-
-`rigor: rigid` — the RED observation is load-bearing. A test written after the
-code passes immediately and proves nothing.
 
 ## Steps
 
@@ -67,28 +51,3 @@ evidence file holds the failing and passing runs for the same test.
 - **The test cannot fail** (tautology, mock asserts itself). Rewrite against
   real behaviour.
 - **Something else breaks.** Fix it now; the suite is the definition of green.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Too simple to test." | Simple code breaks; the test costs a minute. |
-| "I'll test after." | Then you never saw it fail and cannot know it can catch the bug. |
-| "I already tested it by hand." | Manual runs are unrepeatable and undocumented. |
-| "Deleting hours of code is wasteful." | The hours are spent; keeping unproven code is the waste. |
-| "Spirit, not ritual." | The ritual is what distinguishes a test from a wish. |
-
-## Tracking
-
-- **OpenChamber present:** `focus_status` "implementing"; each cycle is a
-  completed action.
-- **vstack adapter present:** `vstack_evidence` per green run.
-- **Files:** `docs/deliveries/<id>.md` plus evidence JSONL.
-- Ladder: `resources/tracking.md`.
-
-
-## Verification
-
-```bash
-pnpm test
-```

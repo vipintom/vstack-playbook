@@ -1,11 +1,6 @@
 ---
 name: worktree
-description: Use when work needs isolation from the main checkout — a parallel task, a risky change, a review of someone else's branch — and the workspace must be created, inspected or removed safely; not for handing over work in progress (handoff) or recovering a broken checkout (recovery).
-tier: continuity
-rigor: standard
-status: stable
-harness: [focus]
-pairs-with: [handoff, recovery, ship]
+description: Use when work needs isolation from the main checkout — a parallel task, risky change or another's branch — and the workspace must be created, inspected or removed safely; not for handoff (handoff) or checkout repair (recovery).
 ---
 
 # worktree
@@ -26,14 +21,6 @@ Near misses:
 - Work is complete and must be integrated → `ship`.
 - The checkout is broken → `recovery`.
 - Work must pause and transfer → `handoff`.
-
-## Modes
-
-| Mode | Isolation |
-|---|---|
-| Detect | confirm whether isolation already exists |
-| Create | new worktree on a new branch |
-| Clean | remove a worktree after merge or abandonment |
 
 ## Steps
 
@@ -63,18 +50,3 @@ can tell which tree holds which work.
   simulate isolation.
 - **Cleanup would discard unmerged work.** Refuse and show the unmerged
   commits; force-removal needs the owner.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "I am obviously not in a worktree." | Detection is two commands; guessing has cost. |
-| "The directory is probably ignored." | `git check-ignore` settles it; a wrong guess commits the tree. |
-| "Cleanup can wait." | Stale worktrees accumulate and confuse the next session. |
-| "Isolation is only for big changes." | It is cheapest for small ones run in parallel. |
-
-## Tracking
-
-- **OpenChamber present:** worktree path in the session's focus detail.
-- **OpenCode or files:** `.vstack/workspaces.md` with path, branch, owner.
-- Ladder: `resources/tracking.md`.

@@ -1,11 +1,6 @@
 ---
 name: recovery
 description: Use when work was interrupted mid-operation or a change must be undone, and the system must return to a known-good state before anything else; not for pausing safely (handoff) or for re-verifying finished work (verify).
-tier: continuity
-rigor: rigid
-status: stable
-harness: [focus, ledger, notify]
-pairs-with: [handoff, verify, migration]
 ---
 
 # recovery
@@ -26,17 +21,6 @@ Near misses:
 - The state is known-good and work pauses → `handoff`.
 - The state is known-good and work finished → `verify`.
 - The cause must be found → `debug` after recovery.
-
-## Modes
-
-| Mode | Scope |
-|---|---|
-| Revert | undo one change to the last good commit |
-| Restore | data or environment from backup or snapshot |
-| Isolation | stop the bleeding, keep the system up, then restore |
-
-`rigor: rigid` — name the target state before acting, and prove you reached it.
-Recovery without a target is more change.
 
 ## Steps
 
@@ -66,20 +50,3 @@ note. A reader can tell what was lost, if anything.
   and forward-fix with the owner.
 - **The reversal fails.** Escalate with the evidence and the exact step that
   failed; do not iterate on production state alone.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Let me just fix forward quickly." | Forward-fix is a choice; make it after preserving evidence. |
-| "Backups are probably fine." | Prove the restore point before relying on it. |
-| "No time to record, we are down." | One line now saves the postmortem; recording is not the delay. |
-| "The revert will be clean." | Prove the target state; clean reverts are the exception. |
-
-## Tracking
-
-- **OpenChamber present:** `focus_status` "blocked" until the target is reached;
-  incident note on the delivery.
-- **OpenCode or files:** `docs/incidents/<date>-<slug>.md`.
-- Ladder: `resources/tracking.md`.
-

@@ -1,11 +1,6 @@
 ---
 name: design
 description: Use when a change needs its boundaries, interfaces and data flow decided before implementation, and the decision must survive review; not for ordering known work (plan) or for auditing a design that already exists (audit).
-tier: design
-rigor: rigid
-status: stable
-harness: [knowledge, focus]
-pairs-with: [blueprint, impact, red-team]
 ---
 
 # design
@@ -26,17 +21,6 @@ Near misses:
 - The work is local and reversible → `plan` then `tdd`.
 - The design exists and needs scrutiny → `audit`.
 - The problem is not framed → `shape` first.
-
-## Modes
-
-| Mode | Depth |
-|---|---|
-| Sketch | boundaries, one interface, one trade-off |
-| Standard | components, interfaces, data flow, failure modes |
-| Deep | Standard plus a red-team pass and a migration window |
-
-`rigor: rigid` — steps 2 and 3 cannot be skipped. A design with no rejected
-alternative is a preference.
 
 ## Steps
 
@@ -78,20 +62,3 @@ Stages: table, issue path, refresh path, revoke. Callers: 3, all in `api`.
   problem, not a design one: open `migration` and sequence the change.
 - **The team wants to skip the record.** Write four lines. A design that lives
   only in a meeting will be re-decided by whoever is next.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The code will reveal the design." | It reveals one design, after the cost is paid. |
-| "We are agile, design is up front." | A ten-minute boundary sketch is not waterfall; rewriting a contract is. |
-| "Interfaces can change later." | Only at the cost of every caller; that cost is the design. |
-| "One option is obviously right." | Then naming the loser takes one line and proves it. |
-
-## Tracking
-
-- **OpenChamber present:** design section on the delivery note; a project note
-  when the design outlives the delivery.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Design".
-- Ladder: `resources/tracking.md`.
-

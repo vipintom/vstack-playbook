@@ -1,11 +1,6 @@
 ---
 name: lessons
 description: Use when the same mistake has happened twice, or an incident or delivery revealed a rule that should change the method itself; not for recording what happened (report) or for a one-off fix (debug).
-tier: continuity
-rigor: standard
-status: stable
-harness: [memory, knowledge]
-pairs-with: [unstick, decisions, principles]
 ---
 
 # lessons
@@ -26,14 +21,6 @@ Near misses:
 - One incident needs an account → `report`.
 - The immediate cause is unknown → `debug`.
 - The rule is already written and needs applying → `principles`.
-
-## Modes
-
-| Mode | Change |
-|---|---|
-| Checklist | one line in the relevant skill |
-| Test | a regression or pack evaluation |
-| Principle | new or amended rule with its test |
 
 ## Steps
 
@@ -62,18 +49,3 @@ one paragraph, not an essay.
   change with the evidence; do not let it evaporate.
 - **The same lesson already exists.** Strengthen the existing line or test;
   duplication weakens both.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "We learned, no doc needed." | Learning that lives in heads is lost at the next handoff. |
-| "A retrospective doc is the deliverable." | Documents do not run; checklists and tests do. |
-| "One occurrence is not a pattern." | Then record it; the second occurrence is the trigger. |
-| "The method is fine, people erred." | The method's job is to make the error hard. |
-
-## Tracking
-
-- **OpenChamber present:** project knowledge entry linking the method change.
-- **OpenCode or files:** `<repo>/docs/lessons.md`, one line per lesson with a link to the diff.
-- Ladder: `resources/tracking.md`.

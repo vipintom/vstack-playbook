@@ -1,11 +1,6 @@
 ---
 name: verify-maintain
 description: Use when a project's verification commands may have drifted from the code, or a change alters how the project is checked; not for creating verification from scratch (verify-setup) or for running a delivery's gates (verify).
-tier: build
-rigor: standard
-status: stable
-harness: [knowledge]
-pairs-with: [verify-setup, verify, coverage]
 ---
 
 # verify-maintain
@@ -26,14 +21,6 @@ Near misses:
 - No verification exists → `verify-setup`.
 - The task is to run the gates → `verify`.
 - The question is what to test → `coverage`.
-
-## Modes
-
-| Mode | Trigger |
-|---|---|
-| Quick | run each documented command, fix what broke |
-| Structural | update commands and gates after a tooling change |
-| Audit | compare claims to what is actually executed |
 
 ## Steps
 
@@ -62,20 +49,3 @@ log proving the result.
   belongs in the doc.
 - **The doc has grown into a second test suite.** Move repeated logic into a
   script and call it from the doc.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "It worked last month." | The code changed since; that is the drift. |
-| "CI covers it." | CI covers CI's path, not the documented one. |
-| "Nobody reads the doc." | Agents do, and they act on it. |
-| "Updating docs is a separate task." | A stale command is a defect in this change's proof. |
-
-## Tracking
-
-- **OpenChamber present:** project knowledge points at the doc; drift findings
-  become todos.
-- **OpenCode or files:** `<repo>/docs/verification.md` and the gate list inside the target repository;
-  the commit is the record.
-- Ladder: `resources/tracking.md`.

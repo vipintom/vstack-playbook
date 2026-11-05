@@ -1,11 +1,6 @@
 ---
 name: visual-parity
 description: Use when a UI must match a defined reference — design file, previous build or specification — and the difference must be shown, not described; not for checking behaviour on a live page (browser-testing) or for a general review (review).
-tier: build
-rigor: standard
-status: stable
-harness: [evidence]
-pairs-with: [verify, review, coverage]
 ---
 
 # visual-parity
@@ -26,14 +21,6 @@ Near misses:
 - The question is interaction behaviour → `browser-testing`.
 - The question is overall code quality → `review`.
 - The design itself is undecided → `design`.
-
-## Modes
-
-| Mode | Evidence |
-|---|---|
-| Spot | one viewport, one state, side by side |
-| Matrix | viewports × states, diff per cell |
-| Baseline | screenshot tests committed and compared in CI |
 
 ## Steps
 
@@ -64,21 +51,3 @@ Near misses:
   rather than passing it.
 - **Anti-aliasing dominates the diff.** Use tolerance and a perceptual metric;
   record the threshold.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "It looks right to me." | Then a screenshot costs a minute and settles it. |
-| "Pixel differences do not matter." | Layout shifts and clipping do; the diff locates them. |
-| "The design file is outdated." | Then update it deliberately; do not silently diverge. |
-| "One viewport is enough." | Most parity bugs live on the width nobody checked. |
-
-## Tracking
-
-- **OpenChamber present:** the diff table and final screenshots on the delivery
-  note.
-- **OpenCode or files:** images under `.vstack/deliveries/<id>/visual/`.
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_evidence` records each capture pair;
-  otherwise `evidence.jsonl` beside the images.

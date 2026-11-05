@@ -1,11 +1,6 @@
 ---
 name: audit
 description: Use when an existing design, implementation or repository must be judged against stated quality attributes with evidence, rather than reviewed as a diff; not for reviewing a change (review) or for improving a measured metric (performance).
-tier: design
-rigor: standard
-status: stable
-harness: [knowledge, panel, todo]
-pairs-with: [rubrics, review, impact]
 ---
 
 # audit
@@ -27,14 +22,6 @@ Near misses:
 - The object is an unmerged diff → `review`.
 - The goal is a faster number → `performance`.
 - The goal is to understand behaviour → `code-tour`.
-
-## Modes
-
-| Mode | Scope |
-|---|---|
-| Targeted | one attribute across the repository |
-| Full | correctness, security, maintainability, tests, packaging |
-| Claim check | verify published claims against reality |
 
 ## Steps
 
@@ -63,19 +50,3 @@ impact, and the smallest credible fix. Plus what was not examined.
   conditional on it.
 - **A claim cannot be checked offline.** Mark `unverified`; do not infer.
 - **The audit becomes a rewrite proposal.** Stop; that is `design`.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The tests pass, so the code is sound." | Tests can bypass the failing path; check what they exercise. |
-| "I reviewed the main files." | Then say which files were not reviewed; silence reads as coverage. |
-| "Severity is obvious." | It is not, and the reader needs the ranking to act. |
-| "One bad file means the whole repo is bad." | Audits report distribution, not impressions. |
-
-## Tracking
-
-- **OpenChamber present:** findings on the delivery note; blockers also as
-  project todos so they are not lost.
-- **OpenCode or files:** `docs/audits/<date>-<scope>.md`.
-- Ladder: `resources/tracking.md`.

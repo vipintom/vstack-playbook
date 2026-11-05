@@ -1,11 +1,6 @@
 ---
 name: rubrics
 description: Use when a review needs explicit, checkable criteria instead of taste, or a pack artefact needs scoring against a fixed lens; not for performing the review itself (review) or judging whether gates pass (verify).
-tier: design
-rigor: standard
-status: stable
-harness: [knowledge]
-pairs-with: [review, audit, coverage]
 ---
 
 # rubrics
@@ -26,14 +21,6 @@ Near misses:
 - The review is ready to run → `review` applies the lens.
 - The question is whether tests pass → `verify`.
 - The question is what to build → `design`.
-
-## Modes
-
-| Mode | Coverage |
-|---|---|
-| Single lens | one rubric, all lines |
-| Full review | every applicable lens, one finding list |
-| Calibration | two reviewers score independently, then reconcile |
 
 ## Steps
 
@@ -67,19 +54,3 @@ Near misses:
   `unverified`, never `pass`.
 - **Reviewers disagree on a verdict.** The evidence decides; if it does not,
   the line is ambiguous and gets rewritten for the next review.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "Rubrics make reviews mechanical." | They make them checkable; judgement enters at the line definitions, not the verdicts. |
-| "I can score from memory." | Then the evidence column is empty and the score is taste. |
-| "A failed line can be waived informally." | Waivers are recorded with a name, or they are not waivers. |
-| "Every lens must be applied." | Applicability is the first judgement; say why a lens does not apply. |
-
-## Tracking
-
-- **OpenChamber present:** the scored table on the delivery note; the panel
-  shows which lens produced which finding.
-- **OpenCode or files:** `docs/deliveries/<id>.md` under "Review".
-- Ladder: `resources/tracking.md`.

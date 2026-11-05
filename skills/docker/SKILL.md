@@ -1,11 +1,6 @@
 ---
 name: docker
 description: Use when an application or service must be built, run or shipped in containers — images, compose stacks, secrets, health checks; not for local build commands (makefile) or pipeline wiring (ci).
-tier: stack
-rigor: standard
-status: stable
-harness: [gate]
-pairs-with: [ci, makefile, verify]
 ---
 
 # docker
@@ -27,14 +22,6 @@ Near misses:
 - The command already exists locally → `makefile`.
 - Pipeline jobs and caching → `ci`.
 - The failure is application logic → `debug`.
-
-## Modes
-
-| Mode | Artifact |
-|---|---|
-| Image | multi-stage Dockerfile, non-root, pinned base |
-| Compose | services, networks, volumes, health checks, overrides |
-| Ship | image built once, digest-pinned, secrets injected at run |
 
 ## Steps
 
@@ -68,26 +55,3 @@ non-root, declare health, and hold no secrets. Patterns and full examples:
   still in history.
 - **Health check passes but the app is broken.** Check what it proves;
   liveness is not readiness.
-
-## Rationalizations
-
-| Excuse | Reality |
-|---|---|
-| "The image is only for dev." | Dev images become deployment images by accident. |
-| "Root is simpler in containers." | It is one line and one CVE class to fix now. |
-| "Rebuilding is slow, cache is fine." | A poisoned cache ships a stale artifact. Digest it. |
-| "Secrets in the image are temporary." | Layers are forever; rotate the secret. |
-
-## Tracking
-
-- **OpenChamber present:** build digest and `compose ps` on the delivery note.
-- **OpenCode or files:** evidence lines with the build command and digest.
-- Ladder: `resources/tracking.md`.
-- **vstack adapter present:** `vstack_gate run docker` proves the build;
-  otherwise the build log and digest are the artifact.
-
-## Verification
-
-```bash
-docker build -t app:test . && docker run --rm app:test true
-```
