@@ -39,7 +39,7 @@ Near misses, and where they belong instead:
    from what was observed. Artifact: `digest`.
 5. **Record it.** With the recorder installed, call `vstack_evidence` with
    claim, check, exit, digest and path. Without it, add the same fields to the
-   delivery record (`.vstack/deliveries/<id>.md`) or the commit message; the
+   delivery record (the project plan or a handoff note) or the commit message; the
    fields are in `references/record.md`. Artifact: the evidence line.
 6. **Downgrade what did not run.** Any claim missing steps 1–4 is recorded as
    `not_verified` with the reason. Never delete a failed line — append.

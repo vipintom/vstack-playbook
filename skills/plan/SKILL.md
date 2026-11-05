@@ -38,7 +38,7 @@ Near misses:
    nothing in the outcome. Artifact: removed tasks named.
 7. **Write it down.** With the recorder installed, add each task with
    `vstack_task`, including its check. Without it, write the same table in the
-   project plan or `.vstack/deliveries/<id>.md`. Artifact: the plan record.
+   project plan or a handoff note. Artifact: the plan record.
 8. **Execute in order.** Start one task, do the work, run its check, record the
    result. Complete it only when the check passes and the artifact exists.
    With the recorder installed, completion without evidence is refused.

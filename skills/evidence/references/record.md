@@ -2,7 +2,7 @@
 
 One entry per claim, appended, never edited. With the recorder installed it
 lives in the recorder's state; without it, write the same fields in
-`.vstack/deliveries/<id>.md` or the commit message.
+the project plan, a handoff note, or the commit message.
 
 ## Fields
 
