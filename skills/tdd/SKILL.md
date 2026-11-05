@@ -51,3 +51,7 @@ evidence file holds the failing and passing runs for the same test.
 - **The test cannot fail** (tautology, mock asserts itself). Rewrite against
   real behaviour.
 - **Something else breaks.** Fix it now; the suite is the definition of green.
+- **No unit test can see the behaviour** (framework glue, third-party callback).
+   Use the closest integration test, record why the unit test is impossible and
+   name the observation that would catch a regression. Integration-only is an
+   escape with a reason, not a default.

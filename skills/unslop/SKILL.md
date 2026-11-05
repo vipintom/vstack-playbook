@@ -1,54 +1,55 @@
 ---
 name: unslop
-description: Use when code is more complex than the problem — duplication, dead paths, speculative abstraction — and must be simplified without changing behaviour; not for a structure refactor (refactor) or a correctness review (review).
+description: Use when generated or accumulated prose is bloated, vague or repetitive — docs, comments, commit messages, UI copy — and must be made clear without losing facts; not for code structure (refactor) or a correctness review (review).
 ---
 
 # unslop
 
-Delete more than you add. The target is the smallest diff that keeps behaviour
-and removes a class of future error, not a rewrite with a nicer shape.
+Cut writing that sounds like output rather than thought. The target is prose a
+reader can act on: fewer words, same facts, no ceremony. Code structure belongs
+to `refactor`.
 
 ## When to use
 
-- A generated change carries options nobody uses.
-- The same helper exists three times with different names.
-- Abstractions were built for a second caller that never arrived.
-- Comments explain code that should be deleted.
-- A review says "this is more complicated than the problem".
+- Documentation repeats the heading in its first sentence.
+- A comment narrates the code instead of explaining why.
+- A commit message lists files instead of stating the change.
+- UI copy hedges, apologises or markets.
+- A generated draft is long and says little.
 
 Near misses:
 
-- Structure is the goal and behaviour is covered → `refactor`.
-- Correctness is in question → `review`.
-- The code is new and needs a failing test → `tdd`.
+- The code itself is overbuilt → `refactor`.
+- The content is wrong or unsafe → `review` or `debug`.
+- The document needs a new structure, not a trim → `technical-writing`.
 
 ## Steps
 
-1. **Prove the behaviour baseline** with the suite; record counts. Artifact:
-   baseline.
-2. **List what to delete and why**, each with a reference count or a caller
-   search. Artifact: cut list.
-3. **Delete in small steps**, suite green after each. Artifact: diffs.
-4. **Collapse duplication at the third occurrence**, not the second. Artifact:
-   merged helper.
-5. **Remove speculative generality** (flags with one value, interfaces with one
-   implementation) only when the second use is not funded. Artifact: removal
-   list.
-6. **Compare the public surface** before and after; it should shrink or stay
-   equal. Artifact: surface diff.
-7. **Record the reduction**: lines, files, dependencies removed. Artifact:
-   delivery note.
+1. **Name the reader and the one action** they must take after reading.
+   Artifact: reader and action.
+2. **Mark every sentence that does not change understanding or action.**
+   Delete it. Artifact: cut list.
+3. **Replace abstractions with nouns and verbs.** "Robust solution" becomes
+   what it does; "leverage" becomes "use". Artifact: revised sentences.
+4. **Remove ceremony**: greetings, restatements, "it is important to note",
+   summaries of what you just said. Artifact: ceremony list.
+5. **Keep payload verbatim**: commands, paths, code, numbers, error strings and
+   qualifiers such as not, never and only. Artifact: payload diff.
+6. **Read it aloud.** Any sentence you stumble over is still unclear; rewrite
+   it once, then stop. Artifact: final draft.
+7. **Check the result**: every fact survives, every link resolves, the action
+   is obvious. Artifact: review note.
 
 ## Output
 
-A negative diff with a green suite at every step and a surface that did not
-grow. Numbers: lines removed, files removed, dependencies dropped.
+A shorter document with the same facts and a clearer action. Report the word
+count removed, not the effort spent.
 
 ## Failure
 
-- **A "dead" path is reachable from configuration.** Restore it and add a test
-  that shows the reachability.
-- **Deletion breaks an external consumer.** That is a compatibility change →
-  `migration`.
-- **The code is complex for a good reason.** Name the reason; if it holds, the
-  finding is documentation, not deletion.
+- **A cut changes meaning.** Restore the qualifier; precision beats brevity.
+- **The voice becomes flat.** Keep the author's rhythm; remove filler, not
+  personality.
+- **The text is already tight.** Say so and stop; editing for its own sake adds
+  risk.
+- **The real problem is structure.** Hand off to `technical-writing`.

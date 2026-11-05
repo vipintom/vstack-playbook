@@ -28,8 +28,9 @@ Near misses:
    Artifact: instances.
 2. **Find the shared cause** — a missing step, an unchecked assumption, an
    ambiguous rule. Artifact: cause.
-3. **Choose the smallest durable change**: checklist line, test, or principle.
-   Artifact: chosen change.
+3. **Choose the smallest durable change**: prefer an executable check (test,
+   lint or type rule), then a principle, then a checklist line. Prose is the
+   weakest enforcement. Artifact: chosen change.
 4. **Write the change in the method**, not in a retrospective document.
    Artifact: diff to skill, principle or test.
 5. **Prove it would have caught the instance**: run the new test against the

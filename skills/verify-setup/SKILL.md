@@ -25,10 +25,13 @@ Near misses:
 
 ## Steps
 
-1. **Inventory what must be proven**: build, behaviour, contract, deployment.
-   Artifact: claim list.
-2. **Discover the real commands** by running them in a clean checkout; record
-   failures and prerequisites. Artifact: command log.
+1. **Interview the project** before writing anything: where it runs
+   (surface), how it starts (run), how to exercise it (drive), what proves the
+   result (observe), and what must be faked or isolated (isolate). Artifact:
+   verification brief, one line per answer.
+2. **Inventory what must be proven**: build, behaviour, contract, deployment.
+   Then discover the real commands by running them in a clean checkout; record
+   failures and prerequisites. Artifact: claim list and command log.
 3. **Make each command hermetic** (fixtures, env vars, container) or mark the
    prerequisite. Artifact: runbook.
 4. **Write the verification skill or doc**: the command, its prerequisites,

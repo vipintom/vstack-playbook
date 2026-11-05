@@ -31,9 +31,11 @@ Near misses:
 3. **List what is still open** with owner or next step. Artifact: open list.
 4. **State the limits** — environment, sample, unverified claims. Artifact:
    limits.
-5. **Cut everything that is process narration.** If a sentence describes what
+5. **Name the attention line**: the one thing this reader must check or decide.
+   Artifact: `Attention`.
+6. **Cut everything that is process narration.** If a sentence describes what
    you did rather than what is true, delete it. Artifact: final draft.
-6. **Record** in the delivery file and link from the thread. Artifact: report.
+7. **Record** in the delivery file and link from the thread. Artifact: report.
 
 ## Output
 
@@ -42,6 +44,7 @@ Result: retries are idempotent by event id (verified locally, 12/12 tests).
 Evidence: `test/queue.test.ts`, run log, digest 41aa…
 Open: production replay not tested — needs staging.
 Limit: single-process fixture; concurrency untested.
+Attention: confirm the queue's production retry policy before relying on this.
 ```
 
 ## Failure

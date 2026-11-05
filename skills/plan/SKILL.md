@@ -39,6 +39,14 @@ Near misses:
 7. **Write it down.** With the recorder installed, add each task with
    `vstack_task`, including its check. Without it, write the same table in the
    project plan or `docs/deliveries/<id>.md`. Artifact: the plan record.
+8. **Execute in order.** Start one task, do the work, run its check, record the
+   result. Complete it only when the check passes and the artifact exists.
+   With the recorder installed, completion without evidence is refused.
+   Artifact: task result per task.
+9. **Rule on a failed check**: fix, re-plan, or stop. Record which and why; do
+   not mark the task done and continue. Artifact: ruling.
+10. **Stop when the done predicate is proven.** New scope returns to `shape`;
+   it never extends the current plan silently. Artifact: final plan state.
 
 ## Output
 

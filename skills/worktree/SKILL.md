@@ -25,11 +25,13 @@ Near misses:
 ## Steps
 
 1. **Detect existing isolation**: compare git dir and common dir; check for a
-   submodule. Artifact: isolation state.
+   submodule. A submodule is a boundary, not a worktree: do not create inside
+   it. Artifact: isolation state.
 2. **Prefer the harness's native workspace tool** when one exists. Artifact:
    workspace path.
-3. **Otherwise create a worktree** from the default branch, in an ignored
-   directory. Artifact: worktree path and branch.
+3. **Ask before creating** unless the user requested isolation. Then create a
+   worktree from the default branch, in an ignored directory. Artifact:
+   worktree path and branch.
 4. **Set up dependencies and run the baseline suite** before editing. Artifact:
    baseline result.
 5. **Record the path and branch** where the next session will look. Artifact:

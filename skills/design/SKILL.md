@@ -27,19 +27,22 @@ Near misses:
 1. **Restate the forces.** Outcome, constraints, non-goals, and the quality
    attributes that matter (latency, safety, cost, change frequency). Artifact:
    forces list.
-2. **Draw the boundaries.** What owns state, what is pure, what crosses a
-   process or network edge. Name what stays out. Artifact: component map.
-3. **Write the contracts.** Types, signatures, error shapes, invariants — in
+2. **Sketch two structurally distinct shapes.** Not two spellings of one
+   design: different ownership, boundaries or data flow. Artifact: two
+   sketches.
+3. **Draw the chosen boundaries.** What owns state, what is pure, what crosses
+   a process or network edge. Name what stays out. Artifact: component map.
+4. **Write the contracts.** Types, signatures, error shapes, invariants — in
    the language of the system, not prose. Artifact: interface sketch (see
    `blueprint` for the expansion).
-4. **Follow the data.** One happy path and two failure paths end to end,
+5. **Follow the data.** One happy path and two failure paths end to end,
    naming where state changes and what happens on retry. Artifact: data flow.
-5. **Name the rejected alternative and its cost.** At least one, with the
-   reason it lost. Artifact: trade-off table.
-6. **Price the change.** Which callers move, what breaks, what can ship in
+6. **Name the rejected shape and its cost.** With the reason it lost. Artifact:
+   trade-off table.
+7. **Price the change.** Which callers move, what breaks, what can ship in
    stages. Artifact: impact summary, from `impact` when the blast radius is
    non-obvious.
-7. **Record it** in the delivery's design section and hand to `blueprint`.
+8. **Record it** in the delivery's design section and hand to `blueprint`.
    Artifact: design record.
 
 ## Output

@@ -28,7 +28,8 @@ Near misses:
 2. **Confirm the gate table is for that artefact**, not an earlier tree.
    Artifact: gate table reference.
 3. **Run the release steps from the project's documented path**, not from
-   memory. Artifact: command log.
+   memory. If merge is the act, confirm branch protection or the merge queue is
+   in force; never bypass it to save a step. Artifact: command log.
 4. **Write the record as you go**: what shipped, where, by which command, with
    links and evidence. Artifact: delivery note and evidence lines.
 5. **Publish the note**: changelog or release description that states what

@@ -35,9 +35,13 @@ Near misses:
    silently changes meaning, unaffected. Artifact: impact table.
 5. **Name the irreversible parts:** data written in the old shape, external
    consumers you do not control. Artifact: `irreversible` list.
-6. **Recommend a sequence** and, when data or external callers are involved,
+6. **Name the safety fact** the change could invalidate — who may read the
+   data, whether a retry can double-charge, which tenant boundary holds. Prove
+   it with a test or observation; if you cannot, mark it `unproven` and say
+   what would prove it. Artifact: safety fact with proof or gap.
+7. **Recommend a sequence** and, when data or external callers are involved,
    route to `migration`. Artifact: rollout order.
-7. **Record it** with the change, or the change does not start. Artifact:
+8. **Record it** with the change, or the change does not start. Artifact:
    impact record.
 
 ## Output

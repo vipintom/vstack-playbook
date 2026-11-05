@@ -30,16 +30,19 @@ Near misses:
    Artifact: drift list.
 3. **Update commands, prerequisites and expected output.** Artifact: diff to the
    verification doc.
-4. **Re-run from clean** to prove the edit. Artifact: clean-run log.
-5. **Update declared gates** if the project's delivery contract changed.
+4. **Drive every documented feature live**, not only its command: start the
+   app, exercise the path, observe the result. A command that exits 0 while the
+   feature is broken is drift. Artifact: feature pass table.
+5. **Re-run from clean** to prove the edit. Artifact: clean-run log.
+6. **Update declared gates** if the project's delivery contract changed.
    Artifact: gate list diff.
-6. **Record the maintenance** in the repo history; verification docs have no
+7. **Record the maintenance** in the repo history; verification docs have no
    changelog of their own. Artifact: commit.
 
 ## Output
 
 A diff-limited change to the verification doc and gate list, with a clean-run
-log proving the result.
+log and a feature pass table proving the result.
 
 ## Failure
 

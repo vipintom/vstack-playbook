@@ -29,8 +29,9 @@ Near misses:
    the record: "retries were moved from cron to the queue". Artifact:
    `decision`.
 2. **Search the evidence sources in rank order:** commit messages, diffs and
-   tests; PR and issue threads; ADRs and docs; chat and incident notes.
-   Artifact: source list with links or hashes.
+   tests; PR and issue threads; ADRs and docs; chat and incident notes. Record
+   the searches that found nothing; a null result is evidence too. Artifact:
+   source list with links, hashes and null results.
 3. **Extract claims, not vibes.** Each claim gets a source and a date.
    Artifact: claim table.
 4. **Mark inference.** Anything not stated in a source is labelled
@@ -38,7 +39,8 @@ Near misses:
 5. **Name what changed since.** Constraints that no longer hold, and what that
    permits now. Artifact: `still-binding` list.
 6. **Write the account**: decision, alternatives rejected, evidence, what still
-   binds. Artifact: rationale note.
+   binds, and a confidence label (`high`, `medium`, `low`). Artifact: rationale
+   note.
 
 ## Output
 
