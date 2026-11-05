@@ -128,7 +128,8 @@ with no direct successor.
 
 ## Verification
 
-Every check runs in Docker from the workspace root:
+The Docker harness lives in the workspace that holds all three vstack
+repositories and is not published with this pack. From that workspace root:
 
 ```bash
 ./docker/test.sh all
@@ -136,6 +137,9 @@ Every check runs in Docker from the workspace root:
 ./docker/skills-only-smoke.sh
 ./docker/playbooks-smoke.sh
 ```
+
+A standalone clone needs no build. The count commands in this document
+reproduce every number here from the clone alone.
 
 `skills-only-smoke.sh` runs all four release playbooks — build-feature,
 fix-bug, deliver, migrate — in real OpenCode sessions with no plugin installed.
