@@ -1,15 +1,15 @@
 {
   "positive": [
-    "Creating a new repository (add .gitignore before first commit)",
-    "Updating existing .gitignore for new tools/languages",
-    "Debugging why files are/aren't ignored",
-    "Standardizing ignore patterns across team/projects",
-    "Adding project-type specific patterns (mobile, data science, docs)"
+    "Keep .env and local databases out of git before the first commit.",
+    "Build output and editor state keep appearing in git status.",
+    "A file is tracked that our ignore rules exclude; untrack it.",
+    "Add per-package ignore rules for the monorepo without hiding source.",
+    "Verify the worktree directory is actually ignored."
   ],
   "negative": [
-    "Projects using alternative VCS (not git)",
-    "When .gitignore is managed by framework CLI (e.g., `git ignore` commands)",
-    "Trivial single-file projects with no build artifacts"
+    "A secret was committed an hour ago; remove it and rotate the key.",
+    "Reduce the Docker build context size.",
+    "Write the make targets for setup and test."
   ],
   "expected": {
     "skill": "gitignore"

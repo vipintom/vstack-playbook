@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Add a workflow that runs lint, tests and types and blocks merges.",
+    "The pipeline is slow because it reruns everything; fix job order and caching.",
+    "A required check passes even when the job is skipped; make it honest.",
+    "Upload logs and traces only when a job fails.",
+    "Put the release step in CI with provenance and an environment gate."
+  ],
+  "negative": [
+    "Write the local verification commands for a new repository.",
+    "Build the multi-stage image for the service.",
+    "Decide whether the delivery is ready to release."
+  ],
+  "expected": {
+    "skill": "ci"
+  }
+}

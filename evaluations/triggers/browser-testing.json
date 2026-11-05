@@ -1,0 +1,15 @@
+{
+  "positive": [
+    "Prove a user can sign up, verify the email and land on the dashboard in a real browser.",
+    "This bug only appears after hydration; reproduce it with a browser script.",
+    "Write a Playwright test that survives our component refactor.",
+    "Check that the login redirect works with cookies disabled, from a cold load.",
+    "The form submits in the component test but not in the browser; find out why."
+  ],
+  "negative": [
+    "Compare the rendered page to the design file at two viewport widths.",
+    "Write a unit test for the price rounding function.",
+    "The layout has not been decided yet; propose two directions."
+  ],
+  "expected": { "skill": "browser-testing" }
+}

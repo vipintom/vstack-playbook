@@ -1,15 +1,15 @@
 {
   "positive": [
-    "Creating a new Makefile for a Docker/Compose project",
-    "Refactoring existing Makefile for maintainability",
-    "Adding dotenvx encrypted secret support to task runner",
-    "Defining CI/CD pipeline steps as Make targets",
-    "Need environment-specific targets (dev, prod, test, ci)"
+    "Give the repository one entry point for setup, test and verify.",
+    "CI and local runs use different commands; unify them behind make targets.",
+    "Add a help target so agents can discover the commands.",
+    "Setup takes four manual steps; make it one target that runs from clean.",
+    "Add environment-specific targets that share one implementation."
   ],
   "negative": [
-    "Projects using Taskfile, Just, or other task runners",
-    "Simple projects with only 1-2 commands (package.json scripts suffice)",
-    "When Bazel/Buck/Make alternatives are mandated"
+    "Write the Dockerfile and compose stack for the service.",
+    "Add the pipeline jobs and caching strategy.",
+    "Create the verification document for a repository with no commands."
   ],
   "expected": {
     "skill": "makefile"

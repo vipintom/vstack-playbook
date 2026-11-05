@@ -36,8 +36,11 @@ Near misses:
 
 ## Steps
 
-1. **Name the artifact and the lens.** Read the rubric file in `rubrics/`
-   before applying it. Artifact: lens name.
+1. **Name the artifact and the lens.** Read the rubric file before applying
+   it. Lenses: `rubrics/architecture-design.md`, `rubrics/correctness-regression.md`,
+   `rubrics/documentation-migration.md`, `rubrics/maintainability-style.md`,
+   `rubrics/performance-resources.md`, `rubrics/security-data.md`,
+   `rubrics/test-adequacy.md`. Artifact: lens name.
 2. **Mark lines that do not apply** and say why. A skipped line is recorded,
    not silently dropped. Artifact: applicability table.
 3. **For each applicable line, record the verdict and the evidence**: command,

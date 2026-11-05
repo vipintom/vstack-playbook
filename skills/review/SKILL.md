@@ -43,7 +43,8 @@ Near misses:
 3. **Check the three questions:** does it do what it claims, does it break what
    it touches, can the next person change it? Artifact: answers with evidence.
 4. **Write findings** with location, consequence and smallest fix; severity
-   high/medium/low. Artifact: findings table.
+   high/medium/low, one entry per `templates/review-finding.md`. Artifact:
+   findings table.
 5. **Verify each high finding** by running or reading the cited line; drop the
    ones you cannot substantiate. Artifact: confirmed list.
 6. **State what was not reviewed** — generated files, vendor code, areas out

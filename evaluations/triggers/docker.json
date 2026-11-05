@@ -1,15 +1,15 @@
 {
   "positive": [
-    "Writing or refactoring Dockerfiles for any language/service",
-    "Creating multi-service Docker Compose environments (dev/staging/prod)",
-    "Implementing encrypted secrets with dotenvx",
-    "Adding health checks to container services",
-    "Setting up CI/CD with Docker (GitHub Actions, GitLab CI)"
+    "Containerise the service with a multi-stage build and a health check.",
+    "Compose the app, database and queue for local development.",
+    "The image runs as root and bakes in a .env; fix both.",
+    "Builds are not reproducible across machines; pin base images and platform.",
+    "The container starts but the health check never passes."
   ],
   "negative": [
-    "Kubernetes-native deployments (use kubernetes-specialist skill)",
-    "Simple single-container apps without orchestration needs",
-    "When podman/buildah specific features required"
+    "Add a make target that wraps the existing commands.",
+    "Wire the workflow to run tests on every pull request.",
+    "Debug why the application returns 500 under load."
   ],
   "expected": {
     "skill": "docker"

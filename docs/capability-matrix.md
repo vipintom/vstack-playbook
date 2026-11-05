@@ -4,23 +4,29 @@
 
 | Skill | Tier | Rigor | Status | OpenCode | Claude Code | Codex |
 |---|---|---|---|---|---|---|
+| `api-design` | stack | standard | stable | release | experimental | experimental |
 | `audit` | design | standard | stable | release | experimental | experimental |
 | `blueprint` | design | standard | stable | release | experimental | experimental |
+| `browser-testing` | stack | standard | stable | release | experimental | experimental |
+| `ci` | stack | standard | stable | release | experimental | experimental |
 | `code-tour` | frame | flexible | stable | release | experimental | experimental |
 | `coverage` | build | standard | stable | release | experimental | experimental |
 | `debug` | build | rigid | stable | release | experimental | experimental |
 | `decisions` | continuity | standard | stable | release | experimental | experimental |
 | `design` | design | rigid | stable | release | experimental | experimental |
-| `docker` | unassigned | unassigned | unassigned | release | experimental | experimental |
+| `docker` | stack | standard | stable | release | experimental | experimental |
 | `evidence` | build | rigid | stable | release | experimental | experimental |
+| `fastapi` | stack | standard | stable | release | experimental | experimental |
 | `figure-it-out` | frame | flexible | stable | release | experimental | experimental |
 | `forensics` | design | standard | stable | release | experimental | experimental |
-| `gitignore` | unassigned | unassigned | unassigned | release | experimental | experimental |
+| `frontend-design` | stack | flexible | stable | release | experimental | experimental |
+| `gitignore` | stack | standard | stable | release | experimental | experimental |
 | `handoff` | continuity | rigid | stable | release | experimental | experimental |
 | `help` | entry | flexible | stable | release | experimental | experimental |
 | `impact` | design | standard | stable | release | experimental | experimental |
 | `lessons` | continuity | standard | stable | release | experimental | experimental |
-| `makefile` | unassigned | unassigned | unassigned | release | experimental | experimental |
+| `makefile` | stack | standard | stable | release | experimental | experimental |
+| `mcp-server` | stack | standard | stable | release | experimental | experimental |
 | `migration` | design | rigid | stable | release | experimental | experimental |
 | `performance` | design | rigid | stable | release | experimental | experimental |
 | `plan` | frame | rigid | stable | release | experimental | experimental |
@@ -42,6 +48,8 @@
 | `skill-authoring` | meta | rigid | stable | release | experimental | experimental |
 | `skill-eval` | meta | standard | stable | release | experimental | experimental |
 | `tdd` | build | rigid | stable | release | experimental | experimental |
+| `technical-writing` | stack | standard | stable | release | experimental | experimental |
+| `typescript` | stack | standard | stable | release | experimental | experimental |
 | `unslop` | meta | standard | stable | release | experimental | experimental |
 | `unstick` | build | standard | stable | release | experimental | experimental |
 | `verify` | build | rigid | stable | release | experimental | experimental |

@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Design a deliberate direction for the new settings page instead of defaults.",
+    "The dashboard has no hierarchy; decide what competes for attention.",
+    "Design empty, loading and error states before polishing the happy path.",
+    "Set a type scale and spacing rhythm for the component library.",
+    "The redesign must keep our identity; propose tokens and references."
+  ],
+  "negative": [
+    "Compare the built page to the design file at two widths.",
+    "Prove the signup flow works in a real browser from a cold load.",
+    "Change the button radius token to match the new brand."
+  ],
+  "expected": {
+    "skill": "frontend-design"
+  }
+}

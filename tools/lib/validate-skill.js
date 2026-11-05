@@ -143,7 +143,9 @@ export function listSkillNames(skillsRoot) {
 
 function loadOldNames(path) {
   if (!existsSync(path)) return new Set();
-  return new Set(Object.keys(JSON.parse(readFileSync(path, "utf-8"))));
+  const map = JSON.parse(readFileSync(path, "utf-8"));
+  // Identity mappings are current names, not 0.1.0 residue.
+  return new Set(Object.entries(map).filter(([from, to]) => from !== to).map(([from]) => from));
 }
 
 function backticked(text) {

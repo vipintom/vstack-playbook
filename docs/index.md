@@ -2,9 +2,9 @@
 
 # vstack skill catalogue
 
-vstack 0.2.0 ships **46 skills**, **0 playbooks**, **17 principles**, **3 roles**, **7 rubrics** and **4 templates**.
+vstack 0.2.0 ships **54 skills**, **13 playbooks**, **17 principles**, **3 roles**, **7 rubrics** and **4 templates**.
 
-Profiles: `core` 46 skills, `stack` 0, `full` 46.
+Profiles: `core` 43 skills, `stack` 11, `full` 54.
 
 ## entry (3)
 
@@ -70,8 +70,16 @@ Profiles: `core` 46 skills, `stack` 0, `full` 46.
 - **skill-eval** — Use when it is unclear whether a skill fires on the right requests or its procedure produces the claimed output; not for writing the skill (skill-authoring) or for scoring a delivery (rubrics).
 - **unslop** — Use when generated or accumulated code has become more complex than the problem — duplication, dead paths, speculative abstraction — and must be reduced without changing behaviour; not for improving structure with tests as the goal (refactor) or for reviewing correctness (review).
 
-## unassigned (3)
+## stack (11)
 
-- **docker** — _no description_
-- **gitignore** — _no description_
-- **makefile** — _no description_
+- **api-design** — Use when a request/response contract, event payload or error shape must be designed or changed for consumers; not for internal module boundaries (design) or type-level mechanics (typescript).
+- **browser-testing** — Use when behaviour must be proven in a real browser — navigation, forms, auth flows, network conditions — rather than inferred from components; not for pixel comparison (visual-parity) or unit-level logic (tdd).
+- **ci** — Use when a pipeline decides what gets verified, cached, gated or released, and the workflow must be fast, reproducible and honest; not for local test commands (verify-setup) or container images (docker).
+- **docker** — Use when an application or service must be built, run or shipped in containers — images, compose stacks, secrets, health checks; not for local build commands (makefile) or pipeline wiring (ci).
+- **fastapi** — Use when an asynchronous Python HTTP service is built or changed with FastAPI, SQLAlchemy or background workers; not for transport-agnostic contract design (api-design) or container packaging (docker).
+- **frontend-design** — Use when a new interface or a substantial visual change needs deliberate direction — hierarchy, type, spacing, states — rather than template defaults; not for verifying an existing UI (visual-parity) or component behaviour (browser-testing).
+- **gitignore** — Use when a repository's ignore rules must keep secrets, build output and local state out of history, or a file is tracked that should not be; not for cleaning a repository that already committed a secret (recovery).
+- **makefile** — Use when developer or CI commands need one discoverable entry point — setup, test, build, verify — instead of tribal knowledge; not for container definitions (docker) or pipeline orchestration (ci).
+- **mcp-server** — Use when building or changing a Model Context Protocol server so an agent can call external capabilities safely; not for plain HTTP APIs (api-design) or agent instructions (skill-authoring).
+- **technical-writing** — Use when prose must let a reader complete a task — README, guide, reference, runbook — and accuracy, order and scannability decide whether it works; not for reporting results to a stakeholder (report) or recording decisions (decisions).
+- **typescript** — Use when TypeScript types, module boundaries or build configuration decide whether a change is safe; not for runtime behaviour tests (tdd) or API contract shape (api-design).

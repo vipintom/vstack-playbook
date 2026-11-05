@@ -2,6 +2,18 @@
 
 # Playbooks
 
-0 situation-based entry points.
+13 situation-based entry points.
 
-_No playbooks yet._
+- [build-feature](playbooks/build-feature.md)
+- [change-architecture](playbooks/change-architecture.md)
+- [change-infrastructure](playbooks/change-infrastructure.md)
+- [deliver](playbooks/deliver.md)
+- [fix-bug](playbooks/fix-bug.md)
+- [improve-performance](playbooks/improve-performance.md)
+- [maintain-playbook](playbooks/maintain-playbook.md)
+- [migrate](playbooks/migrate.md)
+- [prove-ui](playbooks/prove-ui.md)
+- [refactor](playbooks/refactor.md)
+- [spike](playbooks/spike.md)
+- [understand](playbooks/understand.md)
+- [write-docs](playbooks/write-docs.md)

@@ -56,7 +56,7 @@ A handoff without a next action is a diary entry.
 
 ```markdown
 Verified: migration step 2 of 5 applied, checksum matches (log).
-Next: run backfill batch 3 — `scripts/backfill.sh orders 3000`.
+Next: run backfill batch 3 — `<script> orders 3000`.
 Blocked: staging DB locked by ops until 14:00 (owner: @ops).
 Half-applied: column added, not backfilled; reversal: `ALTER TABLE ... DROP COLUMN`.
 Decisions: expand/contract chosen — link.

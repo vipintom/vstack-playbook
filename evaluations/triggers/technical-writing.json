@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Rewrite the README so a newcomer reaches first success without asking.",
+    "The runbook sends people to a dead dashboard; make it accurate again.",
+    "Document the install path and prove every command by running it.",
+    "Turn the architecture explanation into a task-ordered guide.",
+    "Support keeps answering the same question; put the answer in the docs."
+  ],
+  "negative": [
+    "Summarise the delivery result for the stakeholder.",
+    "Record why we chose expand and contract for the migration.",
+    "Write a failing test for the new validation rule."
+  ],
+  "expected": {
+    "skill": "technical-writing"
+  }
+}

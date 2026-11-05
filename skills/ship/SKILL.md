@@ -45,7 +45,8 @@ Shipping an unnamed tree is shipping hope.
 3. **Run the release steps from the project's documented path**, not from
    memory. Artifact: command log.
 4. **Write the record as you go**: what shipped, where, by which command, with
-   links. Artifact: delivery note and evidence lines.
+   links, following `templates/delivery-plan.md`. Artifact: delivery note and
+   evidence lines.
 5. **Publish the note**: changelog or release description that states what
    changed and what to do about it. Artifact: release note.
 6. **Hand to `watch-pr`** when a pipeline or rollout must be observed. Artifact:

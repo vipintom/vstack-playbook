@@ -22,3 +22,8 @@ where ideas and structure were learned from, not copied text.
 
 No source files are copied from either project. Where a vstack file adapts an
 idea from one of them, the file says so in its own text.
+
+Docker, gitignore and makefile references
+  Derived in part from skill material authored by jeffallan
+  (https://github.com/jeffallan), MIT licence. Rewritten to this pack's
+  standard; long command tables preserved under each skill's references/.

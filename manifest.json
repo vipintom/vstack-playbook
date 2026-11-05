@@ -1,17 +1,30 @@
 {
   "schemaVersion": 2,
   "playbookVersion": "0.2.0",
-  "contentHash": "sha256:86a1436b5f8d816fd59abdcd6fb86fb5511a6f62c59013564375c60b6dc84e5f",
+  "contentHash": "sha256:ea12c260bc2e80adceeeb30f26291ebf544199ba7a5b6e4bb2f5297acf281663",
   "counts": {
-    "skills": 46,
-    "playbooks": 0,
+    "skills": 54,
+    "playbooks": 13,
     "principles": 17,
     "roles": 3,
     "rubrics": 7,
     "templates": 4,
-    "triggerFixtures": 46
+    "triggerFixtures": 54
   },
   "skills": [
+    {
+      "name": "api-design",
+      "path": "skills/api-design/SKILL.md",
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "typescript",
+        "design",
+        "migration"
+      ],
+      "description": "Use when a request/response contract, event payload or error shape must be designed or changed for consumers; not for internal module boundaries (design) or type-level mechanics (typescript)."
+    },
     {
       "name": "audit",
       "path": "skills/audit/SKILL.md",
@@ -37,6 +50,32 @@
         "tdd"
       ],
       "description": "Use when an accepted design must become concrete interfaces, files and signatures that an implementer can follow without re-deciding; not for choosing the design (design) or for ordering the work (plan)."
+    },
+    {
+      "name": "browser-testing",
+      "path": "skills/browser-testing/SKILL.md",
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "visual-parity",
+        "verify",
+        "coverage"
+      ],
+      "description": "Use when behaviour must be proven in a real browser — navigation, forms, auth flows, network conditions — rather than inferred from components; not for pixel comparison (visual-parity) or unit-level logic (tdd)."
+    },
+    {
+      "name": "ci",
+      "path": "skills/ci/SKILL.md",
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "docker",
+        "verify",
+        "makefile"
+      ],
+      "description": "Use when a pipeline decides what gets verified, cached, gated or released, and the workflow must be fast, reproducible and honest; not for local test commands (verify-setup) or container images (docker)."
     },
     {
       "name": "code-tour",
@@ -105,11 +144,15 @@
     {
       "name": "docker",
       "path": "skills/docker/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": ""
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "ci",
+        "makefile",
+        "verify"
+      ],
+      "description": "Use when an application or service must be built, run or shipped in containers — images, compose stacks, secrets, health checks; not for local build commands (makefile) or pipeline wiring (ci)."
     },
     {
       "name": "evidence",
@@ -122,6 +165,19 @@
         "tdd"
       ],
       "description": "Use when a claim is about to be reported, committed or handed over and needs a recorded artifact behind it; not for producing the proof of a whole delivery (verify) or for writing the failing test (tdd)."
+    },
+    {
+      "name": "fastapi",
+      "path": "skills/fastapi/SKILL.md",
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "api-design",
+        "tdd",
+        "docker"
+      ],
+      "description": "Use when an asynchronous Python HTTP service is built or changed with FastAPI, SQLAlchemy or background workers; not for transport-agnostic contract design (api-design) or container packaging (docker)."
     },
     {
       "name": "figure-it-out",
@@ -150,13 +206,30 @@
       "description": "Use when a profile, trace, heap snapshot, log set or core dump must be interpreted into a cause; not for measuring an improvement (performance) or for reproducing a bug (debug)."
     },
     {
+      "name": "frontend-design",
+      "path": "skills/frontend-design/SKILL.md",
+      "tier": "stack",
+      "rigor": "flexible",
+      "status": "stable",
+      "pairsWith": [
+        "browser-testing",
+        "visual-parity",
+        "review"
+      ],
+      "description": "Use when a new interface or a substantial visual change needs deliberate direction — hierarchy, type, spacing, states — rather than template defaults; not for verifying an existing UI (visual-parity) or component behaviour (browser-testing)."
+    },
+    {
       "name": "gitignore",
       "path": "skills/gitignore/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": ""
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "docker",
+        "makefile",
+        "ci"
+      ],
+      "description": "Use when a repository's ignore rules must keep secrets, build output and local state out of history, or a file is tracked that should not be; not for cleaning a repository that already committed a secret (recovery)."
     },
     {
       "name": "handoff",
@@ -212,11 +285,28 @@
     {
       "name": "makefile",
       "path": "skills/makefile/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": ""
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "ci",
+        "docker",
+        "verify-setup"
+      ],
+      "description": "Use when developer or CI commands need one discoverable entry point — setup, test, build, verify — instead of tribal knowledge; not for container definitions (docker) or pipeline orchestration (ci)."
+    },
+    {
+      "name": "mcp-server",
+      "path": "skills/mcp-server/SKILL.md",
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "api-design",
+        "typescript",
+        "ci"
+      ],
+      "description": "Use when building or changing a Model Context Protocol server so an agent can call external capabilities safely; not for plain HTTP APIs (api-design) or agent instructions (skill-authoring)."
     },
     {
       "name": "migration",
@@ -489,6 +579,32 @@
       "description": "Use when behaviour must change and a test can state the expected behaviour before the implementation exists; not for characterising unknown existing behaviour (coverage) or for a disposable experiment (prototype)."
     },
     {
+      "name": "technical-writing",
+      "path": "skills/technical-writing/SKILL.md",
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "report",
+        "rationale",
+        "review"
+      ],
+      "description": "Use when prose must let a reader complete a task — README, guide, reference, runbook — and accuracy, order and scannability decide whether it works; not for reporting results to a stakeholder (report) or recording decisions (decisions)."
+    },
+    {
+      "name": "typescript",
+      "path": "skills/typescript/SKILL.md",
+      "tier": "stack",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "tdd",
+        "review",
+        "api-design"
+      ],
+      "description": "Use when TypeScript types, module boundaries or build configuration decide whether a change is safe; not for runtime behaviour tests (tdd) or API contract shape (api-design)."
+    },
+    {
       "name": "unslop",
       "path": "skills/unslop/SKILL.md",
       "tier": "meta",
@@ -593,7 +709,60 @@
       "description": "Use when work needs isolation from the main checkout — a parallel task, a risky change, a review of someone else's branch — and the workspace must be created, inspected or removed safely; not for handing over work in progress (handoff) or recovering a broken checkout (recovery)."
     }
   ],
-  "playbooks": [],
+  "playbooks": [
+    {
+      "name": "build-feature",
+      "path": "playbooks/build-feature.md"
+    },
+    {
+      "name": "change-architecture",
+      "path": "playbooks/change-architecture.md"
+    },
+    {
+      "name": "change-infrastructure",
+      "path": "playbooks/change-infrastructure.md"
+    },
+    {
+      "name": "deliver",
+      "path": "playbooks/deliver.md"
+    },
+    {
+      "name": "fix-bug",
+      "path": "playbooks/fix-bug.md"
+    },
+    {
+      "name": "improve-performance",
+      "path": "playbooks/improve-performance.md"
+    },
+    {
+      "name": "maintain-playbook",
+      "path": "playbooks/maintain-playbook.md"
+    },
+    {
+      "name": "migrate",
+      "path": "playbooks/migrate.md"
+    },
+    {
+      "name": "prove-ui",
+      "path": "playbooks/prove-ui.md"
+    },
+    {
+      "name": "refactor",
+      "path": "playbooks/refactor.md"
+    },
+    {
+      "name": "spike",
+      "path": "playbooks/spike.md"
+    },
+    {
+      "name": "understand",
+      "path": "playbooks/understand.md"
+    },
+    {
+      "name": "write-docs",
+      "path": "playbooks/write-docs.md"
+    }
+  ],
   "principles": [
     "challenge-assumptions",
     "clear-source-of-responsibility",
@@ -636,13 +805,13 @@
     ]
   },
   "evaluations": {
-    "triggers": 46,
+    "triggers": 54,
     "playbooks": 0
   },
   "profiles": {
-    "core": 46,
-    "stack": 0,
-    "full": 46,
+    "core": 43,
+    "stack": 11,
+    "full": 54,
     "lists": {
       "core": [
         "audit",
@@ -652,16 +821,13 @@
         "debug",
         "decisions",
         "design",
-        "docker",
         "evidence",
         "figure-it-out",
         "forensics",
-        "gitignore",
         "handoff",
         "help",
         "impact",
         "lessons",
-        "makefile",
         "migration",
         "performance",
         "plan",
@@ -692,10 +858,25 @@
         "watch-pr",
         "worktree"
       ],
-      "stack": [],
+      "stack": [
+        "api-design",
+        "browser-testing",
+        "ci",
+        "docker",
+        "fastapi",
+        "frontend-design",
+        "gitignore",
+        "makefile",
+        "mcp-server",
+        "technical-writing",
+        "typescript"
+      ],
       "full": [
+        "api-design",
         "audit",
         "blueprint",
+        "browser-testing",
+        "ci",
         "code-tour",
         "coverage",
         "debug",
@@ -703,14 +884,17 @@
         "design",
         "docker",
         "evidence",
+        "fastapi",
         "figure-it-out",
         "forensics",
+        "frontend-design",
         "gitignore",
         "handoff",
         "help",
         "impact",
         "lessons",
         "makefile",
+        "mcp-server",
         "migration",
         "performance",
         "plan",
@@ -732,6 +916,8 @@
         "skill-authoring",
         "skill-eval",
         "tdd",
+        "technical-writing",
+        "typescript",
         "unslop",
         "unstick",
         "verify",
