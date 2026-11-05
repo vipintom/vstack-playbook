@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vstack.dev/schema/skill.schema.json",
+  "title": "vstack skill front matter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "description", "tier", "rigor", "status"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "description": "Must equal the skill directory name."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 12,
+      "maxLength": 1024,
+      "pattern": "^Use when ",
+      "description": "Trigger only. Never describes steps."
+    },
+    "tier": {
+      "enum": ["entry", "frame", "design", "build", "review", "continuity", "meta", "stack"]
+    },
+    "rigor": {
+      "enum": ["rigid", "standard", "flexible"],
+      "description": "rigid: steps are not reordered or skipped."
+    },
+    "status": {
+      "enum": ["stable", "experimental", "deprecated"]
+    },
+    "pairs-with": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "description": "Skills that are usually loaded with this one. Every name must exist."
+    }
+  }
+}

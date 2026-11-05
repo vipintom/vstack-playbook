@@ -40,6 +40,10 @@ make test                                             # same, via Makefile
   `best-of-n`, `arena`) are rejected by the validator.
 - A skill body is at most 150 lines and describes judgement, not a
   transcript. Steps are ordered; each ends in an artifact.
+- Every skill has a `## Tracking` section that names the harness surface:
+  OpenChamber focus card and project knowledge, OpenCode todos and adapter
+  tools, ledger file as fallback. `resources/tracking.md` is the ladder.
+  No skill may leave state only in the chat.
 - A description starts with `Use when` and names a trigger, never a
   procedure.
 - 0.1.0 content is not ported unless the `NOTICE` file credits its source.

@@ -27,8 +27,11 @@ Every skill must:
   describe a trigger, never a procedure;
 - declare `tier`, `rigor`, `status` and `pairs-with` in front matter;
 - keep the body under 150 lines with the headings `When to use`, `Modes`,
-  `Steps`, `Output`, `Failure`, and `Verification` only when it holds a
-  fenced command;
+  `Steps`, `Output`, `Failure`, `Tracking`, and `Verification` only when it
+  holds a fenced command;
+- say how the work is tracked in `## Tracking`: the OpenChamber focus card
+  and project knowledge, then OpenCode's todo and adapter tools, then the
+  ledger file. `resources/tracking.md` defines the ladder;
 - reference only skills, rubrics and templates that exist;
 - ship `evaluations/triggers/<skill>.json` with five positive and three
   negative prompts.
