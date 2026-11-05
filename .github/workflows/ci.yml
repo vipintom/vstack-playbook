@@ -1,141 +1,24 @@
-name: Playbook CI
+name: ci
 
 on:
-  pull_request:
-    branches: [master]
   push:
-    branches: [master]
-  workflow_dispatch:
-  schedule:
-    - cron: '0 3 * * 1'  # Weekly on Monday 3 AM UTC
-
-permissions:
-  contents: read
+    branches: [main, vstack-0.2.0]
+  pull_request:
 
 jobs:
-  validate:
-    name: Validate Playbook Content
+  verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Validate content
-        run: pnpm validate
-
-  test-install:
-    name: Test Installation
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Test install script (opencode)
+      - uses: actions/checkout@v4
+      - name: Test in the pack container
+        run: docker compose run --rm pack node --test
+      - name: Validate skills, playbooks and resources
+        run: docker compose run --rm pack node tools/validate.js
+      - name: Pack integrity
+        run: docker compose run --rm pack node tools/eval-pack.js
+      - name: Generated files are current
         run: |
-          node scripts/install-playbook.js opencode
-          ls -la "$HOME/.config/opencode/skills/vstack/"
-
-      - name: Test install script (codex)
-        run: |
-          node scripts/install-playbook.js codex
-          ls -la "$HOME/.codex/skills/vstack/" 2>/dev/null || true
-
-      - name: Test install script (claude-code)
-        run: |
-          node scripts/install-playbook.js claude-code
-          ls -la "$HOME/.claude/skills/vstack/" 2>/dev/null || true
-
-  skills-cli:
-    name: Skills CLI Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Test skills CLI list
-        run: |
-          npx skills add $(pwd) --list 2>&1 | grep -c "vstack-"
-
-      - name: Test skills CLI single install
-        run: |
-          mkdir -p /tmp/skills-test-single
-          cd /tmp/skills-test-single
-          npx skills add /home/runner/work/vstack-playbook/vstack-playbook --skill vstack-tdd -a opencode 2>&1 | tail -20
-
-      - name: Test skills CLI full install
-        run: |
-          mkdir -p /tmp/skills-test-full
-          cd /tmp/skills-test-full
-          npx skills add /home/runner/work/vstack-playbook/vstack-playbook --skill '*' -a opencode 2>&1 | tail -20
-
-  package:
-    name: Package Distribution
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: latest
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Create distribution packages
-        run: |
-          pnpm run dist:package 2>&1 || pnpm pack:prod
-          ls -la *.tgz *.zip 2>/dev/null || true
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+          docker compose run --rm pack node tools/gen-docs.js
+          git diff --exit-code -- docs manifest.json
+      - name: Trigger smoke (report only)
+        run: docker compose run --rm pack node tools/eval-triggers.js
