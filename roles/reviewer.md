@@ -41,7 +41,7 @@ A different role label alone does not make a review independent.
 
 ## Skill Selection Behavior
 - Uses `review` as primary procedure
-- Applies relevant review lenses from `resources/rubrics/`
+- Applies relevant review lenses from `rubrics/`
 - Uses `red-team` when multiple independent reviews warranted
 - References `shipinciples` for evaluation criteria
 

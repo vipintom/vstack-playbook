@@ -247,13 +247,3 @@ When the user directly invokes a specialist skill (e.g., "use code-tour to trace
 - **Skills:** `sharpen`, `figure-it-out`, `decisions`, `resume`, `handoff`, `resume`, `help` — `skills/`
 - **Roles:** Lead (owns mode execution), Builder (executes checklist), Reviewer (independent review) — `agents/roles/`
 
----
-
-## Migration Record
-
-- **Previous name/path:** `skills/route/SKILL.md`
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Routing by task shape, principle index reading, playbook selection, rigour calibration, verbatim checklist copy, direct invocation
-- **Procedures rewritten:** Complete 9-phase operating sequence per PRD Section 7 with routing table, rigour calibration, checklist copy, direct invocation, handback format
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/route.md

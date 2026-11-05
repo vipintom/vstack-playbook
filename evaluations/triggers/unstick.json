@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "3+ failed fix attempts on same task (same error/wrong behavior)",
+    "Explicit user request: \"unstick this\"",
+    "Notice retrying small variations of same fix",
+    "Same assumption failing repeatedly",
+    "Same assumption failing repeatedly"
+  ],
+  "negative": [
+    "First or second failure",
+    "Different errors each time",
+    "Design phase"
+  ],
+  "expected": {
+    "skill": "unstick"
+  }
+}

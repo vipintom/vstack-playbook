@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "When starting a new task or delivery",
+    "When stuck and unsure which skill applies",
+    "When a skill references \"related skills\" you don't know",
+    "When a skill references \"related skills\" you don't know",
+    "When a skill references \"related skills\" you don't know"
+  ],
+  "negative": [
+    "When you already know the exact skill needed",
+    "rename a variable for readability",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "help"
+  }
+}

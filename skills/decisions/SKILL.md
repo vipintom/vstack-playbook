@@ -152,13 +152,3 @@ Maintains an append-only decision trail recording consequential decisions, pivot
 - **Skills:** unstick, recovery, resume, resume
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/decisions/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Append-only, 9-field entry, supersession marking, artifact linking, trigger conditions
-- **Procedures rewritten:** Explicit 4-step procedure, supersession requirement, fallback
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/decisions.md

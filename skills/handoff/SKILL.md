@@ -151,17 +151,9 @@ Produces a complete context transfer package enabling seamless continuation by a
 
 ## Dependencies / References
 
+- **Templates:** `templates/handoff.md`
+
 - **Principles:** Evidence Before Assertions, Clear Source of Responsibility, Procedures Over Vague Instructions
 - **Skills:** resume, resume, handoff, resume
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/handoff/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 10-item handoff package, completeness validation, PROGRESS.md update, recipient validation, fallback
-- **Procedures rewritten:** Explicit 4-step procedure, evidence requirement, fallback procedures
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/handoff.md

@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Why does X work this way?\" / \"Why was Y designed this way?\"",
+    "\"What's the rationale for Z?\"",
+    "\"Design decision behind...\"",
+    "\"Postmortem for...\"",
+    "Read-only investigation of design intent before changes"
+  ],
+  "negative": [
+    "\"How does X work?\"",
+    "\"What breaks if I change X?\"",
+    "\"Fix the bug\""
+  ],
+  "expected": {
+    "skill": "rationale"
+  }
+}

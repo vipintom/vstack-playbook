@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Watch PR\" / \"Monitor CI and reviews\"",
+    "After ship creates PR",
+    "When CI/review feedback arrives",
+    "Until ready confirms readiness",
+    "Until ready confirms readiness"
+  ],
+  "negative": [
+    "PRs not requiring monitoring",
+    "When no CI/review integration",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "watch-pr"
+  }
+}

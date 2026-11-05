@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "First time using vstack on a project",
+    "When no project verification skill exists",
+    "When project changes require new verification approach",
+    "When project changes require new verification approach",
+    "When project changes require new verification approach"
+  ],
+  "negative": [
+    "When project verification skill exists and is current",
+    "For projects without runnable application (libraries only)",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "verify-setup"
+  }
+}

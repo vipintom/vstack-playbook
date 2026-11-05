@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "No existing playbook fits the request shape (checked via `route` routing)",
+    "Task is a large, cross-cutting version of a narrower task (e.g., \"refactor the entire codebase\" vs \"refactor the auth module\")",
+    "Task spans multiple standard playbook families with complex dependencies",
+    "User explicitly requests a custom process",
+    "User explicitly requests a custom process"
+  ],
+  "negative": [
+    "For tasks that fit a standard playbook (bug-fixing, feature-delivery, refactoring, investigation, etc.)",
+    "When a standard playbook with risk adaptation covers the need",
+    "For routine work where bespoke design adds overhead without value"
+  ],
+  "expected": {
+    "skill": "figure-it-out"
+  }
+}

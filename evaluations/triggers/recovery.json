@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "After unstick when changes need cleanup",
+    "After interrupted session with partial changes",
+    "When verification reveals broken state",
+    "When resume detects unsafe state",
+    "When resume detects unsafe state"
+  ],
+  "negative": [
+    "For routine cleanup (use unslop)",
+    "When state is already safe",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "recovery"
+  }
+}

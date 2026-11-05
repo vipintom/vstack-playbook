@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Bug fix with clear, cheap test path",
+    "Explicit user request for TDD",
+    "Regression test needed",
+    "When the bug has an obvious local test target",
+    "When the bug has an obvious local test target"
+  ],
+  "negative": [
+    "Throwaway prototypes",
+    "Generated code",
+    "Configuration files"
+  ],
+  "expected": {
+    "skill": "tdd"
+  }
+}

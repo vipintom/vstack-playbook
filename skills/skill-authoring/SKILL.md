@@ -41,7 +41,7 @@ Creates and maintains skills to v2 contract standard. Handles: draft, external r
 ## Preconditions
 
 - v2 template available (playbook/resources/templates/skill-template.md)
-- Validation script available (playbook/scripts/validate-content.js)
+- Validation script available (playbook/tools/validate.js)
 - Research packs accessible
 
 ---
@@ -87,7 +87,7 @@ Creates and maintains skills to v2 contract standard. Handles: draft, external r
 
 ### Step 4: Static Validation
 
-- Run validation script: `node playbook/scripts/validate-content.js`
+- Run validation script: `node playbook/tools/validate.js`
 - Checks: frontmatter, required sections, links resolve, no proprietary APIs
 - Fix all errors before proceeding
 
@@ -264,13 +264,3 @@ Creates and maintains skills to v2 contract standard. Handles: draft, external r
 - **Skills:** skill-eval, review, help
 - **References:** skill-template.md, design-red-flags.md, rationale-template.md
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/skill-authoring/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** v2 template, external research mandate, static validation, lifecycle gates, progressive disclosure, migration record
-- **Procedures rewritten:** Explicit sharpen step, research requirements per skill, evaluation criteria, lifecycle gate enforcement, cross-harness validation, review independence
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/skill-authoring.md

@@ -194,13 +194,3 @@ Executes verification at per-task and integration levels: runs test suites, inte
 - **Skills:** tdd, verify-setup
 - **References:** feature-map.md (verification harness structure)
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/verify/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Doctor → Drive → Evidence → Cleanup, per-task vs integration, real user path, side effects, mocks at boundaries only, evidence survives cleanup
-- **Procedures rewritten:** Explicit Doctor step, verification standards, dry-run observation, per-task/integration distinction, evidence preservation rules
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/verify.md

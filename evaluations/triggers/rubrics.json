@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Apply rubrics for...\" / \"Review lenses for...\"",
+    "For every review",
+    "For red-team shared rubric",
+    "For red-team systematic challenge",
+    "As reference for self-review"
+  ],
+  "negative": [
+    "As substitute for domain expertise",
+    "For domains not covered by available rubrics",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "rubrics"
+  }
+}

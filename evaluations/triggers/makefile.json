@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Creating a new Makefile for a Docker/Compose project",
+    "Refactoring existing Makefile for maintainability",
+    "Adding dotenvx encrypted secret support to task runner",
+    "Defining CI/CD pipeline steps as Make targets",
+    "Need environment-specific targets (dev, prod, test, ci)"
+  ],
+  "negative": [
+    "Projects using Taskfile, Just, or other task runners",
+    "Simple projects with only 1-2 commands (package.json scripts suffice)",
+    "When Bazel/Buck/Make alternatives are mandated"
+  ],
+  "expected": {
+    "skill": "makefile"
+  }
+}

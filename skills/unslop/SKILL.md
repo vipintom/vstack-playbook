@@ -154,13 +154,3 @@ Cleans up code quality by identifying slop patterns (generated boilerplate, dupl
 - **Skills:** verify, refactor, plan
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/unslop/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 4-step procedure, slop pattern taxonomy, impact prioritization, incremental cleanup with verification
-- **Procedures rewritten:** Explicit step structure, pattern taxonomy, prioritization, fallback
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/unslop.md

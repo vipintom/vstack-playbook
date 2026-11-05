@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Create skill for X\" / \"Write skill\"",
+    "\"Update skill X\"",
+    "\"Author skill to v2 contract\"",
+    "Skill maintenance work",
+    "Skill maintenance work"
+  ],
+  "negative": [
+    "\"Use skill X\"",
+    "\"Evaluate skill X\"",
+    "\"How does skill X work?\""
+  ],
+  "expected": {
+    "skill": "skill-authoring"
+  }
+}

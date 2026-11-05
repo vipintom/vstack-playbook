@@ -215,13 +215,3 @@ Implements bug fixes using test-first cycle: write failing test, watch it fail, 
 - **Skills:** verify
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/tdd/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Iron Law (no production code without failing test), Red-Green-Refactor, verify RED/GREEN mandatory, guardrails, fallback to closest executable check
-- **Procedures rewritten:** Explicit test selection hierarchy, mandatory verify steps, guardrails as never-violate rules, impractical test path handling
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/tdd.md

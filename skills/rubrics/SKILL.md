@@ -183,13 +183,3 @@ Deduplicate, prioritize
 - **Skills:** review, red-team, red-team
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/rubrics/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 5 rubric categories, systematic application, finding tagging, consolidation
-- **Procedures rewritten:** Explicit 4-step procedure, rubric criteria per category, verification criteria
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/rubrics.md

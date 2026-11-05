@@ -155,4 +155,3 @@ lifecycle: draft
 - **Valuable concepts preserved:** Falsifiable done predicate, risk-first sequencing, verification harness, decision trail
 - **Procedures rewritten:** Complete 5-phase procedure with explicit non-triggers
 - **Disposition:** rewrite (new skill for v2)
-- **Research record:** docs/research/records/figure-it-out.md

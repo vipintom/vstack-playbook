@@ -137,4 +137,3 @@ lifecycle: draft
 - **Valuable concepts preserved:** 6-step reconciliation (checkpoint → validate → check runtime → reconcile → update → summarize), fallback to git/PROGRESS.md, escalation on mismatch
 - **Procedures rewritten:** Explicit Action/Evidence/Decision per step, failure handling table, fallback documentation, time-boxed stop condition
 - **Disposition:** rewrite
-- **Research record:** docs/research/records/resume.md

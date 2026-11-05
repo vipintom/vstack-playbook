@@ -159,13 +159,3 @@ Establishes performance baselines, identifies bottlenecks through profiling, hyp
 - **Skills:** verify, forensics, forensics
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/performance/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 5-step procedure, baseline establishment, profiling, hypothesis testing, trade-off documentation
-- **Procedures rewritten:** Explicit step structure, verification integration, escalation paths
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/performance.md

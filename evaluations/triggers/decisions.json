@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "For consequential decisions (architecture, design, process)",
+    "When unstick changes approach",
+    "When recovery restores state",
+    "For Extended execution profile",
+    "For Extended execution profile"
+  ],
+  "negative": [
+    "For routine minor actions",
+    "For decisions already in ADRs or project memory",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "decisions"
+  }
+}

@@ -185,13 +185,3 @@ When user directly invokes code-tour, execute procedure directly without full mo
 - **Skills:** sharpen, rationale, impact
 - **References:** None bundled
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/code-tour/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Entry point tracing, data flow, state ownership, component boundaries, complexity assessment
-- **Procedures rewritten:** Complexity assessment (simple/complex), parallel explorer/synthesizer pattern, explicit output format, read-only enforcement, negative triggers
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/code-tour.md

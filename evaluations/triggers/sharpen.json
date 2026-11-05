@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "User request is vague, ambiguous, or missing acceptance criteria",
+    "Before code-tour/why or plan",
+    "When Lead cannot form a clear task breakdown",
+    "When Lead cannot form a clear task breakdown",
+    "When Lead cannot form a clear task breakdown"
+  ],
+  "negative": [
+    "Request already has clear problem statement and acceptance criteria",
+    "rename a variable for readability",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "sharpen"
+  }
+}

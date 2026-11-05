@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Writing or refactoring Dockerfiles for any language/service",
+    "Creating multi-service Docker Compose environments (dev/staging/prod)",
+    "Implementing encrypted secrets with dotenvx",
+    "Adding health checks to container services",
+    "Setting up CI/CD with Docker (GitHub Actions, GitLab CI)"
+  ],
+  "negative": [
+    "Kubernetes-native deployments (use kubernetes-specialist skill)",
+    "Simple single-container apps without orchestration needs",
+    "When podman/buildah specific features required"
+  ],
+  "expected": {
+    "skill": "docker"
+  }
+}

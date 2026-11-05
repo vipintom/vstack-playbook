@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "When unslop identifies structural issues",
+    "When improving code without changing behaviour",
+    "When preparing code for new features",
+    "When preparing code for new features",
+    "When preparing code for new features"
+  ],
+  "negative": [
+    "When behaviour must change (that's implementation, not refactor)",
+    "When no verification exists to prove equivalence",
+    "For premature abstraction"
+  ],
+  "expected": {
+    "skill": "refactor"
+  }
+}

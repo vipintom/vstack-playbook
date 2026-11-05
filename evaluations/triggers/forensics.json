@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Live system showing symptoms (errors, latency, crashes)",
+    "When debug needs runtime context",
+    "When performance needs live data",
+    "When performance needs live data",
+    "When performance needs live data"
+  ],
+  "negative": [
+    "For code-level bugs reproducible in test",
+    "Without runtime access",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "forensics"
+  }
+}

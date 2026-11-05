@@ -205,13 +205,3 @@ If you haven't completed Phase 1, you cannot propose fixes.
 - **Skills:** tdd, verify, unstick
 - **References:** root-cause-tracing.md, defense-in-depth.md, condition-based-waiting.md
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/debug/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Four phases (Investigation → Pattern → Hypothesis → Implementation), Iron Law, red flags, 3+ failures = architecture discussion, backward tracing
-- **Procedures rewritten:** Explicit Phase 1 completeness before fix, evidence at boundaries, working examples comparison, hypothesis written + minimal test, mandatory failing test, 3-failure escalation
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/debug.md

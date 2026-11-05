@@ -155,13 +155,3 @@ Executes visual regression testing by defining references, running visual tests,
 - **Skills:** verify, verify-setup, verify-maintain
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/visual-parity/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 5-step procedure, reference definition, visual test execution, difference classification, baseline update
-- **Procedures rewritten:** Explicit step structure, tolerance-based diff, flaky handling, fallback
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/visual-parity.md

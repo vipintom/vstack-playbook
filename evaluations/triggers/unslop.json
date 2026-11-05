@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "After implementation to clean up",
+    "When code review finds generated/boilerplate issues",
+    "When refactor reveals unnecessary complexity",
+    "As part of definition of done",
+    "As part of definition of done"
+  ],
+  "negative": [
+    "As substitute for good initial implementation",
+    "For premature optimization",
+    "When cleanup would change behaviour without verification"
+  ],
+  "expected": {
+    "skill": "unslop"
+  }
+}

@@ -229,13 +229,3 @@ When user directly invokes rationale, execute procedure directly without full mo
 - **Skills:** code-tour, impact
 - **References:** epistemics.md (confidence framework)
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/rationale/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 7 evidence categories, parallel investigators, synthesizer, code anchors, confidence framework
-- **Procedures rewritten:** Explicit code anchor building, MCP discovery step, skip justifications, epistemics framework, Preserve/Change/Avoid/Risk for planning
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/rationale.md

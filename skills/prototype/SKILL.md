@@ -164,13 +164,3 @@ Builds minimal disposable experiments to resolve empirical or design uncertainty
 - **Skills:** design, verify, decisions
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/shipototype/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 6-step procedure, question definition, minimal experiment, success criteria, evidence-based decision, cleanup enforcement
-- **Procedures rewritten:** Explicit step structure, isolation requirement, budget enforcement
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/shipototype.md

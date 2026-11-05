@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "After completing a delivery",
+    "When a pattern of failures/bugs/rework emerges",
+    "During retrospective or review",
+    "When debug reveals systemic issue",
+    "When debug reveals systemic issue"
+  ],
+  "negative": [
+    "For one-off incidents",
+    "During active implementation (use debug)",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "lessons"
+  }
+}

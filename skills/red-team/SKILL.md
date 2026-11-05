@@ -179,13 +179,3 @@ Adversarial review that tries to break a change or design. Only findings proven 
 - **Skills:** red-team (structure), verify (verification)
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/red-team/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Frame → Fan out (arena structure) → Verify → Output, adversary brief, verification rerun, drop non-behavioural, merge shared root cause
-- **Procedures rewritten:** Explicit intent restatement, adversary brief as separate from arena task, verification rerun mandatory, dropped findings per adversary, output format
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/red-team.md

@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Worker completing a task (",
+    "Session ending with work in progress (",
+    "Switching roles (Builder",
+    "Switching roles (Builder",
+    "Switching roles (Builder"
+  ],
+  "negative": [
+    "For routine check-ins (use tool updates)",
+    "When no context transfer needed",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "handoff"
+  }
+}

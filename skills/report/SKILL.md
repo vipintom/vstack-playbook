@@ -179,13 +179,3 @@ Produces concise, audience-tailored explanations from discovery findings. Transf
 - **Skills:** code-tour, rationale, impact, decisions
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/report/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Audience-specific structure, source grounding, inference labeling, concise format
-- **Procedures rewritten:** Explicit audience determination, 5-section structure, source citation mandate, time-box
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/report.md

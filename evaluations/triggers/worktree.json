@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "For red-team worker isolation",
+    "For red-team candidate isolation",
+    "When concurrent writers need separation",
+    "When concurrent writers need separation",
+    "When concurrent writers need separation"
+  ],
+  "negative": [
+    "When sequential execution is simpler",
+    "When harness doesn't support worktrees",
+    "For single-threaded work"
+  ],
+  "expected": {
+    "skill": "worktree"
+  }
+}

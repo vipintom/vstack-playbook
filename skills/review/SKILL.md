@@ -53,7 +53,7 @@ Obtains independent fresh-context review of implementation against acceptance cr
 
 1. Prepare review package: objective, criteria, changes, evidence, lenses
 2. Dispatch Reviewer with fresh context (new session, no implementation history)
-3. Specify lenses from `resources/rubrics/`
+3. Specify lenses from `rubrics/`
 
 ### Phase B: Reviewer — Conduct Review
 
@@ -139,7 +139,7 @@ Obtains independent fresh-context review of implementation against acceptance cr
 - **Skills invoked:** verify (provides evidence), red-team (multiple reviewers), rubrics (lenses)
 - **Roles:** Lead (requests, resolves), Reviewer (assesses), Builder (fixes)
 - **Tools:** Review dispatch, finding tracking
-- **References:** resources/rubrics/
+- **References:** rubrics/
 
 ---
 
@@ -156,17 +156,11 @@ Obtains independent fresh-context review of implementation against acceptance cr
 
 ## Dependencies / References
 
+- **Templates:** `templates/review-finding.md`
+
+- **Rubrics:** `rubrics/architecture-design.md`, `rubrics/correctness-regression.md`, `rubrics/documentation-migration.md`, `rubrics/maintainability-style.md`, `rubrics/performance-resources.md`, `rubrics/security-data.md`, `rubrics/test-adequacy.md`
+
 - **Principles:** Independent Challenge, Evidence Before Assertions, Prove It Works
 - **Skills:** verify, red-team, rubrics
-- **References:** resources/rubrics/
+- **References:** rubrics/
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/review/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Fresh context, 7 lenses, structured findings, fix/defer/reject/resolve cycle, re-review
-- **Procedures rewritten:** Explicit 3-phase structure, fresh context enforcement, finding format, re-review requirement
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/review.md

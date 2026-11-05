@@ -159,13 +159,3 @@ Diagnoses live runtime symptoms by characterizing the symptom, gathering live da
 - **Skills:** debug, performance, forensics
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/forensics/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 5-step procedure, symptom characterization, live data gathering, correlation, safe probing, mitigation
-- **Procedures rewritten:** Explicit step structure, data sources, correlation methods, escalation
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/forensics.md

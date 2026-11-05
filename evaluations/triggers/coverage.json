@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Periodic verification health check",
+    "Before major releases",
+    "When lessons suggests verification gaps",
+    "When inheriting a project",
+    "When inheriting a project"
+  ],
+  "negative": [
+    "For routine verification runs",
+    "When verification is known current and comprehensive",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "coverage"
+  }
+}

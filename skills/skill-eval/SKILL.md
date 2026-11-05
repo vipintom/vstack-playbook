@@ -164,7 +164,7 @@ Evaluates skill quality through static validation, behavioural scenario testing 
 
 - **Principles:** Evidence Before Completion, Loops Are First-Class, Independent Challenge, Degrade Gracefully
 - **Skills:** skill-authoring (structure validation), review (content review)
-- **Tools:** Validator (`scripts/validate-content.js`), harness CLIs, evaluation fixtures
+- **Tools:** Validator (`tools/validate.js`), harness CLIs, evaluation fixtures
 - **References:** evals/ fixtures and rubrics, playbook/evaluations/regression-policy.md
 
 ---
@@ -175,13 +175,3 @@ Evaluates skill quality through static validation, behavioural scenario testing 
 - Owner: Playbook maintainer
 - Evaluation: Required for Stable promotion; re-run on any contract change
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/skill-eval/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 5-phase evaluation, trigger accuracy, procedure quality, failure handling, harness fallbacks, cross-harness, regression, lifecycle
-- **Procedures rewritten:** Explicit phase structure, Tier 1/2 evaluation, fixture requirements, lifecycle gates
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/skill-eval.md

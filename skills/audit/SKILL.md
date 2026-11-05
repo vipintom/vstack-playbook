@@ -159,17 +159,9 @@ Performs structured audit of a design or implementation against defined quality 
 
 ## Dependencies / References
 
+- **Rubrics:** `rubrics/architecture-design.md`, `rubrics/correctness-regression.md`, `rubrics/documentation-migration.md`, `rubrics/maintainability-style.md`, `rubrics/performance-resources.md`, `rubrics/security-data.md`, `rubrics/test-adequacy.md`
+
 - **Principles:** Evidence Before Assertions, Model Domain Explicitly, Procedures Over Vague Instructions
 - **Skills:** code-tour, rationale, review, red-team
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/audit/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 5-step procedure, 7 quality attributes, PASS/CONCERN/FAIL scoring, evidence collection, prioritized findings
-- **Procedures rewritten:** Explicit step structure, attribute definitions, scoring, escalation
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/audit.md

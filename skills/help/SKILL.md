@@ -144,13 +144,3 @@ Complete one before starting the next
 - **Skills:** route, sharpen
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/help/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Skill family taxonomy, 5-step procedure, 1-3 skill selection, "When to Use" confirmation, sequential application
-- **Procedures rewritten:** Explicit family mapping, updated skill references, failure handling
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/help.md

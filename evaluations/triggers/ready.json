@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Ready to merge?\" / \"Assess readiness\"",
+    "After watch-pr confirms CI and reviews clean",
+    "Before any merge/delivery action",
+    "As final gate before ship",
+    "As final gate before ship"
+  ],
+  "negative": [
+    "When PR not ready",
+    "When merge not intended",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "ready"
+  }
+}

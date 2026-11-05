@@ -157,13 +157,3 @@ Produces a merge-readiness assessment (READY / NOT READY) without merging. Final
 - **Skills:** watch-pr, verify, review, ship
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/ready/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Completeness verification, risk assessment, explicit recommendation, gate enforcement
-- **Procedures rewritten:** Explicit 4-step procedure, risk assessment categories, evidence traceability
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/ready.md

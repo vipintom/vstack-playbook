@@ -199,13 +199,3 @@ Analyzes the impact radius of a proposed change: affected modules, callers, data
 - **Skills:** code-tour, rationale, plan
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/impact/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 9-step procedure, risk-based depth scaling, data contracts, external integrations, rollout requirements
-- **Procedures rewritten:** Explicit step structure, risk tiers, verification criteria, escalation triggers
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/impact.md

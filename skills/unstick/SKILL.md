@@ -210,13 +210,3 @@ Breaks assumption cycles after 3+ failed fix attempts. Names the shared assumpti
 - **Skills:** debug, tdd, verify, resume
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/unstick/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Stop after 3 failures, name shared assumption, cheapest probe, 3 different approaches, clean restart, two-round limit, checkpoint recording
-- **Procedures rewritten:** Explicit trigger (3+ failures), failed attempt documentation format, assumption naming, probe hierarchy, material difference requirement, two-round limit with report
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/unstick.md

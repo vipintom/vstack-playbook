@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Starting a new session after interruption",
+    "Switching between tasks/deliveries",
+    "Onboarding to an existing delivery",
+    "After context window reset",
+    "After context window reset"
+  ],
+  "negative": [
+    "For initial task setup (use `route`",
+    "When no prior context exists (fresh task)",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "resume"
+  }
+}

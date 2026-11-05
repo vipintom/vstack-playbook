@@ -158,13 +158,3 @@ Performs behaviour-preserving structural improvements by establishing baseline, 
 - **Skills:** verify, plan, unslop
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/refactor/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 5-step procedure, baseline establishment, incremental steps with verification, step order, equivalence verification
-- **Procedures rewritten:** Explicit step structure, step order, never weaken verification, documentation
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/refactor.md

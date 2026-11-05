@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Verify this\" / \"Run tests\"",
+    "Per-task verification in playbooks",
+    "Integration verification after all tasks",
+    "Post-mitigation verification",
+    "Acceptance criteria validation"
+  ],
+  "negative": [
+    "Write failing test first",
+    "Reproduce failure",
+    "Break assumptions"
+  ],
+  "expected": {
+    "skill": "verify"
+  }
+}

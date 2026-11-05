@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Before major changes to assess current state",
+    "After implementation to validate against design",
+    "When inheriting unfamiliar code",
+    "As part of review for high-risk changes",
+    "As part of review for high-risk changes"
+  ],
+  "negative": [
+    "For routine changes with clear scope",
+    "When design is already validated",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "audit"
+  }
+}

@@ -151,13 +151,3 @@ Converts recurring mistakes into durable improvements by identifying patterns, a
 - **Skills:** debug, review, resume, skill-authoring
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/lessons/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 6-step procedure, pattern identification, root cause analysis, improvement types, historical validation, project memory recording
-- **Procedures rewritten:** Explicit step structure, improvement categories, verification against history
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/lessons.md

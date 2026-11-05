@@ -151,13 +151,3 @@ Monitors PR for CI completion and review findings, addresses valid issues, re-ve
 - **Skills:** ship, verify, review, ready
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/watch-pr/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** CI monitoring loop, finding validation, disposition categories, re-verification, repeat until clean
-- **Procedures rewritten:** Explicit 4-phase structure, disposition categories with rationale, fallback
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/watch-pr.md

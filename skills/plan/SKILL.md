@@ -155,17 +155,9 @@ Creates, challenges, and refines an actionable implementation plan: breaks work 
 
 ## Dependencies / References
 
+- **Templates:** `templates/delivery-plan.md`, `templates/task.md`
+
 - **Principles:** Procedures Over Vague Instructions, Verifiable Increments, Flexible Workflows, Degrade Gracefully
 - **Skills:** code-tour, impact, blueprint, tdd, review
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/plan/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 5-step procedure, task decomposition, acceptance criteria, dependency graph, risk estimation, challenge phase, Lead validation
-- **Procedures rewritten:** Explicit step structure, challenge criteria, graceful degradation, escalation
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/plan.md

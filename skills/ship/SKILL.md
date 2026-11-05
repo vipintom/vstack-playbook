@@ -148,17 +148,9 @@ Creates a focused, reviewable pull request with evidence summary after implement
 
 ## Dependencies / References
 
+- **Templates:** `templates/delivery-plan.md`
+
 - **Principles:** Evidence Before Assertions, Smallest Complete Change
 - **Skills:** verify, review, watch-pr, ready
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/ship/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Readiness confirmation, evidence summary, scope discipline, reviewer assignment
-- **Procedures rewritten:** Explicit 4-step procedure, verification completeness check, evidence summary format
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/ship.md

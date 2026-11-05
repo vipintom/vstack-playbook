@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "For UI changes (web, mobile, desktop)",
+    "When visual regression testing needed",
+    "When design system compliance required",
+    "When design system compliance required",
+    "When design system compliance required"
+  ],
+  "negative": [
+    "For non-UI changes",
+    "Without defined visual reference",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "visual-parity"
+  }
+}

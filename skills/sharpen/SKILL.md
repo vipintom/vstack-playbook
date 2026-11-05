@@ -140,13 +140,3 @@ As the delivery objective
 - **Skills:** code-tour, plan, route
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/sharpen/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 5-step procedure, restatement, missing pieces identification, testable criteria, risk assessment
-- **Procedures rewritten:** Explicit step structure, assumption documentation, escalation paths
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/sharpen.md

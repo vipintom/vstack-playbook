@@ -169,13 +169,3 @@ Restores repository to a verified safe state after failed, interrupted, or parti
 - **Skills:** unstick, resume, resume, decisions
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/recovery/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 6-step procedure, state assessment, baseline determination, recovery options, verification, recording
-- **Procedures rewritten:** Explicit step structure, recovery option selection, escalation paths
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/recovery.md

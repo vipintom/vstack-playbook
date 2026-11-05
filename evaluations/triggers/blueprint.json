@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Blueprint this\" / \"Specify interfaces for...\"",
+    "After design selects a design",
+    "Before plan for implementation planning",
+    "When decomposing a feature into implementable units",
+    "When decomposing a feature into implementable units"
+  ],
+  "negative": [
+    "Architectural exploration",
+    "Trivial changes with obvious implementation",
+    "No accepted architecture decision"
+  ],
+  "expected": {
+    "skill": "blueprint"
+  }
+}

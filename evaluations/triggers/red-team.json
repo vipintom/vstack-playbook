@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Interrogate this\" / \"Adversarial review\" / \"Multi-model review\"",
+    "\"Challenge this\" / \"Stress test this code\" / \"Find blind spots\"",
+    "\"Tear this apart\"",
+    "When design/change needs adversarial pressure before shipping",
+    "When design/change needs adversarial pressure before shipping"
+  ],
+  "negative": [
+    "Cooperative verification",
+    "Design synthesis",
+    "Structured review with lenses"
+  ],
+  "expected": {
+    "skill": "red-team"
+  }
+}

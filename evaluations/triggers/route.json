@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "At the start of any non-trivial engineering work (new behavior, defect, refactor, architecture, investigation, etc.)",
+    "When onboarding to a project using vstack",
+    "When unsure how to proceed and structured routing is needed",
+    "When a task needs explicit playbook selection and rigour calibration",
+    "Explicit user request: \"use route\""
+  ],
+  "negative": [
+    "Casual conversation or trivial edits (typos, formatting, config tweaks) \u2014 direct edit, no mode",
+    "User directly invokes a specific skill (e.g., \"use code-tour to trace this\") \u2014 execute that skill directly",
+    "Read-only questions that need only `code-tour`, `rationale`, or `report` \u2014 invoke those skills directly"
+  ],
+  "expected": {
+    "skill": "route"
+  }
+}

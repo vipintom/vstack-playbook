@@ -200,17 +200,9 @@ Generates a project-specific verification skill that can drive the real applicat
 
 ## Dependencies / References
 
+- **Templates:** `templates/verification-skill.md.hbs`
+
 - **Principles:** Harness Independence, Procedures Over Vague Instructions, Prove It Works
 - **Skills:** verify-maintain, verify, coverage
 - **References:** playbook/project-templates/verification-skill/
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/verify-setup/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 12-step inspection, application surface classification, harness-specific skill generation, validation requirement
-- **Procedures rewritten:** Explicit 12-step procedure, health check verification, observation channels, isolation definition, fallback
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/verify-setup.md

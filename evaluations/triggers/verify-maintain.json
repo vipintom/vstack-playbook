@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "After project changes that may affect verification",
+    "Periodic review of verification skill",
+    "When coverage finds gaps",
+    "When verification fails unexpectedly",
+    "When verification fails unexpectedly"
+  ],
+  "negative": [
+    "When verification skill is current and working",
+    "For one-off verification failures (debug instead)",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "verify-maintain"
+  }
+}

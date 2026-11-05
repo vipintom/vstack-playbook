@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Review this\" / \"Independent review for...\"",
+    "After implementation and verification complete",
+    "When plan assigns review tasks",
+    "When Lead requests independent assessment",
+    "For high-risk changes (always)"
+  ],
+  "negative": [
+    "During implementation",
+    "Trivial changes with low risk (Lead judgment)",
+    "Multi-reviewer needed"
+  ],
+  "expected": {
+    "skill": "review"
+  }
+}

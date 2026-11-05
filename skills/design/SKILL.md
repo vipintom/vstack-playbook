@@ -192,13 +192,3 @@ Produces a cross-boundary design sketch before implementation: usage sketch (cal
 - **Skills:** code-tour, rationale, red-team, tdd, verify
 - **References:** design-red-flags.md, rationale-template.md
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/design/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Ground → Sketch → Agree → Implement → Scrap phases, arena for alternatives, red-flags screening, interface depth, scrap triggers
-- **Procedures rewritten:** Explicit how/why grounding, opt-in checkpoint, sketch as contract with deviation recording, scrap triggers as decision rules
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/design.md

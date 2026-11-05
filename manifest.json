@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "playbookVersion": "0.2.0",
-  "contentHash": "sha256:e524cd33acc2d2d0bc403d98d801a8c26282505a99321d16b476b65651c766de",
+  "contentHash": "sha256:4759232c40e7a7dd0823ea8ede40d37c23c2785e1dde6f2e6c1e951e15842763",
   "counts": {
     "skills": 43,
     "playbooks": 0,
@@ -9,7 +9,7 @@
     "roles": 3,
     "rubrics": 7,
     "templates": 4,
-    "triggerFixtures": 0
+    "triggerFixtures": 43
   },
   "skills": [
     {
@@ -443,7 +443,7 @@
     ]
   },
   "evaluations": {
-    "triggers": 0,
+    "triggers": 43,
     "playbooks": 0
   },
   "profiles": {

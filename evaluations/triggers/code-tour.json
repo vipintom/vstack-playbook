@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"How does X work?\" / \"Trace flow from A to B\"",
+    "\"Walk me through the code path for...\"",
+    "\"Where does Y happen in the code?\"",
+    "Read-only investigation of runtime behaviour before making changes",
+    "Prerequisite for impact, design, debug"
+  ],
+  "negative": [
+    "\"Why was this designed this way?\"",
+    "\"What breaks if I change X?\"",
+    "\"Fix the bug in X\""
+  ],
+  "expected": {
+    "skill": "code-tour"
+  }
+}

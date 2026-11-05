@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "When performance requirements exist",
+    "When verify reveals performance regression",
+    "When lessons identifies performance patterns",
+    "When lessons identifies performance patterns",
+    "When lessons identifies performance patterns"
+  ],
+  "negative": [
+    "For functional correctness issues",
+    "Without measurable performance criteria",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "performance"
+  }
+}

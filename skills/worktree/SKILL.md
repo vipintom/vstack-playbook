@@ -166,13 +166,3 @@ Manages git worktrees for parallel work isolation: creates, configures, executes
 - **Skills:** red-team, red-team, handoff
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/worktree/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 6-step procedure, worktree creation, workspace configuration, isolation verification, integration/discard, cleanup
-- **Procedures rewritten:** Explicit step structure, fallback procedures, verification
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/worktree.md

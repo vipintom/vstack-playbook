@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Create PR for...\" / \"Prepare pull request\"",
+    "After implementation and verification complete",
+    "When project workflow requires PR",
+    "Before watch-pr and ready",
+    "Before watch-pr and ready"
+  ],
+  "negative": [
+    "Direct-to-main workflows",
+    "When changes not ready for review",
+    "Before verification complete"
+  ],
+  "expected": {
+    "skill": "ship"
+  }
+}

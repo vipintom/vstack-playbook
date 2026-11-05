@@ -173,13 +173,3 @@ Produces detailed design specification from an accepted architecture: component 
 - **Skills:** design, code-tour, plan
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/blueprint/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 6-step procedure, interfaces first, data flows, implementation boundaries, migration strategy, verification approach
-- **Procedures rewritten:** Explicit step structure, acyclic dependency verification, migration plan requirement
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/blueprint.md

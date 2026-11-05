@@ -169,13 +169,3 @@ Maintains project verification skill currency by detecting changes between skill
 - **Skills:** verify-setup, coverage, verify
 - **References:** None
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/verify-maintain/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** Trigger detection, skill vs reality comparison, change detection (hash + semantic), validation, metadata recording
-- **Procedures rewritten:** Explicit 6-step procedure, trigger categories, hash/semantic detection, fallback
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/verify-maintain.md

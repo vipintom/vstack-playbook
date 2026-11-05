@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "Before promoting a skill to Stable",
+    "After modifying a skill's trigger, procedure, output, safety rule, or stop condition",
+    "When adding a new skill to the playbook",
+    "Periodic regression evaluation of Stable skills",
+    "Periodic regression evaluation of Stable skills"
+  ],
+  "negative": [
+    "For skills in Draft state (use informal testing)",
+    "For one-off procedure validation",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "skill-eval"
+  }
+}

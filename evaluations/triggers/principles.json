@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "As a reference during any decision",
+    "When evaluating a proposed approach",
+    "When resolving ambiguity in a skill or workflow",
+    "When resolving ambiguity in a skill or workflow",
+    "When resolving ambiguity in a skill or workflow"
+  ],
+  "negative": [
+    "As a substitute for a specific skill's procedure",
+    "rename a variable for readability",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "principles"
+  }
+}

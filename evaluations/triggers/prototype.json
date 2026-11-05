@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "When design has competing designs with empirical uncertainty",
+    "When code-tour cannot determine behaviour without execution",
+    "When performance characteristics are unknown",
+    "When integration feasibility is unclear",
+    "When integration feasibility is unclear"
+  ],
+  "negative": [
+    "When uncertainty can be resolved by reading code/docs",
+    "For production code (prototype is disposable)",
+    "When cost exceeds value of information"
+  ],
+  "expected": {
+    "skill": "prototype"
+  }
+}

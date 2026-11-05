@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "After code-tour/why/blast-radius (and blueprint if architectural)",
+    "Before any implementation with multiple steps or dependencies",
+    "When Lead needs to coordinate multiple tasks/agents",
+    "When Lead needs to coordinate multiple tasks/agents",
+    "When Lead needs to coordinate multiple tasks/agents"
+  ],
+  "negative": [
+    "For single-step trivial changes",
+    "When plan already exists and is validated",
+    "summarise last quarter's revenue"
+  ],
+  "expected": {
+    "skill": "plan"
+  }
+}

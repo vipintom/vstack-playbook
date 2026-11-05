@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Debug this\" / \"Diagnose this failure\"",
+    "Test failure reproduction",
+    "Bug reproduction before fix",
+    "Unexpected behavior investigation",
+    "After 2 failed fixes"
+  ],
+  "negative": [
+    "3+ failed attempts",
+    "Live system symptoms",
+    "Design phase"
+  ],
+  "expected": {
+    "skill": "debug"
+  }
+}

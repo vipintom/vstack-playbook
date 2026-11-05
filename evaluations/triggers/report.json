@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Explain this to...\" / \"Communicate findings to...\"",
+    "After code-tour/rationale produce findings needing communication",
+    "Preparing review briefs for review",
+    "Documenting decisions for decisions",
+    "Documenting decisions for decisions"
+  ],
+  "negative": [
+    "Raw discovery",
+    "Decision recording",
+    "Review assessment"
+  ],
+  "expected": {
+    "skill": "report"
+  }
+}

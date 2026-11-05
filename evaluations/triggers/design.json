@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"Architect this\" / \"Design this\"",
+    "Cross-boundary work: new module boundaries, data flows, contracts",
+    "Non-trivial work where jumping to code would lock in wrong shape",
+    "Explicit user request for design phase before implementation",
+    "Explicit user request for design phase before implementation"
+  ],
+  "negative": [
+    "Straightforward implementation (no design alternatives)",
+    "Single-module changes without boundary implications",
+    "Pure implementation tasks"
+  ],
+  "expected": {
+    "skill": "design"
+  }
+}

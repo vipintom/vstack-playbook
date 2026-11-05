@@ -1,0 +1,17 @@
+{
+  "positive": [
+    "\"What breaks if I change X?\" / \"Blast radius of...\"",
+    "Before any change with meaningful scope or risk",
+    "Planning migrations or breaking changes",
+    "When code-tour reveals complex dependencies",
+    "As input to plan for risk assessment"
+  ],
+  "negative": [
+    "Trivial/local changes (one-line fixes, typo corrections)",
+    "When blast radius is obviously minimal and documented",
+    "Current behaviour questions"
+  ],
+  "expected": {
+    "skill": "impact"
+  }
+}

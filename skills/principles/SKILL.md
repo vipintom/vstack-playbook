@@ -163,13 +163,3 @@ Apply these principles in order when making decisions:
 - **Skills:** route, help
 - **References:** playbook/principles/*.md
 
----
-
-## Migration Record
-
-- **Previous name/path:** skills/shipinciples/SKILL.md
-- **Previous audit rating:** Adequate (historical input only)
-- **Valuable concepts preserved:** 10 principles in order, trigger/behavior/example format, principle application, escalation
-- **Procedures rewritten:** Explicit principle list, decision traceability, harness adaptation
-- **Disposition:** rewrite
-- **Research record:** docs/research/records/shipinciples.md
