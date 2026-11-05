@@ -77,6 +77,8 @@ verify runnable from clean. Structure and examples: `references/patterns.md`.
 - **OpenChamber present:** the clean-run log on the delivery note.
 - **OpenCode or files:** evidence line with `make verify` output.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_gate run make-test` proves the targets;
+  otherwise the `make help && make test` log is the artifact.
 
 ## Verification
 

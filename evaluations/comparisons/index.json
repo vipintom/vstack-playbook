@@ -1,0 +1,7 @@
+[
+  { "name": "superpowers", "url": "https://github.com/obra/superpowers", "commit": "22f0b463e7a5e579904dd6211a520321035526f7", "license": "MIT", "retrieved": "2026-11-05" },
+  { "name": "pstack", "url": "https://github.com/lauren/pstack", "commit": "629dc5e", "license": "MIT", "retrieved": "2026-11-05" },
+  { "name": "anthropics-skills", "url": "https://github.com/anthropics/skills", "commit": "ca45fc496a34", "license": "MIT", "retrieved": "2026-11-05" },
+  { "name": "mattpocock-skills", "url": "https://github.com/mattpocock/skills", "commit": "4ae2317ddb22", "license": "MIT", "retrieved": "2026-11-05" },
+  { "name": "addyosmani-agent-skills", "url": "https://github.com/addyosmani/agent-skills", "commit": "301b02b12bff", "license": "MIT", "retrieved": "2026-11-05" }
+]

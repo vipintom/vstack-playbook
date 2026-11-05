@@ -37,8 +37,9 @@ Near misses:
 
 ## Steps
 
-1. **List the gates the pipeline must run** and which block merge. Artifact:
-   gate list.
+1. **List the gates the pipeline must run** and which block merge; with the
+   adapter installed, `vstack_gate run <name>` is the local entry point for the
+   same command. Artifact: gate list.
 2. **Pin the environment**: image or runner version, tool versions from the
    lockfile. Artifact: version pins.
 3. **Order jobs by cost**: fail fast, expensive jobs only after cheap ones.

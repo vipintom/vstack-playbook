@@ -76,6 +76,6 @@ log proving the result.
 
 - **OpenChamber present:** project knowledge points at the doc; drift findings
   become todos.
-- **OpenCode or files:** the doc and gate list in the repo; commit is the
-  record.
+- **OpenCode or files:** `docs/verification.md` and the gate list in the
+  repo; commit is the record.
 - Ladder: `resources/tracking.md`.

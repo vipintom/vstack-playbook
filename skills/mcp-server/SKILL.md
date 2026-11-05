@@ -77,6 +77,8 @@ test that runs without an agent. Descriptions answer when and when not.
 - **OpenChamber present:** protocol test output on the delivery note.
 - **OpenCode or files:** server repo README plus evidence lines.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_evidence` records each protocol test;
+  otherwise `evidence.jsonl` in the server repository.
 
 ## Verification
 

@@ -86,6 +86,8 @@ On failure: none, nothing ships.
   next to the gate table.
 - **OpenCode or files:** `docs/deliveries/<id>.md` under "Readiness".
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_gate` supplies the table the verdict
+  reads; otherwise the gate logs are attached directly.
 
 ## Verification
 

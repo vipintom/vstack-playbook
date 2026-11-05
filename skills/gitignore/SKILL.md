@@ -77,6 +77,8 @@ no tracked file that the rules exclude. Patterns: `references/patterns.md`.
 - **OpenChamber present:** `git check-ignore` output on the delivery note.
 - **OpenCode or files:** evidence line with the command and result.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_gate run ignore-check` proves the rules;
+  otherwise the `git check-ignore` log is the artifact.
 
 ## Verification
 

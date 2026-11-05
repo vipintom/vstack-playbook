@@ -86,3 +86,5 @@ commit message names the cause, not the symptom.
   delivery note so the panel shows why the change exists.
 - **OpenCode or files:** repro log under `.vstack/deliveries/<id>/`.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_evidence` records the cause and the
+  green run; otherwise `evidence.jsonl` next to the repro log.

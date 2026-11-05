@@ -80,3 +80,5 @@ Near misses:
   note.
 - **OpenCode or files:** images under `.vstack/deliveries/<id>/visual/`.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_evidence` records each capture pair;
+  otherwise `evidence.jsonl` beside the images.

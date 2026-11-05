@@ -74,6 +74,8 @@ declaration diff. No new `any` without a comment naming the reason.
 - **OpenChamber present:** compiler output on the delivery note.
 - **OpenCode or files:** evidence line with the command and digest.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_gate run typecheck` proves the surface;
+  otherwise the `tsc --noEmit` log is the artifact.
 
 ## Verification
 

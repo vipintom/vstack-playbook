@@ -83,6 +83,8 @@ non-root, declare health, and hold no secrets. Patterns and full examples:
 - **OpenChamber present:** build digest and `compose ps` on the delivery note.
 - **OpenCode or files:** evidence lines with the build command and digest.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_gate run docker` proves the build;
+  otherwise the build log and digest are the artifact.
 
 ## Verification
 

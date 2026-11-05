@@ -86,3 +86,5 @@ without a baseline is a demonstration.
 - **OpenCode or files:** `docs/deliveries/<id>.md` plus
   `.vstack/deliveries/<id>/bench/`.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_gate run bench` and `vstack_evidence`
+  record the numbers; otherwise the harness command and `evidence.jsonl`.

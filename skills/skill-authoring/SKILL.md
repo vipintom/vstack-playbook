@@ -86,5 +86,6 @@ when to pick it.
 
 - **OpenChamber present:** the new skill's validation result on the delivery
   note; the prompt or spec that motivated it in project knowledge.
-- **OpenCode or files:** validator output and the comparison record.
+- **OpenCode or files:** validator output plus
+  `evaluations/comparisons/<skill>.md`.
 - Ladder: `resources/tracking.md`.

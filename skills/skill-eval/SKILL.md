@@ -80,3 +80,5 @@ Near misses:
   project todos.
 - **OpenCode or files:** `evaluations/results/<date>-<corpus>.json`.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_evidence` records each evaluation run;
+  otherwise `evidence.jsonl` beside the results file.

@@ -75,8 +75,11 @@ Models, dependency wiring, and a test that runs against a real database. No
 ## Tracking
 
 - **OpenChamber present:** test command and result on the delivery.
-- **OpenCode or files:** evidence line per endpoint test run.
+- **OpenCode or files:** evidence line per endpoint test run in
+  `.vstack/deliveries/<id>/evidence.jsonl`.
 - Ladder: `resources/tracking.md`.
+- **vstack adapter present:** `vstack_gate run pytest` proves the endpoint;
+  otherwise the pytest log and digest are the artifact.
 
 ## Verification
 

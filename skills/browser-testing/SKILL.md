@@ -48,8 +48,9 @@ Near misses:
    trace file.
 5. **Assert the outcome, not the implementation** — visible text, URL, stored
    value. Artifact: assertions.
-6. **Commit the script** to the suite and record the command. Artifact: test
-   file and evidence line.
+6. **Commit the script** to the suite and record the command; with the
+   adapter installed, `vstack_evidence` writes the line. Artifact: test file and
+   evidence line.
 
 ## Output
 

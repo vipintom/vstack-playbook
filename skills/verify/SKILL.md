@@ -100,8 +100,9 @@ decide it. A verdict with no `not_run` disclosure is a false report.
 
 - **OpenChamber present:** `focus_status` "testing", then "reviewing"; the gate
   table lands on the delivery note so the panel can show it.
-- **vstack adapter present:** `vstack_gate run` per gate and `vstack_status`
-  for the outstanding list; completion is refused by the ledger, not by prose.
+- **vstack adapter present:** `vstack_gate run` per gate, `vstack_evidence` for
+  the logged result and `vstack_status` for the outstanding list; completion is
+  refused by the ledger, not by prose.
 - **Neither:** `docs/deliveries/<id>.md` gate table plus
   `.vstack/deliveries/<id>/logs/*`. Ladder: `resources/tracking.md`.
 
