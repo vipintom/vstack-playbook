@@ -1,17 +1,15 @@
 {
   "positive": [
-    "\"How does X work?\" / \"Trace flow from A to B\"",
-    "\"Walk me through the code path for...\"",
-    "\"Where does Y happen in the code?\"",
-    "Read-only investigation of runtime behaviour before making changes",
-    "Prerequisite for impact, design, debug"
+    "Walk me through how a Stripe webhook reaches the worker, with file and line citations.",
+    "Where is the source of truth for job state, and who writes it?",
+    "Map the request path for password reset before I change anything.",
+    "Explain the control flow between the API and the queue in this repository.",
+    "I need to understand this subsystem before editing it; trace the entry points."
   ],
   "negative": [
-    "\"Why was this designed this way?\"",
-    "\"What breaks if I change X?\"",
-    "\"Fix the bug in X\""
+    "Why was retries moved from cron to the queue, and what still depends on it?",
+    "The test fails intermittently; find the cause and fix it.",
+    "Implement the password reset flow with tests before the code."
   ],
-  "expected": {
-    "skill": "code-tour"
-  }
+  "expected": { "skill": "code-tour" }
 }

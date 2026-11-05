@@ -1,187 +1,89 @@
 ---
 name: code-tour
-description: Explain runtime behaviour, entry points, data flow, state ownership and component boundaries using source references
-lifecycle: draft
+description: Use when someone needs to understand how existing code works — entry points, call path, state ownership — without changing it; not for explaining why a design was chosen (rationale) or for fixing it (debug).
+tier: frame
+rigor: flexible
+status: stable
+pairs-with: [rationale, debug]
 ---
 
 # code-tour
 
-## Purpose / Outcome
+Explain how the code works today, with citations. Read-only: no edits, no
+refactors, no "while I was there" fixes. Every claim carries `path:line`.
 
-Provides architectural explanations of runtime behaviour at the level of a senior engineer onboarding onto a subsystem. Produces: Overview, Key Concepts, How It Works, Where Things Live, Gotchas.
+## When to use
 
----
+- Onboarding to an unfamiliar area before changing it.
+- A question about control flow, data ownership or configuration.
+- A review needs the reader to see the path, not the opinion.
+- A bug report needs a map of the code before a cause is guessed.
+- Someone asks "where does X come from?".
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "How does X work?" / "Trace flow from A to B"
-- "Walk me through the code path for..."
-- "Where does Y happen in the code?"
-- Read-only investigation of runtime behaviour before making changes
-- Prerequisite for impact, design, debug
+- The question is about intent or history → `rationale`.
+- The code is known and wrong → `debug`.
+- The task is to change behaviour → `plan`, then `tdd`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- "Why was this designed this way?" → rationale
-- "What breaks if I change X?" → impact
-- "Fix the bug in X" → bug-fixing playbook → debug
-- Trivial, well-understood local changes
-- When discovery is already documented and current
-
----
-
-## Required Context / Inputs
-
-- Repository access (read-only)
-- Sharpened problem statement (from sharpen if needed)
-- Target area/files identified
-- Ability to spawn fresh-context read-only agents (harness-dependent)
-
----
-
-## Preconditions
-
-- Code can be read (not obfuscated/minified without source maps)
-- Entry points identifiable
-- Host supports read-only investigation (fresh context, no writes)
-
----
-
-## Procedure
-
-### Step 1: Assess Complexity
-
-- **Simple:** Single module, clear entry point, ≤3 files — single explainer explores and explains
-- **Complex:** Multiple modules, unclear boundaries, >3 files — 2-4 parallel explorers → single explainer synthesis
-
-### Step 2: Simple Path — Single Explainer
-
-- Spawn one fresh-context read-only agent with the sharpened question
-- Agent explores: entry points → data flow → state ownership → component boundaries
-- Agent produces: Overview, Key Concepts, How It Works, Where Things Live, Gotchas
-- Present output with light edits for clarity
-
-### Step 3: Complex Path — Parallel Explorers + Synthesizer
-
-- Decompose into 2-4 investigation angles (e.g., API layer, data layer, state machine, error paths)
-- Spawn 2-4 parallel fresh-context read-only agents, each with one angle
-- Each explorer returns: files read, key findings, open questions
-- Spawn single fresh-context read-only synthesizer with all explorer outputs
-- Synthesizer produces unified: Overview, Key Concepts, How It Works, Where Things Live, Gotchas
-- Present synthesizer output
-
-### Step 4: Output Format (Both Paths)
-
-**Overview** — 2-3 sentences: what the system does, primary flow, scale
-
-**Key Concepts** — 4-8 bullets: domain terms, patterns, invariants
-
-**How It Works** — Sequential flow from entry point through transformations to output, with file:line references
-
-**Where Things Live** — Table: concept → file(s) → ownership (module/team if known)
-
-**Gotchas** — 3-6 items: non-obvious behaviour, footguns, performance traps, version-specific quirks
-
----
-
-## Direct Skill Invocation
-
-When user directly invokes code-tour, execute procedure directly without full mode routing.
-
----
-
-## Expected Outputs
-
-- Architectural explanation in the 5-section format above
-- File:line references for all claims
-- Open questions flagged
-- Complexity assessment used (simple/complex)
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Explanation covers entry point → output flow
-- File:line references provided for all key claims
-- Gotchas are non-obvious (not restating obvious code)
-- Complexity path matches actual scope
-- Read-only — no writes performed
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Scope |
 |---|---|
-| Entry point not found | Report INCONCLUSIVE, list searched paths |
-| Code unreadable (obfuscated) | Report BLOCKED, require source maps |
-| Explorers return conflicting findings | Synthesizer notes conflict, presents both |
-| Host cannot spawn read-only agents | Fallback: sequential exploration in current context |
+| Trace | one question, one path, ≤200 lines read |
+| Tour | one subsystem: entry, path, state, extension points |
+| Map | several subsystems, written once for the team |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **Write the question as one sentence.** "How does a webhook reach the
+   worker?" A tour without a question becomes a directory listing. Artifact:
+   `question`.
+2. **Find the entry point** with a symbol search, not by guessing files.
+   Artifact: entry `path:line`.
+3. **Follow the path**, quoting each hop: call, queue, handler, state write.
+   Stop at boundaries you only need to name. Artifact: hop list with citations.
+4. **Name state ownership.** Who writes, who reads, what is the source of
+   truth, what is derived. Artifact: state table.
+5. **Name the gaps.** Anything you could not confirm from the code, and what
+   would confirm it (a log, a test, an instrument). Artifact: gaps list.
+6. **Write the tour** as prose plus citations, at the requested mode's depth.
+   Artifact: the answer in the thread or the delivery note.
 
+## Output
 
-- Explanation complete with 5 sections
-- All key claims have file:line references
-- Open questions explicitly listed
-- User confirms understanding or asks follow-up
+```markdown
+Question: how does a Stripe webhook reach the worker?
+1. POST /webhooks/stripe — `src/http/webhooks.ts:24` verifies the signature.
+2. Enqueue — `src/queue/producer.ts:41`, job name `stripe.event`.
+3. Consume — `src/queue/worker.ts:88`, one job per event id.
+State: events table is the source of truth; the queue is derived and replayable.
+Gap: retry count is not persisted — confirm via `worker.ts:91` log line.
+```
 
----
+## Failure
 
-## Escalation
+- **No entry point found.** Say so and name the search terms tried; propose an
+  instrument rather than guessing.
+- **The path branches beyond the question.** Follow one branch, list the others
+  as out of scope.
+- **The code contradicts the docs.** Report both with citations; do not decide
+  which is right without running it.
+- **The reader needs intent, not flow.** Hand off to `rationale`.
 
-- Design rationale needed → rationale
-- Change impact needed → impact
-- Failure reproduction needed → debug
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "I'll tidy this while tracing." | The tour loses its baseline; the reader cannot tell what is original. |
+| "Citations are noise in a chat answer." | Without them the answer is a claim, and the reader re-derives it. |
+| "I know this codebase." | Then the tour is quick to write and cheap to check. |
+| "The whole subsystem must be covered." | Cover the question; name the rest as out of scope. |
 
-## Skill / Role / Tool Routing
+## Tracking
 
-- **Skills invoked:** sharpen (if request vague), rationale (if rationale needed), impact (if impact needed)
-- **Roles:** Explorers (read-only), Synthesizer (read-only)
-- **Tools:** grep/glob/read (code exploration), host read-only agent dispatch
-- **References:** None (skill is self-contained)
-
----
-
-## Examples
-
-### Simple Example: Single Module
-
-**Request:** "How does the config loader work?"
-
-**Execution:**
-1. Complexity: Simple (single file, clear entry)
-2. Single explainer reads config.ts, traces load() → parse() → validate() → cache
-3. Output: 5 sections with file:line refs
-
-### Complex Example: Auth Subsystem
-
-**Request:** "How does authentication flow from login to protected route?"
-
-**Execution:**
-1. Complexity: Complex (routes, middleware, tokens, DB, cache)
-2. Angles: API layer, token lifecycle, middleware chain, error handling
-3. 4 explorers → 1 synthesizer
-4. Unified 5-section output
-
----
-
-## Dependencies / References
-
-- **Principles:** Harness Independence, Procedures Over Vague Instructions
-- **Skills:** sharpen, rationale, impact
-- **References:** None bundled
-
+- **OpenChamber present:** a project note for tours that outlive the session;
+  nothing for a one-off question.
+- **OpenCode or files:** the answer plus a `code-tour` section in the delivery
+  note when it unblocks work.
+- Ladder: `resources/tracking.md`.

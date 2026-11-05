@@ -1,17 +1,15 @@
 {
   "positive": [
-    "User request is vague, ambiguous, or missing acceptance criteria",
-    "Before code-tour/why or plan",
-    "When Lead cannot form a clear task breakdown",
-    "When Lead cannot form a clear task breakdown",
-    "When Lead cannot form a clear task breakdown"
+    "The ticket says make the dashboard faster; I need an acceptance criterion before starting.",
+    "This request is ambiguous in two places and both readings mean different work.",
+    "Turn 'clean up the API' into something testable without widening the scope.",
+    "Ask me only the questions that would change what we build, then write it down.",
+    "The last delivery was rejected as not what they meant; restate the request first."
   ],
   "negative": [
-    "Request already has clear problem statement and acceptance criteria",
-    "rename a variable for readability",
-    "summarise last quarter's revenue"
+    "The request is precise; frame the outcome, boundaries and unknowns.",
+    "Order these agreed tasks into a plan with a check for each.",
+    "Explain how the export path works today and cite the files."
   ],
-  "expected": {
-    "skill": "sharpen"
-  }
+  "expected": { "skill": "sharpen" }
 }

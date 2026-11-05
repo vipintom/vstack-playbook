@@ -1,17 +1,15 @@
 {
   "positive": [
-    "When design has competing designs with empirical uncertainty",
-    "When code-tour cannot determine behaviour without execution",
-    "When performance characteristics are unknown",
-    "When integration feasibility is unclear",
-    "When integration feasibility is unclear"
+    "Build the thinnest version so we can feel whether canvas or DOM suits five thousand nodes.",
+    "I need a one-hour sketch to answer whether this interaction is even feasible.",
+    "Compare two architectures on the same fixture and give me numbers.",
+    "Prove the risky path works before we commit to the design.",
+    "Make a disposable demo for the review tomorrow, then delete or label it."
   ],
   "negative": [
-    "When uncertainty can be resolved by reading code/docs",
-    "For production code (prototype is disposable)",
-    "When cost exceeds value of information"
+    "Write the failing test first, then implement the reset flow for production.",
+    "Read the docs and tell me whether the library supports streaming responses.",
+    "The design is chosen; write the ordered tasks with checks for each."
   ],
-  "expected": {
-    "skill": "prototype"
-  }
+  "expected": { "skill": "prototype" }
 }

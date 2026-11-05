@@ -1,17 +1,15 @@
 {
   "positive": [
-    "\"Why does X work this way?\" / \"Why was Y designed this way?\"",
-    "\"What's the rationale for Z?\"",
-    "\"Design decision behind...\"",
-    "\"Postmortem for...\"",
-    "Read-only investigation of design intent before changes"
+    "Reconstruct why retries moved from cron to the queue, and cite the discussion.",
+    "Before I delete this path, tell me what decision put it here and what still binds.",
+    "The reviewer asks why this is not idempotent; find the recorded reason.",
+    "Rank the evidence for the current backoff choice, separating fact from inference.",
+    "What alternatives were rejected when we chose the event bus?"
   ],
   "negative": [
-    "\"How does X work?\"",
-    "\"What breaks if I change X?\"",
-    "\"Fix the bug\""
+    "Trace how a webhook reaches the worker and cite the files.",
+    "Two designs both look fine; which principle decides and what is its test?",
+    "Plan the migration of the retry path to the queue."
   ],
-  "expected": {
-    "skill": "rationale"
-  }
+  "expected": { "skill": "rationale" }
 }

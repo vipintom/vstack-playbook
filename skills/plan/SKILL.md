@@ -1,163 +1,99 @@
 ---
 name: plan
-description: Create, challenge and refine an actionable plan
-lifecycle: draft
+description: Use when the work is framed and must be ordered into tasks with an artifact and a check each before coding starts; not for discovering what the problem is (shape) or for a situation with no known approach (figure-it-out).
+tier: frame
+rigor: rigid
+status: stable
+pairs-with: [shape, route, tdd]
 ---
 
 # plan
 
-## Purpose / Outcome
+A task is a unit of work with an artifact and a check. If it has neither, it is
+a wish. Plans are ordered by dependency, not by comfort.
 
-Creates, challenges, and refines an actionable implementation plan: breaks work into verifiable tasks with acceptance criteria, identifies dependencies, assigns task types, estimates risk, and validates with Lead.
+## When to use
 
----
+- Outcome and done predicate exist; the steps do not.
+- Work spans more than one file, commit or session.
+- Another agent or person will execute the plan without you.
+- A change needs sequencing because later steps depend on earlier ones.
+- A delivery needs a task list the ledger can gate.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- After code-tour/why/blast-radius (and blueprint if architectural)
-- Before any implementation with multiple steps or dependencies
-- When Lead needs to coordinate multiple tasks/agents
+- The problem is not framed → `shape` first.
+- The approach is unknown → `figure-it-out`.
+- One edit will do → no plan; do it.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
+| Mode | Task count | Record |
+|---|---|---|
+| Inline | 2–4 | one list in the delivery record |
+| Written | 5–20 | `docs/deliveries/<id>.md` task table |
+| Delegated | any | each task self-contained with its check |
 
-- For single-step trivial changes
-- When plan already exists and is validated
+`rigor: rigid` — every task names an artifact and a check. A task without a
+check cannot be completed, only abandoned.
 
----
+## Steps
 
-## Required Context / Inputs
+1. **Read the frame.** Outcome, done predicate, non-goals. If any is missing,
+   stop and `shape`. Artifact: referenced frame.
+2. **Decompose by artifact.** Each task produces something a reviewer can
+   open: a file, a schema, a test, a diff. Artifact: task list.
+3. **Write each task's check before its steps.** The check is a command or a
+   named observation that fails now. Artifact: check per task.
+4. **Order by dependency, then by risk.** Risky unknowns first, so the plan can
+   change before sunk cost. Artifact: ordered list.
+5. **Assign tier and gates per task**, using `route`'s tier table. Artifact:
+   tier per task.
+6. **Check the plan against the non-goals.** Remove any task that serves
+   nothing in the outcome. Artifact: removed tasks named.
+7. **Write it down** in the chosen surface: adapter (`vstack_task`), project
+   plan, or the delivery file. Artifact: the plan record.
 
-- Sharpened problem and acceptance criteria
-- Discovery summary
-- Blueprint (if architectural)
-- Project conventions and constraints
+## Output
 
----
+| # | Task | Artifact | Check | Depends on |
+|---|---|---|---|---|
+| 1 | schema for evidence lines | `<schema path>` | `node --test <schema test path>` | — |
+| 2 | append-only writer | `<writer path>` | same test, new case | 1 |
 
-## Preconditions
+Task template: `templates/task.md`. A plan a stranger cannot start from is a summary of intent.
 
-- Discovery complete (how/why/blast-radius)
-- Architecture decision recorded (if applicable)
+## Failure
 
----
+- **A task has no check.** It is not a task: split it until a check exists, or
+  insert an investigation task first.
+- **Two tasks are circular.** One of them is hiding a design decision; run
+  `design` on the boundary.
+- **The plan exceeds 20 tasks.** Group by artifact; a plan nobody reads is
+  not a plan.
+- **A task discovers new scope.** Stop, return to `shape`, re-plan. Never
+  extend the plan silently mid-execution.
 
-## Procedure
+## Rationalizations
 
-### Step 1: Draft Initial Plan
+| Excuse | Reality |
+|---|---|
+| "The plan is obvious, I'll keep it in my head." | The next agent has no head. Write it or re-derive it. |
+| "Checks slow the plan down." | Checks are the plan; without them "done" is an opinion. |
+| "I'll order by what's easiest first." | Easy first hides the risky unknown until it is expensive. |
+| "More tasks means more rigour." | More tasks means more handoffs. One artifact per task, no finer. |
 
-- Break into tasks with clear boundaries
-- Define acceptance criteria per task
-- Identify dependencies between tasks
-- Assign task types (discovery, implementation, test, review, etc.)
-- Estimate risk per task
+## Tracking
 
-### Step 2: Challenge the Plan
-
-- Are tasks truly independent where parallel?
-- Are acceptance criteria testable?
-- Are dependencies correctly identified?
-- Is risk appropriately addressed (review, evidence, parallelism)?
-- Does it degrade gracefully without advanced harness features?
-
-### Step 3: Refine
-
-- Incorporate challenges
-- Split/merge tasks
-- Adjust criteria
-
-### Step 4: Validate
-
-- Lead confirms plan enables coordination and evidence
-
-### Step 5: Record
-
-- Plan with tasks, dependencies, criteria, risk levels
-
----
-
-## Expected Outputs
-
-- Task list with: title, description, acceptance criteria, dependencies, type, risk
-- Dependency graph
-- Risk assessment per task
-- Coordination notes for Lead
-
----
+- **vstack adapter present:** `vstack_task` per task; `vstack_deliver` opens the
+  record.
+- **OpenChamber present:** project plan, one step per task; `focus_add` for the
+  first three.
+- **Neither:** `.vstack/plan.md` plus `docs/deliveries/<id>.md`.
+- Ladder: `resources/tracking.md`.
 
 ## Verification
 
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- All tasks have testable acceptance criteria
-- Dependencies form a DAG (no cycles)
-- High-risk tasks have review/evidence requirements specified
-- Plan works sequentially if parallel unavailable
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
-|---|---|
-| Plan cannot be validated | Return to code-tour/why/blast-radius or blueprint |
-| Fundamental disagreement on approach | Lead decides, documents rationale |
-| Cyclic dependencies detected | Redesign task boundaries |
-
----
-
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
-
-
-- Plan challenged, refined, and validated
-- Ready for task execution
-
----
-
-## Escalation
-
-- Plan cannot be validated → return to discovery or blueprint
-- Fundamental disagreement on approach → Lead decides, documents rationale
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** code-tour (discovery), impact (risk assessment), blueprint (design), tdd (implementation tasks), review (review tasks)
-- **Roles:** Lead (creates, validates), Builder (executes), Reviewer (challenges)
-- **Tools:** Plan document, dependency graph
-- **References:** None
-
----
-
-## Examples
-
-### Example: Auth Feature Plan
-
-**Discovery:** Need login, register, logout, protected routes
-**Blueprint:** JWT with refresh tokens, strategy pattern for providers
-**Plan:**
-1. Types/interfaces (discovery, low risk)
-2. JWT utility (implementation, medium risk, TDD)
-3. Login endpoint (implementation, high risk, TDD + review)
-4. Register endpoint (implementation, high risk, TDD + review)
-5. Protected routes middleware (implementation, high risk, TDD + review)
-6. Integration tests (test, medium risk)
-7. Review (review, low risk)
-
----
-
-## Dependencies / References
-
-- **Templates:** `templates/delivery-plan.md`, `templates/task.md`
-
-- **Principles:** Procedures Over Vague Instructions, Verifiable Increments, Flexible Workflows, Degrade Gracefully
-- **Skills:** code-tour, impact, blueprint, tdd, review
-- **References:** None
-
+```bash
+docker compose run --rm pack node tools/validate.js
+```

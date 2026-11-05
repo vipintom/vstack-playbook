@@ -1,17 +1,15 @@
 {
   "positive": [
-    "No existing playbook fits the request shape (checked via `route` routing)",
-    "Task is a large, cross-cutting version of a narrower task (e.g., \"refactor the entire codebase\" vs \"refactor the auth module\")",
-    "Task spans multiple standard playbook families with complex dependencies",
-    "User explicitly requests a custom process",
-    "User explicitly requests a custom process"
+    "No playbook fits this: a UI change that also migrates stored data in one release.",
+    "Work out a bespoke sequence for this one-off situation and give it an exit check.",
+    "Half of this is an infrastructure change and half is a refactor; sequence it.",
+    "The standard playbook's exit criteria cannot be checked in this environment.",
+    "Build a small playbook for this, with an artifact for every step."
   ],
   "negative": [
-    "For tasks that fit a standard playbook (bug-fixing, feature-delivery, refactoring, investigation, etc.)",
-    "When a standard playbook with risk adaptation covers the need",
-    "For routine work where bespoke design adds overhead without value"
+    "Pick the playbook and tier for this request; it is ordinary feature work.",
+    "The test fails intermittently and nobody knows why; find the cause.",
+    "The scope is unclear; frame the outcome, non-goals and unknowns first."
   ],
-  "expected": {
-    "skill": "figure-it-out"
-  }
+  "expected": { "skill": "figure-it-out" }
 }

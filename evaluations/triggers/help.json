@@ -1,17 +1,15 @@
 {
   "positive": [
-    "When starting a new task or delivery",
-    "When stuck and unsure which skill applies",
-    "When a skill references \"related skills\" you don't know",
-    "When a skill references \"related skills\" you don't know",
-    "When a skill references \"related skills\" you don't know"
+    "I just installed this pack; show me what it can do and where to start.",
+    "Which skill should I use to compare two designs before I commit to one?",
+    "Is there a skill in here that checks whether a delivery is actually finished?",
+    "Explain the tiers and playbooks to a teammate who has never seen vstack.",
+    "What is the difference between the two verification skills in this pack?"
   ],
   "negative": [
-    "When you already know the exact skill needed",
-    "rename a variable for readability",
-    "summarise last quarter's revenue"
+    "Route this ticket properly before we start: it needs a playbook and a tier.",
+    "Trace how a webhook reaches the worker and cite the files for me.",
+    "Why was retries moved from cron to the queue? Point me at the discussion."
   ],
-  "expected": {
-    "skill": "help"
-  }
+  "expected": { "skill": "help" }
 }

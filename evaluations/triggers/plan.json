@@ -1,17 +1,15 @@
 {
   "positive": [
-    "After code-tour/why/blast-radius (and blueprint if architectural)",
-    "Before any implementation with multiple steps or dependencies",
-    "When Lead needs to coordinate multiple tasks/agents",
-    "When Lead needs to coordinate multiple tasks/agents",
-    "When Lead needs to coordinate multiple tasks/agents"
+    "Break this framed outcome into ordered tasks, each with an artifact and a check.",
+    "I know what we are building; write the sequence so another agent can execute it.",
+    "Turn this approved shape document into a plan with gates per task.",
+    "Order the work by dependency and risk so the unknown is first.",
+    "Write the task list into the delivery record with a check for every task."
   ],
   "negative": [
-    "For single-step trivial changes",
-    "When plan already exists and is validated",
-    "summarise last quarter's revenue"
+    "The request is vague; restate it with acceptance criteria before we plan.",
+    "Nobody knows how to approach this; build a bespoke sequence from skills.",
+    "The problem is not framed yet: what is the outcome and what is out of scope?"
   ],
-  "expected": {
-    "skill": "plan"
-  }
+  "expected": { "skill": "plan" }
 }

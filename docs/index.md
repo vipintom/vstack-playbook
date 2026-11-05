@@ -2,42 +2,47 @@
 
 # vstack skill catalogue
 
-vstack 0.2.0 ships **44 skills**, **0 playbooks**, **17 principles**, **3 roles**, **7 rubrics** and **4 templates**.
+vstack 0.2.0 ships **45 skills**, **0 playbooks**, **17 principles**, **3 roles**, **7 rubrics** and **4 templates**.
 
-Profiles: `core` 44 skills, `stack` 0, `full` 44.
+Profiles: `core` 45 skills, `stack` 0, `full` 45.
 
-## entry (1)
+## entry (3)
 
+- **help** — Use when someone asks what the pack contains, which skill fits a task, or how to start using vstack; not for routing live work (route) or for a skill's own procedure.
+- **principles** — Use when a decision needs the rule behind it, or two reasonable approaches must be adjudicated before work continues; not for a skill's procedure (help) or a project's local conventions.
 - **route** — Use when a request arrives with no playbook open and the approach must be chosen before skills load; not for a one-file edit, a question a single read answers, or work whose route is already recorded.
+
+## frame (7)
+
+- **code-tour** — Use when someone needs to understand how existing code works — entry points, call path, state ownership — without changing it; not for explaining why a design was chosen (rationale) or for fixing it (debug).
+- **figure-it-out** — Use when no playbook fits and the situation needs a bespoke sequence built from skills, with the same guarantees as a playbook; not for work that matches an existing playbook (route) or a cause that is simply unknown (debug).
+- **plan** — Use when the work is framed and must be ordered into tasks with an artifact and a check each before coding starts; not for discovering what the problem is (shape) or for a situation with no known approach (figure-it-out).
+- **prototype** — Use when a design question can only be answered by building something disposable and looking at it; not for answering a factual question (understand) or for production code (tdd).
+- **rationale** — Use when a decision's history must be reconstructed — what was chosen, what was rejected and on what evidence; not for how the code works now (code-tour) or for making a new decision (principles).
+- **shape** — Use when the request is understood but the problem is not framed — outcome, boundaries, unknowns and proof are still unstated; not for clarifying ambiguous wording (sharpen) or ordering known work (plan).
+- **sharpen** — Use when a request's wording is ambiguous, its acceptance criteria are missing, or its scope is stated as a feeling; not for framing a request that is already clear (shape) or ordering agreed work (plan).
 
 ## build (2)
 
 - **evidence** — Use when a claim is about to be reported, committed or handed over and needs a recorded artifact behind it; not for producing the proof of a whole delivery (verify) or for writing the failing test (tdd).
 - **verify** — Use when work claims to be complete and an independent run must prove it before merge, handoff or release; not for writing the failing test first (tdd) or recording one claim (evidence).
 
-## unassigned (41)
+## unassigned (33)
 
 - **audit** — Audit an existing design or implementation against relevant quality attributes
 - **blueprint** — Turn an accepted design into interfaces, components, data flows and implementation boundaries
-- **code-tour** — Explain runtime behaviour, entry points, data flow, state ownership and component boundaries using source references
 - **coverage** — Identify untested acceptance criteria, weak checks and gaps between tests and real application behaviour
 - **debug** — Systematic root cause investigation: reproduce failure, gather evidence, form hypothesis, test minimally, implement fix with failing test
 - **decisions** — Record important decisions, pivots, failed approaches and evidence references
 - **design** — Cross-boundary design: sketch types, signatures, module structure before code; synthesize alternatives; fill in against chosen sketch
 - **docker** — _no description_
-- **figure-it-out** — Designs a bespoke, auditable playbook when no existing playbook fits or when a task is a large/cross-cutting version of a narrower task
 - **forensics** — Diagnose live runtime symptoms using available instrumentation
 - **gitignore** — _no description_
 - **handoff** — Create a complete worker-to-Lead or session-to-session handoff
-- **help** — Select the smallest relevant set of skills
 - **impact** — Identify affected callers, components, data contracts, external behaviour and failure paths for a proposed change
 - **lessons** — Convert recurring mistakes into durable improvements
 - **makefile** — _no description_
 - **performance** — Establish a baseline and investigate measured performance issues
-- **plan** — Create, challenge and refine an actionable plan
-- **shipinciples** — Core engineering and agent operating rules
-- **shipototype** — Build a disposable experiment to resolve empirical or design uncertainty
-- **rationale** — Investigate design rationale using git history, PR discussions, ADRs, long-form docs, team chat, infrastructure signals, error tracking, and product analytics
 - **ready** — Produce a merge-readiness assessment without merging
 - **recovery** — Restore a safe state after failed, interrupted or partially applied work
 - **red-team** — Adversarial review: adversaries try to break a change/design, findings survive only when proven by a run against real code
@@ -46,7 +51,6 @@ Profiles: `core` 44 skills, `stack` 0, `full` 44.
 - **resume** — Reconstruct current task or project context after interruption
 - **review** — Obtain fresh-context review and resolve findings
 - **rubrics** — Supply reusable review lenses for security, performance, maintainability, accessibility and data integrity
-- **sharpen** — Clarify and improve an underspecified request
 - **ship** — Prepare a focused, reviewable pull request with evidence
 - **skill-authoring** — Write skills to v2 contract standard: draft, static validation, external research, evaluation, lifecycle management
 - **skill-eval** — Evaluate skill trigger accuracy, procedure quality, outputs and failure handling through scenario-based testing

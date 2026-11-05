@@ -1,166 +1,84 @@
 ---
-name: shipototype
-description: Build a disposable experiment to resolve empirical or design uncertainty
-lifecycle: draft
+name: prototype
+description: Use when a design question can only be answered by building something disposable and looking at it; not for answering a factual question (understand) or for production code (tdd).
+tier: frame
+rigor: standard
+status: stable
+pairs-with: [design, plan]
 ---
 
-# shipototype
+# prototype
 
-## Purpose / Outcome
+Build the thinnest thing that answers the question, look at it, write down what
+you learned, then decide: delete it or park it behind a label. A prototype is
+not a first draft of production code.
 
-Builds minimal disposable experiments to resolve empirical or design uncertainty: defines the question, designs minimal experiment, defines success criteria, builds and runs, analyzes results, decides and cleans up.
+## When to use
 
----
+- The question is about feel, feasibility or shape: "would this interaction work?".
+- An estimate depends on a measurement only a build can give.
+- Two architectures need a fair comparison on the same fixture.
+- The team cannot agree because nobody has seen the thing.
+- A vendor or library's real behaviour matters more than its docs.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- When design has competing designs with empirical uncertainty
-- When code-tour cannot determine behaviour without execution
-- When performance characteristics are unknown
-- When integration feasibility is unclear
+- The question is factual and reading answers it → `understand`.
+- The answer must ship → `tdd` with production constraints.
+- The design is decided and needs a plan → `plan`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
+| Mode | Timebox | Output |
+|---|---|---|
+| Sketch | 1 hour | screenshot or transcript, findings |
+| Compare | half day | two builds, one fixture, numbers |
+| Feasibility | 1 day | the risky path proven or disproven |
 
-- When uncertainty can be resolved by reading code/docs
-- For production code (prototype is disposable)
-- When cost exceeds value of information
+## Steps
 
----
+1. **Write the question and the decision it informs.** "Should the editor be
+   canvas or DOM for 5k nodes?" — the decision is the architecture. Artifact:
+   `question`, `decision`.
+2. **Set the timebox and the stop rule.** When time is up, stop and report,
+   even mid-build. Artifact: `timebox`.
+3. **Build the thinnest path** that exercises the risky part. No auth, no
+   polish, no error handling beyond what hides the answer. Artifact: the build.
+4. **Measure or observe against the fixture.** Same input for both options.
+   Artifact: numbers or recording.
+5. **Write findings** as answers to the question, with what surprised you.
+   Artifact: findings note.
+6. **Decide the artifact's fate:** delete, or park under
+   `prototypes/<date>-<slug>/` with a README saying it is not production.
+   Artifact: deletion or parking record.
 
-## Required Context / Inputs
+## Output
 
-- Specific uncertainty to resolve
-- Success criteria for experiment
-- Time/resource budget
+A findings note of at most 20 lines: question, method, result, recommendation,
+artifact fate. The prototype itself is evidence, never a deliverable.
 
----
+## Failure
 
-## Preconditions
+- **The timebox ends before an answer.** Report the partial result and what
+  would finish it. A half answer is data; an overrun is a project.
+- **The build needs production quality to be meaningful.** The question is
+  badly framed; narrow it until the thin path suffices.
+- **The result is ambiguous.** Say so; do not pick the option you prefer.
+- **Someone wants to ship it.** Refuse: prototypes have no tests, no error
+  handling and no owner. Rebuild under `tdd` if the decision is yes.
 
-- Uncertainty clearly defined
-- Experiment design feasible within budget
+## Rationalizations
 
----
-
-## Procedure
-
-### Step 1: Define the Question
-
-- What specific uncertainty does this resolve?
-- What would constitute a clear answer?
-
-### Step 2: Design Minimal Experiment
-
-- Smallest code to answer the question
-- Disposable — not production quality
-- Isolated from production systems
-
-### Step 3: Define Success Criteria
-
-- Quantitative (latency < X, throughput > Y)
-- Qualitative (API feels right, integration works)
-- Failure conditions
-
-### Step 4: Build and Run
-
-- Time-boxed implementation
-- Instrument for measurement
-- Run in representative environment
-
-### Step 5: Analyze Results
-
-- Compare against success criteria
-- Note unexpected behaviours
-- Document learnings
-
-### Step 6: Decide and Clean Up
-
-- Answer the question
-- Discard prototype code
-- Record findings in decisions or project memory
-
----
-
-## Expected Outputs
-
-- Answer to the uncertainty question
-- Evidence (measurements, observations)
-- Decision rationale
-- Prototype discarded
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Question answered with evidence
-- Prototype code not merged
-- Findings recorded
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Excuse | Reality |
 |---|---|
-| Budget exceeded without answer | Escalate to Lead |
-| Prototype reveals new uncertainties | Iterate or escalate |
+| "It works, so we can keep it." | It works on one path with no tests; that is a demo, not a product. |
+| "Cleanup can wait until after the demo." | Prototypes that survive unlabelled become legacy with no owner. |
+| "The prototype is faster to extend than to rebuild." | The first bug fix costs more than the rebuild. |
+| "The question can be answered without building." | Then it was not a prototype question; save the time. |
 
----
+## Tracking
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
-
-
-- Question answered or budget exhausted
-- Time-boxed (default: 2-4 hours, max 1 day)
-
----
-
-## Escalation
-
-- Budget exceeded without answer → escalate to Lead
-- Prototype reveals new uncertainties → iterate or escalate
-
----
-
-## Fallback
-
-- Without prototyping: document uncertainty as risk in plan
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** design (identifies uncertainties), verify (measurement approach), decisions (records findings)
-- **Roles:** Builder (experiments), Lead (approves budget)
-- **Tools:** Build tools, measurement instrumentation
-- **References:** None
-
----
-
-## Examples
-
-### Example: Cache Strategy Comparison
-
-**Uncertainty:** Redis vs in-memory for session cache
-**Experiment:** Minimal app with both, measure latency/hit rate
-**Criteria:** Latency < 5ms, hit rate > 90%
-**Result:** In-memory wins for single-instance, Redis for distributed
-**Decision:** In-memory, record in ledger
-
----
-
-## Dependencies / References
-
-- **Principles:** Prove It Works, Smallest Complete Change, Evidence Before Assertions
-- **Skills:** design, verify, decisions
-- **References:** None
-
+- **OpenChamber present:** findings on the delivery note; the prototype path
+  if kept, so the panel shows it is not production.
+- **OpenCode or files:** `docs/deliveries/<id>.md` findings section.
+- Ladder: `resources/tracking.md`.

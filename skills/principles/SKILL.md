@@ -1,165 +1,87 @@
 ---
-name: shipinciples
-description: Core engineering and agent operating rules
-lifecycle: draft
+name: principles
+description: Use when a decision needs the rule behind it, or two reasonable approaches must be adjudicated before work continues; not for a skill's procedure (help) or a project's local conventions.
+tier: entry
+rigor: standard
+status: stable
+pairs-with: [plan, design]
 ---
 
-# shipinciples
+# principles
 
-## Purpose / Outcome
+Twelve rules. Each has a trigger, a test and a failure mode. Apply the test,
+record the outcome, move on. Principles do not replace judgement; they make
+judgement checkable.
 
-Provides 10 core decision rules applied in order when making decisions. Each principle has a trigger, behavior, and example. Principles change decisions, they are not slogans.
+## When to use
 
----
+- Two approaches both look correct and the choice must be defended.
+- A review finding cites a principle and the author disagrees.
+- A plan step feels wrong but the reason is not yet a sentence.
+- A shortcut is tempting and the cost is unclear.
+- A decision will be revisited later by someone without context.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- As a reference during any decision
-- When evaluating a proposed approach
-- When resolving ambiguity in a skill or workflow
+- The question is "how does this code work" → `code-tour`.
+- The question is "why was this chosen" → `rationale`.
+- The question is "what should the steps be" → `plan`.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
-
-- As a substitute for a specific skill's procedure
-
----
-
-## Required Context / Inputs
-
-- The current decision or ambiguity
-
----
-
-## Preconditions
-
-- Decision point identified
-
----
-
-## Procedure
-
-Apply these principles in order when making decisions:
-
-1. **Harness independence first** — Does this work without proprietary runtime?
-   - **Action:** Check if proposed approach requires proprietary runtime features
-   - **Evidence:** List of runtime dependencies, fallback alternatives identified
-   - **Decision:** If proprietary required → document fallback, apply principle 10
-
-2. **Procedures over vague instructions** — Is there a concrete step-by-step?
-   - **Action:** Verify skill/workflow has explicit Procedure with Action/Evidence/Decision
-   - **Evidence:** Procedure section present with numbered steps
-   - **Decision:** If missing → BLOCKED until procedure defined
-
-3. **Flexible workflows** — Does the process fit the task size and risk?
-   - **Action:** Match rigour to risk level (Low/Medium/High/Critical)
-   - **Evidence:** Risk assessment, rigour calibration documented
-   - **Decision:** If over-engineered → simplify to fit task
-
-4. **Loops first** — Is there a bounded feedback loop with escalation?
-   - **Action:** Identify feedback loops (TDD, verify-loop, debug, unstick) with iteration bounds
-   - **Evidence:** Loop structure with max iterations and escalation path
-   - **Decision:** If no loop → BLOCKED until loop defined
-
-5. **Small team** — Can this use Lead/Builder/Reviewer + skills?
-   - **Action:** Map work to Lead/Builder/Reviewer roles with skill triggers
-   - **Evidence:** Role assignments, skill routing table
-   - **Decision:** If role unclear → BLOCKED
-
-6. **Evidence before completion** — What executed check supports the claim?
-   - **Action:** Require executed verification for each acceptance criterion
-   - **Evidence:** Verification output with evidence recording states
-   - **Decision:** If no evidence → NOT VERIFIED, do not claim complete
-
-7. **Independent challenge** — Is review sufficiently context-separated?
-   - **Action:** Ensure review uses fresh context (new session or explicit reset)
-   - **Evidence:** Review context isolation documented
-   - **Decision:** If same-context → label as weaker review
-
-8. **Runtime simplicity** — Does the plugin add only what instructions can't?
-   - **Action:** Prefer harness tools over plugin services; instructions first
-   - **Evidence:** Tool vs service boundary documented
-   - **Decision:** If plugin overreaches → refactor to instructions
-
-9. **Clear responsibility** — Who owns this: playbook, plugin, or OpenChamber?
-   - **Action:** Assign ownership per concern (playbook = methodology, plugin = runtime, OpenChamber = view)
-   - **Evidence:** Responsibility matrix
-   - **Decision:** If ownership ambiguous → BLOCKED
-
-10. **Degrade gracefully** — Does it work without advanced harness features?
-    - **Action:** Test/verify fallback paths (sequential, directory isolation, manual checks)
-    - **Evidence:** Fallback documentation, verification without advanced features
-    - **Decision:** If no fallback → BLOCKED until documented
-
----
-
-## Expected Outputs
-
-- Decision aligned with principles
-- Documented adaptation if harness requires it
-
----
-
-## Verification
-
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-
-- Decision traceable to specific principle(s)
-- No principle violated without documented reason
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
+| Mode | Use |
 |---|---|
-| Principles conflict | Document trade-off and choose |
-| Harness limitation blocks principle | Document fallback |
+| Cite | name the principle, state its test, apply it to this decision |
+| Adjudicate | two principles conflict; use the precedence below |
+| Teach | explain the rule with one example from this repository |
 
----
+## Steps
 
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
+1. **State the decision in one sentence**, including the alternatives.
+   Artifact: `decision`.
+2. **Find the principle that governs it.** Read
+   `principles/index.md` — the rule text, not a summary. Artifact: principle
+   id and its test.
+3. **Run the test against each alternative.** The test is written to be
+   answerable yes or no. Artifact: test result per alternative.
+4. **Apply precedence when tests conflict:** truth before safety, safety before
+   reversibility, reversibility before speed, speed before elegance. Artifact:
+   the winning rule and the one it beat.
+5. **Record the decision** in the delivery record or `decisions` skill.
+   Artifact: `decisions/<id>.md` or the delivery's decision section.
+6. **Stop.** A principle does not authorise more work; it settles the current
+   choice.
 
+## Output
 
-- Decision made with principle alignment
+```
+Decision: retry with idempotency keys, not blind retries.
+Principle: P4 — a side effect must be safe to repeat (test: does a second identical call change state?).
+Result: blind retries fail the test; idempotency keys pass.
+Precedence: safety (P4) beat speed (P9).
+```
 
----
+## Failure
 
-## Escalation
+- **No principle fits.** The decision is genuinely new. Record it as a
+  precedent with its own test; it may become a principle after three uses.
+- **The test is unanswerable here.** Say which fact is missing and do not
+  pretend the principle applied.
+- **The user overrides a principle.** Record the override, the reason and who
+  accepted the risk. An unrecorded override is how a method rots.
 
-- Principles conflict → document trade-off and choose
-- Harness limitation blocks principle → document fallback
+## Rationalizations
 
----
+| Excuse | Reality |
+|---|---|
+| "Everyone knows this rule." | Knowing is not applying. State the test and the result. |
+| "The principle supports my choice, obviously." | Then the test takes ten seconds to write down. Do it. |
+| "Principles are for big decisions." | Most rot comes from small unrecorded ones; big ones get reviewed anyway. |
+| "Two principles conflict, so neither applies." | Precedence exists precisely for that. Pick and record which won. |
 
-## Skill / Role / Tool Routing
+## Tracking
 
-- **Skills invoked:** route (invokes principles), help (finds skills), all skills (embody principles)
-- **Roles:** All (apply principles)
-- **Tools:** Principle index and leaf files
-- **References:** playbook/principles/*.md (17 leaf files)
-
----
-
-## Examples
-
-### Example: Choosing Implementation Approach
-
-**Decision:** Use sequential vs parallel execution
-**Principles applied:** 3 (Flexible workflows — sequential for simple), 10 (Degrade gracefully — sequential works without subagents)
-**Result:** Sequential chosen, documented rationale
-
----
-
-## Dependencies / References
-
-- **Principles:** All (this skill applies them)
-- **Skills:** route, help
-- **References:** playbook/principles/*.md
-
+- **OpenChamber present:** a durable preference goes to project knowledge; a
+  delivery-local decision goes in the delivery note.
+- **OpenCode or files:** `decisions/<date>-<slug>.md` next to the delivery.
+- Ladder: `resources/tracking.md`.

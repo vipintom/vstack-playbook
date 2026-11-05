@@ -1,15 +1,15 @@
 {
   "schemaVersion": 2,
   "playbookVersion": "0.2.0",
-  "contentHash": "sha256:b443853802f4a0e79c04c732c489209c8074ec45f816f9d24c30eb916b8a6956",
+  "contentHash": "sha256:25230a0691ff0df0692d6c39742475d1f5b7c6499e2a96be9c00f0470813efea",
   "counts": {
-    "skills": 44,
+    "skills": 45,
     "playbooks": 0,
     "principles": 17,
     "roles": 3,
     "rubrics": 7,
     "templates": 4,
-    "triggerFixtures": 44
+    "triggerFixtures": 45
   },
   "skills": [
     {
@@ -33,11 +33,14 @@
     {
       "name": "code-tour",
       "path": "skills/code-tour/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Explain runtime behaviour, entry points, data flow, state ownership and component boundaries using source references"
+      "tier": "frame",
+      "rigor": "flexible",
+      "status": "stable",
+      "pairsWith": [
+        "rationale",
+        "debug"
+      ],
+      "description": "Use when someone needs to understand how existing code works — entry points, call path, state ownership — without changing it; not for explaining why a design was chosen (rationale) or for fixing it (debug)."
     },
     {
       "name": "coverage",
@@ -99,11 +102,15 @@
     {
       "name": "figure-it-out",
       "path": "skills/figure-it-out/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Designs a bespoke, auditable playbook when no existing playbook fits or when a task is a large/cross-cutting version of a narrower task"
+      "tier": "frame",
+      "rigor": "flexible",
+      "status": "stable",
+      "pairsWith": [
+        "route",
+        "plan",
+        "design"
+      ],
+      "description": "Use when no playbook fits and the situation needs a bespoke sequence built from skills, with the same guarantees as a playbook; not for work that matches an existing playbook (route) or a cause that is simply unknown (debug)."
     },
     {
       "name": "forensics",
@@ -135,11 +142,14 @@
     {
       "name": "help",
       "path": "skills/help/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Select the smallest relevant set of skills"
+      "tier": "entry",
+      "rigor": "flexible",
+      "status": "stable",
+      "pairsWith": [
+        "route",
+        "principles"
+      ],
+      "description": "Use when someone asks what the pack contains, which skill fits a task, or how to start using vstack; not for routing live work (route) or for a skill's own procedure."
     },
     {
       "name": "impact",
@@ -180,38 +190,52 @@
     {
       "name": "plan",
       "path": "skills/plan/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Create, challenge and refine an actionable plan"
+      "tier": "frame",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "shape",
+        "route",
+        "tdd"
+      ],
+      "description": "Use when the work is framed and must be ordered into tasks with an artifact and a check each before coding starts; not for discovering what the problem is (shape) or for a situation with no known approach (figure-it-out)."
     },
     {
-      "name": "shipinciples",
+      "name": "principles",
       "path": "skills/principles/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Core engineering and agent operating rules"
+      "tier": "entry",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "plan",
+        "design"
+      ],
+      "description": "Use when a decision needs the rule behind it, or two reasonable approaches must be adjudicated before work continues; not for a skill's procedure (help) or a project's local conventions."
     },
     {
-      "name": "shipototype",
+      "name": "prototype",
       "path": "skills/prototype/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Build a disposable experiment to resolve empirical or design uncertainty"
+      "tier": "frame",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "design",
+        "plan"
+      ],
+      "description": "Use when a design question can only be answered by building something disposable and looking at it; not for answering a factual question (understand) or for production code (tdd)."
     },
     {
       "name": "rationale",
       "path": "skills/rationale/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Investigate design rationale using git history, PR discussions, ADRs, long-form docs, team chat, infrastructure signals, error tracking, and product analytics"
+      "tier": "frame",
+      "rigor": "flexible",
+      "status": "stable",
+      "pairsWith": [
+        "code-tour",
+        "decisions",
+        "principles"
+      ],
+      "description": "Use when a decision's history must be reconstructed — what was chosen, what was rejected and on what evidence; not for how the code works now (code-tour) or for making a new decision (principles)."
     },
     {
       "name": "ready",
@@ -299,13 +323,29 @@
       "description": "Supply reusable review lenses for security, performance, maintainability, accessibility and data integrity"
     },
     {
+      "name": "shape",
+      "path": "skills/shape/SKILL.md",
+      "tier": "frame",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "sharpen",
+        "plan",
+        "design"
+      ],
+      "description": "Use when the request is understood but the problem is not framed — outcome, boundaries, unknowns and proof are still unstated; not for clarifying ambiguous wording (sharpen) or ordering known work (plan)."
+    },
+    {
       "name": "sharpen",
       "path": "skills/sharpen/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Clarify and improve an underspecified request"
+      "tier": "frame",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "shape",
+        "plan"
+      ],
+      "description": "Use when a request's wording is ambiguous, its acceptance criteria are missing, or its scope is stated as a feeling; not for framing a request that is already clear (shape) or ordering agreed work (plan)."
     },
     {
       "name": "ship",
@@ -463,13 +503,13 @@
     ]
   },
   "evaluations": {
-    "triggers": 44,
+    "triggers": 45,
     "playbooks": 0
   },
   "profiles": {
-    "core": 44,
+    "core": 45,
     "stack": 0,
-    "full": 44,
+    "full": 45,
     "lists": {
       "core": [
         "audit",
@@ -491,8 +531,8 @@
         "makefile",
         "performance",
         "plan",
-        "shipinciples",
-        "shipototype",
+        "principles",
+        "prototype",
         "rationale",
         "ready",
         "recovery",
@@ -503,6 +543,7 @@
         "review",
         "route",
         "rubrics",
+        "shape",
         "sharpen",
         "ship",
         "skill-authoring",
@@ -538,8 +579,8 @@
         "makefile",
         "performance",
         "plan",
-        "shipinciples",
-        "shipototype",
+        "principles",
+        "prototype",
         "rationale",
         "ready",
         "recovery",
@@ -550,6 +591,7 @@
         "review",
         "route",
         "rubrics",
+        "shape",
         "sharpen",
         "ship",
         "skill-authoring",
