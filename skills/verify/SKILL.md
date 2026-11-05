@@ -1,196 +1,111 @@
 ---
 name: verify
-description: "Broad verification execution: runs test suites, integration checks, acceptance criteria validation, captures evidence"
-lifecycle: draft
+description: Use when work claims to be complete and an independent run must prove it before merge, handoff or release; not for writing the failing test first (tdd) or recording one claim (evidence).
+tier: build
+rigor: rigid
+status: stable
+pairs-with: [evidence, ready, coverage]
 ---
 
 # verify
 
-## Purpose / Outcome
+Run the gates against the tree that will be delivered, from a context that did
+not write it. Report every gate, including the ones that did not run.
 
-Executes verification at per-task and integration levels: runs test suites, integration checks, acceptance criteria, captures evidence. Does NOT write tests (that's tdd).
+## When to use
 
----
+- About to merge, hand off or release, and someone will rely on "it works".
+- A fix landed and the claim is that the defect is gone.
+- A delivery close is requested and the ledger wants gate results.
+- A previous run is stale: the tree changed after it.
+- The work is a docs or config change, and the cheap gates still apply.
 
-## When to Use (Positive Triggers)
+Near misses:
 
-- "Verify this" / "Run tests"
-- Per-task verification in playbooks
-- Integration verification after all tasks
-- Post-mitigation verification
-- Acceptance criteria validation
+- One claim needs an artifact → `evidence` records it.
+- The fix has no failing test yet → `tdd` writes it.
+- The question is whether the design is sound → `review` reads it; `verify`
+  runs commands, it does not judge design.
 
----
+## Modes
 
-## When Not to Use (Negative Triggers)
+| Mode | Gates | Independent run |
+|---|---|---|
+| Targeted | the gates affected by the change | no, but the tree is frozen first |
+| Full | every gate the delivery declares | no |
+| Independent | full | yes — a context that did not write the change |
 
-- Write failing test first → tdd
-- Reproduce failure → debug
-- Break assumptions → unstick
-- Design phase → design
+`rigor: rigid` — steps 1 and 2 cannot be skipped. Without a frozen tree and a
+declared gate list, a green run proves nothing about the delivery.
 
----
+## Steps
 
-## Required Context / Inputs
+1. **Read the declared gates.** From the delivery record or the project's gate
+   config. If none are declared, use the minimum set in
+   `references/gates.md` and record that you chose it. Artifact: gate list.
+2. **Freeze the tree.** Commit or stash; record `git rev-parse HEAD` and
+   `git status --porcelain` (empty). Artifact: `commit` + clean status.
+3. **Run each gate.** With the adapter: `vstack_gate run <name>`. Otherwise the
+   command itself. Capture exit code and output per gate. Artifact: one log
+   and digest per gate.
+4. **Read the diff, not the summary.** Before interpreting results, read what
+   changed (`git diff <base>...HEAD`). A gate can pass while the change is
+   wrong. Artifact: diff reviewed, files named.
+5. **Classify every gate.** `passed`, `failed`, `not_run` or `blocked`. A gate
+   that was skipped is `not_run` and is reported as such — never omitted.
+6. **Refuse completion on a missing required gate.** Say which gate, what it
+   would prove, and what is needed to run it. Override only with a recorded
+   reason and the owner's name. Artifact: refusal or override in the record.
+7. **Record the result.** Append to the delivery record and the evidence file:
+   gate, exit, digest, artifact path. Artifact: gate table below.
 
-- Verification scope: per-task or integration
-- Project test command and verification harness
-- Acceptance criteria (for integration verification)
-- Ability to capture evidence (files, DB state, messages, output)
+## Output
 
----
+| Gate | Required | Result | Evidence |
+|---|---|---|---|
+| `unit` | yes | passed | `logs/unit.log` `sha256:41aa…` |
+| `types` | yes | passed | `logs/tsc.log` `sha256:9c02…` |
+| `e2e` | no | not_run | not declared for this delivery |
+| `perf` | yes | blocked | no benchmark host available |
 
-## Preconditions
+Verdict line: `complete`, `incomplete` or `blocked`, plus the gates that
+decide it. A verdict with no `not_run` disclosure is a false report.
 
-- Doctor check passes (process, version, port, auth)
-- Harness available (test command, selectors, commands)
+## Failure
 
----
+- **A gate is flaky.** Re-run it twice; record all three results. It counts as
+  passed only at zero failures in the stated number of runs; otherwise it is
+  `failed` with the rate.
+- **The environment cannot run a gate.** `blocked`, naming the missing piece.
+  Never infer a pass from a neighbouring gate.
+- **The gate passes but the diff is wrong.** The diff wins. Record the
+  contradiction and stop; a green gate over a bad change is the most expensive
+  outcome in this skill.
+- **The tree cannot be frozen** (uncommitted work from someone else). Stop and
+  report; verifying a moving tree is theatre.
 
-## Procedure
+## Rationalizations
 
-### Step 1: Doctor (Read-only Health Check)
+| Excuse | Reality |
+|---|---|
+| "The suite was green before my change." | Then run it after. The change is the only thing that matters. |
+| "CI will run it." | CI proves the pushed tree, later. Until it reports, the result is `not_run`. |
+| "Only docs changed." | Docs break links, commands and counts. Cheap gates exist for exactly this. |
+| "It passed when I ran it manually." | Manual runs are unrepeatable and undocumented. Gates are commands with digits. |
+| "The failing test is unrelated." | Then name the failure and the evidence it is pre-existing. Unnamed means caused. |
+| "Re-running until green is fine." | That records luck, not a fix. Rerun to measure flake, then fix it. |
 
-- **Process up** — service/process running
-- **Right version/build** — matches expected
-- **Port owned** — no conflicts
-- **Auth valid** — credentials/tokens work
-- **If Doctor fails:** Report BLOCKED, do not proceed to Drive
+## Tracking
 
-### Step 2: Drive (Execute Harness)
-
-- **Per-task:** Run task tests + related regression tests
-- **Integration:** Full suite + acceptance criteria + cross-task contracts
-- Use project test command, real selectors/commands
-- **Real user path** — exercise as user would (not internal setters)
-- **Serial for shared state** — if tests share DB/service, run serially
-- **Parallel for isolated** — independent tests in parallel
-
-### Step 3: Evidence (Capture)
-
-- **Action** — what was executed (command, selector, input)
-- **Resulting state** — visible output, UI state, API response
-- **Side effects** — files written, DB changes, messages sent, logs
-- **Verify side effects** alongside visible output
-- **Mocks only at production boundaries** — not internal
-
-### Step 4: Cleanup
-
-- Tear down instances started
-- **Preserve evidence** — artifacts, logs, screenshots, DB dumps
-- Nothing outlives the drive phase
-
-### Step 5: Record
-
-- Per-task: VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED per criterion
-- Integration: Overall PASS / ISSUES / BLOCKED with evidence
-- Dry-run observation: if dry-run used, observe what it actually skips
-
----
-
-## Verification Standards
-
-- Exercise real user path (not internal setters)
-- Capture action AND resulting state
-- Verify side effects alongside visible
-- Mocks only at production boundaries
-- Dry-run verification: observe what it actually skips
-- Evidence survives cleanup
-
----
-
-## Expected Outputs
-
-- Per-task verification results with evidence
-- Integration verification result with evidence
-- Evidence artifacts preserved
-- Dry-run observations (if applicable)
-
----
+- **OpenChamber present:** `focus_status` "testing", then "reviewing"; the gate
+  table lands on the delivery note so the panel can show it.
+- **vstack adapter present:** `vstack_gate run` per gate and `vstack_status`
+  for the outstanding list; completion is refused by the ledger, not by prose.
+- **Neither:** `docs/deliveries/<id>.md` gate table plus
+  `.vstack/deliveries/<id>/logs/*`. Ladder: `resources/tracking.md`.
 
 ## Verification
 
-**Evidence recording:** VERIFIED / NOT_VERIFIED / INCONCLUSIVE / BLOCKED / NOT RUN / UNAVAILABLE
-
-- Doctor before Drive
-- Real user path exercised
-- Side effects verified
-- Evidence survives cleanup
-- Per-task + integration distinction maintained
-- Dry-run observed if used
-
----
-
-## Failure Handling
-
-| Failure Mode | Response |
-|---|---|
-| Doctor fails | BLOCKED — fix environment first |
-| Test command fails | INCONCLUSIVE — investigate harness |
-| Acceptance criteria not met | NOT_VERIFIED — record gaps |
-| Evidence capture fails | INCONCLUSIVE — document what's missing |
-| Shared state contamination | Serial execution, better isolation |
-
----
-
-## Stop Conditions
-- Work complete or goal achieved
-- Blocked by external dependency or missing criteria
-- Inconclusive - evidence gaps or ambiguous state
-- Safe pause - interrupted with clean checkpoint
-
-
-- All acceptance criteria VERIFIED or gaps documented
-- Evidence captured and preserved
-- Cleanup complete
-
----
-
-## Escalation
-
-- User decision required: acceptance criteria ambiguity
-- Lead decision required: harness gaps, systemic verification failures
-
----
-
-## Skill / Role / Tool Routing
-
-- **Skills invoked:** tdd (if test-first needed), verify-setup (if harness missing)
-- **Roles:** Builder (executes), Reviewer (inspects evidence)
-- **Tools:** Host test command, verification harness, evidence capture
-- **References:** feature-map format (references/feature-map.md)
-
----
-
-## Examples
-
-### Example: Per-Task Verification
-
-**Task:** Implement user login endpoint
-
-**Execution:**
-1. Doctor: API server up, DB migrated, port 3000 free
-2. Drive: `npm test -- --grep "login"` + related auth tests
-3. Evidence: test output, coverage, login response captured
-4. Cleanup: test DB transactions rolled back
-5. Record: VERIFIED (all login tests pass)
-
-### Example: Integration Verification
-
-**Delivery:** User authentication feature (login, register, logout, protected routes)
-
-**Execution:**
-1. Doctor: full stack up, DB clean, ports free
-2. Drive: `npm test` (full suite) + `npm run test:e2e` (acceptance)
-3. Evidence: full suite output, e2e screenshots, API logs
-4. Cleanup: e2e browser closed, test DB reset
-5. Record: PASS (all criteria VERIFIED)
-
----
-
-## Dependencies / References
-
-- **Principles:** Prove It Works, Procedures Over Vague
-- **Skills:** tdd, verify-setup
-- **References:** feature-map.md (verification harness structure)
-
+```bash
+docker compose run --rm pack node tools/validate.js
+```

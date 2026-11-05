@@ -1,15 +1,15 @@
 {
   "positive": [
-    "At the start of any non-trivial engineering work (new behavior, defect, refactor, architecture, investigation, etc.)",
-    "When onboarding to a project using vstack",
-    "When unsure how to proceed and structured routing is needed",
-    "When a task needs explicit playbook selection and rigour calibration",
-    "Explicit user request: \"use route\""
+    "We need to add rate limiting to the public API before Friday's release; work out how to approach it.",
+    "I have a messy bug in the payment retry job and no idea where to start — where do we begin?",
+    "Take this feature request from the ticket and get it done properly, not just hacked in.",
+    "Resuming yesterday's delivery: the notes say the migration is half applied. What is the next step?",
+    "This touches the auth schema and ships to production; how much process does it need?"
   ],
   "negative": [
-    "Casual conversation or trivial edits (typos, formatting, config tweaks) \u2014 direct edit, no mode",
-    "User directly invokes a specific skill (e.g., \"use code-tour to trace this\") \u2014 execute that skill directly",
-    "Read-only questions that need only `code-tour`, `rationale`, or `report` \u2014 invoke those skills directly"
+    "Read src/queue/worker.ts and tell me whether the retry loop can deadlock.",
+    "Just fix the typo in the README badge link and push it straight to main.",
+    "Use code-tour to trace how a job moves from the API to the worker."
   ],
   "expected": {
     "skill": "route"

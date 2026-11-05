@@ -12,6 +12,7 @@
 | `decisions` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `design` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `docker` | unassigned | unassigned | unassigned | release | experimental | experimental |
+| `evidence` | build | rigid | stable | release | experimental | experimental |
 | `figure-it-out` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `forensics` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `gitignore` | unassigned | unassigned | unassigned | release | experimental | experimental |
@@ -32,7 +33,7 @@
 | `report` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `resume` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `review` | unassigned | unassigned | unassigned | release | experimental | experimental |
-| `route` | unassigned | unassigned | unassigned | release | experimental | experimental |
+| `route` | entry | standard | stable | release | experimental | experimental |
 | `rubrics` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `sharpen` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `ship` | unassigned | unassigned | unassigned | release | experimental | experimental |
@@ -41,7 +42,7 @@
 | `tdd` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `unslop` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `unstick` | unassigned | unassigned | unassigned | release | experimental | experimental |
-| `verify` | unassigned | unassigned | unassigned | release | experimental | experimental |
+| `verify` | build | rigid | stable | release | experimental | experimental |
 | `verify-maintain` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `verify-setup` | unassigned | unassigned | unassigned | release | experimental | experimental |
 | `visual-parity` | unassigned | unassigned | unassigned | release | experimental | experimental |

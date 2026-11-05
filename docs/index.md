@@ -2,11 +2,20 @@
 
 # vstack skill catalogue
 
-vstack 0.2.0 ships **43 skills**, **0 playbooks**, **17 principles**, **3 roles**, **7 rubrics** and **4 templates**.
+vstack 0.2.0 ships **44 skills**, **0 playbooks**, **17 principles**, **3 roles**, **7 rubrics** and **4 templates**.
 
-Profiles: `core` 43 skills, `stack` 0, `full` 43.
+Profiles: `core` 44 skills, `stack` 0, `full` 44.
 
-## unassigned (43)
+## entry (1)
+
+- **route** — Use when a request arrives with no playbook open and the approach must be chosen before skills load; not for a one-file edit, a question a single read answers, or work whose route is already recorded.
+
+## build (2)
+
+- **evidence** — Use when a claim is about to be reported, committed or handed over and needs a recorded artifact behind it; not for producing the proof of a whole delivery (verify) or for writing the failing test (tdd).
+- **verify** — Use when work claims to be complete and an independent run must prove it before merge, handoff or release; not for writing the failing test first (tdd) or recording one claim (evidence).
+
+## unassigned (41)
 
 - **audit** — Audit an existing design or implementation against relevant quality attributes
 - **blueprint** — Turn an accepted design into interfaces, components, data flows and implementation boundaries
@@ -36,7 +45,6 @@ Profiles: `core` 43 skills, `stack` 0, `full` 43.
 - **report** — Produce a concise, source-grounded explanation for a developer, reviewer, or stakeholder from discovery findings
 - **resume** — Reconstruct current task or project context after interruption
 - **review** — Obtain fresh-context review and resolve findings
-- **route** — Central operating entry point: frames outcome, reads principles, selects playbook, creates checklist, coordinates skills, verifies, hands back
 - **rubrics** — Supply reusable review lenses for security, performance, maintainability, accessibility and data integrity
 - **sharpen** — Clarify and improve an underspecified request
 - **ship** — Prepare a focused, reviewable pull request with evidence
@@ -45,7 +53,6 @@ Profiles: `core` 43 skills, `stack` 0, `full` 43.
 - **tdd** — Test-first implementation for bug fixes with clear, cheap test paths. Red-Green-Refactor with mandatory failure verification
 - **unslop** — Remove unnecessary complexity, duplication and low-quality generated changes
 - **unstick** — Break out of repeating failure cycles: name the shared assumption, test it directly, list different approaches, pick one, restart clean
-- **verify** — Broad verification execution: runs test suites, integration checks, acceptance criteria validation, captures evidence
 - **verify-maintain** — Keep project verification instructions aligned with actual code, commands and behaviour
 - **verify-setup** — Inspect a project and create a project-specific application verification skill
 - **visual-parity** — Verify UI behaviour and visual appearance against a defined reference

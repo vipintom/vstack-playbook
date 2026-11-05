@@ -1,15 +1,15 @@
 {
   "schemaVersion": 2,
   "playbookVersion": "0.2.0",
-  "contentHash": "sha256:4759232c40e7a7dd0823ea8ede40d37c23c2785e1dde6f2e6c1e951e15842763",
+  "contentHash": "sha256:b443853802f4a0e79c04c732c489209c8074ec45f816f9d24c30eb916b8a6956",
   "counts": {
-    "skills": 43,
+    "skills": 44,
     "playbooks": 0,
     "principles": 17,
     "roles": 3,
     "rubrics": 7,
     "templates": 4,
-    "triggerFixtures": 43
+    "triggerFixtures": 44
   },
   "skills": [
     {
@@ -83,6 +83,18 @@
       "status": "unassigned",
       "pairsWith": [],
       "description": ""
+    },
+    {
+      "name": "evidence",
+      "path": "skills/evidence/SKILL.md",
+      "tier": "build",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "verify",
+        "tdd"
+      ],
+      "description": "Use when a claim is about to be reported, committed or handed over and needs a recorded artifact behind it; not for producing the proof of a whole delivery (verify) or for writing the failing test (tdd)."
     },
     {
       "name": "figure-it-out",
@@ -267,11 +279,15 @@
     {
       "name": "route",
       "path": "skills/route/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Central operating entry point: frames outcome, reads principles, selects playbook, creates checklist, coordinates skills, verifies, hands back"
+      "tier": "entry",
+      "rigor": "standard",
+      "status": "stable",
+      "pairsWith": [
+        "plan",
+        "figure-it-out",
+        "sharpen"
+      ],
+      "description": "Use when a request arrives with no playbook open and the approach must be chosen before skills load; not for a one-file edit, a question a single read answers, or work whose route is already recorded."
     },
     {
       "name": "rubrics",
@@ -348,11 +364,15 @@
     {
       "name": "verify",
       "path": "skills/verify/SKILL.md",
-      "tier": "unassigned",
-      "rigor": "unassigned",
-      "status": "unassigned",
-      "pairsWith": [],
-      "description": "Broad verification execution: runs test suites, integration checks, acceptance criteria validation, captures evidence"
+      "tier": "build",
+      "rigor": "rigid",
+      "status": "stable",
+      "pairsWith": [
+        "evidence",
+        "ready",
+        "coverage"
+      ],
+      "description": "Use when work claims to be complete and an independent run must prove it before merge, handoff or release; not for writing the failing test first (tdd) or recording one claim (evidence)."
     },
     {
       "name": "verify-maintain",
@@ -443,13 +463,13 @@
     ]
   },
   "evaluations": {
-    "triggers": 43,
+    "triggers": 44,
     "playbooks": 0
   },
   "profiles": {
-    "core": 43,
+    "core": 44,
     "stack": 0,
-    "full": 43,
+    "full": 44,
     "lists": {
       "core": [
         "audit",
@@ -460,6 +480,7 @@
         "decisions",
         "design",
         "docker",
+        "evidence",
         "figure-it-out",
         "forensics",
         "gitignore",
@@ -506,6 +527,7 @@
         "decisions",
         "design",
         "docker",
+        "evidence",
         "figure-it-out",
         "forensics",
         "gitignore",

@@ -66,6 +66,8 @@ function findDanglingPaths(root, files) {
       if (!PATH_PREFIX.test(token)) continue;
       const clean = token.replace(/[#?].*$/, "").replace(/\/+$/, "");
       if (clean === "") continue;
+      // `<id>`, `<skill>` and friends are templates, not paths to resolve.
+      if (/<[^>]+>/.test(clean)) continue;
       if (!existsSync(join(root, clean))) {
         issues.push({
           code: "DANGLING_PATH",

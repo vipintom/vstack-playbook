@@ -1,15 +1,15 @@
 {
   "positive": [
-    "\"Verify this\" / \"Run tests\"",
-    "Per-task verification in playbooks",
-    "Integration verification after all tasks",
-    "Post-mitigation verification",
-    "Acceptance criteria validation"
+    "The branch is ready — check it independently before I merge, and do not take my word for the tests.",
+    "Run every gate this delivery declares and give me the table, including anything you could not run.",
+    "The previous green run is two commits old; re-verify what will actually ship.",
+    "We are releasing tonight. Prove the build, the migration down path and the smoke test.",
+    "Someone else wrote this fix; verify it from the commit without reading their summary."
   ],
   "negative": [
-    "Write failing test first",
-    "Reproduce failure",
-    "Break assumptions"
+    "Record one line of proof that the retry test passes 50/50.",
+    "Add the failing test that reproduces the empty email bug.",
+    "Review the design doc for the new scheduler before we start coding."
   ],
   "expected": {
     "skill": "verify"

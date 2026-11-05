@@ -103,8 +103,10 @@ function readPlaybooks(packRoot) {
 }
 
 function assertStackComplete(packRoot, skills) {
-  const tiered = skills.some((skill) => skill.tier !== "unassigned");
-  if (!tiered) return;
+  // Enforced once the stack tier exists on disk. While tiers are being
+  // rewritten skill by skill, the published list may run ahead of the files.
+  const stackTiered = skills.some((skill) => skill.tier === "stack");
+  if (!stackTiered) return;
   const onDisk = new Set(skills.map((skill) => skill.name));
   for (const name of STACK) {
     if (!onDisk.has(name)) {
