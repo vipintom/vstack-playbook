@@ -75,5 +75,5 @@ one paragraph, not an essay.
 ## Tracking
 
 - **OpenChamber present:** project knowledge entry linking the method change.
-- **OpenCode or files:** a lessons file in the target repository, one line per lesson with a link to the diff.
+- **OpenCode or files:** `<repo>/docs/lessons.md`, one line per lesson with a link to the diff.
 - Ladder: `resources/tracking.md`.

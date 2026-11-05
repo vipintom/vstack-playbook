@@ -77,6 +77,5 @@ output, plus the declared gate list. A newcomer can run it without asking.
 
 - **OpenChamber present:** project knowledge entry pointing at the verification
   doc; the gate list on the delivery template.
-- **OpenCode or files:** the verification doc inside the target repository, linked from its
-  README.
+- **OpenCode or files:** `<repo>/docs/verification.md`, linked from the repository README.
 - Ladder: `resources/tracking.md`.
