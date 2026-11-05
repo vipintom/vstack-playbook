@@ -134,6 +134,7 @@ Every check runs in Docker from the workspace root:
 ./docker/test.sh all
 ./docker/skills-smoke.sh
 ./docker/skills-only-smoke.sh
+./docker/playbooks-smoke.sh
 ```
 
 `skills-only-smoke.sh` runs all four release playbooks — build-feature,
