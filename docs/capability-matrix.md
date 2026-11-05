@@ -1,7 +1,7 @@
 # vstack Capability Matrix
 
 **Version:** 0.1.0
-**Date:** 2026-11-02
+**Date:** 2026-11-03
 **Purpose:** Document which skills, playbooks, and roles work in each harness with what level of support.
 
 ---
@@ -17,7 +17,7 @@
 
 ---
 
-## Skill Compatibility (52 Skills)
+## Skill Compatibility (55 Skills)
 
 ### Category: Understanding & Analysis
 
@@ -28,14 +28,22 @@
 | vstack-blast-radius | ✅ | ✅ | ✅ | Read/glob/grep/bash only |
 | vstack-explain | ✅ | ✅ | ✅ | Read/glob/grep/bash only |
 
+### Category: Utils (New)
+
+| Skill | OpenCode | Codex | Claude Code | Notes |
+|-------|----------|-------|-------------|-------|
+| docker-compose | ✅ | ✅ | ✅ | Read/write/bash for Dockerfiles, compose |
+| makefile | ✅ | ✅ | ✅ | Read/write/bash for Makefiles |
+| gitignore | ✅ | ✅ | ✅ | Read/write for .gitignore patterns |
+
 ### Category: Design & Architecture
 
 | Skill | OpenCode | Codex | Claude Code | Notes |
 |-------|----------|-------|-------------|-------|
 | vstack-architect | ✅ | ✅ | ✅ | Requires vstack-arena for alternatives |
-| vstack-arena | ✅ | ⚠️ | ⚠️ | Needs subagents for parallel eval; fallback: sequential |
+| vstack-arena | ✅ | ✅ | ✅ | Parallel eval via subagents (all 3 harnesses) |
 | vstack-blueprint | ✅ | ✅ | ✅ | Write/edit needed for design artifacts |
-| vstack-best-of-n | ✅ | ⚠️ | ⚠️ | Needs subagents for parallel candidates; fallback: sequential |
+| vstack-best-of-n | ✅ | ✅ | ✅ | Parallel candidates via subagents (all 3 harnesses) |
 | vstack-design-audit | ✅ | ✅ | ✅ | Read/glob/grep/bash only |
 
 ### Category: Planning & Task Management
@@ -70,7 +78,7 @@
 | vstack-verification-audit | ✅ | ✅ | ✅ | Read/glob/grep/bash for audit |
 | vstack-review-loop | ✅ | ✅ | ✅ | Read/glob/grep/bash; reviewer needs read-only |
 | vstack-review-rubrics | ✅ | ✅ | ✅ | Read/glob/grep for rubric files |
-| vstack-jury | ✅ | ⚠️ | ⚠️ | Multiple reviewers via subagents; fallback: sequential |
+| vstack-jury | ✅ | ✅ | ✅ | Multiple reviewers via subagents (all 3 harnesses) |
 | vstack-interrogate | ✅ | ✅ | ✅ | Read/glob/grep/bash for adversarial review |
 
 ### Category: Debugging & Recovery
@@ -107,7 +115,7 @@
 
 | Skill | OpenCode | Codex | Claude Code | Notes |
 |-------|----------|-------|-------------|-------|
-| vstack-swarm | ✅ | ⚠️ | ⚠️ | Parallel builders via subagents; fallback: sequential |
+| vstack-swarm | ✅ | ✅ | ✅ | Parallel builders via subagents (all 3 harnesses) |
 | vstack-figure-it-out | ✅ | ✅ | ✅ | Composes other skills |
 | vstack-pr | ✅ | ✅ | ✅ | Bash for gh CLI |
 | vstack-watch-pr | ✅ | ⚠️ | ⚠️ | Needs background/long-running; fallback: polling |
@@ -128,17 +136,17 @@
 
 | Playbook | OpenCode | Codex | Claude Code | Notes |
 |----------|----------|-------|-------------|-------|
-| feature-delivery | ✅ | ⚠️ | ⚠️ | Full workflow; subagents for parallel tasks |
+| feature-delivery | ✅ | ✅ | ✅ | Full workflow; subagents for parallel tasks |
 | bug-fixing | ✅ | ✅ | ✅ | Standard debugging flow |
 | refactoring | ✅ | ✅ | ✅ | Incremental with verification |
 | investigation | ✅ | ✅ | ✅ | Read-heavy, no subagents needed |
-| architecture-change | ✅ | ⚠️ | ⚠️ | vstack-arena for alternatives |
+| architecture-change | ✅ | ✅ | ✅ | vstack-arena for alternatives |
 | prototype | ✅ | ✅ | ✅ | Spike + evaluate |
 | documentation | ✅ | ✅ | ✅ | Read/write for docs |
 | infrastructure-change | ✅ | ✅ | ✅ | Bash for deploy commands |
 | performance-investigation | ✅ | ✅ | ✅ | Profiling via bash |
-| autonomous-execution | ✅ | ⚠️ | ⚠️ | High subagent usage; fallback: sequential |
-| multi-phase-delivery | ✅ | ⚠️ | ⚠️ | Complex delegation; fallback: sequential |
+| autonomous-execution | ✅ | ✅ | ✅ | High subagent usage (all 3 harnesses) |
+| multi-phase-delivery | ✅ | ✅ | ✅ | Complex delegation via subagents (all 3 harnesses) |
 | pr-preparation | ✅ | ✅ | ✅ | Git/PR via bash |
 | pr-monitoring | ✅ | ⚠️ | ⚠️ | Background watching; fallback: polling |
 | runtime-forensics | ✅ | ✅ | ✅ | Log/trace analysis |
@@ -194,16 +202,16 @@
 
 ## Skills Requiring Subagents (Harness Dependency)
 
-These skills work fully only when harness supports subagents. All three harnesses support subagents, so they work everywhere with fallbacks.
+These skills work fully when harness supports subagents. **All three harnesses now support subagents natively**, so they work everywhere without fallback.
 
-| Skill | Purpose | Fallback |
-|-------|---------|----------|
-| vstack-arena | Parallel design evaluation | Sequential evaluation |
-| vstack-best-of-n | Parallel candidate generation | Sequential generation |
-| vstack-jury | Multiple independent reviewers | Sequential reviewers |
-| vstack-swarm | Parallel builder execution | Sequential execution |
-| vstack-watch-pr | Background PR monitoring | Polling |
-| vstack-skill-evaluation | Cross-harness testing | Single-harness test |
+| Skill | Purpose | Note |
+|-------|---------|------|
+| vstack-arena | Parallel design evaluation | Native subagents in all 3 harnesses |
+| vstack-best-of-n | Parallel candidate generation | Native subagents in all 3 harnesses |
+| vstack-jury | Multiple independent reviewers | Native subagents in all 3 harnesses |
+| vstack-swarm | Parallel builder execution | Native subagents in all 3 harnesses |
+| vstack-watch-pr | Background PR monitoring | Limited by background task support |
+| vstack-skill-evaluation | Cross-harness testing | Requires all 3 harnesses for full test |
 
 ---
 
@@ -239,6 +247,7 @@ These skills work fully only when harness supports subagents. All three harnesse
 - **All 18 playbooks** re-authored to v2 template
 - **All 17 principles** re-authored to v2 template
 - **3 roles + 9 adapters** complete
+- **Added 3 utils skills:** `docker-compose`, `makefile`, `gitignore` (v2 template) — **Total: 55 skills**
 
 ---
 

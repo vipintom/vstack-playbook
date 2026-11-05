@@ -29,7 +29,7 @@ You are authoring or reviewing a skill that uses subjective language ("be thorou
 > "Run `vstack-review-rubrics` with lenses: security, correctness, performance. For each finding: record file:line, severity, suggested fix. **Stop when:** all critical/high findings resolved or escalated. **Escalate if:** >5 critical findings or review exceeds 2 hours."
 
 ## Informs
-- All 52 skills (each must have Procedure, Expected Outputs, Verification, Stop Conditions)
+- All 55 skills (each must have Procedure, Expected Outputs, Verification, Stop Conditions)
 - Workflow skill sequences (each step must be actionable)
 - Role responsibilities (Builder executes, Reviewer verifies procedure fidelity)
 

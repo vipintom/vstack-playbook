@@ -1,0 +1,24 @@
+# NOTICE
+
+vstack 0.2.0 is MIT licensed. It is an original work; the entries below record
+where ideas and structure were learned from, not copied text.
+
+## superpowers
+
+- Author: Jesse Vincent (obra)
+- Source: https://github.com/obra/superpowers
+- Licence: MIT
+- Influence: test-driven development discipline, systematic debugging,
+  brainstorming before building, skill authoring as pressure-tested procedure,
+  and the executor/implementer separation used by the execution playbooks.
+
+## pstack
+
+- Author: Lauren Tan
+- Source: https://github.com/lauren/pstack
+- Licence: MIT
+- Influence: route-first skill loading and the verification-skill pattern
+  (`verify-setup`, `verify-maintain`).
+
+No source files are copied from either project. Where a vstack file adapts an
+idea from one of them, the file says so in its own text.

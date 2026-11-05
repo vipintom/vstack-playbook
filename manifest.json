@@ -382,6 +382,24 @@
       "id": "vstack-context-reset",
       "path": "skills/vstack-context-reset/SKILL.md",
       "version": "1.0.0"
+    },
+    {
+      "id": "docker-compose",
+      "path": "skills/docker-compose/SKILL.md",
+      "version": "1.0.0",
+      "category": "utils"
+    },
+    {
+      "id": "makefile",
+      "path": "skills/makefile/SKILL.md",
+      "version": "1.0.0",
+      "category": "utils"
+    },
+    {
+      "id": "gitignore",
+      "path": "skills/gitignore/SKILL.md",
+      "version": "1.0.0",
+      "category": "utils"
     }
   ],
   "workflows": [
@@ -568,8 +586,8 @@
     "version": "0.1.0",
     "tarball": "vstack-playbook-v0.1.0.tar.gz",
     "zip": "vstack-playbook-v0.1.0.zip",
-    "tarballSha256": "a51ce8d52f492de23f35cd835d444b77818d5b8c0f43dbcd9ceae09458a938a2",
-    "zipSha256": "43691e10b1f8b2fe7ede08bb199d899d14491a111b68872aa6621323eceb0239",
-    "createdAt": "2026-11-02T18:56:28.108Z"
+    "tarballSha256": "315243d3029e24406f62d3472197e3a87c401850bc8f59644030a7514fee723a",
+    "zipSha256": "e7d05b42d4aa5a04c2fa3b4840da57afb285fa8363c38f8b1e096a5baf111dcc",
+    "createdAt": "2026-11-04T08:38:14.685Z"
   }
 }
