@@ -58,7 +58,7 @@ Every skill completes without it. Where a skill offers a recording call, the sam
 
 ## Optional panel
 
-The `vstack-openchamber` extension reads `.vstack/` and shows six views: Now, Plan, Evidence, Timeline, Decisions, Health. It never writes and never invents a value.
+The `vstack-openchamber` extension reads `.vstack/` and shows seven views: Now, Plan, Evidence, Timeline, Decisions, Deliveries, Health. It never writes and never invents a value.
 
 ## Quality bar
 
