@@ -1,0 +1,13 @@
+name: vstack
+
+services:
+  pack:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    working_dir: /work
+    environment:
+      VSTACK_TEST_ENV: docker
+    volumes:
+      - .:/work
+    command: ["sleep", "infinity"]
