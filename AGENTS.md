@@ -1,6 +1,6 @@
 # AGENTS.md — vstack-playbook
 
-Version 0.2.0. The vstack Markdown pack. There is no runtime code, build step,
+Version 0.2.1. The vstack Markdown pack. There is no runtime code, build step,
 schema, manifest, generator or evaluation suite in this repository.
 
 ## Layout
@@ -34,7 +34,7 @@ schema, manifest, generator or evaluation suite in this repository.
   `architect`, `blast-radius`, `arena`, `best-of-n` or `swarm`.
 - Ported material is credited in `NOTICE`.
 - The version is declared in `README.md` and `RELEASE-NOTES.md`. The pack has
-  no manifest by design; the tag `v0.2.0` is the release identity.
+  no manifest by design; the tag `v0.2.1` is the release identity.
 
 ## Verification
 

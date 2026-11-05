@@ -1,6 +1,6 @@
 # vstack Playbook
 
-Version 0.2.0. A portable agentic-development method: 54 skills, 13 playbooks
+Version 0.2.1. A portable agentic-development method: 54 skills, 13 playbooks
 and 12 principles in plain Markdown.
 
 The pack works with no vstack software. In OpenCode you can add the optional
@@ -34,7 +34,7 @@ OpenCode user skills live in `~/.config/opencode/skills/`:
 cp -r vstack-playbook/skills/* ~/.config/opencode/skills/
 ```
 
-Claude Code and Codex mappings are experimental in 0.2.0. The Markdown works; the exact discovery path does not.
+Claude Code and Codex mappings are experimental in 0.2.1. The Markdown works; the exact discovery path does not.
 
 ### Skills CLI
 
@@ -76,10 +76,10 @@ The `vstack-openchamber` extension reads `.vstack/` and shows seven views: Now, 
 
 ## Compatibility
 
-- Pack: 0.2.0, no runtime and no state format. It works alone.
-- Recorder: `@vipintom/vstack-opencode` 0.2.0 is optional and reads or writes
+- Pack: 0.2.1, no runtime and no state format. It works alone.
+- Recorder: `@vipintom/vstack-opencode` 0.2.1 is optional and reads or writes
   state schema 1.
-- Panel: `@vstack/openchamber` 0.2.0 is optional and reads state schema 1.
+- Panel: `@vstack/openchamber` 0.2.1 is optional and reads state schema 1.
 - A mismatch is named by the component that sees it; the pack itself has no
   version check to fail.
 
@@ -89,7 +89,7 @@ The `vstack-openchamber` extension reads `.vstack/` and shows seven views: Now, 
 - Front matter carries a name and a description only.
 - Every step names its artifact.
 - No skill requires the plugin.
-- Public repository, read-only: issues are welcome, pull requests are not accepted in 0.2.0.
+- Public repository, read-only: issues are welcome, pull requests are not accepted in 0.2.1.
 
 ## Release notes and licence
 

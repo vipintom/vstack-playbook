@@ -1,7 +1,7 @@
-# vstack 0.2.0 release notes
+# vstack 0.2.1 release notes
 
 **Released:** 2026-11-05
-**Tag:** `v0.2.0`
+**Tag:** `v0.2.1`
 
 ## Scope
 
@@ -24,9 +24,9 @@ node ../docker/check-links.mjs .                                    # 0 broken
 
 ## Compatibility
 
-- Pack: 0.2.0, standalone.
-- Recorder: `@vipintom/vstack-opencode` 0.2.0, state schema 1.
-- Panel: `@vstack/openchamber` 0.2.0, state schema 1, OpenChamber >= 1.24.0.
+- Pack: 0.2.1, standalone.
+- Recorder: `@vipintom/vstack-opencode` 0.2.1, state schema 1.
+- Panel: `@vstack/openchamber` 0.2.1, state schema 1, OpenChamber >= 1.24.0.
 - A skill completes with files and commands alone; every `vstack_*` call is
   optional and paired with a file artifact.
 
@@ -42,13 +42,13 @@ directory. Keep `playbooks/` and `principles/` from the clone.
 ## Upgrade from 0.1.0
 
 1. Remove the 0.1.0 skill directories, including every `vstack-*` name.
-2. Copy the 0.2.0 `skills/*` directories into the harness skills directory.
+2. Copy the 0.2.1 `skills/*` directories into the harness skills directory.
 3. Read `playbooks/` and `principles/` from the clone.
 4. Delete roles, rubrics, templates, schemas, manifests, evaluation suites and
-   install profiles. They are not part of 0.2.0.
+   install profiles. They are not part of 0.2.1.
 5. Do not migrate 0.1.0 contract or projection state. The pack has no state.
 
-The rename map is below. A name not listed is either new in 0.2.0 or removed
+The rename map is below. A name not listed is either new in 0.2.1 or removed
 with no direct successor.
 
 ## Rename map: 0.1.0 to 0.2.0
