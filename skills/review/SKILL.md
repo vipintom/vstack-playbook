@@ -29,14 +29,16 @@ Near misses:
    history. Artifact: reviewer identity and handoff.
 2. **Read the stated intent first** — the delivery's outcome and done
    predicate. Artifact: quoted intent.
-3. **Read the diff, not only the summary.** Note files skipped. Artifact: files
-   reviewed.
+3. **Read the diff, not only the summary.** Note files skipped. Artifact: diff
+   reviewed (`diffRange`: `<base>...<commit>`), files named.
 4. **Check the three questions:** does it do what it claims, does it break what
    it touches, can the next person change it? Artifact: answers with evidence.
 5. **Write findings** with location, consequence and smallest fix; severity
    high/medium/low, one entry per finding. With the recorder installed, record
    the verdict with `vstack_evidence`: claim "no blocking finding at <commit>",
-   check "reviewed diff <range>". Artifact: findings table and evidence line.
+   check "reviewed diff <base>...<commit>" (`diffRange`), reviewer name as
+   owner. Without it, write the same verdict, range and reviewer into the
+   delivery record. Artifact: findings table and evidence line.
 6. **Verify each high finding** by running or reading the cited line; drop the
    ones you cannot substantiate. Artifact: confirmed list.
 7. **State what was not reviewed** — generated files, vendor code, areas out

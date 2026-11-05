@@ -36,9 +36,11 @@ Near misses, and where they belong instead:
    about CI, run in CI; a local run does not carry it. Capture stdout,
    stderr and exit code to a file. Artifact: `run.log`, `exit`.
 4. **Digest the artifact.** `sha256sum run.log` so the record cannot drift
-   from what was observed. Artifact: `digest`.
+   from what was observed. A digest that does not match the stored artifact
+   fails the line on read — recompute it, never copy it. Artifact: `digest`.
 5. **Record it.** With the recorder installed, call `vstack_evidence` with
-   claim, check, exit, digest and path. Without it, add the same fields to the
+   claim, check, exit, digest, path and, when the claim proves a declared
+   gate, its `gateId`. Without it, add the same fields to the
    delivery record (the project plan or a handoff note) or the commit message; the
    fields are in `references/record.md`. Artifact: the evidence line.
 6. **Downgrade what did not run.** Any claim missing steps 1–4 is recorded as
@@ -47,7 +49,7 @@ Near misses, and where they belong instead:
 ## Output
 
 ```json
-{"ts":"2026-11-05T10:22:31Z","claim":"flaky test passes 0/50","check":"node --test --test-name-pattern flaky ×50","exit":0,"digest":"sha256:8c1f…","artifact":"logs/flaky-50.log"}
+{"ts":"2026-11-05T10:22:31Z","gate":"unit","claim":"flaky test passes 0/50","check":"node --test --test-name-pattern flaky ×50","exit":0,"digest":"sha256:8c1f…","artifact":"logs/flaky-50.log"}
 ```
 
 A reader can re-run `check`, hash the output and compare. If they cannot, the

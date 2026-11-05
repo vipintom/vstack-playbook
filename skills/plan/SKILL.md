@@ -41,8 +41,10 @@ Near misses:
    project plan or a handoff note. Artifact: the plan record.
 8. **Execute in order.** Start one task, do the work, run its check, record the
    result. Complete it only when the check passes and the artifact exists.
-   With the recorder installed, completion without evidence is refused.
-   Artifact: task result per task.
+   With the recorder installed, completion without evidence is refused: the
+   task imports its evidence line id (`evidenceId`) on close. Without it,
+   write the same task-to-evidence link in the plan table. Artifact: task
+   result per task.
 9. **Rule on a failed check**: fix, re-plan, or stop. Record which and why; do
    not mark the task done and continue. Artifact: ruling.
 10. **Stop when the done predicate is proven.** New scope returns to `shape`;
@@ -50,10 +52,10 @@ Near misses:
 
 ## Output
 
-| # | Task | Artifact | Check | Depends on |
-|---|---|---|---|---|
-| 1 | schema for evidence lines | `<schema path>` | `node --test <schema test path>` | — |
-| 2 | append-only writer | `<writer path>` | same test, new case | 1 |
+| # | Task | Artifact | Check | Evidence | Depends on |
+|---|---|---|---|---|---|
+| 1 | schema for evidence lines | `<schema path>` | `node --test <schema test path>` | evidence line id | — |
+| 2 | append-only writer | `<writer path>` | same test, new case | evidence line id | 1 |
 
 A plan a stranger cannot start from is a summary of intent.
 

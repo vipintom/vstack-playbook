@@ -1,6 +1,6 @@
 # vstack Playbook
 
-Version 0.2.1. A portable agentic-development method: 54 skills, 13 playbooks
+Version 0.2.2. A portable agentic-development method: 54 skills, 13 playbooks
 and 12 principles in plain Markdown.
 
 The pack works with no vstack software. In OpenCode you can add the optional
@@ -34,7 +34,7 @@ OpenCode user skills live in `~/.config/opencode/skills/`:
 cp -r vstack-playbook/skills/* ~/.config/opencode/skills/
 ```
 
-Claude Code and Codex mappings are experimental in 0.2.1. The Markdown works; the exact discovery path does not.
+Claude Code and Codex mappings are experimental in 0.2.2. The Markdown works; the exact discovery path does not.
 
 ### Skills CLI
 
@@ -66,7 +66,7 @@ A claim without an artifact is not evidence. A check that did not run is reporte
 
 ## Optional recorder
 
-The `vstack-opencode` plugin adds exactly six tools — `vstack_route`, `vstack_task`, `vstack_evidence`, `vstack_decision`, `vstack_handoff`, `vstack_close` — and writes `.vstack/` in the project. It refuses a task completion with no evidence and a close with open work.
+The `vstack-opencode` plugin adds exactly six tools — `vstack_route`, `vstack_task`, `vstack_evidence`, `vstack_decision`, `vstack_handoff`, `vstack_close` — and writes `.vstack/` in the project. It refuses a task completion with no evidence and a close with open work, a missing required gate result, a digest mismatch or a v1 (schema 1) record.
 
 Every skill completes without it. Where a skill offers a recording call, the same fact goes into the plan, commit or handoff when the plugin is absent.
 
@@ -76,12 +76,14 @@ The `vstack-openchamber` extension reads `.vstack/` and shows seven views: Now, 
 
 ## Compatibility
 
-- Pack: 0.2.1, no runtime and no state format. It works alone.
-- Recorder: `@vipintom/vstack-opencode` 0.2.1 is optional and reads or writes
-  state schema 1.
-- Panel: `@vstack/openchamber` 0.2.1 is optional and reads state schema 1.
+- Pack: 0.2.2, no runtime and no state format. It works alone.
+- Recorder: `@vipintom/vstack-opencode` 0.2.2 is optional and reads or writes
+  state schema 2. Evidence lines carry `gateId` and `digest`; reviews carry
+  `diffRange`.
+- Panel: `@vstack/openchamber` 0.2.2 is optional and reads state schema 2.
 - A mismatch is named by the component that sees it; the pack itself has no
-  version check to fail.
+  version check to fail. A schema 1 record is refused at close, not silently
+  upgraded.
 
 ## Quality bar
 
@@ -89,7 +91,7 @@ The `vstack-openchamber` extension reads `.vstack/` and shows seven views: Now, 
 - Front matter carries a name and a description only.
 - Every step names its artifact.
 - No skill requires the plugin.
-- Public repository, read-only: issues are welcome, pull requests are not accepted in 0.2.1.
+- Public repository, read-only: issues are welcome, pull requests are not accepted in 0.2.2.
 
 ## Release notes and licence
 

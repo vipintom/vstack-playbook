@@ -28,9 +28,11 @@ Near misses, and where they belong instead:
 
 ## Steps
 
-1. **State the outcome.** One sentence for what exists afterwards, and the
-   check that proves it. Artifact: `outcome` and `done-when` in the delivery
-   record.
+1. **State the outcome and declare the gates.** One sentence for what exists
+   afterwards, the check that proves it, and the gates this delivery must
+   pass — required vs optional — with the budget each may spend (runs, time,
+   hosts). Artifact: `outcome`, `done-when`, `gates` and `budget` in the
+   delivery record.
 2. **Decide triviality.** If one edit, one file, reversible — write the Quick
    line and stop routing. Artifact: `tier: quick`.
 3. **Choose the playbook.** Read `references/playbooks.md`. If nothing fits
@@ -51,6 +53,7 @@ Near misses, and where they belong instead:
 ```json
 {"playbook": "fix-bug", "tier": "standard", "skills": ["debug", "tdd"],
  "skipped": ["red-team"], "done-when": "the flaky case fails 0/50 runs",
+ "gates": ["unit", "types"], "budget": "unit ×50 runs, types once",
  "recorded": "plan.md#route"}
 ```
 
@@ -67,3 +70,5 @@ from the record alone. No record, no route.
 - **No delivery record yet.** Write the route into the project plan before
   step 7; a route that exists only in the conversation is not a route.
 - **Two playbooks tie.** Take the one whose exit criteria are checkable now.
+- **A gate cannot run here.** Record it `not_run` with what is missing; the
+  budget does not buy a pass.
