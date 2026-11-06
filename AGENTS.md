@@ -32,6 +32,8 @@ schema, manifest, generator or evaluation suite in this repository.
 - Every skill is tracked in git.
 - 0.1.0 names are gone. Do not revive `vstack-*`, `mode`, `how`, `why`,
   `architect`, `blast-radius`, `arena`, `best-of-n` or `swarm`.
+- No `@vstack/*` npm scope exists. Cross-refs name `@vipintom/vstack-opencode`
+  and `@vipintom/vstack-openchamber`.
 - Ported material is credited in `NOTICE`.
 - The version is declared in `README.md` and `RELEASE-NOTES.md`. The pack has
   no manifest by design; the tag `v0.2.2` is the release identity.
@@ -46,4 +48,6 @@ grep -rl '^## Tracking\|^## Rationalizations\|^## Modes\|^## Verification' skill
 ```
 
 A change is ready when those commands agree and the changed skill still
-completes without the recorder.
+completes without the recorder. Release proof runs in Docker from the
+workspace: `./docker/test.sh pack` (54 / 13 / 12, no forbidden sections,
+refs resolve).
