@@ -80,7 +80,7 @@ The `vstack-openchamber` extension reads `.vstack/` and shows seven views: Now, 
 - Recorder: `@vipintom/vstack-opencode` 0.2.2 is optional and reads or writes
   state schema 2. Evidence lines carry `gateId` and `digest`; reviews carry
   `diffRange`.
-- Panel: `@vstack/openchamber` 0.2.2 is optional and reads state schema 2.
+- Panel: `@vipintom/vstack-openchamber` 0.2.2 is optional and reads state schema 2.
 - A mismatch is named by the component that sees it; the pack itself has no
   version check to fail. A schema 1 record is refused at close, not silently
   upgraded.

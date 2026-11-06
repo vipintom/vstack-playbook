@@ -34,7 +34,7 @@ node ../docker/check-links.mjs .                                    # 0 broken
 
 - Pack: 0.2.2, standalone.
 - Recorder: `@vipintom/vstack-opencode` 0.2.2, state schema 2.
-- Panel: `@vstack/openchamber` 0.2.2, state schema 2, OpenChamber >= 1.24.0.
+- Panel: `@vipintom/vstack-openchamber` 0.2.2, state schema 2, OpenChamber >= 1.24.0.
 - A skill completes with files and commands alone; every `vstack_*` call is
   optional and paired with a file artifact.
 
