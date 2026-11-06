@@ -1,5 +1,7 @@
 # vstack Playbook
 
+[![CI](https://github.com/vipintom/vstack-playbook/actions/workflows/ci.yml/badge.svg)](https://github.com/vipintom/vstack-playbook/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Version 0.2.2. A portable agentic-development method: 54 skills, 13 playbooks
 and 12 principles in plain Markdown.
 
@@ -66,13 +68,37 @@ A claim without an artifact is not evidence. A check that did not run is reporte
 
 ## Optional recorder
 
-The `vstack-opencode` plugin adds exactly six tools — `vstack_route`, `vstack_task`, `vstack_evidence`, `vstack_decision`, `vstack_handoff`, `vstack_close` — and writes `.vstack/` in the project. It refuses a task completion with no evidence and a close with open work, a missing required gate result, a digest mismatch or a v1 (schema 1) record.
+The [`vstack-opencode`](https://github.com/vipintom/vstack-opencode) plugin adds exactly six tools — `vstack_route`, `vstack_task`, `vstack_evidence`, `vstack_decision`, `vstack_handoff`, `vstack_close` — and writes `.vstack/` in the project. It refuses a task completion with no evidence and a close with open work, a missing required gate result, a digest mismatch or a v1 (schema 1) record.
 
 Every skill completes without it. Where a skill offers a recording call, the same fact goes into the plan, commit or handoff when the plugin is absent.
 
 ## Optional panel
 
-The `vstack-openchamber` extension reads `.vstack/` and shows seven views: Now, Plan, Evidence, Timeline, Decisions, Deliveries, Health. It never writes and never invents a value.
+The [`vstack-openchamber`](https://github.com/vipintom/vstack-openchamber) extension reads `.vstack/` and shows seven views: Now, Plan, Evidence, Timeline, Decisions, Deliveries, Health. It never writes and never invents a value.
+
+## Updating
+
+```bash
+cd vstack-playbook
+git pull
+cp -r skills/* ~/.config/opencode/skills/
+```
+
+Re-copy after every pull; the harness reads the skill directories, not the
+clone. `playbooks/` and `principles/` are read from the clone.
+
+## Troubleshooting
+
+1. Skill does not fire? Its description decides. Check the `description`
+   front matter says when to use it and when not to.
+2. Counts disagree (`54 / 13 / 12`)? Re-pull and re-copy; a stale copy is the
+   usual cause.
+3. Harness cannot find skills? Point it at the `skills/` directory itself, not
+   the repository root.
+4. Claude Code or Codex path oddities? Mappings are experimental in 0.2.x;
+   the Markdown works, the discovery path may not.
+5. Recorder calls in a skill with no plugin? Every skill completes without
+   it; put the fact in the plan, commit or handoff instead.
 
 ## Compatibility
 
